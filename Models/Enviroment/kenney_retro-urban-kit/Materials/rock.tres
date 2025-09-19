@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bmxxg4wmd2bay"]
+
+[ext_resource type="Texture2D" uid="uid://dq1tlvlotbpn6" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/Textures/rock.png" id="1_miofe"]
+
+[resource]
+resource_name = "rock"
+albedo_texture = ExtResource("1_miofe")

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://brrptlxle6ene"]
+
+[ext_resource type="Texture2D" uid="uid://dgrion4p7n2ms" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/Textures/concrete.png" id="1_tubff"]
+
+[resource]
+resource_name = "concrete"
+shading_mode = 0
+albedo_texture = ExtResource("1_tubff")

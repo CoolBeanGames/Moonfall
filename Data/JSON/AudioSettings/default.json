@@ -1,0 +1,9 @@
+{
+	"repeat" : false,
+	"bus" : "Master",
+	"volume" : 0.5,
+	"pitch" : 1,
+	"randomize_pitch" : false,
+	"pitch_range_min" : 0.9,
+	"pitch_range_max" : 1.1
+}

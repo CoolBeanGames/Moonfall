@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="unnamed_audio_set" load_steps=3 format=3 uid="uid://bff5ffjsooq0p"]
+
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Audio/Scripts/unnamed_audio_set.gd" id="1_0t7mu"]
+[ext_resource type="AudioStream" uid="uid://c7gd41lv8b36w" path="res://Guns/audio/warfare_gunshot_exterior_001.wav" id="1_5f6te"]
+
+[resource]
+script = ExtResource("1_0t7mu")
+files = Array[AudioStream]([ExtResource("1_5f6te")])
+metadata/_custom_type_script = "uid://bc4x8rwu73rom"

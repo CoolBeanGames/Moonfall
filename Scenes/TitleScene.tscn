@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbgjbggshuarb"]
+
+[ext_resource type="Script" uid="uid://dyeuh767povg7" path="res://audiotest.gd" id="1_j8exe"]
+[ext_resource type="Resource" uid="uid://btlewup38i840" path="res://sample_audio.tres" id="2_ryprb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4iaox"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_j8exe"]
+sky_material = SubResource("ProceduralSkyMaterial_4iaox")
+
+[sub_resource type="Environment" id="Environment_ryprb"]
+background_mode = 2
+sky = SubResource("Sky_j8exe")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.15883, 0.00622354, 0.0696189, 1)
+fog_density = 0.2451
+
+[node name="TitleScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ryprb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.854996, 0.284231, 0.445477, 1)
+shadow_enabled = true
+
+[node name="BuildingStandin" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35504, 1.4317, 0)
+size = Vector3(11.8094, 3.8634, 1)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7950667, 0, 0)
+
+[node name="Door" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10687846, 0.68991876, 0.1558361)
+size = Vector3(1.7564789, 2.8171682, 0.9012451)
+
+[node name="Door2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10548872, 0.65969896, 0.60284233)
+operation = 2
+size = Vector3(1.6490196, 2.7567286, 0.13327026)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49573, -0.365234, 1.33295)
+size = Vector3(12.4783, 0.269531, 3.66589)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.935369, -0.0430434, 0.351045, 0.155577, 0.941453, -0.299102, -0.317618, 0.334386, 0.887302, 0.930757, 0, 2.44337)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.228
+anchor_top = 0.086
+anchor_right = 0.961
+anchor_bottom = 0.263
+theme_override_font_sizes/font_size = 64
+text = "Bernards Typing Academy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.035
+anchor_top = 0.325
+anchor_right = 0.285
+anchor_bottom = 0.859
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Options"
+
+[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Quit"
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_j8exe")
+aSet = ExtResource("2_ryprb")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62785995, 0.58800614, 0.88032377)
+radius = 0.2680664
+height = 1.6972656
+
+[connection signal="button_down" from="CanvasLayer/VBoxContainer/Button" to="Node" method="_on_button_button_down"]

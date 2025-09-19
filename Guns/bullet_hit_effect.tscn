@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2by16fk05iv"]
+
+[ext_resource type="Script" uid="uid://cqh4v7b5w7vdu" path="res://Codebase/Player/Shooting/bullet_hit_effect.gd" id="1_2xmts"]
+[ext_resource type="Texture2D" uid="uid://pvr8mbvl1onm" path="res://addons/phantom_camera/assets/PhantomCameraBtnPrimaryHover.png" id="2_b2r18"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vul2k"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.25882354)
+albedo_texture = ExtResource("2_b2r18")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_2xmts"]
+material = SubResource("StandardMaterial3D_vul2k")
+size = Vector2(0.03, 0.03)
+
+[sub_resource type="Gradient" id="Gradient_aj8lx"]
+offsets = PackedFloat32Array(0, 0.22861348, 0.8195199, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.22745098, 0.22745098, 0.22745098, 1, 0.7137255, 0.7137255, 0.7137255, 1, 1, 1, 1, 0)
+
+[node name="bullet_hit_effect" type="Node3D"]
+script = ExtResource("1_2xmts")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 80
+lifetime = 0.3
+explosiveness = 1.0
+randomness = 1.0
+mesh = SubResource("QuadMesh_2xmts")
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_aj8lx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

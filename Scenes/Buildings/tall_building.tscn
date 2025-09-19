@@ -1,0 +1,206 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1p0t1x8t5vyk"]
+
+[ext_resource type="PackedScene" uid="uid://cmbrah8ict2yi" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/wall-b-door.glb" id="1_6ai8f"]
+[ext_resource type="PackedScene" uid="uid://brkfrgx3d7boj" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/wall-b.glb" id="2_wjqi3"]
+[ext_resource type="PackedScene" uid="uid://dehfwjkoygb26" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/wall-b-open.glb" id="3_53sld"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ns4n5"]
+size = Vector3(1.9786987, 5.951874, 3.093628)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q3y7w"]
+size = Vector3(2.9661865, 5.951874, 2.0072632)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nnpvd"]
+size = Vector3(2.9661865, 5.048691, 2.5314636)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fgdlj"]
+size = Vector3(0.053222656, 0.996521, 0.08288574)
+
+[node name="tall_building" type="Node3D"]
+
+[node name="tall_building" type="Node3D" parent="."]
+
+[node name="wall-b-door2" parent="tall_building" instance=ExtResource("1_6ai8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 0, -0.021982431)
+
+[node name="wall-b2" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 0, -0.021982431)
+
+[node name="wall-b3" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 0, -1.0219824)
+
+[node name="wall-b4" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 0, -1.0219824)
+
+[node name="wall-b5" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 0, -0.021982431)
+
+[node name="wall-b6" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 0, 0.97801757)
+
+[node name="wall-b7" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 0, 0.97801757)
+
+[node name="wall-b8" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 0, 0.97801757)
+
+[node name="wall-b9" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 1, -0.021982431)
+
+[node name="wall-b10" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 1, -1.0219824)
+
+[node name="wall-b11" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 1, -1.0219824)
+
+[node name="wall-b12" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 1, -0.021982431)
+
+[node name="wall-b13" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 1, 0.97801757)
+
+[node name="wall-b14" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 1, 0.97801757)
+
+[node name="wall-b15" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 1, 0.97801757)
+
+[node name="wall-b16" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 1, -0.021982431)
+
+[node name="wall-b17" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 1, -1.0219824)
+
+[node name="wall-b18" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 2, -0.021982431)
+
+[node name="wall-b19" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 2, -1.0219824)
+
+[node name="wall-b20" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 2, -1.0219824)
+
+[node name="wall-b21" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 2, -0.021982431)
+
+[node name="wall-b22" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 2, 0.97801757)
+
+[node name="wall-b23" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 2, 0.97801757)
+
+[node name="wall-b24" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 2, 0.97801757)
+
+[node name="wall-b25" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 2, -0.021982431)
+
+[node name="wall-b26" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 2, -1.0219824)
+
+[node name="wall-b27" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 3, -0.021982431)
+
+[node name="wall-b28" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 3, -1.0219824)
+
+[node name="wall-b29" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 3, -1.0219824)
+
+[node name="wall-b30" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 3, -0.021982431)
+
+[node name="wall-b31" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 3, 0.97801757)
+
+[node name="wall-b32" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 3, 0.97801757)
+
+[node name="wall-b33" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 3, 0.97801757)
+
+[node name="wall-b34" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 3, -0.021982431)
+
+[node name="wall-b35" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 3, -1.0219824)
+
+[node name="wall-b36" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 4, -0.021982431)
+
+[node name="wall-b37" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 4, -1.0219824)
+
+[node name="wall-b38" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 4, -1.0219824)
+
+[node name="wall-b39" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 4, -0.021982431)
+
+[node name="wall-b40" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 4, 0.97801757)
+
+[node name="wall-b41" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 4, 0.97801757)
+
+[node name="wall-b42" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 4, 0.97801757)
+
+[node name="wall-b43" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 4, -0.021982431)
+
+[node name="wall-b44" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 4, -1.0219824)
+
+[node name="wall-b45" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 5, -0.021982431)
+
+[node name="wall-b46" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 5, -1.0219824)
+
+[node name="wall-b47" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 5, -1.0219824)
+
+[node name="wall-b48" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 5, -0.021982431)
+
+[node name="wall-b49" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98736763, 5, 0.97801757)
+
+[node name="wall-b50" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01263237, 5, 0.97801757)
+
+[node name="wall-b51" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 5, 0.97801757)
+
+[node name="wall-b52" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 5, -0.021982431)
+
+[node name="wall-b53" parent="tall_building" instance=ExtResource("2_wjqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 5, -1.0219824)
+
+[node name="wall-b-open2" parent="tall_building" instance=ExtResource("3_53sld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0126324, 0, -1.0219824)
+
+[node name="tall_building_collider_1" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tall_building_collider_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4937439, 2.9275115, 0)
+shape = SubResource("BoxShape3D_ns4n5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="tall_building_collider_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9275115, 0.5431824)
+shape = SubResource("BoxShape3D_q3y7w")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="tall_building_collider_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.379103, -0.26210022)
+shape = SubResource("BoxShape3D_nnpvd")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="tall_building_collider_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.479248, 0.48892212, -1.482605)
+shape = SubResource("BoxShape3D_fgdlj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0136147, 0.6680049, -1.0561154)
+light_color = Color(1, 1, 0.9098039, 1)
+omni_range = 0.7

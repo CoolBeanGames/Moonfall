@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ckule7267wcku"]
+
+[ext_resource type="Texture2D" uid="uid://cxyewbnjr0sg4" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/Textures/signs.png" id="1_oa5gj"]
+
+[resource]
+resource_name = "signs"
+transparency = 4
+albedo_texture = ExtResource("1_oa5gj")

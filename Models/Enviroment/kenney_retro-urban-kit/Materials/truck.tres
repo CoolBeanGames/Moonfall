@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dla7d7hkgfjf"]
+
+[ext_resource type="Texture2D" uid="uid://ddkeqalleho1y" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/Textures/truck.png" id="1_g2eew"]
+
+[resource]
+resource_name = "truck"
+shading_mode = 0
+albedo_texture = ExtResource("1_g2eew")

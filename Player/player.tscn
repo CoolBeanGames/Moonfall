@@ -1,0 +1,95 @@
+[gd_scene load_steps=23 format=3 uid="uid://dfwvu0chheicj"]
+
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_4ntmi"]
+[ext_resource type="Script" uid="uid://chqj13gmslwu0" path="res://Codebase/Player/player.gd" id="1_btcbx"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_btcbx"]
+[ext_resource type="Script" uid="uid://rw5tpsp0lo8l" path="res://Codebase/StateMachine/StateMachine.gd" id="2_x3vf3"]
+[ext_resource type="Script" uid="uid://dkeed0gw4wb1k" path="res://Codebase/StateMachine/State.gd" id="3_apopc"]
+[ext_resource type="Script" uid="uid://phmkbmqohojx" path="res://Codebase/Player/States/player_roaming_state.gd" id="4_5htga"]
+[ext_resource type="Script" uid="uid://b7yry0jfv5e77" path="res://Codebase/Player/States/player_typing_state.gd" id="5_p5o4e"]
+[ext_resource type="Script" uid="uid://cyjnhbr0fwch4" path="res://Codebase/Player/States/player_frozen_state.gd" id="6_gu6f8"]
+[ext_resource type="Script" uid="uid://co1aqk65mbnqw" path="res://Codebase/Player/States/player_paused_state.gd" id="7_dkpta"]
+[ext_resource type="Script" uid="uid://b8nfiol7igkfc" path="res://Codebase/StateMachine/Transition.gd" id="8_lfmf2"]
+[ext_resource type="Script" uid="uid://b2r0gys8qg8bh" path="res://Codebase/Player/player_movement_component.gd" id="11_5htga"]
+[ext_resource type="Script" uid="uid://da376gvtae7us" path="res://Codebase/Player/player_look_component.gd" id="12_p5o4e"]
+[ext_resource type="Script" uid="uid://objhus1b7iuh" path="res://Codebase/Player/Shooting/PlayerShootComponent.gd" id="13_p5o4e"]
+[ext_resource type="Resource" uid="uid://bkuc0tv75daoi" path="res://Guns/gun data/pistol.tres" id="14_gu6f8"]
+
+[sub_resource type="Resource" id="Resource_x3vf3"]
+script = ExtResource("4_5htga")
+metadata/_custom_type_script = "uid://phmkbmqohojx"
+
+[sub_resource type="Resource" id="Resource_o28un"]
+script = ExtResource("6_gu6f8")
+metadata/_custom_type_script = "uid://cyjnhbr0fwch4"
+
+[sub_resource type="Resource" id="Resource_n471f"]
+script = ExtResource("7_dkpta")
+metadata/_custom_type_script = "uid://co1aqk65mbnqw"
+
+[sub_resource type="Resource" id="Resource_pisgm"]
+script = ExtResource("4_5htga")
+metadata/_custom_type_script = "uid://phmkbmqohojx"
+
+[sub_resource type="Resource" id="Resource_b1ygp"]
+script = ExtResource("5_p5o4e")
+metadata/_custom_type_script = "uid://b7yry0jfv5e77"
+
+[sub_resource type="Resource" id="Resource_7emwf"]
+script = ExtResource("2_x3vf3")
+currentState = SubResource("Resource_x3vf3")
+states = Dictionary[String, ExtResource("3_apopc")]({
+"frozen": SubResource("Resource_o28un"),
+"paused": SubResource("Resource_n471f"),
+"roaming": SubResource("Resource_pisgm"),
+"typing": SubResource("Resource_b1ygp")
+})
+metadata/_custom_type_script = "uid://rw5tpsp0lo8l"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gwnis"]
+radius = 0.15
+height = 0.6
+
+[sub_resource type="Resource" id="Resource_k53q1"]
+script = ExtResource("2_btcbx")
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component")]
+script = ExtResource("1_btcbx")
+fsm = SubResource("Resource_7emwf")
+look_component = NodePath("Components/PlayerLookComponent")
+move_component = NodePath("Components/PlayerMovementComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.017448813, 0)
+shape = SubResource("CapsuleShape3D_gwnis")
+
+[node name="PhantomCamera3D" type="Node3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23798203, 0)
+script = ExtResource("1_4ntmi")
+tween_resource = SubResource("Resource_k53q1")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D/PhantomCamera3D"]
+target_position = Vector3(0, 0, -100000)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CollisionShape3D/PhantomCamera3D/RayCast3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.20709437)
+light_color = Color(1, 1, 0.94509804, 1)
+spot_range = 7.0
+spot_angle = 35.0
+
+[node name="Components" type="Node" parent="."]
+
+[node name="PlayerMovementComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr")]
+script = ExtResource("11_5htga")
+plr = NodePath("../..")
+
+[node name="PlayerLookComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr", "camera")]
+script = ExtResource("12_p5o4e")
+plr = NodePath("../..")
+camera = NodePath("../../CollisionShape3D/PhantomCamera3D")
+
+[node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("raycaster")]
+script = ExtResource("13_p5o4e")
+current_gun = ExtResource("14_gu6f8")
+raycaster = NodePath("../../CollisionShape3D/PhantomCamera3D/RayCast3D")

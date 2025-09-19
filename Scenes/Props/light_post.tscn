@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://2egcsbg5ucuw"]
+
+[ext_resource type="PackedScene" uid="uid://bhqc7yt0dufmk" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/detail-light-double.glb" id="1_vkqg3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6rgpl"]
+height = 1.9337158
+radius = 0.107421875
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vkqg3"]
+size = Vector3(1, 0.0932312, 0.8531494)
+
+[node name="light_post" type="Node3D"]
+
+[node name="detail-light-double2" parent="." instance=ExtResource("1_vkqg3")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.015635729, 0, 0.001819849)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="detail-light-double2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.8874051, -0.19140244)
+light_color = Color(1, 0.88352424, 0.66723996, 1)
+light_energy = 1.5
+spot_angle = 29.83
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="detail-light-double2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.8874051, 0.17024148)
+light_color = Color(1, 0.88352424, 0.66723996, 1)
+light_energy = 1.5
+spot_angle = 29.83
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9558716, 0)
+shape = SubResource("CylinderShape3D_6rgpl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8809967, 0.0154418945)
+shape = SubResource("BoxShape3D_vkqg3")

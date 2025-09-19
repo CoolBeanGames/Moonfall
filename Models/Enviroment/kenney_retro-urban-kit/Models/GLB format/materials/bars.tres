@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b8s5d41cr4d8j"]
+
+[ext_resource type="Texture2D" uid="uid://dv3y8a5dngbji" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/Textures/bars.png" id="1_6ppp6"]
+
+[resource]
+resource_name = "bars"
+transparency = 4
+albedo_texture = ExtResource("1_6ppp6")

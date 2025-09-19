@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Game_Signal" load_steps=2 format=3 uid="uid://v2i01vtk6gbs"]
+
+[ext_resource type="Script" uid="uid://wssespaqbj5j" path="res://Codebase/SignalBus/GameSignal.gd" id="1_pt4bm"]
+
+[resource]
+script = ExtResource("1_pt4bm")
+metadata/_custom_type_script = "uid://wssespaqbj5j"

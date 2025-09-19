@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://hrxbd33hpnb7"]
+
+[ext_resource type="Texture2D" uid="uid://dj1lqf1rk05qn" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/Textures/wall_lines.png" id="1_c2opd"]
+
+[resource]
+resource_name = "wall_lines"
+shading_mode = 0
+albedo_texture = ExtResource("1_c2opd")

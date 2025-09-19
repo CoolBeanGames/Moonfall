@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://okdfawxvfl40"]
+
+[ext_resource type="Texture2D" uid="uid://3ohk5viw5ayw" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/Textures/metal_wall.png" id="1_tdk4o"]
+
+[resource]
+resource_name = "wall_metal"
+albedo_texture = ExtResource("1_tdk4o")

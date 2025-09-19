@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://480fpq1yopy7"]
+
+[ext_resource type="PackedScene" uid="uid://dfwvu0chheicj" path="res://Player/player.tscn" id="1_2f7ly"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_oxyvd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2f7ly"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_oxyvd"]
+sky_material = SubResource("ProceduralSkyMaterial_2f7ly")
+
+[sub_resource type="Environment" id="Environment_i44qn"]
+background_mode = 2
+sky = SubResource("Sky_oxyvd")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qty5g"]
+size = Vector3(13.525879, 0.3397827, 10.584717)
+
+[node name="test_enviroment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i44qn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.386139, -0.3347168, -2.294098)
+size = Vector3(13.501038, 0.3305664, 10.576721)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CSGBox3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009765625, -0.01473999, -0.012573242)
+shape = SubResource("BoxShape3D_qty5g")
+
+[node name="Camera3D" type="Camera3D" parent="CSGBox3D/StaticBody3D/CollisionShape3D"]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3851624, 2.3679855, 2.3066711)
+
+[node name="PhantomCameraHost" type="Node" parent="CSGBox3D/StaticBody3D/CollisionShape3D/Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_oxyvd")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Player" parent="." instance=ExtResource("1_2f7ly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1777215, 0)
+
+[editable path="Player"]

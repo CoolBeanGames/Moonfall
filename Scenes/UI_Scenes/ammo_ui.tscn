@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmv0jv4sfrhd3"]
+
+[ext_resource type="Script" uid="uid://c50ai17j0xi0q" path="res://Codebase/UI/ammo_ui.gd" id="1_8se2t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8se2t"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cmtw"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.13510182, 0.13510182, 0.13510177, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.17254902)
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r58ef"]
+bg_color = Color(0.19477433, 0.19477433, 0.19477433, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ammo_UI" type="Control" node_paths=PackedStringArray("total_ammo", "loaded_ammo", "gun_name")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8se2t")
+total_ammo = NodePath("AspectRatioContainer/PanelContainer/total_ammo/ammo_display")
+loaded_ammo = NodePath("AspectRatioContainer/PanelContainer/loaded_ammo/loaded_ammo_display")
+gun_name = NodePath("AspectRatioContainer/PanelContainer/GunName")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.62600005
+anchor_top = 0.822
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 3.7421
+
+[node name="PanelContainer" type="Panel" parent="AspectRatioContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8se2t")
+
+[node name="total_ammo" type="PanelContainer" parent="AspectRatioContainer/PanelContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.72300005
+anchor_right = 0.97200006
+anchor_bottom = 0.9480001
+offset_bottom = 5.98703
+theme_override_styles/panel = SubResource("StyleBoxFlat_7cmtw")
+
+[node name="ammo_display" type="Label" parent="AspectRatioContainer/PanelContainer/total_ammo"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="loaded_ammo" type="PanelContainer" parent="AspectRatioContainer/PanelContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.64100003
+anchor_top = 0.116000004
+anchor_right = 0.76600003
+anchor_bottom = 0.595
+theme_override_styles/panel = SubResource("StyleBoxFlat_r58ef")
+
+[node name="loaded_ammo_display" type="Label" parent="AspectRatioContainer/PanelContainer/loaded_ammo"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 16
+text = "12/12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GunName" type="Label" parent="AspectRatioContainer/PanelContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.57600003
+anchor_right = 0.71900004
+anchor_bottom = 0.89000005
+offset_right = 0.06826782
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Pistol"
+horizontal_alignment = 2
+vertical_alignment = 1

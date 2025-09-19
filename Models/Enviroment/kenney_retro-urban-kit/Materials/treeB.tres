@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c1l3m54sj2nvn"]
+
+[ext_resource type="Texture2D" uid="uid://d2hr73lx1yfmn" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/Textures/treeB.png" id="1_sv8r6"]
+
+[resource]
+resource_name = "treeB"
+transparency = 4
+shading_mode = 0
+albedo_texture = ExtResource("1_sv8r6")
