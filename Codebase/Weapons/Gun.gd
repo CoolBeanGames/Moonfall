@@ -9,5 +9,6 @@ class_name gun extends Resource
 @export var fire_mode : FireMode = FireMode.single
 @export var shooting_sounds : audio_set
 @export var empty_sound : AudioStream
+@export var reload_sound : AudioStream
 
 enum FireMode {single, rapid, spread}

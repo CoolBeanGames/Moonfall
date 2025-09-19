@@ -24,6 +24,8 @@ var pitch_clamp : float = 0
 var look_speed : float = 0
 #delta time for lerping
 var delta : float = 0
+#wether or not we are inverting the y axis
+var invert_y : bool = false
 
 
 
@@ -31,6 +33,7 @@ var delta : float = 0
 func _ready():
 	look_axis = InputManager.axis["mouse"]
 
+#lerping and applying the rotation
 func _process(_delta):
 	delta = _delta
 	lerp_rot()
@@ -59,7 +62,7 @@ func mouse_moved(value : Vector2):
 #calculate our player rotation
 func calculate_rot(input : Vector2):
 	target_rot_y += (-input.x) * look_speed * delta
-	target_rot_x = clamp(target_rot_x + (input.y * look_speed * delta), -pitch_clamp,pitch_clamp)
+	target_rot_x = clamp(target_rot_x + ((-input.y) * look_speed * delta), -pitch_clamp,pitch_clamp)
 
 #apply the camera rotation to the player
 func apply_rot():
@@ -71,4 +74,4 @@ func lerp_rot():
 	lerp_speed = plr.bb._get("look_lerp_speed")
 	rot_x = lerp(rot_x,target_rot_x, (1-exp(-delta * lerp_speed)))
 	rot_y = lerp(rot_y,target_rot_y, (1-exp(-delta * lerp_speed)))
-	pass
+

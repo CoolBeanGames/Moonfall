@@ -11,6 +11,8 @@ var shoot_timer : float = 0
 var bullet_hit_effect : PackedScene
 @export var current_gun : gun
 @export var raycaster : RayCast3D
+@export var gun_animation_player : AnimationPlayer
+@export var shoot_point : Node3D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +26,7 @@ func _ready() -> void:
 	GameManager.data.set_data("bullets",24)
 	await get_tree().process_frame
 	update_ui()
+	gun_animation_player.play("idle")
 	
 
 
@@ -55,14 +58,20 @@ func on_shoot_hold():
 				shoot()
 
 func shoot():
+	raycaster.force_raycast_update()
+	gun_animation_player.play("Shoot")
+	AudioManager.play_random_audio_file(current_gun.shooting_sounds,"default",false,Vector3(0,0,0))
 	if raycaster.is_colliding():
 		var position : Vector3 = raycaster.get_collision_point()
 		var collider =  raycaster.get_collider()
 		var instance : Node3D = bullet_hit_effect.instantiate()
 		instance.position = position
 		GameManager.add_child(instance)
-		AudioManager.play_random_audio_file(current_gun.shooting_sounds,"default",false,position)
 		update_ui()
+		spawn_bullet(position)
+	else:
+		spawn_bullet( raycaster.global_position + (raycaster.global_transform.basis.z * raycaster.target_position.z))
+
 
 func update_ui():
 	SignalBus.signals.signals["update_gun_ui"].event.emit()
@@ -70,6 +79,8 @@ func update_ui():
 func reload():
 	var bullets = GameManager.data._get("bullets")
 	if current_gun.loaded_bullets != 0:
+		AudioManager.play_audio_file(current_gun.reload_sound,"default",false,Vector3(0,0,0))
+		gun_animation_player.play("Reload")
 		print("loading partial ammount")
 		var difference = current_gun.max_clip_size - current_gun.loaded_bullets
 		print("difference: ", difference)
@@ -97,3 +108,25 @@ func reload():
 	else:
 		print("bullets null or no bullets")
 	update_ui()
+
+func spawn_bullet(hit_position : Vector3):
+	print("spawning bullet, hit point: ", hit_position)
+	var direction = (hit_position - shoot_point.global_position).normalized()
+	print("direction: ", direction)
+	var distance = (hit_position - shoot_point.global_position).length()
+	print("distance: ", distance)
+	var instance = current_gun.bullet_prefab.instantiate() as bullet
+	GameManager.add_child(instance)
+	instance.position = shoot_point.global_position
+	
+	# Check your bullet model's forward direction. If it's not -Z, rotate it here.
+	# For example, if the model's Y-axis is pointing forward:
+	instance.rotate_x(deg_to_rad(-90))
+	# Or if its X-axis is pointing forward:
+	# instance.rotate_y(deg_to_rad(90))
+
+	# Then call look_at()
+	instance.look_at(hit_position, Vector3.UP)
+	
+	print("calling shoot")
+	instance.shoot(direction, 1, distance)

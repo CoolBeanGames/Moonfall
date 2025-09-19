@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dio0na5l06nbg"]
+
+[ext_resource type="Script" uid="uid://ttuli52gr0b4" path="res://Codebase/Weapons/bullet_controller.gd" id="1_oduel"]
+[ext_resource type="PackedScene" uid="uid://d4fhr78lwf0k4" path="res://Models/Guns/GLB format/bullet-foam-tip-thick.glb" id="1_xjght"]
+
+[node name="bullet" type="Node3D"]
+script = ExtResource("1_oduel")
+
+[node name="bullet-foam-tip-thick2" parent="." instance=ExtResource("1_xjght")]
