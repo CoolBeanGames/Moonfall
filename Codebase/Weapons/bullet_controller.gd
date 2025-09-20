@@ -6,7 +6,6 @@ class_name bullet extends Node3D
 var velocity : Vector3
 var time : float
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_initialized:
@@ -20,7 +19,5 @@ func shoot(direction : Vector3, speed : float, distance : float):
 	#look_at(global_position + direction,Vector3.UP)
 	velocity = direction.normalized() * speed
 	look_at(global_position + velocity.normalized())
-	print("velocity: ", velocity)
 	time = distance/speed
-	print("time: ", time)
 	is_initialized = true

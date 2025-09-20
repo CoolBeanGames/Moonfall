@@ -10,6 +10,9 @@ var state_machine : StateMachine =  StateMachine.new()
 @export var intial_state_name : String
 @export var anim : AnimationPlayer
 @export var agent : NavigationAgent3D
+#used for tracking if we can attack the player or not
+@export var player_attack_range : player_tracker
+@export var player_damage_range : player_tracker
 
 func _ready() -> void:
 	bb.load_from_json(config_json_path)
@@ -25,20 +28,31 @@ func _ready() -> void:
 func add_states():
 	_addState("land",zombie_spawn_state.new(state_machine))
 	_addState("chase", zombie_chase_state.new(state_machine))
+	_addState("attack",zombie_attack_state.new(state_machine))
+	_addState("dead",zombie_dead.new(state_machine))
 
 
 func add_transitions():
 	_add_bool_transition("spawned","chase","land")
+	_add_bool_transition("player_in_range","attack","chase")
+	_add_bool_transition("attack_finished","chase","attack")
+	_add_bool_transition("dead","dead","chase",true)
+	_add_bool_transition("dead","dead","attack",true)
+	_add_bool_transition("dead","dead","land",true)
 
 
-func _process(delta: float) -> void:
-	state_machine.process()
+func _process(_delta: float) -> void:
+	if !state_machine.bb._get("dead") == true:
+		#set our range data
+		state_machine.bb._set("player_can_damage",player_damage_range.is_inside)
+		state_machine.bb._set("player_in_range",player_attack_range.is_inside)
+		state_machine.process()
 
 func _addState(state_name : String, s : State):
 	state_machine.states[state_name] = s
 
-func _add_bool_transition(bool_name : String,to_state : String, from_state : String):
-	var t : blackboard_bool_transition = blackboard_bool_transition.new(bool_name,state_machine,to_state,from_state)
+func _add_bool_transition(bool_name : String,to_state : String, from_state : String,debug : bool = false):
+	var t : blackboard_bool_transition = blackboard_bool_transition.new(bool_name,state_machine,to_state,from_state,debug)
 	state_machine.transitions.append(t)
 
 func _add_event_transition(event_name : String,to_state : String, from_state : String):
@@ -48,3 +62,19 @@ func _add_event_transition(event_name : String,to_state : String, from_state : S
 func spawn_anim_done():
 	print("spawned")
 	state_machine.bb._set("spawned",true)
+
+func attack_anim_done():
+	state_machine.bb._set("attack_finished",true)
+
+func deal_player_damagage():
+	if player_damage_range.is_inside:
+		print("player took damage")
+
+func take_damage(damage : int):
+	if !state_machine.bb._get("dead") == true:
+		print("zomebie took ", damage, "damage")
+		bb._set("health",bb._get("health") - damage)
+		print("health left: " , bb._get("health"))
+		if bb._get("health") <= 0:
+			state_machine.bb._set("dead",true)
+			GameManager.data._set("score",GameManager.data._get("score"))

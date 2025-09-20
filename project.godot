@@ -24,6 +24,11 @@ AudioManager="*res://Codebase/Audio/Scripts/audio_manager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 InputManager="*res://Codebase/Input/InputManager.gd"
 
+[editor]
+
+movie_writer/ogv/encoding_speed=2
+movie_writer/movie_file="C:/Users/callm/Documents/video.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")

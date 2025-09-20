@@ -32,10 +32,10 @@ func tick():
 	var direction : Vector3
 	
 	if result.is_empty():
-		# ✅ Direct chase
+		#  Direct chase
 		direction = (plr.global_position - zom.global_position).normalized()
 	else:
-		# ✅ Navmesh chase
+		# Navmesh chase
 		agent.target_position = plr.global_position
 		if not agent.is_navigation_finished():
 			var next_path_pos = agent.get_next_path_position()
@@ -46,7 +46,6 @@ func tick():
 	# Smooth turning (avoid zigzagging)
 	if direction != Vector3.ZERO:
 		var turn_speed = character_bb._get("turn_speed")
-		print(character_bb.data)
 		direction = zom.transform.basis.z.lerp(direction, turn_speed).normalized()
 		
 		# Movement & facing
