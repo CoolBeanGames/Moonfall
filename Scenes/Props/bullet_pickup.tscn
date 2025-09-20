@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnciukhi8di5d"]
+
+[ext_resource type="PackedScene" uid="uid://ce7vgncye1v38" path="res://Models/Guns/GLB format/clip-large.glb" id="1_6a1ik"]
+[ext_resource type="Script" uid="uid://bxf23nlbaj3qv" path="res://Codebase/Weapons/bullet_pickup.gd" id="1_bux0j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4bfv1"]
+
+[sub_resource type="Animation" id="Animation_bux0j"]
+resource_name = "loop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("clip-large2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("clip-large2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1e-05),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 12.566371, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ww3xk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("clip-large2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("clip-large2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hi51l"]
+_data = {
+&"RESET": SubResource("Animation_ww3xk"),
+&"loop": SubResource("Animation_bux0j")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6a1ik"]
+shading_mode = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_bux0j"]
+material = SubResource("StandardMaterial3D_6a1ik")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_ww3xk"]
+_data = [Vector2(0, 1), 0.0, 1.4, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="bullet_pickup" type="Node3D"]
+script = ExtResource("1_bux0j")
+
+[node name="clip-large2" parent="." instance=ExtResource("1_6a1ik")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_4bfv1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hi51l")
+}
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 24
+mesh = SubResource("QuadMesh_bux0j")
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 9, 0)
+scale_amount_min = 0.0
+scale_amount_curve = SubResource("Curve_ww3xk")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,3 +1,4 @@
 {
-	"version" : 0.01
+	"version" : 0.01,
+	"moon_fall_time" : 3
 }

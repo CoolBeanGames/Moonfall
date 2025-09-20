@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="signal_collection" load_steps=11 format=3 uid="uid://b5vfb06w67nek"]
+[gd_resource type="Resource" script_class="signal_collection" load_steps=12 format=3 uid="uid://b5vfb06w67nek"]
 
 [ext_resource type="Script" uid="uid://b5syd0c8bgll2" path="res://Codebase/SignalBus/SignalCollection.gd" id="1_plc7l"]
 [ext_resource type="Script" uid="uid://wssespaqbj5j" path="res://Codebase/SignalBus/GameSignal.gd" id="2_23aml"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://dulpmwlwuo0r5" path="res://Data/Signals/splash_screen_finished.tres" id="8_x5fmm"]
 [ext_resource type="Resource" uid="uid://sb7y1md2bxd8" path="res://Data/Signals/start_game_clicked.tres" id="9_220e6"]
 [ext_resource type="Resource" uid="uid://8alp51rh0rju" path="res://Data/Signals/update_gun_ui.tres" id="10_kffqm"]
+[ext_resource type="Resource" uid="uid://d28r51tkq6enu" path="res://Data/Signals/new_game_clicked.tres" id="11_t5642"]
 
 [resource]
 script = ExtResource("1_plc7l")
@@ -17,6 +18,7 @@ signals = Dictionary[String, ExtResource("2_23aml")]({
 "game_paused": ExtResource("3_5ix65"),
 "game_unpaused": ExtResource("4_kffqm"),
 "loading_finished": ExtResource("7_on2h6"),
+"new_game_clicked": ExtResource("11_t5642"),
 "player_killed": ExtResource("5_t5642"),
 "player_wins": ExtResource("6_r44ls"),
 "splash_screen_finished": ExtResource("8_x5fmm"),

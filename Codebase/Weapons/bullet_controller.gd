@@ -18,11 +18,9 @@ func _process(delta: float) -> void:
 
 func shoot(direction : Vector3, speed : float, distance : float):
 	#look_at(global_position + direction,Vector3.UP)
-	print("look at: ", global_position , " + " , direction , " = " , global_position - direction)
-	#rotate_x(deg_to_rad(90))
 	velocity = direction.normalized() * speed
+	look_at(global_position + velocity.normalized())
 	print("velocity: ", velocity)
 	time = distance/speed
 	print("time: ", time)
 	is_initialized = true
-

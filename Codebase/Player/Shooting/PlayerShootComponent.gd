@@ -79,8 +79,7 @@ func update_ui():
 func reload():
 	var bullets = GameManager.data._get("bullets")
 	if current_gun.loaded_bullets != 0:
-		AudioManager.play_audio_file(current_gun.reload_sound,"default",false,Vector3(0,0,0))
-		gun_animation_player.play("Reload")
+		reload_effects()
 		print("loading partial ammount")
 		var difference = current_gun.max_clip_size - current_gun.loaded_bullets
 		print("difference: ", difference)
@@ -89,6 +88,7 @@ func reload():
 			GameManager.data._set("bullets",0)
 			print("added all bullets")
 		else:
+			reload_effects()
 			current_gun.loaded_bullets = current_gun.max_clip_size
 			GameManager.data._set("bullets",bullets - difference)
 			print("added some bullets")
@@ -119,14 +119,15 @@ func spawn_bullet(hit_position : Vector3):
 	GameManager.add_child(instance)
 	instance.position = shoot_point.global_position
 	
-	# Check your bullet model's forward direction. If it's not -Z, rotate it here.
-	# For example, if the model's Y-axis is pointing forward:
+	
 	instance.rotate_x(deg_to_rad(-90))
-	# Or if its X-axis is pointing forward:
-	# instance.rotate_y(deg_to_rad(90))
-
-	# Then call look_at()
+	
+	
 	instance.look_at(hit_position, Vector3.UP)
 	
 	print("calling shoot")
-	instance.shoot(direction, 1, distance)
+	instance.shoot(direction, 30, distance)
+
+func reload_effects():
+	AudioManager.play_audio_file(current_gun.reload_sound,"default",false,Vector3(0,0,0))
+	gun_animation_player.play("Reload")

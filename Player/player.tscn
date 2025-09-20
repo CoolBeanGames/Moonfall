@@ -54,34 +54,6 @@ height = 0.6
 [sub_resource type="Resource" id="Resource_k53q1"]
 script = ExtResource("2_btcbx")
 
-[sub_resource type="Animation" id="Animation_dkpta"]
-resource_name = "Shoot"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.7993608, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.26968694, -0.15867388, -0.18429062), Vector3(0.27, -0.159, -0.039), Vector3(0.26968694, -0.15867388, -0.18429062)]
-}
-
 [sub_resource type="Animation" id="Animation_lfmf2"]
 length = 0.001
 tracks/0/type = "value"
@@ -168,6 +140,34 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(6.2831855, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dkpta"]
+resource_name = "Shoot"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.7993608, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.26968694, -0.15867388, -0.18429062), Vector3(0.27, -0.159, -0.039), Vector3(0.26968694, -0.15867388, -0.18429062)]
 }
 
 [sub_resource type="Animation" id="Animation_b1ygp"]
@@ -260,7 +260,7 @@ _data = {
 &"walking": SubResource("Animation_o28un")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component") groups=["player"]]
 script = ExtResource("1_btcbx")
 fsm = SubResource("Resource_7emwf")
 look_component = NodePath("Components/PlayerLookComponent")
