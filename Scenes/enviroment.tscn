@@ -1011,6 +1011,7 @@ script = ExtResource("21_o6dcl")
 volume_db = -80.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["navmesh"]]
 navigation_mesh = SubResource("NavigationMesh_ue1kb")
