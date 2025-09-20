@@ -38,6 +38,9 @@ folder_colors={
 [global_group]
 
 player=""
+HeadShotZone=""
+BodyShotZone=""
+navmesh="used for navigation calculations"
 
 [input]
 

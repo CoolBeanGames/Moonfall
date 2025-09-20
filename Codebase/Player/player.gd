@@ -21,6 +21,9 @@ func _ready():
 
 	#add our blackboard to the fsm blackboard
 	fsm.bb.set("player_data",bb) #add our blackboard to the fsm
+	
+	GameManager.data._set("player",self)
+
 
 
 

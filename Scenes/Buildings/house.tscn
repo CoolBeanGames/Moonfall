@@ -20,7 +20,7 @@ size = Vector3(1, 0.65789795, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_fcp3o"]
 size = Vector3(0.07080078, 1.0172119, 0.06982422)
 
-[node name="House" type="Node3D"]
+[node name="House" type="Node3D" groups=["navmesh"]]
 
 [node name="HouseA" type="Node3D" parent="."]
 
@@ -89,3 +89,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.87611353)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HouseA/Post2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4645996, 0.517395, -0.4650879)
 shape = SubResource("BoxShape3D_fcp3o")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." groups=["navmesh"]]
+vertices = PackedVector3Array(0.49619693, 0, 2.5081697, -1.5041556, 0, 2.5172834, -1.524799, 0, 0.50821865, -0.52097666, 0, 0.49674392, -0.5233712, 0, -0.5004016, 0.49799234, 0, -0.49097702)

@@ -69,9 +69,17 @@ func shoot():
 		GameManager.add_child(instance)
 		update_ui()
 		spawn_bullet(position)
+		do_damage(raycaster.get_collider())
 	else:
 		spawn_bullet( raycaster.global_position + (raycaster.global_transform.basis.z * raycaster.target_position.z))
 
+func do_damage(collider : CollisionObject3D):
+	if collider.is_in_group("HeadShotZone"):
+		print("headshot")
+	else:
+		if collider.is_in_group("BodyShotZone"):
+			print("bodyShot")
+	pass
 
 func update_ui():
 	SignalBus.signals.signals["update_gun_ui"].event.emit()

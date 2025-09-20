@@ -1,0 +1,6 @@
+{
+	"move_speed" : 3.0,
+	"turn_speed" : 5.0
+	"attack_power" : 1,
+	"health" : 5
+}

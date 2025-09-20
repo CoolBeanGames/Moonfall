@@ -261,6 +261,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component") groups=["player"]]
+collision_layer = 2
 script = ExtResource("1_btcbx")
 fsm = SubResource("Resource_7emwf")
 look_component = NodePath("Components/PlayerLookComponent")
@@ -278,6 +279,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D/PhantomCamera3D"]
 target_position = Vector3(0, 0, -100000)
+collision_mask = 9
 
 [node name="SpotLight3D" type="SpotLight3D" parent="CollisionShape3D/PhantomCamera3D/RayCast3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.20709437)
