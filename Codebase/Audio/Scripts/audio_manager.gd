@@ -15,14 +15,14 @@ func _ready() -> void:
 
 #play an audio file with a json settings file
 func play_audio_file(audio : AudioStream, settings : String, use_position : bool, position : Vector3) -> audio_player:
-	var player = spawn_player()
-	return _setup_from_json(player,audio,settings,use_position,position)
+	var plr = spawn_player()
+	return _setup_from_json(plr,audio,settings,use_position,position)
 
 #play a random audio file loading settings from a json file
 func play_random_audio_file(audioSet : audio_set, settings : String, use_position : bool, position : Vector3) -> audio_player:
-	var player = spawn_player()
+	var plr = spawn_player()
 	var audio : AudioStream = audioSet.get_random_file()
-	return _setup_from_json(player,audio,settings,use_position,position)
+	return _setup_from_json(plr,audio,settings,use_position,position)
 
 #play a audio file with manual setup
 func play_audio_file_manual(audio : AudioStream, 
@@ -35,8 +35,8 @@ pitch_range_min : float,
 pitch_range_max : float, 
 use_position : bool = false, 
 position : Vector3 = Vector3(0,0,0)) -> audio_player:
-	var player = spawn_player()
-	return _setup(player,audio,repeat,bus,volume,pitch,randomize_pitch,pitch_range_min,pitch_range_max,use_position,position) 
+	var plr = spawn_player()
+	return _setup(plr,audio,repeat,bus,volume,pitch,randomize_pitch,pitch_range_min,pitch_range_max,use_position,position) 
 
 #play a random audio file from a audio set with a manual setup
 func play_random_audio_file_manual(audioSet : audio_set, 
@@ -49,16 +49,16 @@ pitch_range_min : float,
 pitch_range_max : float, 
 use_position : bool = false, 
 position : Vector3 = Vector3(0,0,0)) -> audio_player:
-	var player = spawn_player()
+	var plr = spawn_player()
 	var audio = audioSet.get_random_file()
-	return _setup(player,audio,repeat,bus,volume,pitch,randomize_pitch,pitch_range_min,pitch_range_max,use_position,position) 
+	return _setup(plr,audio,repeat,bus,volume,pitch,randomize_pitch,pitch_range_min,pitch_range_max,use_position,position) 
 
 #used to setup an audio file with an audio settings json file
-func _setup_from_json(player : audio_player,audio : AudioStream,settings : String, use_position : bool, position : Vector3) -> audio_player:
-	return player.play(audio,settings,use_position,position)
+func _setup_from_json(plr : audio_player,audio : AudioStream,settings : String, use_position : bool, position : Vector3) -> audio_player:
+	return plr.play(audio,settings,use_position,position)
 
 #used to setup an audio file manually
-func _setup(player : audio_player,
+func _setup(plr : audio_player,
 audio : AudioStream, 
 repeat : bool, 
 bus : String, 
@@ -69,10 +69,10 @@ pitch_range_min : float,
 pitch_range_max : float, 
 use_position : bool = false, 
 position : Vector3 = Vector3(0,0,0)) -> audio_player:
-	return player.play_manual(audio,repeat,bus,volume,pitch,randomize_pitch,pitch_range_min,pitch_range_max,use_position,position)
+	return plr.play_manual(audio,repeat,bus,volume,pitch,randomize_pitch,pitch_range_min,pitch_range_max,use_position,position)
 
 #spawn the audio player in and return it to the top level functions
 func spawn_player() -> audio_player:
-	var player = audio_player_prefab.instantiate()
-	add_child(player)
-	return player
+	var plr = audio_player_prefab.instantiate()
+	add_child(plr)
+	return plr

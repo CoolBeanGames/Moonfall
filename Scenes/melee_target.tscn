@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bes6c785400dh"]
+
+[ext_resource type="Script" uid="uid://cmv5adtolu7gq" path="res://Codebase/props/melee_target.gd" id="1_6or42"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7jhn5"]
+radius = 0.27127245
+
+[node name="StaticBody3D" type="StaticBody3D" groups=["melee_target"]]
+collision_layer = 256
+collision_mask = 512
+script = ExtResource("1_6or42")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7jhn5")

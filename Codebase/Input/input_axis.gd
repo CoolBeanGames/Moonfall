@@ -10,7 +10,7 @@ class_name input_axis extends Resource
 signal context_fired(Vector2)
 
 #read the value from our axis
-func _get(property: StringName) -> Variant:
+func _get(_property: StringName) -> Variant:
 	return context.get_axis_value()
 
 func on_context(value : Vector2):

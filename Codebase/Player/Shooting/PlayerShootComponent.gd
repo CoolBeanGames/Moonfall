@@ -13,6 +13,10 @@ var bullet_hit_effect : PackedScene
 @export var raycaster : RayCast3D
 @export var gun_animation_player : AnimationPlayer
 @export var shoot_point : Node3D
+@export var guns : Array[gun] = [load("res://Guns/gun data/pistol.tres")]
+@export var gun_models : Array[Node3D] = []
+@export var fire_points : Array[Node3D] = []
+var current_gun_index : int = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,6 +31,9 @@ func _ready() -> void:
 	await get_tree().process_frame
 	update_ui()
 	gun_animation_player.play("idle")
+	
+	InputManager.scroll_up.connect(cycle_gun_up)
+	InputManager.scroll_down.connect(cycle_gun_down)
 	
 
 
@@ -55,6 +62,7 @@ func on_shoot_hold():
 			if current_gun.loaded_bullets > 0:
 				shoot_timer = current_gun.fire_rate
 				current_gun.loaded_bullets -= 1
+				print("rapid shoot")
 				shoot()
 
 func shoot():
@@ -63,7 +71,7 @@ func shoot():
 	AudioManager.play_random_audio_file(current_gun.shooting_sounds,"default",false,Vector3(0,0,0))
 	if raycaster.is_colliding():
 		var position : Vector3 = raycaster.get_collision_point()
-		var collider =  raycaster.get_collider()
+		var _collider =  raycaster.get_collider()
 		var instance : Node3D = bullet_hit_effect.instantiate()
 		instance.position = position
 		GameManager.add_child(instance)
@@ -102,6 +110,7 @@ func reload():
 		return
 	
 	if bullets != null and bullets > 0:
+		reload_effects()
 		if bullets < current_gun.max_clip_size:
 			current_gun.loaded_bullets = bullets
 			GameManager.data._set("bullets",0)
@@ -128,3 +137,32 @@ func spawn_bullet(hit_position : Vector3):
 func reload_effects():
 	AudioManager.play_audio_file(current_gun.reload_sound,"default",false,Vector3(0,0,0))
 	gun_animation_player.play("Reload")
+
+func cycle_gun_up():
+	cycle_gun(1)
+
+func cycle_gun_down():
+	cycle_gun(-1)
+
+func cycle_gun(dir : int):
+	print("cycling guns")
+	current_gun_index += dir
+	if current_gun_index < 0:
+		current_gun_index = guns.size() - 1
+	if current_gun_index >= guns.size():
+		current_gun_index = 0
+	if guns[current_gun_index] == current_gun:
+		return
+	current_gun = guns[current_gun_index]
+	shoot_point = fire_points[current_gun_index]
+	update_models(current_gun_index)
+	update_ui()
+
+func update_models(index : int):
+	var counter : int = 0
+	for m : Node3D in gun_models:
+		if counter != index:
+			m.visible = false
+		else:
+			m.visible = true
+		counter += 1

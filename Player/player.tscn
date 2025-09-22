@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dfwvu0chheicj"]
+[gd_scene load_steps=35 format=3 uid="uid://dfwvu0chheicj"]
 
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_4ntmi"]
 [ext_resource type="Script" uid="uid://chqj13gmslwu0" path="res://Codebase/Player/player.gd" id="1_btcbx"]
@@ -13,8 +13,11 @@
 [ext_resource type="Script" uid="uid://b2r0gys8qg8bh" path="res://Codebase/Player/player_movement_component.gd" id="11_5htga"]
 [ext_resource type="PackedScene" uid="uid://c4o4yjtwuj06u" path="res://Models/Guns/GLB format/blaster-b.glb" id="11_dkpta"]
 [ext_resource type="Script" uid="uid://da376gvtae7us" path="res://Codebase/Player/player_look_component.gd" id="12_p5o4e"]
+[ext_resource type="PackedScene" uid="uid://cvy0fs6qh2vd8" path="res://Models/Guns/GLB format/blaster-d.glb" id="12_pisgm"]
 [ext_resource type="Script" uid="uid://objhus1b7iuh" path="res://Codebase/Player/Shooting/PlayerShootComponent.gd" id="13_p5o4e"]
 [ext_resource type="Resource" uid="uid://bkuc0tv75daoi" path="res://Guns/gun data/pistol.tres" id="14_gu6f8"]
+[ext_resource type="Script" uid="uid://ced2x5dx2t6nu" path="res://Codebase/Player/player_melee_component.gd" id="16_lfmf2"]
+[ext_resource type="Resource" uid="uid://c62sh2esaio13" path="res://Guns/gun data/AR16.tres" id="17_b1ygp"]
 
 [sub_resource type="Resource" id="Resource_x3vf3"]
 script = ExtResource("4_5htga")
@@ -53,6 +56,62 @@ height = 0.6
 
 [sub_resource type="Resource" id="Resource_k53q1"]
 script = ExtResource("2_btcbx")
+
+[sub_resource type="Animation" id="Animation_n471f"]
+resource_name = "Melee"
+length = 0.34
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.33333337),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.13222766, 0, -0.2530942), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.109999985, 0.33333337),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.4940019, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.33333334),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"melee_finished"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../../../Components/PlayerMeleeComponent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"melee_damage"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_lfmf2"]
 length = 0.001
@@ -253,12 +312,15 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b1ygp"]
 _data = {
+&"Melee": SubResource("Animation_n471f"),
 &"RESET": SubResource("Animation_lfmf2"),
 &"Reload": SubResource("Animation_pisgm"),
 &"Shoot": SubResource("Animation_dkpta"),
 &"idle": SubResource("Animation_b1ygp"),
 &"walking": SubResource("Animation_o28un")
 }
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lfmf2"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component") groups=["player"]]
 collision_layer = 2
@@ -289,15 +351,22 @@ spot_angle = 35.0
 
 [node name="Guns" type="Node3D" parent="CollisionShape3D/PhantomCamera3D"]
 
-[node name="Node3D" type="Node3D" parent="CollisionShape3D/PhantomCamera3D/Guns"]
+[node name="gun_pivot" type="Node3D" parent="CollisionShape3D/PhantomCamera3D/Guns"]
 
-[node name="pistol" parent="CollisionShape3D/PhantomCamera3D/Guns/Node3D" instance=ExtResource("11_dkpta")]
+[node name="pistol" parent="CollisionShape3D/PhantomCamera3D/Guns/gun_pivot" instance=ExtResource("11_dkpta")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26968694, -0.15867388, -0.18429062)
 
-[node name="fire_point" type="Node3D" parent="CollisionShape3D/PhantomCamera3D/Guns/Node3D/pistol"]
+[node name="fire_point" type="Node3D" parent="CollisionShape3D/PhantomCamera3D/Guns/gun_pivot/pistol"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.28674674)
 
-[node name="pistolAnimator" type="AnimationPlayer" parent="CollisionShape3D/PhantomCamera3D/Guns/Node3D/pistol"]
+[node name="AR" parent="CollisionShape3D/PhantomCamera3D/Guns/gun_pivot" instance=ExtResource("12_pisgm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2641157, -0.22009921, -0.2625624)
+
+[node name="fire_point" type="Node3D" parent="CollisionShape3D/PhantomCamera3D/Guns/gun_pivot/AR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04793527, -0.49401832)
+
+[node name="pistolAnimator" type="AnimationPlayer" parent="CollisionShape3D/PhantomCamera3D/Guns"]
+root_node = NodePath("../gun_pivot/pistol")
 libraries = {
 &"": SubResource("AnimationLibrary_b1ygp")
 }
@@ -315,9 +384,28 @@ script = ExtResource("12_p5o4e")
 plr = NodePath("../..")
 camera = NodePath("../../CollisionShape3D/PhantomCamera3D")
 
-[node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("raycaster", "gun_animation_player", "shoot_point")]
+[node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("raycaster", "gun_animation_player", "shoot_point", "gun_models", "fire_points")]
 script = ExtResource("13_p5o4e")
 current_gun = ExtResource("14_gu6f8")
 raycaster = NodePath("../../CollisionShape3D/PhantomCamera3D/RayCast3D")
-gun_animation_player = NodePath("../../CollisionShape3D/PhantomCamera3D/Guns/Node3D/pistol/pistolAnimator")
-shoot_point = NodePath("../../CollisionShape3D/PhantomCamera3D/Guns/Node3D/pistol/fire_point")
+gun_animation_player = NodePath("../../CollisionShape3D/PhantomCamera3D/Guns/pistolAnimator")
+shoot_point = NodePath("../../CollisionShape3D/PhantomCamera3D/Guns/gun_pivot/pistol/fire_point")
+guns = Array[Object]([ExtResource("14_gu6f8"), ExtResource("17_b1ygp")])
+gun_models = [NodePath("../../CollisionShape3D/PhantomCamera3D/Guns/gun_pivot/pistol"), NodePath("../../CollisionShape3D/PhantomCamera3D/Guns/gun_pivot/AR")]
+fire_points = [NodePath("../../CollisionShape3D/PhantomCamera3D/Guns/gun_pivot/pistol/fire_point"), NodePath("../../CollisionShape3D/PhantomCamera3D/Guns/gun_pivot/AR/fire_point")]
+
+[node name="PlayerMeleeComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr", "pistolAnimator")]
+script = ExtResource("16_lfmf2")
+plr = NodePath("../..")
+pistolAnimator = NodePath("../../CollisionShape3D/PhantomCamera3D/Guns/pistolAnimator")
+
+[node name="melee_area" type="Area3D" parent="."]
+collision_layer = 512
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="melee_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5588176)
+shape = SubResource("SphereShape3D_lfmf2")
+
+[connection signal="body_entered" from="melee_area" to="Components/PlayerMeleeComponent" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="melee_area" to="Components/PlayerMeleeComponent" method="_on_area_3d_body_exited"]

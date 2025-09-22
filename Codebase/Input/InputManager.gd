@@ -7,6 +7,8 @@ var actions : Dictionary[StringName,input_action]
 var axis : Dictionary[StringName,input_axis]
 #fired whenever any key is pressed, used for typing minigame
 signal on_any_key(key : String)
+signal scroll_up
+signal scroll_down
 
 ##add in all of our actions
 func _ready() -> void:
@@ -15,7 +17,7 @@ func _ready() -> void:
 	add_all_axis()
 
 ##evaluate all current actions
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	for ac in actions:
 		actions[ac].evaluate() 
 
@@ -33,23 +35,23 @@ func add_all_axis():
 	_add_axis("mouse",mouse_axis_context.new())
 
 ##adds a single action
-func _add_action(name: String , key : Key):
+func _add_action(_name: String , key : Key):
 	var input : input_action = input_action.new()
 	input.key = key
-	actions[name] = input
+	actions[_name] = input
 
-func _add_mouse_action(name : String):
+func _add_mouse_action(_name : String):
 	var input : input_action_mouse = input_action_mouse.new()
 	input.key = KEY_0
-	actions[name] = input
+	actions[_name] = input
 
 ##adds a single axis
-func _add_axis(name : String, context : axis_context):
+func _add_axis(_name : String, context : axis_context):
 	var ax : input_axis = input_axis.new()
 	ax.context = context
-	ax.key = name
+	ax.key = _name
 	ax.context.context_fired.connect(ax.on_context)
-	axis[name] = ax
+	axis[_name] = ax
 	
 
 #used to process any other input
@@ -61,4 +63,9 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventKey and event.is_pressed() and !event.is_echo():
 			var key_string : String = OS.get_keycode_string(event.keycode)
 			on_any_key.emit(key_string)
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+			scroll_up.emit()
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			scroll_down.emit()
 	

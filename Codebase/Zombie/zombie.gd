@@ -16,6 +16,8 @@ var state_machine : StateMachine =  StateMachine.new()
 @export var ammo_clip : PackedScene
 @export var materials : Array[Material]
 @export var material_target : MeshInstance3D
+@export var zombie_hit_sound : AudioStream
+@export var zombie_die_sound : AudioStream
 
 func _ready() -> void:
 	bb.load_from_json(config_json_path)
@@ -29,6 +31,7 @@ func _ready() -> void:
 	state_machine.initialize("land")
 	ammo_clip= load("res://Scenes/Props/bullet_pickup.tscn")
 	material_target.material_override = materials.pick_random()
+	bb._set("health",bb._get("health") + int((5 * GameManager.data.data.get("time_ratio",0))))
 
 func add_states():
 	_addState("land",zombie_spawn_state.new(state_machine))
@@ -82,14 +85,21 @@ func take_damage(damage : int):
 		bb._set("health",bb._get("health") - damage)
 		print("health left: " , bb._get("health"))
 		if bb._get("health") <= 0:
+			AudioManager.play_audio_file(zombie_die_sound,"default",true,global_position)
 			state_machine.bb._set("dead",true)
 			GameManager.data._set("score",GameManager.data._get("score"))
 			var chance : float = randf_range(0,1)
 			print("chance of ammo: ", chance, " / " ,  bb._get("chance_for_ammo"))
 			if randf_range(0,1) <= bb._get("chance_for_ammo"):
 				spawn_bullet_pickup()
+		else:
+			AudioManager.play_audio_file(zombie_hit_sound,"default",true,global_position)
 
 func spawn_bullet_pickup():
 	var instance = ammo_clip.instantiate()
 	GameManager.add_child(instance)
 	instance.global_position = global_position
+
+func melee_damage():
+	print("zombie melee damage")
+	take_damage(1)

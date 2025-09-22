@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dn41xgsutrc0u"]
+[gd_scene load_steps=24 format=3 uid="uid://dn41xgsutrc0u"]
 
 [ext_resource type="PackedScene" uid="uid://2xeql213rw21" path="res://Models/Zombie/characterMedium.fbx" id="1_5ia6i"]
 [ext_resource type="Script" uid="uid://cc6hl4kav2jau" path="res://Codebase/Zombie/zombie.gd" id="1_j0wq0"]
@@ -7,11 +7,14 @@
 [ext_resource type="Script" uid="uid://xgwgkqd85pbh" path="res://Codebase/Zombie/point_to_zombie.gd" id="3_hslf5"]
 [ext_resource type="Animation" uid="uid://cmc6xgrhpp4bf" path="res://Models/Zombie/attack.res" id="3_j0wq0"]
 [ext_resource type="Material" uid="uid://ct74tkuk0gvam" path="res://Models/Characters/Skins/zombie_female.tres" id="3_tmcj1"]
+[ext_resource type="AudioStream" uid="uid://ce6jptq7yl27h" path="res://Audio/SFX/zombie/zombie_hit.wav" id="4_aw8xw"]
 [ext_resource type="Animation" uid="uid://3aneyudo7y2o" path="res://Models/Zombie/death.res" id="4_hslf5"]
+[ext_resource type="AudioStream" uid="uid://bo0nnys7nqhi5" path="res://Audio/SFX/zombie/zombie_death.mp3" id="5_j0eft"]
 [ext_resource type="Animation" uid="uid://hjloiso4om0u" path="res://Models/Zombie/hurt.res" id="5_u2tw5"]
 [ext_resource type="Animation" uid="uid://cr5vv0yuqmmjl" path="res://Models/Zombie/idle.res" id="6_fj6an"]
 [ext_resource type="Animation" uid="uid://bu5f0e5yvvoye" path="res://Models/Zombie/land.res" id="7_tmcj1"]
 [ext_resource type="Script" uid="uid://bw6gem2hhn15b" path="res://Codebase/Zombie/track_player.gd" id="9_j0wq0"]
+[ext_resource type="PackedScene" uid="uid://bes6c785400dh" path="res://Scenes/melee_target.tscn" id="15_j0eft"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aw8xw"]
 radius = 0.007488447
@@ -70,6 +73,8 @@ player_attack_range = NodePath("AttackDetectionArea")
 player_damage_range = NodePath("AttackDamageArea")
 materials = Array[Material]([ExtResource("2_fj6an"), ExtResource("3_tmcj1")])
 material_target = NodePath("characterMedium/Root/Skeleton3D/characterMedium")
+zombie_hit_sound = ExtResource("4_aw8xw")
+zombie_die_sound = ExtResource("5_j0eft")
 
 [node name="characterMedium" parent="." instance=ExtResource("1_5ia6i")]
 transform = Transform3D(-0.15, 0, -1.3113417e-08, 0, 0.15, 0, 1.3113417e-08, 0, -0.15, 0, 0, 0)
@@ -179,9 +184,14 @@ script = ExtResource("9_j0wq0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253, -0.29035902)
 shape = SubResource("SphereShape3D_u2tw5")
 
+[node name="MeleeTarget" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("15_j0eft")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23913476, 0)
+parent = NodePath("..")
+
 [connection signal="body_entered" from="AttackDetectionArea" to="AttackDetectionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="AttackDetectionArea" to="AttackDetectionArea" method="_on_body_exited"]
 [connection signal="body_entered" from="AttackDamageArea" to="AttackDamageArea" method="_on_body_entered"]
 [connection signal="body_exited" from="AttackDamageArea" to="AttackDamageArea" method="_on_body_exited"]
 
 [editable path="characterMedium"]
+[editable path="MeleeTarget"]

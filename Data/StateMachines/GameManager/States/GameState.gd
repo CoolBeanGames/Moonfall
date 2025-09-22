@@ -7,6 +7,7 @@ var max_zombies : int = 20
 var timer = 0
 var zombie_y : float = 0.122
 var zom : PackedScene
+var zombie_spawn_audio : audio_set
 
 
 ##called once when entering the state and then not again until it has finished
@@ -24,10 +25,6 @@ func on_exit():
 func tick():
 	var current_spawn_time : float = zombie_spawn_time_max / ratio(0.8)
 	var current_max_zombies = max_zombies / (1-ratio())
-	print("ratio:",ratio())
-	print("zombies max: ", current_max_zombies)
-	print("spawn time: ", current_spawn_time)
-	print("spawners: " , GameManager.zombie_spawners.size())
 	if GameManager.data._get("zombie_count") < current_max_zombies:
 		timer += delta()
 		if timer >= current_spawn_time:
@@ -41,9 +38,11 @@ func delta() -> float:
 	return GameManager.data.data.get("delta",0)
 
 func spawn():
-	await GameManager.zombie_spawners.size() > 0
+	if GameManager.zombie_spawners.size() <= 0:
+		return
 	var instance : CharacterBody3D = zom.instantiate()
 	GameManager.add_child(instance)
 	var position = GameManager.zombie_spawners.pick_random().global_position
 	position.y = zombie_y
 	instance.global_position = position
+	AudioManager.play_random_audio_file(load("res://Data/audio_sets/zombie_spawn_sounds.tres"),"default",true,position)

@@ -16,21 +16,21 @@ signal Saved
 signal Loaded
 
 #returns true if the data exists or not
-func has(key : String) -> bool:
-	return data.has(key)
+func has(_key : String) -> bool:
+	return data.has(_key)
 
 #returns the data stored if it exists otherwise
 #returns null
-func get_data(key : String, default = null):
-	return data.get(key , default)
+func get_data(_key : String, default = null):
+	return data.get(_key , default)
 
 #sets the data at the given key to the value listed
-func set_data(key : String, value):
-	if(has(key)):
-		DataUpdated.emit(key)
+func set_data(_key : String, value):
+	if(has(_key)):
+		DataUpdated.emit(_key)
 	else:
-		NewDataAdded.emit(key)
-	data[key] = value
+		NewDataAdded.emit(_key)
+	data[_key] = value
 
 #region Operator Overloading
 #for value = blackboard[key] functionality

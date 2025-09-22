@@ -8,6 +8,8 @@ var bb : blackboard = blackboard.new()
 @export var look_component : player_look
 @export var move_component : player_movement
 
+@export var not_melee : bool = true
+
 
 #setup our states
 func _ready():
@@ -37,3 +39,6 @@ func _physics_process(_delta: float) -> void:
 func _setup_states():
 	for s in fsm.states:
 		fsm.states[s].state_machine = fsm
+
+func melee_finished():
+	not_melee = true
