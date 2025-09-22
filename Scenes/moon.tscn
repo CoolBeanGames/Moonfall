@@ -4,6 +4,7 @@
 
 [node name="Moon" type="Node3D"]
 script = ExtResource("1_00cq0")
+moon_fall_time = 360.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 161, 0)

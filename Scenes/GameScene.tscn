@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxurmah5617f5"]
+[gd_scene load_steps=8 format=3 uid="uid://bxurmah5617f5"]
 
 [ext_resource type="PackedScene" uid="uid://b5t76snp62aca" path="res://Scenes/enviroment.tscn" id="1_2wl7v"]
 [ext_resource type="PackedScene" uid="uid://dfwvu0chheicj" path="res://Player/player.tscn" id="2_3mbwn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmv0jv4sfrhd3" path="res://Scenes/UI_Scenes/ammo_ui.tscn" id="4_jwv4s"]
 [ext_resource type="PackedScene" uid="uid://ckwoxn6ggusif" path="res://Scenes/UI_Scenes/score_display.tscn" id="5_lohlh"]
 [ext_resource type="PackedScene" uid="uid://dn41xgsutrc0u" path="res://Scenes/zombie.tscn" id="6_kilg5"]
+[ext_resource type="PackedScene" uid="uid://ca77ddpkx5ui8" path="res://Scenes/UI_Scenes/aiming_reticle.tscn" id="6_x6js8"]
 
 [node name="GameScene" type="Node3D"]
 
@@ -29,6 +30,8 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="ammo_UI" parent="CanvasLayer" instance=ExtResource("4_jwv4s")]
 
 [node name="ScoreDisplay" parent="CanvasLayer" instance=ExtResource("5_lohlh")]
+
+[node name="aiming_reticle" parent="CanvasLayer" instance=ExtResource("6_x6js8")]
 
 [node name="Zombie" parent="." instance=ExtResource("6_kilg5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7893965, 0, 0)

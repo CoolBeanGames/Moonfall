@@ -13,6 +13,9 @@ var state_machine : StateMachine =  StateMachine.new()
 #used for tracking if we can attack the player or not
 @export var player_attack_range : player_tracker
 @export var player_damage_range : player_tracker
+@export var ammo_clip : PackedScene
+@export var materials : Array[Material]
+@export var material_target : MeshInstance3D
 
 func _ready() -> void:
 	bb.load_from_json(config_json_path)
@@ -24,6 +27,8 @@ func _ready() -> void:
 	add_transitions()
 	state_machine.bb._set("bb",bb)
 	state_machine.initialize("land")
+	ammo_clip= load("res://Scenes/Props/bullet_pickup.tscn")
+	material_target.material_override = materials.pick_random()
 
 func add_states():
 	_addState("land",zombie_spawn_state.new(state_machine))
@@ -42,7 +47,7 @@ func add_transitions():
 
 
 func _process(_delta: float) -> void:
-	if !state_machine.bb._get("dead") == true:
+	if !state_machine.bb._get("end_process") == true:
 		#set our range data
 		state_machine.bb._set("player_can_damage",player_damage_range.is_inside)
 		state_machine.bb._set("player_in_range",player_attack_range.is_inside)
@@ -72,9 +77,19 @@ func deal_player_damagage():
 
 func take_damage(damage : int):
 	if !state_machine.bb._get("dead") == true:
+		SignalBus.signals.signals["hit_enemy"].event.emit()
 		print("zomebie took ", damage, "damage")
 		bb._set("health",bb._get("health") - damage)
 		print("health left: " , bb._get("health"))
 		if bb._get("health") <= 0:
 			state_machine.bb._set("dead",true)
 			GameManager.data._set("score",GameManager.data._get("score"))
+			var chance : float = randf_range(0,1)
+			print("chance of ammo: ", chance, " / " ,  bb._get("chance_for_ammo"))
+			if randf_range(0,1) <= bb._get("chance_for_ammo"):
+				spawn_bullet_pickup()
+
+func spawn_bullet_pickup():
+	var instance = ammo_clip.instantiate()
+	GameManager.add_child(instance)
+	instance.global_position = global_position
