@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://daeh5uuxgsr2d"
-path.etc2="res://.godot/imported/zombieMaleA.png-4eb3fc578d19a250d397d8e422f024b5.etc2.ctex"
+path.s3tc="res://.godot/imported/zombieMaleA.png-4eb3fc578d19a250d397d8e422f024b5.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Models/Characters/Skins/zombieMaleA.png"
-dest_files=["res://.godot/imported/zombieMaleA.png-4eb3fc578d19a250d397d8e422f024b5.etc2.ctex"]
+dest_files=["res://.godot/imported/zombieMaleA.png-4eb3fc578d19a250d397d8e422f024b5.s3tc.ctex"]
 
 [params]
 

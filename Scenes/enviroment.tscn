@@ -999,7 +999,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6927505, 0, 9.198219)
 
 [node name="Moon" parent="." instance=ExtResource("18_ue1kb")]
-visible = false
 
 [node name="bullet_pickup" parent="." instance=ExtResource("18_h4v0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1374795, 0, -0.19069248)
