@@ -2,15 +2,10 @@ extends Node
 
 @export var plr : player
 @export var pistolAnimator : AnimationPlayer
-var melee_targets : Array[melee_target]
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+@export var melee_targets : Array[melee_target]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if plr.not_melee and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		plr.not_melee = false
 		pistolAnimator.play("Melee")
@@ -22,8 +17,12 @@ func melee_damage():
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	print("body enter")
 	if body.is_in_group("melee_target"):
+		print("melee target")
 		melee_targets.append(body as melee_target)
+	else:
+		print("not melee target: " , body.name)
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:

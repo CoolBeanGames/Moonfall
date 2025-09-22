@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq2i6yrdidam"]
+
+[ext_resource type="Script" uid="uid://cshf0tqbaxyjq" path="res://Codebase/props/crate_piece.gd" id="1_7wgxl"]
+[ext_resource type="Texture2D" uid="uid://e1ckevsqgio8" path="res://Textures/wood-pattern-high-quality.jpg" id="1_qy388"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qy388"]
+size = Vector3(0.01, 0.25, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wgxl"]
+albedo_texture = ExtResource("1_qy388")
+
+[node name="crate_piece" type="RigidBody3D" node_paths=PackedStringArray("t")]
+collision_layer = 1024
+collision_mask = 1025
+freeze = true
+script = ExtResource("1_7wgxl")
+t = NodePath("Timer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qy388")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_7wgxl")
+size = Vector3(0.01, 0.25, 0.05)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -25,7 +25,7 @@ repeat : bool,
 bus : String, 
 volume : float, 
 pitch : float, 
-randomize_pitch : bool, 
+_randomize_pitch : bool, 
 pitch_range_min : float, 
 pitch_range_max : float, 
 use_position : bool = false, 
@@ -55,7 +55,7 @@ func _setup_2D(audio : AudioStream):
 	#setup the audio file
 	global_player.stream = audio
 	global_player.volume_linear = data.get("volume",0.5)
-	var pitch : float = data.get("pitch",1)
+	var _pitch : float = data.get("pitch",1)
 	if data.get("randomize_pitch",false):
 		global_player.pitch_scale = randf_range(data.get("pitch_range_min",1),data.get("pitch_range_max",1))
 	global_player.bus = data.get("bus","Master")

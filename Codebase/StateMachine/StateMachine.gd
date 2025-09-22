@@ -30,7 +30,7 @@ func _set(property: StringName, value: Variant) -> bool:
 ##check all of our transitions one by one looking for a valid option
 func check_transitions():
 	var found_transition : bool = false
-	var current_transition : Transition
+	var current_transition : Transition = null
 	
 	#loop through transitions
 	for t in transitions:

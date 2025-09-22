@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpweyu8orpku2"]
+
+[ext_resource type="Script" uid="uid://c0h16spr75bku" path="res://Codebase/props/crate.gd" id="1_bi164"]
+[ext_resource type="Texture2D" uid="uid://e1ckevsqgio8" path="res://Textures/wood-pattern-high-quality.jpg" id="2_fdn4f"]
+[ext_resource type="PackedScene" uid="uid://cnciukhi8di5d" path="res://Scenes/Props/bullet_pickup.tscn" id="2_wpcxd"]
+[ext_resource type="PackedScene" uid="uid://bq2i6yrdidam" path="res://Scenes/Props/crate_piece.tscn" id="3_wpcxd"]
+[ext_resource type="PackedScene" uid="uid://bes6c785400dh" path="res://Scenes/melee_target.tscn" id="4_fdn4f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mplf"]
+albedo_texture = ExtResource("2_fdn4f")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wpcxd"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="crate" type="RigidBody3D" node_paths=PackedStringArray("piece_container", "main")]
+collision_layer = 4096
+collision_mask = 4097
+can_sleep = false
+continuous_cd = true
+script = ExtResource("1_bi164")
+piece_container = NodePath("CratePieces")
+main = NodePath("crate_main")
+spawnables = Array[PackedScene]([ExtResource("2_wpcxd")])
+
+[node name="crate_main" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_6mplf")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="CratePieces" type="Node3D" parent="."]
+
+[node name="crate_piece" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115266636, 0, 0.09436292)
+
+[node name="crate_piece2" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115266636, 0, 0.03541428)
+
+[node name="crate_piece3" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115266636, 0, -0.02643266)
+
+[node name="crate_piece4" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115266636, 0, -0.087748185)
+
+[node name="crate_piece5" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11076671, 0, 0.09436292)
+
+[node name="crate_piece6" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11076671, 0, 0.03541428)
+
+[node name="crate_piece7" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11076671, 0, -0.02643266)
+
+[node name="crate_piece8" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11076671, 0, -0.087748185)
+
+[node name="crate_piece9" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.08885537, 0, 0.116560504)
+
+[node name="crate_piece10" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.029906735, 0, 0.116560504)
+
+[node name="crate_piece11" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.031940207, 0, 0.11656051)
+
+[node name="crate_piece12" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.09325573, 0, 0.11656051)
+
+[node name="crate_piece21" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.08885537, 0, -0.106958196)
+
+[node name="crate_piece22" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.029906735, 0, -0.106958196)
+
+[node name="crate_piece23" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.031940207, 0, -0.10695819)
+
+[node name="crate_piece24" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.09325573, 0, -0.10695819)
+
+[node name="crate_piece13" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0.08885537, 0.11074111, 0.004609868)
+
+[node name="crate_piece14" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0.029906735, 0.11074111, 0.004609868)
+
+[node name="crate_piece15" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, -0.031940207, 0.1107411, 0.004609868)
+
+[node name="crate_piece16" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, -0.09325573, 0.1107411, 0.004609868)
+
+[node name="crate_piece17" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0.08885537, -0.112273246, 0.004609868)
+
+[node name="crate_piece18" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0.029906735, -0.112273246, 0.004609868)
+
+[node name="crate_piece19" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, -0.031940207, -0.11227325, 0.004609868)
+
+[node name="crate_piece20" parent="CratePieces" instance=ExtResource("3_wpcxd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, -0.09325573, -0.11227325, 0.004609868)
+
+[node name="melee_target" parent="." node_paths=PackedStringArray("parent") groups=["crate"] instance=ExtResource("4_fdn4f")]
+collision_layer = 2304
+parent = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wpcxd")
+
+[editable path="melee_target"]

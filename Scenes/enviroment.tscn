@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b5t76snp62aca"]
+[gd_scene load_steps=32 format=3 uid="uid://b5t76snp62aca"]
 
 [ext_resource type="PackedScene" uid="uid://bjy3dnbtv3qcn" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/tree-pine-large.glb" id="8_jun3y"]
 [ext_resource type="PackedScene" uid="uid://cj4fdrwykbad4" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/road-asphalt-center.glb" id="8_ue1kb"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cdwo17eyv8l4f" path="res://Audio/Music/DST-TowerDefenseTheme.mp3" id="19_upj05"]
 [ext_resource type="PackedScene" uid="uid://d0i47ffkqutnd" path="res://Scenes/zombie_spawn_point.tscn" id="20_o6dcl"]
 [ext_resource type="AudioStream" uid="uid://b257bay7yyjka" path="res://Audio/SFX/martyn_stonehouse_Digital+Crusher+Loop.wav" id="20_upj05"]
+[ext_resource type="PackedScene" uid="uid://dpweyu8orpku2" path="res://Scenes/Props/crate.tscn" id="21_eg0ho"]
 [ext_resource type="Script" uid="uid://bcmoxrfkw6xwo" path="res://Codebase/props/moon_player.gd" id="21_o6dcl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4k8vw"]
@@ -1085,3 +1086,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9363308, 0, 6.0754533)
 
 [node name="zombie_spawn_point22" parent="zombie_spawners" instance=ExtResource("20_o6dcl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1934366, 0, 4.074398)
+
+[node name="crate" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1869174, 0.13618821, 2.791942)
+
+[node name="crate2" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.82970065, 0, 0.5582086, 0, 1, 0, -0.5582086, 0, 0.82970065, -0.8755088, 0.13618821, 2.791942)
+
+[node name="crate3" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.99935436, 0, -0.035928577, 0, 1, 0, 0.035928577, 0, 0.99935436, -0.4771549, 0.13618821, 2.791942)
+
+[node name="crate7" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.99935436, 0, -0.035928577, 0, 1, 0, 0.035928577, 0, 0.99935436, 0.66776747, 0.13618821, 2.218579)
+
+[node name="crate8" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.99935436, 0, -0.035928577, 0, 1, 0, 0.035928577, 0, 0.99935436, 3.3106904, 0.13618821, 1.0151999)
+
+[node name="crate9" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.8268549, 0, 0.5624153, 0, 1, 0, -0.5624153, 0, 0.8268549, 3.3106904, 0.13618821, 1.367652)
+
+[node name="crate10" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.99935436, 0, -0.035928577, 0, 1, 0, 0.035928577, 0, 0.99935436, 3.3106904, 0.13618821, 1.7138293)
+
+[node name="crate11" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.9018853, 0, -0.43197557, 0, 1, 0, 0.43197557, 0, 0.9018853, 3.3106904, 0.13618821, 2.050649)
+
+[node name="crate17" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.99935436, 0, -0.035928577, 0, 1, 0, 0.035928577, 0, 0.99935436, 3.3106904, 0.13618821, 2.4181848)
+
+[node name="crate12" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.99935436, 0, -0.035928577, 0, 1, 0, 0.035928577, 0, 0.99935436, 3.3106904, 0.40444356, 1.5445964)
+
+[node name="crate13" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.9236189, 0, -0.3833122, 0, 1, 0, 0.3833122, 0, 0.9236189, 3.3106904, 0.40444356, 1.8564867)
+
+[node name="crate14" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.86150515, 0, 0.5077489, 0, 1, 0, -0.5077489, 0, 0.86150515, 3.3106904, 0.40444356, 1.2294769)
+
+[node name="crate15" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.99935436, 0, -0.035928577, 0, 1, 0, 0.035928577, 0, 0.99935436, 3.3106904, 0.67007643, 1.4116644)
+
+[node name="crate16" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.8567445, 0, -0.515741, 0, 1, 0, 0.515741, 0, 0.8567445, 3.3106904, 0.67007643, 1.7806385)
+
+[node name="crate4" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.99935436, 0, -0.035928577, 0, 1, 0, 0.035928577, 0, 0.99935436, -0.66261625, 0.39012364, 2.791942)
+
+[node name="crate5" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.64752156, 0, -0.7620471, 0, 1, 0, 0.7620471, 0, 0.64752156, -1.0307411, 0.39012364, 2.791942)
+
+[node name="crate6" parent="." instance=ExtResource("21_eg0ho")]
+transform = Transform3D(0.64752156, 0, -0.7620471, 0, 1, 0, 0.7620471, 0, 0.64752156, -1.0307411, 0.39012364, 2.791942)

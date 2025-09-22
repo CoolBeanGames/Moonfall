@@ -89,6 +89,10 @@ func do_damage(collider : CollisionObject3D):
 		if collider.is_in_group("BodyShotZone"):
 			var source : zombie_reference = collider as zombie_reference
 			source.z.take_damage(current_gun.bullet_damage)
+		else:
+			if collider.is_in_group("crate"):
+				print("collider is crate")
+				collider.melee_damage()
 	pass
 
 func update_ui():
