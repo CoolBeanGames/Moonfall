@@ -1,25 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckwoxn6ggusif"]
+[gd_scene load_steps=4 format=3 uid="uid://ckwoxn6ggusif"]
 
 [ext_resource type="Script" uid="uid://xfki7u17a2re" path="res://Codebase/UI/score_display_manager.gd" id="1_opvtd"]
+[ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="2_bh1jx"]
+[ext_resource type="Texture2D" uid="uid://c6rdmp4q8ja1c" path="res://Textures/skull.png" id="2_mtjwl"]
 
-[node name="ScoreDisplay" type="Control" node_paths=PackedStringArray("text")]
-layout_mode = 3
+[node name="ScoreDisplay" type="HBoxContainer" node_paths=PackedStringArray("text")]
+offset_right = 37.0
+offset_bottom = 88.0
+alignment = 2
+script = ExtResource("1_opvtd")
+text = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_bh1jx")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PanelContainer" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_opvtd")
-text = NodePath("Label")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("2_mtjwl")
 
-[node name="Label" type="Label" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer"]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.035
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.119
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
+texture = ExtResource("2_mtjwl")
+stretch_mode = 3

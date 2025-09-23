@@ -7,6 +7,8 @@ var move_speed : float
 var axis_value : Vector2
 var lerp_speed : float
 var target_velocity : Vector3
+var y_velocity : float = 0
+var gravity : float = -9.8
 
 func _ready():
 	move_axis = InputManager.axis["wasd"]
@@ -25,10 +27,11 @@ func unset():
 	sprint_action.just_released.disconnect(stop_sprint)
 
 func _process(_delta):
-	axis_value = move_axis.context.get_axis_value()
-	lerp_move(_delta)
-	plr.move_and_slide()
-	target_velocity = Vector3(0,0,0)
+	if !InputManager.is_input_locked():
+		axis_value = move_axis.context.get_axis_value()
+		lerp_move(_delta)
+		plr.move_and_slide()
+		target_velocity = Vector3(0,0,0)
 
 func on_move(value : Vector2):
 	var forward = -plr.basis.z * (value.y * move_speed )

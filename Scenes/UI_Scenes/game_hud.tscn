@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://dknums531xxie"]
+
+[ext_resource type="PackedScene" uid="uid://cwp7r6bqrrll7" path="res://Scenes/UI_Scenes/health_bar.tscn" id="1_sga4f"]
+[ext_resource type="PackedScene" uid="uid://dmv0jv4sfrhd3" path="res://Scenes/UI_Scenes/ammo_ui.tscn" id="2_5jiys"]
+[ext_resource type="PackedScene" uid="uid://ckwoxn6ggusif" path="res://Scenes/UI_Scenes/score_display.tscn" id="3_5jiys"]
+
+[node name="GameHud" type="AspectRatioContainer"]
+anchors_preset = -1
+anchor_right = 0.22700001
+anchor_bottom = 0.30900002
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 0.49597168
+offset_bottom = -0.23200989
+ratio = 1.3
+stretch_mode = 0
+
+[node name="PanelContainer" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="health_bar" parent="PanelContainer" instance=ExtResource("1_sga4f")]
+layout_mode = 1
+anchor_left = 0.33400002
+anchor_top = 0.13000001
+anchor_right = 0.94200003
+anchor_bottom = 0.919
+offset_left = 0.11870575
+offset_top = 0.06267357
+offset_right = 0.03135681
+offset_bottom = -0.0032958984
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ammo_UI" parent="PanelContainer" instance=ExtResource("2_5jiys")]
+layout_mode = 1
+anchor_left = 0.42100003
+anchor_top = 0.23200001
+anchor_right = 0.864
+anchor_bottom = 0.823
+offset_left = 0.0716629
+offset_top = 0.08456421
+offset_right = -0.09889221
+offset_bottom = -0.082717896
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ScoreDisplay" parent="PanelContainer" instance=ExtResource("3_5jiys")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.057000004
+anchor_right = 0.49
+anchor_bottom = 0.30600002
+offset_left = 0.9199829
+offset_top = -0.07063961
+offset_right = 117.37919
+offset_bottom = 44.04162
+scale = Vector2(0.5, 0.5)

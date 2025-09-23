@@ -7,6 +7,7 @@ class_name ammo_ui extends Control
 @export var loaded_ammo : Label
 #the display for the current guns name
 @export var gun_name : Label
+@export var ammo_bar : ColorRect
 #a reference to the players current gun
 var player_gun : gun
 
@@ -25,3 +26,7 @@ func update_ui():
 		return
 	total_ammo.text = str(GameManager.data.data.get("bullets",0))
 	loaded_ammo.text = str(player_gun.loaded_bullets) + " / " + str(player_gun.max_clip_size)
+	gun_name.text = player_gun.gun_name
+	var ratio : float = float(player_gun.loaded_bullets) / float(player_gun.max_clip_size) 
+	print(ratio)
+	ammo_bar.material.set_shader_parameter("progress",ratio)

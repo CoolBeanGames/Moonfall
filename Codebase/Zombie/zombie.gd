@@ -77,6 +77,9 @@ func attack_anim_done():
 func deal_player_damagage():
 	if player_damage_range.is_inside:
 		print("player took damage")
+		var play : player = GameManager.data.data.get("player",null)
+		if play:
+			play.take_damage()
 
 func take_damage(damage : int):
 	if !state_machine.bb._get("dead") == true:

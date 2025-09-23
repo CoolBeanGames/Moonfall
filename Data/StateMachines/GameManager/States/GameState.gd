@@ -16,6 +16,11 @@ func on_enter():
 	SceneManager.load_scene(load("res://Scenes/GameScene.tscn"),"game",true)
 	zom = load("res://Scenes/zombie.tscn")
 	GameManager.data._set("zombie_count",0)
+	InputManager.lock_input("start_game_cooldown",GameManager)
+	await GameManager.get_tree().process_frame
+	await GameManager.get_tree().process_frame
+	await GameManager.get_tree().process_frame
+	InputManager.unlock_input("start_game_cooldown")
 
 ##called when we exit the state
 func on_exit():

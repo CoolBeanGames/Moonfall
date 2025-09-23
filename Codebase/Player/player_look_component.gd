@@ -35,9 +35,10 @@ func _ready():
 
 #lerping and applying the rotation
 func _process(_delta):
-	delta = _delta
-	lerp_rot()
-	apply_rot()
+	if !InputManager.is_input_locked():
+		delta = _delta
+		lerp_rot()
+		apply_rot()
 
 #called when entering the roam state
 func setup():
@@ -74,4 +75,3 @@ func lerp_rot():
 	lerp_speed = plr.bb._get("look_lerp_speed")
 	rot_x = lerp(rot_x,target_rot_x, (1-exp(-delta * lerp_speed)))
 	rot_y = lerp(rot_y,target_rot_y, (1-exp(-delta * lerp_speed)))
-

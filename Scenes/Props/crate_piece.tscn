@@ -12,7 +12,6 @@ albedo_texture = ExtResource("1_qy388")
 [node name="crate_piece" type="RigidBody3D" node_paths=PackedStringArray("t")]
 collision_layer = 1024
 collision_mask = 1025
-freeze = true
 script = ExtResource("1_7wgxl")
 t = NodePath("Timer")
 

@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccn45l80fue5n"]
+
+[ext_resource type="PackedScene" uid="uid://bq2i6yrdidam" path="res://Scenes/Props/crate_piece.tscn" id="1_uyua6"]
+
+[node name="CratePieces" type="Node3D"]
+
+[node name="crate_piece" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115266636, 0, 0.09436292)
+
+[node name="crate_piece2" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115266636, 0, 0.03541428)
+
+[node name="crate_piece3" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115266636, 0, -0.02643266)
+
+[node name="crate_piece4" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115266636, 0, -0.087748185)
+
+[node name="crate_piece5" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11076671, 0, 0.09436292)
+
+[node name="crate_piece6" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11076671, 0, 0.03541428)
+
+[node name="crate_piece7" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11076671, 0, -0.02643266)
+
+[node name="crate_piece8" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11076671, 0, -0.087748185)
+
+[node name="crate_piece9" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.08885537, 0, 0.116560504)
+
+[node name="crate_piece10" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.029906735, 0, 0.116560504)
+
+[node name="crate_piece11" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.031940207, 0, 0.11656051)
+
+[node name="crate_piece12" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.09325573, 0, 0.11656051)
+
+[node name="crate_piece21" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.08885537, 0, -0.106958196)
+
+[node name="crate_piece22" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.029906735, 0, -0.106958196)
+
+[node name="crate_piece23" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.031940207, 0, -0.10695819)
+
+[node name="crate_piece24" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.09325573, 0, -0.10695819)
+
+[node name="crate_piece13" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0.08885537, 0.11074111, 0.004609868)
+
+[node name="crate_piece14" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0.029906735, 0.11074111, 0.004609868)
+
+[node name="crate_piece15" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, -0.031940207, 0.1107411, 0.004609868)
+
+[node name="crate_piece16" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, -0.09325573, 0.1107411, 0.004609868)
+
+[node name="crate_piece17" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0.08885537, -0.112273246, 0.004609868)
+
+[node name="crate_piece18" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0.029906735, -0.112273246, 0.004609868)
+
+[node name="crate_piece19" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, -0.031940207, -0.11227325, 0.004609868)
+
+[node name="crate_piece20" parent="." instance=ExtResource("1_uyua6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, -0.09325573, -0.11227325, 0.004609868)

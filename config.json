@@ -3,5 +3,7 @@
 	"moon_fall_time" : 3,
 	"crate_max_force" : 2,
 	"crate_min_force" : 0.5,
-	"crate_item_chance" : 0.3
+	"crate_item_chance" : 0.3,
+	"player_health" : 10,
+	"player_max_health" : 10
 }

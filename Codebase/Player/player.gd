@@ -25,8 +25,20 @@ func _ready():
 	fsm.bb.set("player_data",bb) #add our blackboard to the fsm
 	
 	GameManager.data._set("player",self)
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	var max_health =GameManager.data.data.get("player_max_health",1)
+	GameManager.data.data.set("player_health",max_health)
 
-
+func take_damage(damage : int = 1):
+	var health = GameManager.data.data.get("player_health",1)
+	GameManager.data.data.set("player_health",health - damage)
+	health -= damage
+	if health <= 0:
+		print("game over")
 
 
 #used to process the current state

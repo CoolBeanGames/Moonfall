@@ -126,6 +126,78 @@ tracks/5/keys = {
 "update": 0,
 "values": []
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Sun_Color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(1, 0.5, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Moon/MoonOuter:material_override:shader_parameter/wave_amplitude")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.006]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Glow_Power")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Lightness_Difference")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/waveSpeed")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/fresnel")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_upj05"]
 resource_name = "RESET"
@@ -353,6 +425,78 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -80.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Sun_Color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 360.06668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(1, 0.5, 0, 0), Vector4(0, 0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Moon/MoonOuter:material_override:shader_parameter/wave_amplitude")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 357.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0030000001425]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Glow_Power")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 170.81483, 358.6),
+"transitions": PackedFloat32Array(1.0889592, 4.177383, 1),
+"update": 0,
+"values": [0.0, 0.0, 3.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Lightness_Difference")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 359.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, 3.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/waveSpeed")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 359.23334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/fresnel")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 357.93332),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jun3y"]
@@ -1136,3 +1280,5 @@ transform = Transform3D(0.64752156, 0, -0.7620471, 0, 1, 0, 0.7620471, 0, 0.6475
 
 [node name="crate6" parent="." instance=ExtResource("21_eg0ho")]
 transform = Transform3D(0.64752156, 0, -0.7620471, 0, 1, 0, 0.7620471, 0, 0.64752156, -1.0307411, 0.39012364, 2.791942)
+
+[editable path="Moon"]

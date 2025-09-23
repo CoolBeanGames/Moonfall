@@ -43,27 +43,29 @@ func _process(delta: float) -> void:
 	GameManager.data._set("player_gun",current_gun)
 
 func on_shoot():
-	if current_gun.fire_mode == gun.FireMode.single:
-		if shoot_timer <= 0:
-			if current_gun.loaded_bullets > 0:
-				shoot_timer = current_gun.fire_rate
-				current_gun.loaded_bullets -= 1
-				shoot()
-			else:
-				AudioManager.play_audio_file(current_gun.empty_sound,"default",false,Vector3(0,0,0))
+	if !InputManager.is_input_locked():
+		if current_gun.fire_mode == gun.FireMode.single:
+			if shoot_timer <= 0:
+				if current_gun.loaded_bullets > 0:
+					shoot_timer = current_gun.fire_rate
+					current_gun.loaded_bullets -= 1
+					shoot()
+				else:
+					AudioManager.play_audio_file(current_gun.empty_sound,"default",false,Vector3(0,0,0))
 
 func change_gun(new_gun : gun):
 	current_gun = new_gun
 	update_ui()
 
 func on_shoot_hold():
-	if current_gun.fire_mode == gun.FireMode.rapid:
-		if shoot_timer <= 0:
-			if current_gun.loaded_bullets > 0:
-				shoot_timer = current_gun.fire_rate
-				current_gun.loaded_bullets -= 1
-				print("rapid shoot")
-				shoot()
+	if !InputManager.is_input_locked(): 
+		if current_gun.fire_mode == gun.FireMode.rapid:
+			if shoot_timer <= 0:
+				if current_gun.loaded_bullets > 0:
+					shoot_timer = current_gun.fire_rate
+					current_gun.loaded_bullets -= 1
+					print("rapid shoot")
+					shoot()
 
 func shoot():
 	raycaster.force_raycast_update()
@@ -149,18 +151,19 @@ func cycle_gun_down():
 	cycle_gun(-1)
 
 func cycle_gun(dir : int):
-	print("cycling guns")
-	current_gun_index += dir
-	if current_gun_index < 0:
-		current_gun_index = guns.size() - 1
-	if current_gun_index >= guns.size():
-		current_gun_index = 0
-	if guns[current_gun_index] == current_gun:
-		return
-	current_gun = guns[current_gun_index]
-	shoot_point = fire_points[current_gun_index]
-	update_models(current_gun_index)
-	update_ui()
+	if !InputManager.is_input_locked():
+		print("cycling guns")
+		current_gun_index += dir
+		if current_gun_index < 0:
+			current_gun_index = guns.size() - 1
+		if current_gun_index >= guns.size():
+			current_gun_index = 0
+		if guns[current_gun_index] == current_gun:
+			return
+		current_gun = guns[current_gun_index]
+		shoot_point = fire_points[current_gun_index]
+		update_models(current_gun_index)
+		update_ui()
 
 func update_models(index : int):
 	var counter : int = 0

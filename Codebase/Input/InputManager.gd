@@ -5,6 +5,8 @@ class_name input_manager extends Node
 var actions : Dictionary[StringName,input_action]
 #a list of all axis values to track
 var axis : Dictionary[StringName,input_axis]
+#used to lock the input
+var input_lockers : Dictionary[StringName,Node]
 #fired whenever any key is pressed, used for typing minigame
 signal on_any_key(key : String)
 signal scroll_up
@@ -68,4 +70,15 @@ func _input(event: InputEvent) -> void:
 			scroll_up.emit()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			scroll_down.emit()
-	
+
+func lock_input(locker : StringName, n: Node):
+	if input_lockers.has(locker):
+		return
+	input_lockers[locker] = n
+
+func unlock_input(locker : StringName):
+	if input_lockers.has(locker):
+		input_lockers.erase(locker)
+
+func is_input_locked() -> bool:
+	return input_lockers.size() > 0
