@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmxq58d8qg7o7"]
+
+[ext_resource type="PackedScene" uid="uid://bw7a0hamlwsee" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/wall-a-roof-slant-detailed.glb" id="1_sw8g2"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7oy02"]
+points = PackedVector3Array(-0.5, 0, -0.57, -0.5, 0, 0.57, 0.5, 0.5, 0.57, 0.5, 0.5, -0.57, 0.5, 0, -0.57, 0.5, 0, 0.57)
+
+[node name="Stairs" type="Node3D" groups=["navmesh"]]
+
+[node name="wall-a-roof-slant-detailed2" parent="." groups=["navmesh"] instance=ExtResource("1_sw8g2")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["navmesh"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" groups=["navmesh"]]
+shape = SubResource("ConvexPolygonShape3D_7oy02")

@@ -58,9 +58,7 @@ func _process(_delta):
 		print("player debug info: [rotation: ", debug_info_target.global_rotation_degrees, "] | {scale: " , debug_info_target.scale , " } | (position: " , debug_info_target.global_position)
 	var ratio : float = float(GameManager.data.data.get("player_health",1)) / float(GameManager.data.data.get("player_max_health", 5))
 	
-	print("low health? ", playing_low_health)
 	if ratio <= 0.2 and !playing_low_health:
-		print("play")
 		low_health_audio.play()
 		playing_low_health = true
 	else:

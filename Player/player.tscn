@@ -332,6 +332,10 @@ height = 1.0146484
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component", "low_health_audio") groups=["player"]]
 collision_layer = 2
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_max_angle = 1.3962634
+floor_snap_length = 0.5
 script = ExtResource("1_btcbx")
 fsm = SubResource("Resource_7emwf")
 look_component = NodePath("Components/PlayerLookComponent")

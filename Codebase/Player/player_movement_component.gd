@@ -26,7 +26,7 @@ func unset():
 	sprint_action.just_pressed.disconnect(start_sprint)
 	sprint_action.just_released.disconnect(stop_sprint)
 
-func _process(_delta):
+func _physics_process(_delta: float) -> void:
 	if !InputManager.is_input_locked():
 		axis_value = move_axis.context.get_axis_value()
 		lerp_move(_delta)
@@ -40,7 +40,7 @@ func on_move(value : Vector2):
 
 func lerp_move(delta : float):
 	lerp_speed = plr.bb._get("move_lerp_speed")
-	plr.velocity = lerp(plr.velocity,target_velocity,(1-exp(-delta * lerp_speed)))
+	plr.velocity = plr.velocity.lerp(target_velocity,(1-exp(-delta * lerp_speed)))
 	apply_gravity(delta)
 	plr.velocity.y = y_velocity
 	

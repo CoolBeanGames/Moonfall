@@ -83,7 +83,3 @@ right={
 3d_physics/layer_11="crate pieces"
 3d_physics/layer_12="crates"
 3d_physics/layer_13="crate_collider"
-
-[rendering]
-
-renderer/rendering_method="mobile"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://srt4fnsb3ixg"]
+
+[ext_resource type="PackedScene" uid="uid://b8wa37k5byh3h" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/detail-block.glb" id="1_4ekg0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ekg0"]
+size = Vector3(0.5097656, 0.5, 0.50390625)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="detail-block2" parent="." instance=ExtResource("1_4ekg0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0029296875, 0.25, 0)
+shape = SubResource("BoxShape3D_4ekg0")

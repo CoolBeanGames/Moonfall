@@ -9,5 +9,4 @@ func _process(_delta: float) -> void:
 
 	# Remap so 0.5 -> 0 and 1.0 -> 1
 	var mapped : float = clamp((0.5 - ratio) / 0.5, 0.0, 1.0)
-	print("mapped ",mapped)
 	material.set_shader_parameter("radius", mapped)
