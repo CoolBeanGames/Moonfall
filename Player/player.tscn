@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dfwvu0chheicj"]
+[gd_scene load_steps=38 format=3 uid="uid://dfwvu0chheicj"]
 
 [ext_resource type="Script" uid="uid://chqj13gmslwu0" path="res://Codebase/Player/player.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://rw5tpsp0lo8l" path="res://Codebase/StateMachine/StateMachine.gd" id="2_x3vf3"]
@@ -8,14 +8,19 @@
 [ext_resource type="Script" uid="uid://cyjnhbr0fwch4" path="res://Codebase/Player/States/player_frozen_state.gd" id="6_gu6f8"]
 [ext_resource type="Script" uid="uid://co1aqk65mbnqw" path="res://Codebase/Player/States/player_paused_state.gd" id="7_dkpta"]
 [ext_resource type="Script" uid="uid://b8nfiol7igkfc" path="res://Codebase/StateMachine/Transition.gd" id="8_lfmf2"]
+[ext_resource type="AudioStream" uid="uid://c4kuki44fgwhv" path="res://Audio/SFX/player_hit_sounds/zapsplat_impacts_body_hit_baseball_bat_hard_whack_crack_squelchy_bloody_005_44151.wav" id="9_n471f"]
+[ext_resource type="AudioStream" uid="uid://6lxpwl7kabvj" path="res://Audio/SFX/player_hit_sounds/zapsplat_warfare_arrow_incoming_whoosh_hit_body_squelch_blood_007_90728.wav" id="10_7emwf"]
 [ext_resource type="Script" uid="uid://b2r0gys8qg8bh" path="res://Codebase/Player/player_movement_component.gd" id="11_5htga"]
 [ext_resource type="PackedScene" uid="uid://c4o4yjtwuj06u" path="res://Models/Guns/GLB format/blaster-b.glb" id="11_dkpta"]
+[ext_resource type="AudioStream" uid="uid://bgw21jvue25nt" path="res://Audio/SFX/player_hit_sounds/zapsplat_warfare_arrow_incoming_whoosh_hit_body_squelch_blood_008_90729.wav" id="11_hshwv"]
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Audio/Scripts/unnamed_audio_set.gd" id="12_gpjlu"]
 [ext_resource type="Script" uid="uid://da376gvtae7us" path="res://Codebase/Player/player_look_component.gd" id="12_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://cvy0fs6qh2vd8" path="res://Models/Guns/GLB format/blaster-d.glb" id="12_pisgm"]
 [ext_resource type="Script" uid="uid://objhus1b7iuh" path="res://Codebase/Player/Shooting/PlayerShootComponent.gd" id="13_p5o4e"]
 [ext_resource type="Resource" uid="uid://bkuc0tv75daoi" path="res://Guns/gun data/pistol.tres" id="14_gu6f8"]
 [ext_resource type="Script" uid="uid://ced2x5dx2t6nu" path="res://Codebase/Player/player_melee_component.gd" id="16_lfmf2"]
 [ext_resource type="Resource" uid="uid://c62sh2esaio13" path="res://Guns/gun data/AR16.tres" id="17_b1ygp"]
+[ext_resource type="AudioStream" uid="uid://dpf055ugjuwa" path="res://Audio/SFX/low_health_sound.wav" id="21_7emwf"]
 
 [sub_resource type="Resource" id="Resource_x3vf3"]
 script = ExtResource("4_5htga")
@@ -47,6 +52,11 @@ states = Dictionary[String, ExtResource("3_apopc")]({
 "typing": SubResource("Resource_b1ygp")
 })
 metadata/_custom_type_script = "uid://rw5tpsp0lo8l"
+
+[sub_resource type="Resource" id="Resource_8mwp6"]
+script = ExtResource("12_gpjlu")
+files = Array[AudioStream]([ExtResource("9_n471f"), ExtResource("10_7emwf"), ExtResource("11_hshwv")])
+metadata/_custom_type_script = "uid://bc4x8rwu73rom"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gwnis"]
 radius = 0.15
@@ -319,13 +329,14 @@ _data = {
 radius = 0.5073242
 height = 1.0146484
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component", "debug_info_target") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component", "low_health_audio") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_btcbx")
 fsm = SubResource("Resource_7emwf")
 look_component = NodePath("Components/PlayerLookComponent")
 move_component = NodePath("Components/PlayerMovementComponent")
-debug_info_target = NodePath(".")
+hit_sounds = SubResource("Resource_8mwp6")
+low_health_audio = NodePath("low_health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.017448813, 0)
@@ -399,6 +410,9 @@ collision_mask = 256
 [node name="CollisionShape3D" type="CollisionShape3D" parent="melee_area"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.24369177, -0.38366222)
 shape = SubResource("CapsuleShape3D_b1ygp")
+
+[node name="low_health" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_7emwf")
 
 [connection signal="body_entered" from="melee_area" to="Components/PlayerMeleeComponent" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="melee_area" to="Components/PlayerMeleeComponent" method="_on_area_3d_body_exited"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnciukhi8di5d"]
+[gd_scene load_steps=8 format=3 uid="uid://cnciukhi8di5d"]
 
 [ext_resource type="PackedScene" uid="uid://ce7vgncye1v38" path="res://Models/Guns/GLB format/clip-large.glb" id="1_6a1ik"]
 [ext_resource type="Script" uid="uid://bxf23nlbaj3qv" path="res://Codebase/Weapons/bullet_pickup.gd" id="1_bux0j"]
+[ext_resource type="PackedScene" uid="uid://cwl7c6p83e5uu" path="res://Scenes/Props/item_pickup.tscn" id="3_ww3xk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4bfv1"]
 
@@ -67,22 +68,6 @@ _data = {
 &"loop": SubResource("Animation_bux0j")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6a1ik"]
-shading_mode = 0
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_bux0j"]
-material = SubResource("StandardMaterial3D_6a1ik")
-size = Vector2(0.1, 0.1)
-
-[sub_resource type="Curve" id="Curve_ww3xk"]
-_data = [Vector2(0, 1), 0.0, 1.4, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [node name="bullet_pickup" type="Node3D"]
 script = ExtResource("1_bux0j")
 
@@ -99,13 +84,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_hi51l")
 }
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-amount = 24
-mesh = SubResource("QuadMesh_bux0j")
-emission_shape = 1
-emission_sphere_radius = 1.0
-gravity = Vector3(0, 9, 0)
-scale_amount_min = 0.0
-scale_amount_curve = SubResource("Curve_ww3xk")
+[node name="CPUParticles3D" parent="." instance=ExtResource("3_ww3xk")]
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

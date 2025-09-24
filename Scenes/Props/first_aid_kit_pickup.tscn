@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6rln8x52228x"]
+
+[ext_resource type="Script" uid="uid://dhkuy7edtcpr6" path="res://Codebase/Weapons/first_aid_kit_pickup.gd" id="1_7ibrg"]
+[ext_resource type="PackedScene" uid="uid://r5eqhxesl12e" path="res://Models/Pickups/first_aid_kit.glb" id="2_v2lng"]
+[ext_resource type="PackedScene" uid="uid://cwl7c6p83e5uu" path="res://Scenes/Props/item_pickup.tscn" id="3_e455w"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_71r2a"]
+
+[node name="first_aid_kit_pickup" type="Node3D"]
+script = ExtResource("1_7ibrg")
+ammount_healed = 0.3
+
+[node name="first_aid_kit" parent="." instance=ExtResource("2_v2lng")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_71r2a")
+
+[node name="CPUParticles3D" parent="." instance=ExtResource("3_e455w")]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

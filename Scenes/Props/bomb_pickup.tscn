@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://swqsl3rnij2b"]
+
+[ext_resource type="PackedScene" uid="uid://bokkowvsghkaq" path="res://Models/Pickups/Bomb.glb" id="1_6ea6w"]
+[ext_resource type="Script" uid="uid://de7mif28ux7ew" path="res://Codebase/Weapons/bomb_pickup.gd" id="1_rbky5"]
+[ext_resource type="PackedScene" uid="uid://cwl7c6p83e5uu" path="res://Scenes/Props/item_pickup.tscn" id="2_rbky5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_67v3r"]
+
+[sub_resource type="Animation" id="Animation_nw4g2"]
+resource_name = "hover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bomb:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.7819075, 0, 0), Vector3(-0.7819075, 6.2831855, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bomb:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1.4640858, 1, 0.4160886),
+"update": 0,
+"values": [Vector3(0, 0.20109017, 0), Vector3(0, 0, 0), Vector3(0, 0.20109017, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y4r7s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bomb:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.78112215, -1.0101792, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bomb:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.20109017, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ruc50"]
+_data = {
+&"RESET": SubResource("Animation_y4r7s"),
+&"hover": SubResource("Animation_nw4g2")
+}
+
+[node name="bomb_pickup" type="Node3D"]
+script = ExtResource("1_rbky5")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_67v3r")
+
+[node name="Bomb" parent="." instance=ExtResource("1_6ea6w")]
+transform = Transform3D(0.2658545, 0.29815084, -0.3007116, 0, 0.35506195, 0.35203835, 0.42346355, -0.18718196, 0.18878964, 0, 0.20109017, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ruc50")
+}
+
+[node name="CPUParticles3D" parent="." instance=ExtResource("2_rbky5")]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

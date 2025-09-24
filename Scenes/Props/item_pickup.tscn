@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwl7c6p83e5uu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6a1ik"]
+shading_mode = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_bux0j"]
+material = SubResource("StandardMaterial3D_6a1ik")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_ww3xk"]
+_data = [Vector2(0, 1), 0.0, 1.4, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="CPUParticles3D" type="CPUParticles3D"]
+amount = 24
+mesh = SubResource("QuadMesh_bux0j")
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 9, 0)
+scale_amount_min = 0.0
+scale_amount_curve = SubResource("Curve_ww3xk")

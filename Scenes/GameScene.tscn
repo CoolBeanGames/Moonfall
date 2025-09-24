@@ -1,24 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxurmah5617f5"]
+[gd_scene load_steps=9 format=3 uid="uid://bxurmah5617f5"]
 
 [ext_resource type="PackedScene" uid="uid://b5t76snp62aca" path="res://Scenes/enviroment.tscn" id="1_2wl7v"]
 [ext_resource type="PackedScene" uid="uid://dfwvu0chheicj" path="res://Player/player.tscn" id="2_3mbwn"]
+[ext_resource type="Shader" uid="uid://c7arwvyr4aaqx" path="res://Codebase/Shaders/vignette.gdshader" id="3_x6js8"]
+[ext_resource type="Script" uid="uid://4qe0y0r8t746" path="res://Codebase/UI/vignette.gd" id="4_lg2j6"]
 [ext_resource type="PackedScene" uid="uid://dn41xgsutrc0u" path="res://Scenes/zombie.tscn" id="6_kilg5"]
 [ext_resource type="PackedScene" uid="uid://ca77ddpkx5ui8" path="res://Scenes/UI_Scenes/aiming_reticle.tscn" id="6_x6js8"]
 [ext_resource type="PackedScene" uid="uid://dknums531xxie" path="res://Scenes/UI_Scenes/game_hud.tscn" id="7_x6js8"]
-[ext_resource type="Shader" uid="uid://dyah2pblb7ck0" path="res://Codebase/Shaders/psx_shader.gdshader" id="8_lg2j6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y30xb"]
-shader = ExtResource("8_lg2j6")
-shader_parameter/pixel_resolution = 512.0
-shader_parameter/color_steps = 8
-shader_parameter/noise_strength = 0.1
-shader_parameter/enable_dither = true
-shader_parameter/dither_strength = 0.3
-shader_parameter/enable_glow = true
-shader_parameter/glow_strength = 0.4
-shader_parameter/glow_spread = 0.005
-shader_parameter/enable_vintage = true
-shader_parameter/vintage_strength = 0.76800003648
+shader = ExtResource("3_x6js8")
+shader_parameter/radius = 1.625
+shader_parameter/speed = 2.9350001394125
+shader_parameter/effect_color = Color(0.7330014, 6.3532593e-06, 3.465414e-06, 1)
 
 [node name="GameScene" type="Node3D"]
 
@@ -38,6 +32,17 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="vignette" type="ColorRect" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_y30xb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_lg2j6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,0 +1,116 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccdymisxlf17l"]
+
+[ext_resource type="Script" uid="uid://c6q7e0mrh164k" path="res://Codebase/Weapons/bomb_explosion.gd" id="1_0y4l8"]
+[ext_resource type="AudioStream" uid="uid://c5ap10km7w24m" path="res://Audio/SFX/explosion.wav" id="2_8q26d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8q26d"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+
+[sub_resource type="Animation" id="Animation_ec78l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGSphere3D:material_override:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fqqfp"]
+resource_name = "bomb_explode"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:radius")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.75),
+"transitions": PackedFloat32Array(1.5157168, 0.2332583, 0.3077861),
+"update": 0,
+"values": [0.5, 100.0, 80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGSphere3D:material_override:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.5, 0.8666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.46666667, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"kill"
+}, {
+"args": [],
+"method": &"destroy"
+}]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_8q26d")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gs6tu"]
+_data = {
+&"RESET": SubResource("Animation_ec78l"),
+&"bomb_explode": SubResource("Animation_fqqfp")
+}
+
+[node name="BombExplosion" type="Node3D" node_paths=PackedStringArray("anim")]
+script = ExtResource("1_0y4l8")
+anim = NodePath("AnimationPlayer")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+material_override = SubResource("StandardMaterial3D_8q26d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gs6tu")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

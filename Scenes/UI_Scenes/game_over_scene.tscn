@@ -77,6 +77,7 @@ theme = ExtResource("2_0f2sg")
 text = "Post Score"
 
 [node name="ScoreScreen" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("entry_container")]
+visible = false
 layout_mode = 3
 anchor_right = 1.0
 anchor_bottom = 0.85600007

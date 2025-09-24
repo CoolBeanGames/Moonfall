@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbgjbggshuarb"]
+[gd_scene load_steps=16 format=3 uid="uid://cbgjbggshuarb"]
 
 [ext_resource type="Script" uid="uid://dljoeq7cges5" path="res://Codebase/UI/title_scene.gd" id="1_j8exe"]
 [ext_resource type="Texture2D" uid="uid://by5nmjnwhbage" path="res://Textures/moonfall logo.png" id="2_mur7e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://bl4ulcfbxhpp6" path="res://Materials/moon_glow.tres" id="3_i2ev1"]
 [ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="3_ylut5"]
 [ext_resource type="Material" uid="uid://c4eak3tarstnn" path="res://Materials/moon_outer.tres" id="4_mur7e"]
+[ext_resource type="AudioStream" uid="uid://c5ap10km7w24m" path="res://Audio/SFX/explosion.wav" id="7_vt651"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4iaox"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -26,9 +27,8 @@ fog_density = 0.0215
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2ev1"]
 shading_mode = 0
 
-[sub_resource type="Animation" id="Animation_i2ev1"]
-resource_name = "fade_in"
-length = 0.5
+[sub_resource type="Animation" id="Animation_ylut5"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,10 +36,34 @@ tracks/0/path = NodePath("CanvasLayer/FadeRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Moon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 18.796429, -10.350708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.001]
 }
 
 [sub_resource type="Animation" id="Animation_mur7e"]
@@ -95,9 +119,25 @@ tracks/3/keys = {
 "method": &"load_game"
 }]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_vt651")
+}],
+"times": PackedFloat32Array(1.3333334)
+}
+tracks/4/use_blend = true
 
-[sub_resource type="Animation" id="Animation_ylut5"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_i2ev1"]
+resource_name = "fade_in"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -105,34 +145,10 @@ tracks/0/path = NodePath("CanvasLayer/FadeRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Moon:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 18.796429, -10.350708)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Explosion:radius")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.001]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ylut5"]
@@ -568,5 +584,7 @@ material = SubResource("StandardMaterial3D_i2ev1")
 libraries = {
 &"": SubResource("AnimationLibrary_ylut5")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="button_down" from="CanvasLayer/PanelContainer/VBoxContainer/Buttons/start" to="." method="_on_start_button_down"]

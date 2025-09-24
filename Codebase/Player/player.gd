@@ -10,6 +10,9 @@ var bb : blackboard = blackboard.new()
 
 @export var not_melee : bool = true
 @export var debug_info_target : Node3D
+@export var hit_sounds : audio_set
+@export var low_health_audio : AudioStreamPlayer
+var playing_low_health : bool = false
 
 
 #setup our states
@@ -31,7 +34,7 @@ func _ready():
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
-	var max_health =GameManager.data.data.get("player_max_health",1)
+	var max_health = GameManager.data.data.get("player_max_health",1)
 	GameManager.data.data.set("player_health",max_health)
 
 func take_damage(damage : int = 1):
@@ -41,6 +44,8 @@ func take_damage(damage : int = 1):
 	if health <= 0:
 		SignalBus.signals.signals["player_killed"].event.emit()
 		print("game over")
+	else:
+		AudioManager.play_random_audio_file(hit_sounds,"default",false,Vector3(0,0,0))
 
 
 #used to process the current state
@@ -48,9 +53,21 @@ func _physics_process(_delta: float) -> void:
 	fsm.process()
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if debug_info_target!=null:
 		print("player debug info: [rotation: ", debug_info_target.global_rotation_degrees, "] | {scale: " , debug_info_target.scale , " } | (position: " , debug_info_target.global_position)
+	var ratio : float = float(GameManager.data.data.get("player_health",1)) / float(GameManager.data.data.get("player_max_health", 5))
+	
+	print("low health? ", playing_low_health)
+	if ratio <= 0.2 and !playing_low_health:
+		print("play")
+		low_health_audio.play()
+		playing_low_health = true
+	else:
+		if playing_low_health and ratio > 0.2:
+			low_health_audio.stop()
+			playing_low_health = false
+
 
 #used to set a reference to the state machine within each state
 #needed if states are initialized in the inspector instead of code

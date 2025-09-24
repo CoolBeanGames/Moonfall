@@ -31,7 +31,7 @@ InputManager="*res://Codebase/Input/InputManager.gd"
 [editor]
 
 movie_writer/ogv/encoding_speed=2
-movie_writer/movie_file="C:/Users/callm/Documents/video.avi"
+movie_writer/movie_file="C:/Users/callm/Documents/video2.avi"
 
 [editor_plugins]
 
