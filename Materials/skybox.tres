@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ipeji4616bln"]
+
+[ext_resource type="Shader" uid="uid://iugsaqimwx4o" path="res://Codebase/Shaders/abberation.gdshader" id="1_0ievt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0ievt")
+shader_parameter/sphere_color = Color(0, 0, 0, 0)
+shader_parameter/wave_amplitude = 0.0
+shader_parameter/wave_frequency = 19.397
+shader_parameter/wave_speed = 3.618
+shader_parameter/chroma_amount = 0.0
+shader_parameter/stars_enabled = true
+shader_parameter/star_field_scale = 26.1130011928675
+shader_parameter/star_size = 0.0050000002375
+shader_parameter/star_intensity = 1.0
+shader_parameter/star_axis_speed = 0.0010000000475
+shader_parameter/star_move_mode = 2

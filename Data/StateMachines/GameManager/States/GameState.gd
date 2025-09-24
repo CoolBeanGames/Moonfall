@@ -46,7 +46,8 @@ func spawn():
 	if GameManager.zombie_spawners.size() <= 0:
 		return
 	var instance : CharacterBody3D = zom.instantiate()
-	GameManager.add_child(instance)
+	var parent : Node3D = SceneManager.active_scenes[SceneManager.active_scenes.keys()[0]]
+	parent.add_child(instance)
 	var position = GameManager.zombie_spawners.pick_random().global_position
 	position.y = zombie_y
 	instance.global_position = position

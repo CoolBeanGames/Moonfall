@@ -26,7 +26,9 @@ shader_parameter/vintage_strength = 0.76800003648
 [node name="Enviroment" parent="." instance=ExtResource("1_2wl7v")]
 
 [node name="Player" parent="." instance=ExtResource("2_3mbwn")]
-transform = Transform3D(-0.89487207, 0, -0.44632277, 0, 1, 0, 0.44632277, 0, -0.89487207, -3, 0.33065176, -2)
+position = Vector2(-3, 0.33065176)
+rotation = 3.1415927
+scale = Vector2(0.89487207, -1)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1

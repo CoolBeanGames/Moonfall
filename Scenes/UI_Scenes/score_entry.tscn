@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4d2g7o6nt4v4"]
+
+[ext_resource type="Script" uid="uid://50visj7jc1fc" path="res://Codebase/UI/score_entry.gd" id="1_vmemj"]
+[ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="2_fsc3k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4x6o"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="score_entry" type="PanelContainer" node_paths=PackedStringArray("entry_num", "entry_name", "entry_score")]
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4x6o")
+script = ExtResource("1_vmemj")
+entry_num = NodePath("HBoxContainer/entry_number")
+entry_name = NodePath("HBoxContainer/entry_name")
+entry_score = NodePath("HBoxContainer/entry_score")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="entry_number" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_fsc3k")
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="entry_name" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_fsc3k")
+text = "player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="entry_score" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_fsc3k")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -120,37 +120,79 @@ func load_from_encrypted_json(path : String):
 		push_error("error encountered parsing json data: ", json.get_error_message()) 
 
 #attempt to SAVE an encrypted json file
-func save_to_encrypted_json(path : String):
-	if(!path.to_lower().contains(".json")):
+func save_to_encrypted_json(path: String):
+	if !path.to_lower().ends_with(".json"):
 		push_error("path does not point to a valid json file, cannot open")
 		return
-	var json_string  = JSON.stringify(data)
+	
+	var dir_path = path.get_base_dir()
+	
+	# Create a DirAccess instance for the target directory
+	var dir := DirAccess.open(dir_path)
+	if dir == null:
+		# If the directory doesn't exist, try to create it
+		var dir_error = DirAccess.make_dir_recursive_absolute(dir_path)
+		if dir_error != OK:
+			push_error("Failed to create directory '%s', error: %s" % [dir_path, error_string(dir_error)])
+			return
+	
+	var json_string = JSON.stringify(data)
 	var encrypted = encrypt(json_string)
-	var f = FileAccess.open(path,FileAccess.WRITE)
-	if(f == null):
-		push_error("failed to open json file for writing")
+	
+	var f := FileAccess.open(path, FileAccess.WRITE)
+	if f == null:
+		push_error("failed to open json file for writing, error: %s" % error_string(FileAccess.get_open_error()))
 		return
+	
 	f.store_string(encrypted)
 	Saved.emit()
 #endregion
 
 #region Encryption
 #take in a string and encrypt it (before saving)
-func encrypt(target : String) -> String:
+# In your Blackboard script
+# ...
+
+func encrypt(target: String) -> String:
 	var aes = AESContext.new()
 	var iv = key.to_utf8_buffer().slice(0, 16)
-	aes.start(AESContext.MODE_CBC_ENCRYPT,key.to_utf8_buffer(),iv)
-	var encrypted = aes.update(target.to_utf8_buffer())
+	
+	# Convert string to a byte array and get its length
+	var target_bytes = target.to_utf8_buffer()
+	var target_length = target_bytes.size()
+	
+	# Calculate padding needed
+	var padding_size = 16 - (target_length % 16)
+	
+	# Create the padded byte array
+	var padded_bytes = target_bytes
+	padded_bytes.resize(target_length + padding_size)
+	
+	# Fill the padding with the padding size value
+	for i in range(padding_size):
+		padded_bytes[target_length + i] = padding_size
+		
+	aes.start(AESContext.MODE_CBC_ENCRYPT, key.to_utf8_buffer(), iv)
+	var encrypted = aes.update(padded_bytes)
 	aes.finish()
+	
 	return Marshalls.raw_to_base64(encrypted)
 
-#read a encrptyed string out as plain data
-func decrypt(target : String) -> String:
+func decrypt(target: String) -> String:
 	var aes = AESContext.new()
 	var iv = key.to_utf8_buffer().slice(0, 16)
-	aes.start(AESContext.MODE_CBC_DECRYPT,key.to_utf8_buffer(),iv)
 	var raw = Marshalls.base64_to_raw(target)
-	var decrypted = aes.update(raw)
+	
+	aes.start(AESContext.MODE_CBC_DECRYPT, key.to_utf8_buffer(), iv)
+	var decrypted_bytes = aes.update(raw)
 	aes.finish()
-	return decrypted.get_string_from_utf8()
+
+	# Get the last byte to find the padding size
+	var padding_size = decrypted_bytes[decrypted_bytes.size() - 1]
+	
+	# Remove padding from the byte array
+	var unpadded_bytes = decrypted_bytes.slice(0, decrypted_bytes.size() - padding_size)
+
+	return unpadded_bytes.get_string_from_utf8()
+
 #endregion

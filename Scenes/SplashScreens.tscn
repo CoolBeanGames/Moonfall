@@ -1,3 +1,159 @@
-[gd_scene format=3 uid="uid://dh177hl84etni"]
+[gd_scene load_steps=8 format=3 uid="uid://dh177hl84etni"]
+
+[ext_resource type="Script" uid="uid://dmif54vvj8lgw" path="res://Codebase/UI/splashScreens.gd" id="1_trfet"]
+[ext_resource type="Texture2D" uid="uid://y43xwqvi0dfv" path="res://Textures/F1D4814C-72F3-408B-BA3A-CBFD11D6944D.png" id="2_ly8dw"]
+[ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="3_chlwd"]
+[ext_resource type="Texture2D" uid="uid://b8vww8137r32x" path="res://Textures/blue-gradient.png" id="4_xutb4"]
+
+[sub_resource type="Animation" id="Animation_nn7w8"]
+resource_name = "splash_screens"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/GODOT:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.68, 2.04),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CGB:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.3, 2.8, 3.98, 4.34),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_b26wi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/GODOT:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CGB:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ewknp"]
+_data = {
+&"RESET": SubResource("Animation_b26wi"),
+&"splash_screens": SubResource("Animation_nn7w8")
+}
 
 [node name="SplashScreens" type="Node2D"]
+script = ExtResource("1_trfet")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ewknp")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CGB" type="Control" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CGB"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ly8dw")
+expand_mode = 3
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/CGB"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.69900006
+anchor_right = 1.0
+anchor_bottom = 0.85800004
+theme = ExtResource("3_chlwd")
+theme_override_font_sizes/font_size = 48
+text = "CoolBean Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="GODOT" type="Control" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GODOT"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xutb4")
+expand_mode = 2
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true

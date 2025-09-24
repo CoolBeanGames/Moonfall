@@ -38,6 +38,7 @@ func take_damage(damage : int = 1):
 	GameManager.data.data.set("player_health",health - damage)
 	health -= damage
 	if health <= 0:
+		SignalBus.signals.signals["player_killed"].event.emit()
 		print("game over")
 
 

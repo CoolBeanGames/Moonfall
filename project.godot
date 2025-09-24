@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="Moonfall"
+config/version="0.6"
 run/main_scene="uid://voxflqrwktdm"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 SceneManager="*res://Codebase/Singletons/scene_manager.gd"
 SignalBus="*res://Codebase/SignalBus/SignalBus.gd"
 GameManager="*res://Codebase/Singletons/game_manager.gd"
@@ -31,7 +33,7 @@ movie_writer/movie_file="C:/Users/callm/Documents/video.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg", "res://addons/silent_wolf/plugin.cfg")
 
 [file_customization]
 
