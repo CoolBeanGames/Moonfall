@@ -79,3 +79,10 @@ func load_save():
 	save_data.load_from_encrypted_json(path)
 	if save_data.has("player_name"):
 		print("player name: ", save_data.get_data("player_name","p"))
+
+func kill_all_zombies():
+	if data.data.has("all_zombies"):
+		for z in data.data.get("all_zombies"):
+			var zom = z as zombie
+			zom.kill()
+		data.data["all_zombies"].clear()

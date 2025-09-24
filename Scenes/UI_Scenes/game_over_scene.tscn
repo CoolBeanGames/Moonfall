@@ -1,3 +1,174 @@
-[gd_scene format=3 uid="uid://b8d12h0e0hqgn"]
+[gd_scene load_steps=7 format=3 uid="uid://b8d12h0e0hqgn"]
 
-[node name="SplashScreens" type="Node2D"]
+[ext_resource type="Script" uid="uid://502152fvp1xf" path="res://Codebase/UI/game_over_manager.gd" id="1_3jlro"]
+[ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="2_0f2sg"]
+[ext_resource type="Script" uid="uid://cddgxito4vd7" path="res://Codebase/UI/Game_Over_Score_Display.gd" id="3_6flra"]
+[ext_resource type="Script" uid="uid://b4kxfdya3nfdm" path="res://Codebase/UI/score_display_ui.gd" id="4_bxwh3"]
+[ext_resource type="PackedScene" uid="uid://c4d2g7o6nt4v4" path="res://Scenes/UI_Scenes/score_entry.tscn" id="5_0f2sg"]
+[ext_resource type="Script" uid="uid://d4avxe2edsc6p" path="res://Codebase/Audio/Scripts/audio_player.gd" id="5_q1dhx"]
+
+[node name="GameOverScreen" type="Node2D" node_paths=PackedStringArray("insert_name_ui", "name_field", "score_display_ui")]
+script = ExtResource("1_3jlro")
+insert_name_ui = NodePath("CanvasLayer/InputNameScreen")
+name_field = NodePath("CanvasLayer/InputNameScreen/VBoxContainer/HBoxContainer/LineEdit")
+score_display_ui = NodePath("CanvasLayer/ScoreScreen")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20617157, 0.03641385, 0.07574817, 1)
+
+[node name="InputNameScreen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.86600006
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InputNameScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Obliterated" type="Label" parent="CanvasLayer/InputNameScreen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0f2sg")
+text = "You Have Been Obliterated"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemies Killed" type="Label" parent="CanvasLayer/InputNameScreen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0f2sg")
+text = "Enemies Killed: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_6flra")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/InputNameScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Name Label" type="Label" parent="CanvasLayer/InputNameScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0f2sg")
+text = "Player Name: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/InputNameScreen/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/InputNameScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0f2sg")
+text = "Post Score"
+
+[node name="ScoreScreen" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("entry_container")]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.85600007
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+script = ExtResource("4_bxwh3")
+entry_container = NodePath("PanelContainer/VBoxContainer")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ScoreScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ScoreScreen/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0f2sg")
+text = "High Scores:"
+horizontal_alignment = 1
+
+[node name="score_entry" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="score_entry2" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="score_entry3" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="score_entry4" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="score_entry5" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="score_entry6" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="score_entry7" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="score_entry8" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="score_entry9" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="score_entry10" parent="CanvasLayer/ScoreScreen/PanelContainer/VBoxContainer" instance=ExtResource("5_0f2sg")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.96900004
+anchor_right = 0.5
+anchor_bottom = 0.96900004
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Back To Title" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+theme = ExtResource("2_0f2sg")
+text = "Return to Title"
+
+[node name="Play Again" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+theme = ExtResource("2_0f2sg")
+text = "Play Again"
+
+[node name="audio_player" type="Node" parent="."]
+script = ExtResource("5_q1dhx")
+metadata/_custom_type_script = "uid://d4avxe2edsc6p"
+
+[connection signal="button_down" from="CanvasLayer/InputNameScreen/VBoxContainer/HBoxContainer/Button" to="." method="on_name_entry"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/Back To Title" to="." method="on_back_to_title"]

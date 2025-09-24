@@ -20,6 +20,11 @@ var state_machine : StateMachine =  StateMachine.new()
 @export var zombie_die_sound : AudioStream
 
 func _ready() -> void:
+	if !GameManager.data.data.has("all_zombies"):
+		var z : Array[zombie] = [self]
+		GameManager.data.data.set("all_zombies",z)
+	else:
+		GameManager.data.data["all_zombies"].append(self)
 	bb.load_from_json(config_json_path)
 	print(bb.data)
 	bb.set_data("anim",anim)
@@ -106,3 +111,14 @@ func spawn_bullet_pickup():
 func melee_damage():
 	print("zombie melee damage")
 	take_damage(1)
+
+func kill():
+	if GameManager.data.data.has("all_zombies"):
+		GameManager.data.data["all_zombies"].erase(self)
+	AudioManager.play_audio_file(zombie_die_sound,"default",true,global_position)
+	state_machine.bb._set("dead",true)
+	GameManager.data._set("score",GameManager.data._get("score"))
+	var chance : float = randf_range(0,1)
+	print("chance of ammo: ", chance, " / " ,  bb._get("chance_for_ammo"))
+	if randf_range(0,1) <= bb._get("chance_for_ammo"):
+		spawn_bullet_pickup()

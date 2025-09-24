@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b5t76snp62aca"]
+[gd_scene load_steps=31 format=3 uid="uid://b5t76snp62aca"]
 
 [ext_resource type="PackedScene" uid="uid://bjy3dnbtv3qcn" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/tree-pine-large.glb" id="8_jun3y"]
 [ext_resource type="PackedScene" uid="uid://cj4fdrwykbad4" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/road-asphalt-center.glb" id="8_ue1kb"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://c1p0t1x8t5vyk" path="res://Scenes/Buildings/tall_building.tscn" id="16_uox07"]
 [ext_resource type="PackedScene" uid="uid://2egcsbg5ucuw" path="res://Scenes/Props/light_post.tscn" id="17_lxfkc"]
 [ext_resource type="PackedScene" uid="uid://mrj6bmor4483" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/road-asphalt-pavement.glb" id="17_u2ac6"]
-[ext_resource type="PackedScene" uid="uid://cnciukhi8di5d" path="res://Scenes/Props/bullet_pickup.tscn" id="18_h4v0y"]
 [ext_resource type="PackedScene" uid="uid://y72rvcoq1wks" path="res://Scenes/moon.tscn" id="18_ue1kb"]
 [ext_resource type="AudioStream" uid="uid://cdwo17eyv8l4f" path="res://Audio/Music/DST-TowerDefenseTheme.mp3" id="19_upj05"]
 [ext_resource type="PackedScene" uid="uid://d0i47ffkqutnd" path="res://Scenes/zombie_spawn_point.tscn" id="20_o6dcl"]
@@ -1143,9 +1142,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6927505, 0, 9.198219)
 
 [node name="Moon" parent="." instance=ExtResource("18_ue1kb")]
-
-[node name="bullet_pickup" parent="." instance=ExtResource("18_h4v0y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1374795, 0, -0.19069248)
 
 [node name="moon_player" type="AnimationPlayer" parent="."]
 libraries = {

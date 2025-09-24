@@ -9,6 +9,7 @@ var bb : blackboard = blackboard.new()
 @export var move_component : player_movement
 
 @export var not_melee : bool = true
+@export var debug_info_target : Node3D
 
 
 #setup our states
@@ -46,6 +47,10 @@ func take_damage(damage : int = 1):
 func _physics_process(_delta: float) -> void:
 	fsm.process()
 	pass
+
+func _process(delta):
+	if debug_info_target!=null:
+		print("player debug info: [rotation: ", debug_info_target.global_rotation_degrees, "] | {scale: " , debug_info_target.scale , " } | (position: " , debug_info_target.global_position)
 
 #used to set a reference to the state machine within each state
 #needed if states are initialized in the inspector instead of code

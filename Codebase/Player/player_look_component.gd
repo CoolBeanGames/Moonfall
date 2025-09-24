@@ -5,7 +5,7 @@ class_name player_look extends Node
 #the player body used for looking (horizontally)
 @export var plr : player
 #the camera used for looking (vertically)
-@export var camera : PhantomCamera3D
+@export var camera : Camera3D
 #the input axis for looking around
 @export var look_axis : input_axis
 #current x rotation (vertical)
@@ -67,8 +67,10 @@ func calculate_rot(input : Vector2):
 
 #apply the camera rotation to the player
 func apply_rot():
+	plr.rotation_degrees.z = 0
 	plr.rotation_degrees.y = rot_y
 	camera.rotation_degrees.x = rot_x
+
 
 #smooothly lerp the camera to the target
 func lerp_rot():

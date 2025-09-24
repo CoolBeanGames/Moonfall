@@ -26,7 +26,7 @@ func _ready() -> void:
 	shoot_action.just_released.connect(on_shoot)
 	shoot_action.pressed.connect(on_shoot_hold)
 	reload_action.just_released.connect(reload)
-	bullet_hit_effect = load("res://Guns/bullet_hit_effect.tscn")
+	#bullet_hit_effect = load("res://Guns/bullet_hit_effect.tscn")
 	GameManager.data.set_data("bullets",24)
 	await get_tree().process_frame
 	update_ui()
@@ -74,9 +74,9 @@ func shoot():
 	if raycaster.is_colliding():
 		var position : Vector3 = raycaster.get_collision_point()
 		var _collider =  raycaster.get_collider()
-		var instance : Node3D = bullet_hit_effect.instantiate()
-		instance.position = position
-		GameManager.add_child(instance)
+		#var instance : Node3D = bullet_hit_effect.instantiate() #<-- bullet hit effect spawning
+		#instance.position = position
+		#GameManager.add_child(instance)
 		update_ui()
 		spawn_bullet(position)
 		do_damage(raycaster.get_collider())

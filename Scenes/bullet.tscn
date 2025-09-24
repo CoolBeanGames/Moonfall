@@ -1,3 +1,46 @@
-[gd_scene format=3 uid="uid://dio0na5l06nbg"]
+[gd_scene load_steps=7 format=3 uid="uid://dio0na5l06nbg"]
 
-[node name="SplashScreens" type="Node2D"]
+[ext_resource type="Script" uid="uid://ttuli52gr0b4" path="res://Codebase/Weapons/bullet_controller.gd" id="1_oduel"]
+[ext_resource type="PackedScene" uid="uid://d4fhr78lwf0k4" path="res://Models/Guns/GLB format/bullet-foam-tip-thick.glb" id="1_xjght"]
+[ext_resource type="Shader" uid="uid://iugsaqimwx4o" path="res://Codebase/Shaders/abberation.gdshader" id="3_ycag2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oduel"]
+emission_shape_scale = Vector3(0, 0, 0)
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6afsh"]
+render_priority = 0
+shader = ExtResource("3_ycag2")
+shader_parameter/sphere_color = Color(0, 0, 0, 0.3372549)
+shader_parameter/wave_amplitude = 0.00999999977648
+shader_parameter/wave_frequency = 19.397
+shader_parameter/wave_speed = 4.5450002158875
+shader_parameter/chroma_amount = 1.0
+shader_parameter/stars_enabled = true
+shader_parameter/star_field_scale = 4.377
+shader_parameter/star_size = 0.008
+shader_parameter/star_intensity = 1.0
+shader_parameter/star_axis_speed = 0.051
+shader_parameter/star_move_mode = 1
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_ycag2"]
+material = SubResource("ShaderMaterial_6afsh")
+radius = 0.01
+sections = 2
+section_length = 1.0
+cap_top = false
+cap_bottom = false
+
+[node name="bullet" type="Node3D"]
+script = ExtResource("1_oduel")
+
+[node name="bullet-foam-tip-thick2" parent="." instance=ExtResource("1_xjght")]
+transform = Transform3D(-1, 8.742278e-08, -3.821371e-15, 0, -4.371139e-08, -1, -8.742278e-08, -1, 4.371139e-08, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0.9907725)
+amount = 10
+lifetime = 0.25
+process_material = SubResource("ParticleProcessMaterial_oduel")
+draw_pass_1 = SubResource("TubeTrailMesh_ycag2")

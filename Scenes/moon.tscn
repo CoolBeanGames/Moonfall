@@ -1,3 +1,69 @@
-[gd_scene format=3 uid="uid://y72rvcoq1wks"]
+[gd_scene load_steps=11 format=3 uid="uid://y72rvcoq1wks"]
 
-[node name="SplashScreens" type="Node2D"]
+[ext_resource type="Script" uid="uid://fbxqjixtf3iw" path="res://Scenes/moon_controller.gd" id="1_00cq0"]
+[ext_resource type="Shader" uid="uid://bvpkqllry8f5f" path="res://Codebase/new_shader.gdshader" id="2_0gyll"]
+[ext_resource type="Shader" uid="uid://iugsaqimwx4o" path="res://Codebase/Shaders/abberation.gdshader" id="3_35qyd"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_163ce"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_adekc"]
+noise = SubResource("FastNoiseLite_163ce")
+
+[sub_resource type="Gradient" id="Gradient_n04w7"]
+offsets = PackedFloat32Array(0.32156864, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lgdyo"]
+noise_type = 3
+domain_warp_enabled = true
+domain_warp_amplitude = 32.675
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q8yum"]
+noise = SubResource("FastNoiseLite_lgdyo")
+color_ramp = SubResource("Gradient_n04w7")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbos3"]
+render_priority = 0
+shader = ExtResource("2_0gyll")
+shader_parameter/Glow_Power = 3.0
+shader_parameter/Lightness_Difference = 3.0
+shader_parameter/Sun_Color = Vector4(1, 0.5, 0, 0)
+shader_parameter/voronoi_noise = SubResource("NoiseTexture2D_q8yum")
+shader_parameter/emission_noise = SubResource("NoiseTexture2D_adekc")
+shader_parameter/waveSpeed = 1.0
+shader_parameter/fresnel = 1.0
+shader_parameter/scale = 0.01
+shader_parameter/blendSharpness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xat7"]
+render_priority = 0
+shader = ExtResource("3_35qyd")
+shader_parameter/sphere_color = Color(0, 0, 0, 0)
+shader_parameter/wave_amplitude = 0.006
+shader_parameter/wave_frequency = 19.397
+shader_parameter/wave_speed = 3.618
+shader_parameter/chroma_amount = 1.0
+shader_parameter/stars_enabled = false
+shader_parameter/star_field_scale = 4.377
+shader_parameter/star_size = 0.008
+shader_parameter/star_intensity = 1.0
+shader_parameter/star_axis_speed = 0.051
+shader_parameter/star_move_mode = 1
+
+[node name="Moon" type="Node3D"]
+script = ExtResource("1_00cq0")
+moon_fall_time = 360.0
+
+[node name="MoonGlow" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 161, 0)
+material_override = SubResource("ShaderMaterial_lbos3")
+radius = 100.0
+radial_segments = 36
+rings = 12
+
+[node name="MoonOuter" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 161, 0)
+material_override = SubResource("ShaderMaterial_2xat7")
+radius = 104.64058
+radial_segments = 36
+rings = 12

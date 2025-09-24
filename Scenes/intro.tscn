@@ -1,92 +1,179 @@
 [gd_scene load_steps=8 format=3 uid="uid://dowcr0oygj1t8"]
 
-[ext_resource type="Script" uid="uid://dmif54vvj8lgw" path="res://Codebase/UI/splashScreens.gd" id="1_geirw"]
-[ext_resource type="Texture2D" uid="uid://y43xwqvi0dfv" path="res://Textures/F1D4814C-72F3-408B-BA3A-CBFD11D6944D.png" id="2_hwjxs"]
+[ext_resource type="Script" uid="uid://bipu0ui06lkvp" path="res://Codebase/UI/intro.gd" id="1_geirw"]
+[ext_resource type="AudioStream" uid="uid://cy8poeui1sbxb" path="res://Audio/Music/music_DeepTheme_Audio_Linger_065.wav" id="3_hwjxs"]
 [ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="3_rsiac"]
-[ext_resource type="Texture2D" uid="uid://b8vww8137r32x" path="res://Textures/blue-gradient.png" id="4_3bmuq"]
+[ext_resource type="AudioStream" uid="uid://ddua67tgyp6hu" path="res://Audio/SFX/skyclad_sound_swell_chopper_chord_build_pulse_accelerate_end_with_whoosh_mid_resonant_fragment_reverse_284.wav" id="4_rsiac"]
 
-[sub_resource type="Animation" id="Animation_b26wi"]
+[sub_resource type="Animation" id="Animation_3bmuq"]
+resource_name = "intro animation"
+length = 54.405
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect/RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 5, 5.2000003, 5.4333334, 5.633333, 10.433332, 10.633333, 10.933333, 11.133333, 15.933332, 16.133333, 16.533333, 16.733332, 21.53333, 21.733332, 22.133333, 22.333332, 27.133331, 27.333332, 27.666666, 27.866665, 32.666664, 32.86667, 33.26667, 33.466667, 38.266666, 38.466667, 38.800003, 39, 43.8, 44, 44.333336, 44.533333, 49.333332, 49.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect/RichTextLabel:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.241618, 5.3, 10.733334, 10.833333, 16.2, 16.4, 21.733334, 22, 27.333334, 27.533333, 32.933334, 33.133335, 38.433334, 38.666668, 44, 44.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["The Moon is Falling
+", "The Moon is Falling
+", "Or at least.... at least that was what the news said...", "Or at least.... at least that was what the news said...", "I dont think it matters...
+", "I dont think it matters...
+", "We have much bigger problems now....
+", "We have much bigger problems now....
+", "Shortly after moon fall... The Moon Began to cry...
+", "Shortly after moon fall... The Moon Began to cry...
+", "Those tears, rose up and began to kill at eat anyone who came near...
+", "Those tears, rose up and began to kill at eat anyone who came near...
+", "I'm tired of just waiting to die...
+", "I'm tired of just waiting to die...
+", "If im going down....
+", "If im going down....", "Then I'm going down fighting..."]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_hwjxs")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_rsiac")
+}],
+"times": PackedFloat32Array(48.566666)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(49.574093, 52.38751),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(53.627632, 54.21993),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(54.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"load_game"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nn7w8"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/GODOT:modulate")
+tracks/0/path = NodePath("CanvasLayer/ColorRect/RichTextLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/CGB:modulate")
+tracks/1/path = NodePath("CanvasLayer/ColorRect/RichTextLabel:text")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": ["THIS IS "]
 }
-
-[sub_resource type="Animation" id="Animation_nn7w8"]
-resource_name = "splash_screens"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/GODOT:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.68, 2.04),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/CGB:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(2.3, 2.8, 3.98, 4.34),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("AudioStreamPlayer:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(4.4),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"finish"
-}]
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ewknp"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b26wi"]
 _data = {
-&"RESET": SubResource("Animation_b26wi"),
-&"splash_screens": SubResource("Animation_nn7w8")
+&"RESET": SubResource("Animation_nn7w8"),
+&"intro animation": SubResource("Animation_3bmuq")
 }
 
-[node name="SplashScreens" type="Node2D"]
+[node name="IntroScene" type="Node3D" node_paths=PackedStringArray("animation")]
 script = ExtResource("1_geirw")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ewknp")
-}
+animation = NodePath("AnimationPlayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -96,58 +183,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
-[node name="CGB" type="Control" parent="CanvasLayer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 3
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CGB"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.25
-anchor_top = 0.25
-anchor_right = 0.75
-anchor_bottom = 0.75
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_hwjxs")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="CanvasLayer/CGB"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.69900006
-anchor_right = 1.0
-anchor_bottom = 0.85800004
 theme = ExtResource("3_rsiac")
-theme_override_font_sizes/font_size = 48
-text = "CoolBean Games"
+text = "THIS IS "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GODOT" type="Control" parent="CanvasLayer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_b26wi")
+}
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GODOT"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_3bmuq")
-expand_mode = 2
-stretch_mode = 6
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
