@@ -113,8 +113,6 @@ func melee_damage():
 	take_damage(1)
 
 func kill():
-	if GameManager.data.data.has("all_zombies"):
-		GameManager.data.data["all_zombies"].erase(self)
 	AudioManager.play_audio_file(zombie_die_sound,"default",true,global_position)
 	state_machine.bb._set("dead",true)
 	GameManager.data._set("score",GameManager.data._get("score"))

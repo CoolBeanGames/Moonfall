@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dfwvu0chheicj"]
+[gd_scene load_steps=39 format=3 uid="uid://dfwvu0chheicj"]
 
 [ext_resource type="Script" uid="uid://chqj13gmslwu0" path="res://Codebase/Player/player.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://rw5tpsp0lo8l" path="res://Codebase/StateMachine/StateMachine.gd" id="2_x3vf3"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://ced2x5dx2t6nu" path="res://Codebase/Player/player_melee_component.gd" id="16_lfmf2"]
 [ext_resource type="Resource" uid="uid://c62sh2esaio13" path="res://Guns/gun data/AR16.tres" id="17_b1ygp"]
 [ext_resource type="AudioStream" uid="uid://dpf055ugjuwa" path="res://Audio/SFX/low_health_sound.wav" id="21_7emwf"]
+[ext_resource type="Script" uid="uid://dxm67gmylx4ts" path="res://Codebase/Player/player_jump_component.gd" id="21_hshwv"]
 
 [sub_resource type="Resource" id="Resource_x3vf3"]
 script = ExtResource("4_5htga")
@@ -402,6 +403,11 @@ fire_points = [NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/pistol/f
 script = ExtResource("16_lfmf2")
 plr = NodePath("../..")
 pistolAnimator = NodePath("../../CollisionShape3D/Camera3D/Guns/pistolAnimator")
+
+[node name="PlayerJumpComponent" type="Node" parent="Components" node_paths=PackedStringArray("move", "plr")]
+script = ExtResource("21_hshwv")
+move = NodePath("../PlayerMovementComponent")
+plr = NodePath("../..")
 
 [node name="melee_area" type="Area3D" parent="."]
 collision_layer = 512

@@ -4,5 +4,6 @@
 	"look_speed": 20.0,
 	"pitch_clamp": 70.0,
 	"look_lerp_speed": 50.0,
-	"move_lerp_speed" : 7.0
+	"move_lerp_speed": 7.0,
+	"jump_force": 300.0
 }

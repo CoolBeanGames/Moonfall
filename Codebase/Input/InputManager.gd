@@ -30,6 +30,7 @@ func add_actions():
 	_add_action("sprint",Key.KEY_SHIFT)
 	_add_mouse_action("shoot")
 	_add_action("reload",Key.KEY_R)
+	_add_action("jump",Key.KEY_SPACE)
 
 ##adds all needed axis (scalar) values to track
 func add_all_axis():

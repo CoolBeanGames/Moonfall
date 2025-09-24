@@ -9,7 +9,6 @@ var zombie_y : float = 0.122
 var zom : PackedScene
 var zombie_spawn_audio : audio_set
 
-
 ##called once when entering the state and then not again until it has finished
 func on_enter():
 	GameManager.data._set("score",0)
