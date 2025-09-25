@@ -46,6 +46,9 @@ fog_density = 0.0
 fog_sky_affect = 0.078
 fog_height = -127.2
 fog_height_density = 16.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.2425
+volumetric_fog_albedo = Color(0.8509804, 0.4745098, 0.5882353, 1)
 adjustment_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mgqhm"]
@@ -396,6 +399,7 @@ directional_shadow_max_distance = 1.0
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.3023146, 0.60202885, -0.73903114, 0.7705662, 0.30203, 0.56125385, 0.5611005, -0.73914737, -0.37259486, 0, 0, 0)
+visible = false
 shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
