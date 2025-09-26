@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="item_spawn_list" load_steps=7 format=3 uid="uid://c7k8rtahyr8h7"]
+[gd_resource type="Resource" script_class="item_spawn_list" load_steps=8 format=3 uid="uid://c7k8rtahyr8h7"]
 
 [ext_resource type="Script" uid="uid://d4g7rbit6x2ef" path="res://Codebase/props/item_data.gd" id="1_3nbcq"]
 [ext_resource type="PackedScene" uid="uid://b6w7prbhqe4rt" path="res://Scenes/item_pickup.tscn" id="2_5x4wm"]
@@ -6,9 +6,10 @@
 [ext_resource type="Resource" uid="uid://dns33swq80ksp" path="res://Data/items/ammo.tres" id="2_tr066"]
 [ext_resource type="Resource" uid="uid://i6rpr2wy1ymg" path="res://Data/items/bomb.tres" id="3_ggg14"]
 [ext_resource type="Resource" uid="uid://culxgaiyhfy2h" path="res://Data/items/health_kit.tres" id="4_q5n6h"]
+[ext_resource type="Resource" uid="uid://8pqk1petbdm7" path="res://Data/items/AR16-pickup.tres" id="5_ggg14"]
 
 [resource]
 script = ExtResource("2_ryiw8")
-items = Array[ExtResource("1_3nbcq")]([ExtResource("2_tr066"), ExtResource("3_ggg14"), ExtResource("4_q5n6h")])
+items = Array[ExtResource("1_3nbcq")]([ExtResource("2_tr066"), ExtResource("3_ggg14"), ExtResource("4_q5n6h"), ExtResource("5_ggg14")])
 pickup = ExtResource("2_5x4wm")
 metadata/_custom_type_script = "uid://bs6wdrxwiym7i"

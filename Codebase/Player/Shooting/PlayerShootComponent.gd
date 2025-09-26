@@ -7,6 +7,8 @@ class_name player_shoot_component extends Node
 
 var shoot_action : input_action_mouse
 var reload_action : input_action
+@export var guns : Dictionary[StringName,Node3D]
+@export var enabled_guns : Array[Node3D]
 @export var current_gun : weapon
 @export var raycaster : RayCast3D
 @export var plr : player
@@ -26,6 +28,7 @@ func _ready() -> void:
 
 	#add some starting bullets
 	GameManager.data.set_data("bullets",12)
+	GameManager.data.set_data("player_shoot",self)
 
 
 #process shot cooldown

@@ -1,0 +1,159 @@
+[gd_scene load_steps=14 format=3 uid="uid://cdiesk6pr221p"]
+
+[ext_resource type="PackedScene" uid="uid://2ro4n457drwc" path="res://Models/weapons/AR16.glb" id="1_7krex"]
+[ext_resource type="Script" uid="uid://2jlevvygr4cn" path="res://Codebase/Weapons/weapon.gd" id="2_3todf"]
+[ext_resource type="PackedScene" uid="uid://dio0na5l06nbg" path="res://Scenes/bullet.tscn" id="3_dahhe"]
+[ext_resource type="Resource" uid="uid://c62sh2esaio13" path="res://Guns/gun data/AR16.tres" id="4_ym2iy"]
+[ext_resource type="Script" uid="uid://ddmx8746b8vxk" path="res://Codebase/Strategies/gun_strategies/pistol_strategy.gd" id="5_2sv3i"]
+
+[sub_resource type="Resource" id="Resource_x8ofm"]
+script = ExtResource("5_2sv3i")
+metadata/_custom_type_script = "uid://ddmx8746b8vxk"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gpxfi"]
+top_radius = 0.07
+bottom_radius = 0.07
+height = 1000.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mti3q"]
+blend_mode = 1
+shading_mode = 0
+
+[sub_resource type="Animation" id="Animation_dahhe"]
+resource_name = "shoot_gun"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AR16:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.1706904, 0.36602485, 0.41847894), Vector3(-0.1706904, 0.36602485, 0.5422883), Vector3(-0.1706904, 0.36602485, 0.41847894)]
+}
+
+[sub_resource type="Animation" id="Animation_ym2iy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AR16:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.1706904, 0.36602485, 0.41847894)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AR16:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5707964)]
+}
+
+[sub_resource type="Animation" id="Animation_2sv3i"]
+resource_name = "reload_gun"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AR16:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.30688995, 0.5991661, 0.87682843, 1.1691046, 1.4540739, 1.74635, 2.0678537, 2.3601298, 2.7473958, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.1706904, 0.36602485, 0.41847894), Vector3(-0.171, 0.276, 0.418), Vector3(-0.171, 0.201, 0.418), Vector3(-0.171, 0.276, 0.418), Vector3(-0.171, 0.201, 0.418), Vector3(-0.171, 0.276, 0.418), Vector3(-0.171, 0.201, 0.418), Vector3(-0.171, 0.276, 0.418), Vector3(-0.171, 0.201, 0.418), Vector3(-0.171, 0.276, 0.418), Vector3(-0.1706904, 0.36602485, 0.41847894)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AR16:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.27035543, 2.7108612, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5707964), Vector3(0.28340653, 1.8372043e-08, -2.230269), Vector3(0.28340653, 1.8372043e-08, -2.230269), Vector3(0, 0, -1.5707964)]
+}
+
+[sub_resource type="Animation" id="Animation_x8ofm"]
+resource_name = "melee"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AR16:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16075188, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.1706904, 0.36602485, 0.41847894), Vector3(-0.6040406, 0.36602485, -0.5511706), Vector3(-0.1706904, 0.36602485, 0.41847894)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AR16:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10229665, 0.2045933, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5707964), Vector3(-3.6964916e-15, 1.604516, -1.5707964), Vector3(0, 2.565634, -1.5707964), Vector3(0, 0, -1.5707964)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2sv3i"]
+_data = {
+&"RESET": SubResource("Animation_ym2iy"),
+&"melee": SubResource("Animation_x8ofm"),
+&"reload_gun": SubResource("Animation_2sv3i"),
+&"shoot_gun": SubResource("Animation_dahhe")
+}
+
+[node name="AR162" node_paths=PackedStringArray("shoot_point", "animation_player", "shoot_light", "bullet_tracer") instance=ExtResource("1_7krex")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_3todf")
+shoot_point = NodePath("AR16/shoot_point")
+animation_player = NodePath("AnimationPlayer")
+bullet_prefab = ExtResource("3_dahhe")
+gun_data = ExtResource("4_ym2iy")
+strat = SubResource("Resource_x8ofm")
+shoot_light = NodePath("AR16/shoot_point/OmniLight3D")
+bullet_tracer = NodePath("AR16/shoot_point/bullet_tracer")
+
+[node name="AR16" parent="." index="0"]
+transform = Transform3D(-1.4140505e-09, 0.03234971, 0, -0.032349706, -1.4140507e-09, 0, 0, 0, 0.03234971, -0.1706904, 0.36602485, 0.41847894)
+
+[node name="shoot_point" type="Node3D" parent="AR16" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1.0000001, 0, -1, -4.3711392e-08, 2.039837, 5.2799187, -64.64869)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="AR16/shoot_point" index="0"]
+light_color = Color(0.8427213, 0.40213698, 0, 1)
+light_energy = 0.0
+
+[node name="bullet_tracer" type="CSGMesh3D" parent="AR16/shoot_point" index="1"]
+transform = Transform3D(-9.999999, 4.3711384e-07, 0, -4.3711384e-07, -9.999999, -2.842171e-14, 1.6940659e-21, 2.842171e-14, 9.999998, -0.013999939, 4999.863, 0)
+mesh = SubResource("CylinderMesh_gpxfi")
+material = SubResource("StandardMaterial3D_mti3q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_2sv3i")
+}

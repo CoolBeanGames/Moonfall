@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dfwvu0chheicj"]
+[gd_scene load_steps=30 format=3 uid="uid://dfwvu0chheicj"]
 
 [ext_resource type="Script" uid="uid://chqj13gmslwu0" path="res://Codebase/Player/player.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://rw5tpsp0lo8l" path="res://Codebase/StateMachine/StateMachine.gd" id="2_x3vf3"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://da376gvtae7us" path="res://Codebase/Player/player_look_component.gd" id="12_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://cmbti6tglga1x" path="res://Scenes/weapons/hand_gun.tscn" id="13_7emwf"]
 [ext_resource type="Script" uid="uid://objhus1b7iuh" path="res://Codebase/Player/Shooting/PlayerShootComponent.gd" id="13_p5o4e"]
+[ext_resource type="PackedScene" uid="uid://cdiesk6pr221p" path="res://Scenes/weapons/ar_162.tscn" id="14_n471f"]
 [ext_resource type="Script" uid="uid://ced2x5dx2t6nu" path="res://Codebase/Player/player_melee_component.gd" id="16_lfmf2"]
 [ext_resource type="AudioStream" uid="uid://dpf055ugjuwa" path="res://Audio/SFX/low_health_sound.wav" id="21_7emwf"]
 [ext_resource type="Script" uid="uid://dxm67gmylx4ts" path="res://Codebase/Player/player_jump_component.gd" id="21_hshwv"]
@@ -95,9 +96,13 @@ spot_range = 7.0
 spot_angle = 35.0
 
 [node name="Gun" type="Node3D" parent="CollisionShape3D/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09828329, -0.13436365, -0.06261665)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09828329, -0.17328721, -0.06261665)
 
 [node name="hand_gun" parent="CollisionShape3D/Camera3D/Gun" instance=ExtResource("13_7emwf")]
+
+[node name="AR162" parent="CollisionShape3D/Camera3D/Gun" instance=ExtResource("14_n471f")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.053019106, -0.17059839)
+visible = false
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="CollisionShape3D"]
 radius = 0.15
@@ -114,8 +119,12 @@ script = ExtResource("12_p5o4e")
 plr = NodePath("../..")
 camera = NodePath("../../CollisionShape3D/Camera3D")
 
-[node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("current_gun", "raycaster", "plr", "gun_parent")]
+[node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("guns", "enabled_guns", "current_gun", "raycaster", "plr", "gun_parent")]
 script = ExtResource("13_p5o4e")
+guns = {
+&"AR16": NodePath("../../CollisionShape3D/Camera3D/Gun/AR162")
+}
+enabled_guns = [NodePath("../../CollisionShape3D/Camera3D/Gun/hand_gun")]
 current_gun = NodePath("../../CollisionShape3D/Camera3D/Gun/hand_gun")
 raycaster = NodePath("../../CollisionShape3D/Camera3D/RayCast3D")
 plr = NodePath("../..")
