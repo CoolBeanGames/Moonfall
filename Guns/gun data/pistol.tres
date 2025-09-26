@@ -10,7 +10,9 @@
 script = ExtResource("1_36gdk")
 gun_name = &"Pistol"
 bullet_prefab = ExtResource("1_dgsuw")
+fire_rate = 0.8
 shooting_sounds = ExtResource("3_sjeqm")
 empty_sound = ExtResource("1_sjeqm")
 reload_sound = ExtResource("2_dgsuw")
+gun_object_path = "res://Scenes/weapons/hand_gun.tscn"
 metadata/_custom_type_script = "uid://bcsr18h10rwst"

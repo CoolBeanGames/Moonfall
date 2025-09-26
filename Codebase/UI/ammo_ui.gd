@@ -20,14 +20,11 @@ func _ready() -> void:
 
 #updates the UI when new data is present (bullets have been shot or gained)
 func update_ui():
-	print("update ui")
 	player_gun = GameManager.data._get("player_gun")
 	if player_gun == null:
 		return
 	total_ammo.text = str(GameManager.data.data.get("bullets",0))
 	loaded_ammo.text = str(player_gun.loaded_bullets) + " / " + str(player_gun.max_clip_size)
-	print("player gun name from ammo ui: ", player_gun.gun_name)
 	gun_name.text = player_gun.gun_name
 	var ratio : float = float(player_gun.loaded_bullets) / float(player_gun.max_clip_size) 
-	print(ratio)
 	ammo_bar.material.set_shader_parameter("progress",ratio)

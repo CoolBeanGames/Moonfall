@@ -1,19 +1,12 @@
 extends Node
 
-@export var plr : player
-@export var pistolAnimator : AnimationPlayer
+@export var ShootComp : player_shoot_component
 @export var melee_targets : Array[melee_target]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if plr.not_melee and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		plr.not_melee = false
-		pistolAnimator.play("Melee")
-
-func melee_damage():
-	if melee_targets.size() > 0:
-		for m in melee_targets:
-			m.melee_damage()
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		ShootComp.current_gun.melee(melee_targets)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("melee_target"):

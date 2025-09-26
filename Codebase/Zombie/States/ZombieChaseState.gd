@@ -7,7 +7,6 @@ var character_bb : blackboard
 
 ##called once whe entering the state and then not again until it has finished
 func on_enter():
-	print("chase")
 	character_bb = state_machine.bb.data["bb"]
 	var anim : AnimationPlayer = character_bb._get("anim")
 	agent = character_bb._get("agent")
@@ -33,12 +32,9 @@ func tick():
 	
 	if result.is_empty():
 		#  Direct chase
-		print("zombie is direct chasing")
 		direction = (plr.global_position - zom.global_position).normalized()
 	else:
 		# Navmesh chase
-		print("zombie is using ai to chase")
-		print("blocked by ", str(result))
 		agent.target_position = plr.global_position
 		if not agent.is_navigation_finished():
 			var next_path_pos = agent.get_next_path_position()

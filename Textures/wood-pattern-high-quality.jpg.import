@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://e1ckevsqgio8"
-path.etc2="res://.godot/imported/wood-pattern-high-quality.jpg-820c029fa8ce7a278a98fa8f008e763c.etc2.ctex"
+path.s3tc="res://.godot/imported/wood-pattern-high-quality.jpg-820c029fa8ce7a278a98fa8f008e763c.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/wood-pattern-high-quality.jpg"
-dest_files=["res://.godot/imported/wood-pattern-high-quality.jpg-820c029fa8ce7a278a98fa8f008e763c.etc2.ctex"]
+dest_files=["res://.godot/imported/wood-pattern-high-quality.jpg-820c029fa8ce7a278a98fa8f008e763c.s3tc.ctex"]
 
 [params]
 

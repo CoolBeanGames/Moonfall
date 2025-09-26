@@ -12,7 +12,7 @@ func _ready() -> void:
 	rotate_y(randf_range(-30,30))
 
 ##called when the crate takes damage
-func melee_damage():
+func take_damage(_damage : int = 0):
 	spawn()
 	queue_free()
 
