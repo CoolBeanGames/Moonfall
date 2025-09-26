@@ -24,7 +24,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=1
+meshes/light_baking=2
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
@@ -37,6 +37,220 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"asphalt.007": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/asphalt.007.tres",
+"use_external/path": "uid://dx0jkaqdlctju"
+},
+"asphalt.009": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/asphalt.009.tres",
+"use_external/path": "uid://b0ees475xr4d3"
+},
+"asphalt.010": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/asphalt.010.tres",
+"use_external/path": "uid://j420h17ov25k"
+},
+"asphalt.012": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/asphalt.012.tres",
+"use_external/path": "uid://0vfy1n13sc5t"
+},
+"bars.008": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/bars.008.tres",
+"use_external/path": "uid://d1kjc41qj4oqv"
+},
+"bars.014": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/bars.014.tres",
+"use_external/path": "uid://by37phsfyh3xl"
+},
+"concrete.064": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.064.tres",
+"use_external/path": "uid://c6wh1ev8cergj"
+},
+"concrete.068": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.068.tres",
+"use_external/path": "uid://bndrx3lj4alht"
+},
+"concrete.076": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.076.tres",
+"use_external/path": "uid://da1r2cqsbcof2"
+},
+"concrete.078": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.078.tres",
+"use_external/path": "uid://b6qd0ieri0vs3"
+},
+"concrete.081": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.081.tres",
+"use_external/path": "uid://btavurfi4wsmi"
+},
+"concrete.082": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.082.tres",
+"use_external/path": "uid://cuwlmkw235yxi"
+},
+"concrete.086": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.086.tres",
+"use_external/path": "uid://y75neiju7xr1"
+},
+"concrete.088": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.088.tres",
+"use_external/path": "uid://bypku2c43ghsa"
+},
+"concrete.091": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.091.tres",
+"use_external/path": "uid://vvkyjvss8vme"
+},
+"concrete.096": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.096.tres",
+"use_external/path": "uid://i2u4r3mh66bs"
+},
+"concrete.106": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concrete.106.tres",
+"use_external/path": "uid://dlcfmvwc82w26"
+},
+"concreteSmooth.011": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concreteSmooth.011.tres",
+"use_external/path": "uid://7h7wskvrpcfc"
+},
+"concreteSmooth.012": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concreteSmooth.012.tres",
+"use_external/path": "uid://dnjmr0qiepf8y"
+},
+"concreteSmooth.015": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/concreteSmooth.015.tres",
+"use_external/path": "uid://bxs3wrebw1y57"
+},
+"doors.004": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/doors.004.tres",
+"use_external/path": "uid://b33aqwcajpfne"
+},
+"doors.005": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/doors.005.tres",
+"use_external/path": "uid://ce0bg1vn8bldt"
+},
+"grass.009": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/grass.009.tres",
+"use_external/path": "uid://cudpxsk6me870"
+},
+"metal.026": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/metal.026.tres",
+"use_external/path": "uid://pdk7rvg60ycd"
+},
+"metal.028": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/metal.028.tres",
+"use_external/path": "uid://cpwbfbwsk87hy"
+},
+"metal.030": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/metal.030.tres",
+"use_external/path": "uid://b38iodagsm7h2"
+},
+"roof.013": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/roof.013.tres",
+"use_external/path": "uid://c4naqutef7gbp"
+},
+"roof.015": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/roof.015.tres",
+"use_external/path": "uid://d3ehshkmggue1"
+},
+"wall.018": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall.018.tres",
+"use_external/path": "uid://bjr5qmg7pbj81"
+},
+"wall.021": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall.021.tres",
+"use_external/path": "uid://ca1iscflriwfd"
+},
+"wall_garage.005": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall_garage.005.tres",
+"use_external/path": "uid://b6iteevvs5042"
+},
+"wall_lines.022": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall_lines.022.tres",
+"use_external/path": "uid://bh0g77fab14uc"
+},
+"wall_lines.027": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall_lines.027.tres",
+"use_external/path": "uid://ckqs0cqbk1c7t"
+},
+"wall_lines.030": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall_lines.030.tres",
+"use_external/path": "uid://buhsgp08gpqp2"
+},
+"wall_lines.033": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall_lines.033.tres",
+"use_external/path": "uid://co68sip78nkaw"
+},
+"wall_lines.035": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall_lines.035.tres",
+"use_external/path": "uid://1e3phok2h71f"
+},
+"wall_metal.020": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall_metal.020.tres",
+"use_external/path": "uid://b35fopyh8sivj"
+},
+"wall_metal.025": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall_metal.025.tres",
+"use_external/path": "uid://dwntjdd0wwkru"
+},
+"wall_metal.036": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/wall_metal.036.tres",
+"use_external/path": "uid://bljxfclkesb75"
+},
+"windows.013": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Models/map_materials/windows.013.tres",
+"use_external/path": "uid://nou41wdhu0uw"
+}
+},
+"meshes": {
+"map_test_road-asphalt-side_094": {
+"generate/lightmap_uv": 1,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

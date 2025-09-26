@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="item_data" load_steps=6 format=3 uid="uid://i6rpr2wy1ymg"]
+
+[ext_resource type="Script" uid="uid://d4g7rbit6x2ef" path="res://Codebase/props/item_data.gd" id="1_5cjd1"]
+[ext_resource type="PackedScene" uid="uid://bokkowvsghkaq" path="res://Models/Pickups/Bomb.glb" id="1_py6px"]
+[ext_resource type="Script" uid="uid://dxybaex8t0hfv" path="res://Codebase/Strategies/strategy.gd" id="2_sbqkl"]
+[ext_resource type="Script" uid="uid://vwqg3j7y4e3l" path="res://Codebase/Strategies/bomb_strat.gd" id="4_qh5nj"]
+
+[sub_resource type="Resource" id="Resource_xdvbo"]
+script = ExtResource("4_qh5nj")
+metadata/_custom_type_script = "uid://vwqg3j7y4e3l"
+
+[resource]
+script = ExtResource("1_5cjd1")
+item_name = &"bomb"
+scene_to_spawn = ExtResource("1_py6px")
+strategies = Array[ExtResource("2_sbqkl")]([SubResource("Resource_xdvbo")])
+metadata/_custom_type_script = "uid://d4g7rbit6x2ef"

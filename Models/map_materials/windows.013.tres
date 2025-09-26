@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://nou41wdhu0uw"]
+
+[ext_resource type="Texture2D" uid="uid://eugqrqhup5rg" path="res://Models/map_test_windows.png" id="1_6b7cs"]
+
+[resource]
+resource_name = "windows.013"
+albedo_texture = ExtResource("1_6b7cs")

@@ -348,7 +348,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.017448813, 0)
 shape = SubResource("CapsuleShape3D_gwnis")
 
 [node name="Camera3D" type="Camera3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23798203, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5321882, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D/Camera3D"]
 target_position = Vector3(0, 0, -100000)

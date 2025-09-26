@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpweyu8orpku2"]
+[gd_scene load_steps=8 format=3 uid="uid://dpweyu8orpku2"]
 
 [ext_resource type="Script" uid="uid://c0h16spr75bku" path="res://Codebase/props/crate.gd" id="1_bi164"]
 [ext_resource type="Texture2D" uid="uid://e1ckevsqgio8" path="res://Textures/wood-pattern-high-quality.jpg" id="2_fdn4f"]
-[ext_resource type="PackedScene" uid="uid://cnciukhi8di5d" path="res://Scenes/Props/bullet_pickup.tscn" id="2_wpcxd"]
-[ext_resource type="PackedScene" uid="uid://swqsl3rnij2b" path="res://Scenes/Props/bomb_pickup.tscn" id="3_6mplf"]
+[ext_resource type="Resource" uid="uid://c7k8rtahyr8h7" path="res://Data/items/item_spawns.tres" id="2_wpcxd"]
 [ext_resource type="PackedScene" uid="uid://ccn45l80fue5n" path="res://Scenes/Props/crate_broken.tscn" id="3_wpcxd"]
 [ext_resource type="PackedScene" uid="uid://bes6c785400dh" path="res://Scenes/melee_target.tscn" id="4_fdn4f"]
-[ext_resource type="PackedScene" uid="uid://b6rln8x52228x" path="res://Scenes/Props/first_aid_kit_pickup.tscn" id="4_xp5dp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mplf"]
 albedo_texture = ExtResource("2_fdn4f")
@@ -15,12 +13,12 @@ albedo_texture = ExtResource("2_fdn4f")
 size = Vector3(0.25, 0.25, 0.25)
 
 [node name="crate" type="RigidBody3D"]
-collision_layer = 4096
+collision_layer = 4097
 collision_mask = 4097
 can_sleep = false
 continuous_cd = true
 script = ExtResource("1_bi164")
-spawnables = Array[PackedScene]([ExtResource("2_wpcxd"), ExtResource("3_6mplf"), ExtResource("4_xp5dp")])
+spawn_items = ExtResource("2_wpcxd")
 crate_broken = ExtResource("3_wpcxd")
 
 [node name="crate_main" type="CSGBox3D" parent="."]

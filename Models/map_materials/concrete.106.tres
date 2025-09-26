@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dlcfmvwc82w26"]
+
+[ext_resource type="Texture2D" uid="uid://b5ki1t8rjik0l" path="res://Models/map_test_concrete.png" id="1_pl7ae"]
+
+[resource]
+resource_name = "concrete.106"
+albedo_texture = ExtResource("1_pl7ae")

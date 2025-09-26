@@ -1,0 +1,29 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://u1mramyt05r0"
+path.astc="res://.godot/imported/enviroment.exr-8f1017e4e756a787316a64ba63c601c8.astc.ctexarray"
+metadata={
+"imported_formats": ["etc2_astc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://Scenes/enviroment.exr"
+dest_files=["res://.godot/imported/enviroment.exr-8f1017e4e756a787316a64ba63c601c8.astc.ctexarray"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=1

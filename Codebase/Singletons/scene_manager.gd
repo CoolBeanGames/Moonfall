@@ -20,6 +20,9 @@ func _ready() -> void:
 	SceneContainer.name = "Scenes"
 	root = SceneContainer
 
+func get_first_scene():
+	return active_scenes[active_scenes.keys()[0]]
+
 ##load in a show a scene
 func load_scene(scene_to_load : PackedScene, name_for_scene : String, unload_all_scenes : bool = false, show_loading_screen : bool = false) -> Node:
 	if show_loading_screen:

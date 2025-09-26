@@ -67,7 +67,7 @@ func calculate_rot(input : Vector2):
 
 #apply the camera rotation to the player
 func apply_rot():
-	plr.rotation_degrees.z = 0
+	#plr.rotation_degrees.z = 0
 	plr.rotation_degrees.y = rot_y
 	camera.rotation_degrees.x = rot_x
 

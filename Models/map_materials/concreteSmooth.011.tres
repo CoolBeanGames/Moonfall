@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://7h7wskvrpcfc"]
+
+[ext_resource type="Texture2D" uid="uid://bylf4jqpp1mro" path="res://Models/map_test_tiles.png" id="1_mm7yc"]
+
+[resource]
+resource_name = "concreteSmooth.011"
+albedo_texture = ExtResource("1_mm7yc")

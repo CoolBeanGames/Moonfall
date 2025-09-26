@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="item_data" load_steps=6 format=3 uid="uid://culxgaiyhfy2h"]
+
+[ext_resource type="Script" uid="uid://d4g7rbit6x2ef" path="res://Codebase/props/item_data.gd" id="1_hsd4r"]
+[ext_resource type="PackedScene" uid="uid://r5eqhxesl12e" path="res://Models/Pickups/first_aid_kit.glb" id="1_mh51f"]
+[ext_resource type="Script" uid="uid://dxybaex8t0hfv" path="res://Codebase/Strategies/strategy.gd" id="2_ikr7q"]
+[ext_resource type="Script" uid="uid://dwecv44npsrb1" path="res://Codebase/Strategies/health_kit_strat.gd" id="4_cb1or"]
+
+[sub_resource type="Resource" id="Resource_i8f7m"]
+script = ExtResource("4_cb1or")
+metadata/_custom_type_script = "uid://dwecv44npsrb1"
+
+[resource]
+script = ExtResource("1_hsd4r")
+spawn_chance = 0.3
+item_name = &"first aid kit"
+scene_to_spawn = ExtResource("1_mh51f")
+strategies = Array[ExtResource("2_ikr7q")]([SubResource("Resource_i8f7m")])
+metadata/_custom_type_script = "uid://d4g7rbit6x2ef"

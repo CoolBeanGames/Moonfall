@@ -18,12 +18,14 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.015635729, 0, 0.001819849)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.8874051, -0.19140244)
 light_color = Color(1, 0.88352424, 0.66723996, 1)
 light_energy = 1.5
+light_bake_mode = 1
 spot_angle = 29.83
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="detail-light-double2"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.8874051, 0.17024148)
 light_color = Color(1, 0.88352424, 0.66723996, 1)
 light_energy = 1.5
+light_bake_mode = 1
 spot_angle = 29.83
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]

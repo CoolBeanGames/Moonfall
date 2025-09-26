@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b6iteevvs5042"]
+
+[ext_resource type="Texture2D" uid="uid://hr1v2au4h2tl" path="res://Models/map_test_wall_garage.png" id="1_ugj2o"]
+
+[resource]
+resource_name = "wall_garage.005"
+albedo_texture = ExtResource("1_ugj2o")

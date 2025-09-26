@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="item_data" load_steps=6 format=3 uid="uid://dns33swq80ksp"]
+
+[ext_resource type="Script" uid="uid://d4g7rbit6x2ef" path="res://Codebase/props/item_data.gd" id="1_8wcfy"]
+[ext_resource type="PackedScene" uid="uid://cg8x2ojg7ddg0" path="res://Models/Guns/GLB format/clip-small.glb" id="1_sqe3b"]
+[ext_resource type="Script" uid="uid://dxybaex8t0hfv" path="res://Codebase/Strategies/strategy.gd" id="2_i826g"]
+[ext_resource type="Script" uid="uid://mlfestkktqqx" path="res://Codebase/Strategies/ammo_strat.gd" id="4_iga7b"]
+
+[sub_resource type="Resource" id="Resource_0hefy"]
+script = ExtResource("4_iga7b")
+min_gained = 6
+max_gained = 12
+metadata/_custom_type_script = "uid://mlfestkktqqx"
+
+[resource]
+script = ExtResource("1_8wcfy")
+spawn_chance = 0.4
+item_name = &"ammo"
+scene_to_spawn = ExtResource("1_sqe3b")
+strategies = Array[ExtResource("2_i826g")]([SubResource("Resource_0hefy")])
+metadata/_custom_type_script = "uid://d4g7rbit6x2ef"

@@ -3,9 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dq7py1segbp8b"
-path.s3tc="res://.godot/imported/map_test_roof.png-3be6372756df5863d3bcbedd551e467b.s3tc.ctex"
+path.etc2="res://.godot/imported/map_test_roof.png-3be6372756df5863d3bcbedd551e467b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Models/map_test_roof.png"
-dest_files=["res://.godot/imported/map_test_roof.png-3be6372756df5863d3bcbedd551e467b.s3tc.ctex"]
+dest_files=["res://.godot/imported/map_test_roof.png-3be6372756df5863d3bcbedd551e467b.etc2.ctex"]
 
 [params]
 

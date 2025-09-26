@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj5dixumta757"]
+
+[ext_resource type="PackedScene" uid="uid://k4rs5vwpq2ai" path="res://Models/map_test.glb" id="1_ci6au"]
+
+[node name="map" groups=["navmesh"] instance=ExtResource("1_ci6au")]
+
+[node name="ground" parent="." index="0" groups=["navmesh"]]
+
+[node name="CollisionShape3D" parent="ground" index="0" groups=["navmesh"]]
+
+[node name="collider" parent="." index="2" groups=["navmesh"]]
+
+[node name="CollisionShape3D" parent="collider" index="0" groups=["navmesh"]]

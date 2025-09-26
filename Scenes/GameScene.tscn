@@ -1,13 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxurmah5617f5"]
+[gd_scene load_steps=9 format=3 uid="uid://bxurmah5617f5"]
 
 [ext_resource type="PackedScene" uid="uid://b5t76snp62aca" path="res://Scenes/enviroment.tscn" id="1_2wl7v"]
 [ext_resource type="PackedScene" uid="uid://dfwvu0chheicj" path="res://Player/player.tscn" id="2_3mbwn"]
 [ext_resource type="Shader" uid="uid://c7arwvyr4aaqx" path="res://Codebase/Shaders/vignette.gdshader" id="3_x6js8"]
 [ext_resource type="Script" uid="uid://4qe0y0r8t746" path="res://Codebase/UI/vignette.gd" id="4_lg2j6"]
-[ext_resource type="PackedScene" uid="uid://dn41xgsutrc0u" path="res://Scenes/zombie.tscn" id="6_kilg5"]
 [ext_resource type="PackedScene" uid="uid://ca77ddpkx5ui8" path="res://Scenes/UI_Scenes/aiming_reticle.tscn" id="6_x6js8"]
 [ext_resource type="PackedScene" uid="uid://dknums531xxie" path="res://Scenes/UI_Scenes/game_hud.tscn" id="7_x6js8"]
-[ext_resource type="PackedScene" uid="uid://k4rs5vwpq2ai" path="res://Models/map_test.glb" id="8_lg2j6"]
+[ext_resource type="PackedScene" uid="uid://dpweyu8orpku2" path="res://Scenes/Props/crate.tscn" id="9_y30xb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y30xb"]
 shader = ExtResource("3_x6js8")
@@ -20,7 +19,7 @@ shader_parameter/effect_color = Color(0.7330014, 6.3532593e-06, 3.465414e-06, 1)
 [node name="Enviroment" parent="." instance=ExtResource("1_2wl7v")]
 
 [node name="Player" parent="." instance=ExtResource("2_3mbwn")]
-transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, -48.76905, 1.0031601, 14.062)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25962353, 0.34604406, 14.062)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
@@ -88,8 +87,244 @@ offset_bottom = -3.0517578e-05
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Zombie" parent="." instance=ExtResource("6_kilg5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7893965, 0, 0)
+[node name="crates" type="Node3D" parent="."]
 
-[node name="map_test" parent="." instance=ExtResource("8_lg2j6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.32397, 0, 0)
+[node name="crate" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.185993, 0.18678811, 12.700861)
+
+[node name="crate2" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9027112, 0.18678811, 12.669547)
+
+[node name="crate3" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6159496, 0.18678811, 12.769418)
+
+[node name="crate4" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0248394, 0.4367881, 12.724591)
+
+[node name="crate5" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.729953, 0.4367881, 12.697434)
+
+[node name="crate6" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.815429, 0.6867881, 12.710031)
+
+[node name="crate7" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5230544, 0.18678811, 12.689065)
+
+[node name="crate8" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1739445, 0.18678823, 12.746377)
+
+[node name="crate9" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.26336, 0.18678811, 19.79849)
+
+[node name="crate10" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3216174, 0.18678811, 20.132246)
+
+[node name="crate11" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.318368, 0.186788, 19.649439)
+
+[node name="crate12" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7570124, 0.18678811, 12.476539)
+
+[node name="crate13" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.025351, 0.18678817, 12.407947)
+
+[node name="crate14" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.648471, 0.18678811, 10.217337)
+
+[node name="crate15" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3410845, 0.186788, 0.71871686)
+
+[node name="crate16" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26545, 0.18678817, -2.815103)
+
+[node name="crate17" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.285066, 0.18678811, -3.219753)
+
+[node name="crate18" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9856944, 0.18678811, -3.0237374)
+
+[node name="crate19" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.916245, 0.18678817, -3.290387)
+
+[node name="crate20" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7633343, 0.18678805, -2.6768317)
+
+[node name="crate21" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.150629, 0.43678817, -2.9335384)
+
+[node name="crate22" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0168476, 0.43678817, -3.251688)
+
+[node name="crate23" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8774414, 0.4367881, -2.9728732)
+
+[node name="crate24" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0339937, 0.6867882, -3.0088222)
+
+[node name="crate25" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6724796, 0.18678817, -2.977405)
+
+[node name="crate26" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.448498, 0.18678817, -2.9874954)
+
+[node name="crate27" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.627225, 0.18678835, 8.767797)
+
+[node name="crate28" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.753153, 0.18678835, 9.056365)
+
+[node name="crate29" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.688406, 0.18678823, 9.413532)
+
+[node name="crate30" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.733619, 0.43678835, 8.883034)
+
+[node name="crate31" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7988553, 0.43678823, 9.173418)
+
+[node name="crate32" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.395596, 0.18678811, 29.317873)
+
+[node name="crate33" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.106451, 0.18678811, 29.262407)
+
+[node name="crate34" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8185277, 0.18678823, 29.30764)
+
+[node name="crate35" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.035746, 0.43678805, 29.20696)
+
+[node name="crate36" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.312488, 0.4367881, 29.27579)
+
+[node name="crate37" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.67917, 0.18678805, 32.15366)
+
+[node name="crate38" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1017113, 0.18678811, 32.266884)
+
+[node name="crate39" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8161886, 0.186788, 32.4949)
+
+[node name="crate40" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2172089, 0.18678823, 31.715603)
+
+[node name="crate41" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8678448, 0.18678811, 31.654129)
+
+[node name="crate42" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.332233, 0.18678811, 30.750315)
+
+[node name="crate43" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.03746, 0.18678811, 30.782602)
+
+[node name="crate44" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.347021, 0.18678811, 31.08008)
+
+[node name="crate45" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.704006, 0.18678811, 32.663586)
+
+[node name="crate46" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.701746, 0.18678823, 33.007256)
+
+[node name="crate47" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.720406, 0.18678823, 33.277527)
+
+[node name="crate48" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.716192, 0.43678823, 32.915142)
+
+[node name="crate49" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.653345, 0.18678817, 31.522593)
+
+[node name="crate50" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.80606, 0.18678811, 30.228876)
+
+[node name="crate51" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.110003, 0.18678811, 30.327215)
+
+[node name="crate52" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.718647, 0.18678787, 22.71627)
+
+[node name="crate53" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.278069, 0.18678811, 22.695246)
+
+[node name="crate54" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.836163, 0.186788, 12.701988)
+
+[node name="crate55" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.126266, 0.18678823, 12.681507)
+
+[node name="crate56" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.41238, 0.18678811, 12.689647)
+
+[node name="crate57" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.95883, 0.436788, 12.819812)
+
+[node name="crate58" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.242992, 0.43678823, 12.666511)
+
+[node name="crate59" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.456657, 0.18678811, 19.339094)
+
+[node name="crate60" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.444432, 0.4367881, 19.327717)
+
+[node name="crate61" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.419035, 0.6867881, 19.365408)
+
+[node name="crate62" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.478473, 0.18678811, 19.05186)
+
+[node name="crate63" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.506577, 0.4367881, 18.997139)
+
+[node name="crate64" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.42616, 0.18678811, 18.69201)
+
+[node name="crate65" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.139908, 0.18678811, 19.374714)
+
+[node name="crate66" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.186666, 0.4367881, 19.387365)
+
+[node name="crate67" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.11463, 0.6867881, 19.337646)
+
+[node name="crate68" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.066508, 0.9367881, 19.30725)
+
+[node name="crate69" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.121334, 0.18678811, 19.092514)
+
+[node name="crate70" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.06599, 0.4367881, 19.065716)
+
+[node name="crate71" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3202305, 0.18678811, 19.656569)
+
+[node name="crate72" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.023019, 0.18678823, 19.636736)
+
+[node name="crate73" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7469306, 0.18678811, 19.64038)
+
+[node name="crate74" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2135715, 0.45570496, 19.64198)
+
+[node name="crate75" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.680222, 0.4367881, 19.658052)
+
+[node name="crate76" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95461, 0.43678823, 19.656977)
+
+[node name="crate77" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.262061, 0.7057049, 19.58969)
+
+[node name="crate78" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.007042, 0.6867882, 19.656946)
+
+[node name="crate79" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.735862, 0.6867881, 19.694366)
+
+[node name="crate80" parent="crates" instance=ExtResource("9_y30xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5749736, 0.186788, 17.292212)
