@@ -393,15 +393,14 @@ script = ExtResource("12_p5o4e")
 plr = NodePath("../..")
 camera = NodePath("../../CollisionShape3D/Camera3D")
 
-[node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("raycaster", "gun_animation_player", "shoot_point", "gun_models", "fire_points")]
+[node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("raycaster", "gun_animation_player", "shoot_point", "plr")]
 script = ExtResource("13_p5o4e")
 current_gun = ExtResource("14_gu6f8")
 raycaster = NodePath("../../CollisionShape3D/Camera3D/RayCast3D")
 gun_animation_player = NodePath("../../CollisionShape3D/Camera3D/Guns/pistolAnimator")
 shoot_point = NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/pistol/fire_point")
 guns = Array[Object]([ExtResource("14_gu6f8"), ExtResource("17_b1ygp")])
-gun_models = [NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/pistol"), NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/AR")]
-fire_points = [NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/pistol/fire_point"), NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/AR/fire_point")]
+plr = NodePath("../..")
 
 [node name="PlayerMeleeComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr", "pistolAnimator")]
 script = ExtResource("16_lfmf2")

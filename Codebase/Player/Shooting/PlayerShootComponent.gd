@@ -17,9 +17,10 @@ var bullet_hit_effect : PackedScene
 @export var gun_models : Array[Node3D] = []
 @export var fire_points : Array[Node3D] = []
 var current_gun_index : int = 0
+@export var plr : player
 
 
-# Called when the node enters the scene tree for the first time.
+#setup the shoot controller
 func _ready() -> void:
 	shoot_action = InputManager.actions["shoot"]
 	reload_action = InputManager.actions["reload"]
@@ -37,11 +38,16 @@ func _ready() -> void:
 	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+#process shot cooldown
 func _process(delta: float) -> void:
 	shoot_timer -= delta
 	GameManager.data._set("player_gun",current_gun)
+	if raycaster.is_colliding():
+		plr.debug_text_label.text = "looking at: [" + (raycaster.get_collider().name) + " ]"
+	else:
+		plr.debug_text_label.text = "looking at: [nothing]"
 
+#used for non rapid fire guns
 func on_shoot():
 	if !InputManager.is_input_locked():
 		if current_gun.fire_mode == gun.FireMode.single:
@@ -57,6 +63,7 @@ func change_gun(new_gun : gun):
 	current_gun = new_gun
 	update_ui()
 
+#used for rapid fire guns
 func on_shoot_hold():
 	if !InputManager.is_input_locked(): 
 		if current_gun.fire_mode == gun.FireMode.rapid:
@@ -67,6 +74,7 @@ func on_shoot_hold():
 					print("rapid shoot")
 					shoot()
 
+#shoot the gun
 func shoot():
 	raycaster.force_raycast_update()
 	gun_animation_player.play("Shoot")
@@ -83,7 +91,9 @@ func shoot():
 	else:
 		spawn_bullet( raycaster.global_position + (raycaster.global_transform.basis.z * raycaster.target_position.z))
 
+#do damage if we hit something
 func do_damage(collider : CollisionObject3D):
+	print("do damage")
 	if collider.is_in_group("HeadShotZone"):
 		var source : zombie_reference = collider as zombie_reference
 		source.z.take_damage(current_gun.bullet_damage * 3)
@@ -95,11 +105,16 @@ func do_damage(collider : CollisionObject3D):
 			if collider.is_in_group("crate"):
 				print("collider is crate")
 				collider.melee_damage()
+			else:
+				if collider.is_in_group("target") and collider.has_method("destroy_target"):
+					collider.destroy_target()
 	pass
 
+#update the gun ui
 func update_ui():
 	SignalBus.signals.signals["update_gun_ui"].event.emit()
 
+#reload the gun
 func reload():
 	var bullets = GameManager.data._get("bullets")
 	if current_gun.loaded_bullets != 0:
@@ -125,6 +140,7 @@ func reload():
 			GameManager.data._set("bullets",bullets - current_gun.max_clip_size)
 	update_ui()
 
+#spawn a single bullet
 func spawn_bullet(hit_position : Vector3):
 	var direction = (hit_position - shoot_point.global_position).normalized()
 	var distance = (hit_position - shoot_point.global_position).length()
@@ -140,16 +156,20 @@ func spawn_bullet(hit_position : Vector3):
 	
 	instance.shoot(direction, 30, distance)
 
+#play the reload audio and animation
 func reload_effects():
 	AudioManager.play_audio_file(current_gun.reload_sound,"default",false,Vector3(0,0,0))
 	gun_animation_player.play("Reload")
 
+#go up one gun
 func cycle_gun_up():
 	cycle_gun(1)
 
+#go down one gun
 func cycle_gun_down():
 	cycle_gun(-1)
 
+#cycle through gained guns
 func cycle_gun(dir : int):
 	if !InputManager.is_input_locked():
 		print("cycling guns")
@@ -165,6 +185,7 @@ func cycle_gun(dir : int):
 		update_models(current_gun_index)
 		update_ui()
 
+#update the current gun being shown
 func update_models(index : int):
 	var counter : int = 0
 	for m : Node3D in gun_models:

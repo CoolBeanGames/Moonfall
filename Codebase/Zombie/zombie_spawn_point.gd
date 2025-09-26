@@ -1,5 +1,9 @@
 class_name zombie_spawn_point extends Node3D
 
+@export var mesh : CSGSphere3D
+
+func _ready() -> void:
+	mesh.queue_free()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):

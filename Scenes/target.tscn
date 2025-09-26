@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6lk4xbh3eswm"]
+
+[ext_resource type="PackedScene" uid="uid://djaxns5s2gqrf" path="res://Models/Guns/GLB format/target-large.glb" id="1_2228f"]
+[ext_resource type="Script" uid="uid://b8pu2o77ixs7n" path="res://Codebase/props/target.gd" id="2_ww0yb"]
+[ext_resource type="PackedScene" uid="uid://p83h2tmg27ma" path="res://Scenes/UI_Scenes/target_ui.tscn" id="3_dep1p"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qolck"]
+height = 0.054
+radius = 0.175
+
+[node name="target" type="Node3D" groups=["target"]]
+
+[node name="target_model" parent="." groups=["target"] instance=ExtResource("1_2228f")]
+
+[node name="target_collider" type="StaticBody3D" parent="target_model" node_paths=PackedStringArray("free_target") groups=["target"]]
+script = ExtResource("2_ww0yb")
+target_ui_scene = ExtResource("3_dep1p")
+free_target = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="target_model/target_collider" groups=["target"]]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_qolck")

@@ -15,15 +15,9 @@ func melee_damage():
 		for m in melee_targets:
 			m.melee_damage()
 
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("body enter")
 	if body.is_in_group("melee_target"):
-		print("melee target")
 		melee_targets.append(body as melee_target)
-	else:
-		print("not melee target: " , body.name)
-
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("melee_target") and melee_targets.has(body as melee_target):

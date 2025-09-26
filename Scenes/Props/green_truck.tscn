@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://wen34c6fby2v"]
+
+[ext_resource type="PackedScene" uid="uid://bwdi83445yh3i" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/truck-green.glb" id="1_1or82"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f43ej"]
+size = Vector3(0.8457031, 1.0341187, 1.5835571)
+
+[node name="green_truck" type="Node3D"]
+
+[node name="truck-green2" parent="." instance=ExtResource("1_1or82")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="truck-green2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="truck-green2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001953125, 0.51797485, 0.01889038)
+shape = SubResource("BoxShape3D_f43ej")

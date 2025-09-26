@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b8h21l4ftmgan"]
+
+[ext_resource type="Texture2D" uid="uid://0csnbukyp4ej" path="res://Models/Guns/GLB format/Textures/colormap.png" id="1_dk50n"]
+
+[resource]
+resource_name = "colormap"
+cull_mode = 2
+albedo_texture = ExtResource("1_dk50n")
+emission = Color(0.3414805, 0.00025206074, 0.40403184, 1)

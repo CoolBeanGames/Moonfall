@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwxr0mv1ria0s"]
+
+[ext_resource type="PackedScene" uid="uid://d3fwwedebj6g8" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/detail-bench.glb" id="1_07hxc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7sac2"]
+size = Vector3(0.6300049, 0.54296875, 0.29345703)
+
+[node name="bench" type="Node3D"]
+
+[node name="detail-bench2" parent="." instance=ExtResource("1_07hxc")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="detail-bench2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detail-bench2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010314941, 0.22851563, -0.040771484)
+shape = SubResource("BoxShape3D_7sac2")

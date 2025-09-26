@@ -1,18 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0i47ffkqutnd"]
+[gd_scene load_steps=4 format=3 uid="uid://d0i47ffkqutnd"]
 
 [ext_resource type="Script" uid="uid://bv1wla6gvb38d" path="res://Codebase/Zombie/zombie_spawn_point.gd" id="1_1ujm0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1ujm0"]
 radius = 5.0
 
-[node name="zombie_spawn_point" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ujm0"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.6431373, 0.44313726, 0, 0.4745098)
+
+[node name="zombie_spawn_point" type="Node3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_1ujm0")
+mesh = NodePath("CSGSphere3D")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_1ujm0")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+material = SubResource("StandardMaterial3D_1ujm0")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

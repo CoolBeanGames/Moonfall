@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://5na86574e0ak"]
+
+[ext_resource type="Script" uid="uid://u48oqqiy4iwm" path="res://Codebase/props/rotation_randomizer.gd" id="1_45yrl"]
+[ext_resource type="PackedScene" uid="uid://bjy3dnbtv3qcn" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/tree-pine-large.glb" id="1_ngcnr"]
+[ext_resource type="Script" uid="uid://scehcvehtc4g" path="res://Codebase/props/scale_randomizer.gd" id="3_m6qnl"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_45yrl"]
+height = 1.5532227
+radius = 0.26904297
+
+[node name="tree_b" type="Node3D" node_paths=PackedStringArray("target")]
+script = ExtResource("1_45yrl")
+target = NodePath("tree-pine-large2")
+
+[node name="tree-pine-large2" parent="." instance=ExtResource("1_ngcnr")]
+script = ExtResource("3_m6qnl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tree-pine-large2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tree-pine-large2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8005371, 0)
+shape = SubResource("CylinderShape3D_45yrl")

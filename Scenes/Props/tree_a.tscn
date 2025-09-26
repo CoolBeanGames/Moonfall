@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://djjcpekb2cwil"]
+
+[ext_resource type="PackedScene" uid="uid://cka6ryox2aljf" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/tree-large.glb" id="1_2j0lu"]
+[ext_resource type="Script" uid="uid://u48oqqiy4iwm" path="res://Codebase/props/rotation_randomizer.gd" id="1_suiet"]
+[ext_resource type="Script" uid="uid://scehcvehtc4g" path="res://Codebase/props/scale_randomizer.gd" id="3_hvwjt"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_suiet"]
+height = 1.6066895
+radius = 0.2890625
+
+[node name="tree_a" type="Node3D" node_paths=PackedStringArray("target")]
+script = ExtResource("1_suiet")
+target = NodePath("tree-large2")
+
+[node name="tree-large2" parent="." instance=ExtResource("1_2j0lu")]
+script = ExtResource("3_hvwjt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tree-large2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tree-large2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.84484863, 0)
+shape = SubResource("CylinderShape3D_suiet")

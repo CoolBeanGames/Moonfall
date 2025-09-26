@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://darsdltu7ejob"]
+
+[ext_resource type="PackedScene" uid="uid://c2nvqakvxdpj5" path="res://Models/Enviroment/kenney_retro-urban-kit/Models/GLB format/detail-dumpster-closed.glb" id="1_fsi53"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c3g71"]
+size = Vector3(0.64416504, 0.446167, 0.45336914)
+
+[node name="Dumpster" type="Node3D"]
+
+[node name="detail-dumpster-closed2" parent="." instance=ExtResource("1_fsi53")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="detail-dumpster-closed2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detail-dumpster-closed2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004699707, 0.2769165, -0.022827148)
+shape = SubResource("BoxShape3D_c3g71")

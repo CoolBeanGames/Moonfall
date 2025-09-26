@@ -12,6 +12,8 @@ var bb : blackboard = blackboard.new()
 @export var debug_info_target : Node3D
 @export var hit_sounds : audio_set
 @export var low_health_audio : AudioStreamPlayer
+
+@export var debug_text_label : Label
 var playing_low_health : bool = false
 
 

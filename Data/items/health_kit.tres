@@ -15,4 +15,5 @@ spawn_chance = 0.3
 item_name = &"first aid kit"
 scene_to_spawn = ExtResource("1_mh51f")
 strategies = Array[ExtResource("2_ikr7q")]([SubResource("Resource_i8f7m")])
+item_scale = Vector3(0.1, 0.1, 0.1)
 metadata/_custom_type_script = "uid://d4g7rbit6x2ef"

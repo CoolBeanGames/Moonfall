@@ -12,7 +12,7 @@ albedo_texture = ExtResource("2_fdn4f")
 [sub_resource type="BoxShape3D" id="BoxShape3D_wpcxd"]
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="crate" type="RigidBody3D"]
+[node name="crate" type="RigidBody3D" groups=["crate"]]
 collision_layer = 4097
 collision_mask = 4097
 can_sleep = false

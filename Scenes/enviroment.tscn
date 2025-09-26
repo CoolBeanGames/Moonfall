@@ -371,7 +371,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8634187, -0.44513375, -0.23741089, -0.4682479, 0.8822512, 0.048751786, 0.18775496, 0.15326035, -0.9701852, 0, 0, 0)
+transform = Transform3D(-0.31692076, 0.9443747, 0.087851025, -0.6859019, -0.2921784, 0.6664617, 0.6550571, 0.15095821, 0.7403453, 0, 0, 0)
 shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
@@ -381,6 +381,7 @@ use_texture_for_bounces = false
 light_data = ExtResource("1_55ugo")
 
 [node name="Moon" parent="." instance=ExtResource("18_ue1kb")]
+visible = false
 
 [node name="moon_player" type="AnimationPlayer" parent="."]
 libraries = {

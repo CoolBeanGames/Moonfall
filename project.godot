@@ -52,6 +52,7 @@ BodyShotZone=""
 navmesh="used for navigation calculations"
 melee_target=""
 crate=""
+target="targets"
 
 [input]
 

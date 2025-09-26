@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://p83h2tmg27ma"]
+
+[ext_resource type="Script" uid="uid://ccy0lppde7sm2" path="res://Codebase/UI/target_destroyed_ui.gd" id="1_lywpx"]
+[ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="2_ou3ri"]
+
+[sub_resource type="Animation" id="Animation_yhlfj"]
+resource_name = "fade"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 2.6, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gipt1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgw7i"]
+_data = {
+&"RESET": SubResource("Animation_gipt1"),
+&"fade": SubResource("Animation_yhlfj")
+}
+
+[node name="Target_UI" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("display", "anim")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lywpx")
+display = NodePath("Label")
+anim = NodePath("AnimationPlayer")
+
+[node name="Label" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0.1499998)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ou3ri")
+theme_override_font_sizes/font_size = 48
+text = "Target 1 of 1 Destroyed "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_pgw7i")
+}
