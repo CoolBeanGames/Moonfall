@@ -1,7 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://p83h2tmg27ma"]
+[gd_scene load_steps=7 format=3 uid="uid://p83h2tmg27ma"]
 
 [ext_resource type="Script" uid="uid://ccy0lppde7sm2" path="res://Codebase/UI/target_destroyed_ui.gd" id="1_lywpx"]
 [ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="2_ou3ri"]
+[ext_resource type="AudioStream" uid="uid://dqelxx6too545" path="res://Audio/SFX/zapsplat_horror_impact_hit_heavy_hard_scary_74077.wav" id="3_ou3ri"]
+
+[sub_resource type="Animation" id="Animation_gipt1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_yhlfj"]
 resource_name = "fade"
@@ -32,21 +48,21 @@ tracks/1/keys = {
 "method": &"end"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_gipt1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_ou3ri")
+}],
+"times": PackedFloat32Array(0)
 }
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pgw7i"]
 _data = {
@@ -68,7 +84,6 @@ display = NodePath("Label")
 anim = NodePath("AnimationPlayer")
 
 [node name="Label" type="Label" parent="Control"]
-modulate = Color(1, 1, 1, 0.1499998)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,3 +100,5 @@ vertical_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_pgw7i")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

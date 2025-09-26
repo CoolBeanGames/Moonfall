@@ -83,6 +83,7 @@ func load_save():
 func kill_all_zombies():
 	if data.data.has("all_zombies"):
 		for z in data.data.get("all_zombies"):
-			var zom = z as zombie
-			zom.kill()
+			if is_instance_valid(z):
+				var zom = z as zombie
+				zom.kill()
 		data.data["all_zombies"].clear()

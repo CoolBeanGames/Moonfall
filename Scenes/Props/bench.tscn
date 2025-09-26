@@ -9,7 +9,7 @@ size = Vector3(0.6300049, 0.54296875, 0.29345703)
 
 [node name="detail-bench2" parent="." instance=ExtResource("1_07hxc")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="detail-bench2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="detail-bench2" groups=["navmesh"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="detail-bench2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010314941, 0.22851563, -0.040771484)

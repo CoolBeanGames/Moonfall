@@ -55,7 +55,7 @@ func add_transitions():
 
 
 func _process(_delta: float) -> void:
-	if !state_machine.bb._get("end_process") == true:
+	if !bb._get("end_process") == true:
 		#set our range data
 		state_machine.bb._set("player_can_damage",player_damage_range.is_inside)
 		state_machine.bb._set("player_in_range",player_attack_range.is_inside)

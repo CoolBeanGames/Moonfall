@@ -26,16 +26,19 @@ func tick():
 	
 	# Check line of sight
 	var query = PhysicsRayQueryParameters3D.create(zom.global_position, plr.global_position)
-	query.exclude = [zom]
+	query.exclude = [zom,plr]
 	var result = space_state.intersect_ray(query)
 	
 	var direction : Vector3
 	
 	if result.is_empty():
 		#  Direct chase
+		print("zombie is direct chasing")
 		direction = (plr.global_position - zom.global_position).normalized()
 	else:
 		# Navmesh chase
+		print("zombie is using ai to chase")
+		print("blocked by ", str(result))
 		agent.target_position = plr.global_position
 		if not agent.is_navigation_finished():
 			var next_path_pos = agent.get_next_path_position()
@@ -51,5 +54,8 @@ func tick():
 		# Movement & facing
 		zom.velocity = direction * character_bb._get("move_speed")
 		zom.look_at(zom.global_position + direction, Vector3.UP)
+	zom.velocity.y = 0
+	zom.rotation_degrees.x = 0
+	zom.rotation_degrees.z = 0
 	
 	zom.move_and_slide()

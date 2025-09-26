@@ -26,6 +26,7 @@ func update_ui():
 		return
 	total_ammo.text = str(GameManager.data.data.get("bullets",0))
 	loaded_ammo.text = str(player_gun.loaded_bullets) + " / " + str(player_gun.max_clip_size)
+	print("player gun name from ammo ui: ", player_gun.gun_name)
 	gun_name.text = player_gun.gun_name
 	var ratio : float = float(player_gun.loaded_bullets) / float(player_gun.max_clip_size) 
 	print(ratio)

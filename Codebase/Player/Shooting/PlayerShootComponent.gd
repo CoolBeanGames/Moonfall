@@ -42,10 +42,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	shoot_timer -= delta
 	GameManager.data._set("player_gun",current_gun)
-	if raycaster.is_colliding():
-		plr.debug_text_label.text = "looking at: [" + (raycaster.get_collider().name) + " ]"
-	else:
-		plr.debug_text_label.text = "looking at: [nothing]"
 
 #used for non rapid fire guns
 func on_shoot():
@@ -112,6 +108,7 @@ func do_damage(collider : CollisionObject3D):
 
 #update the gun ui
 func update_ui():
+	GameManager.data._set("player_gun",current_gun)
 	SignalBus.signals.signals["update_gun_ui"].event.emit()
 
 #reload the gun
@@ -173,6 +170,7 @@ func cycle_gun_down():
 func cycle_gun(dir : int):
 	if !InputManager.is_input_locked():
 		print("cycling guns")
+		var old_gun_name = current_gun.gun_name
 		current_gun_index += dir
 		if current_gun_index < 0:
 			current_gun_index = guns.size() - 1
@@ -183,6 +181,7 @@ func cycle_gun(dir : int):
 		current_gun = guns[current_gun_index]
 		shoot_point = fire_points[current_gun_index]
 		update_models(current_gun_index)
+		print("updating ui due to gun changed from " , old_gun_name , " to " , current_gun.gun_name)
 		update_ui()
 
 #update the current gun being shown

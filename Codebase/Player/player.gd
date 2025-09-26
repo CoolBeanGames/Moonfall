@@ -38,6 +38,8 @@ func _ready():
 	
 	var max_health = GameManager.data.data.get("player_max_health",1)
 	GameManager.data.data.set("player_health",max_health)
+	
+	$CollisionShape3D/CSGCylinder3D.queue_free()
 
 func take_damage(damage : int = 1):
 	var health = GameManager.data.data.get("player_health",1)

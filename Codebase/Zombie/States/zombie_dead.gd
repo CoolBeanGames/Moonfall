@@ -15,10 +15,11 @@ func on_enter():
 	anim.play("anim/death")	
 	zom = character_bb._get("zombie") 
 	zom.velocity = Vector3.ZERO
-	state_machine.bb._set("end_process",true)
+	zom.bb._set("end_process",true)
 	GameManager.data.set_data("score",GameManager.data.get_data("score",0) + 1)
 	SignalBus.signals.signals["update_score"].event.emit()
 	GameManager.data._set("zombie_count",GameManager.data._get("zombie_count") - 1)
+	GameManager.get_tree().create_timer(15).timeout.connect(zom.queue_free)
 
 ##called when we exit the state
 func on_exit():

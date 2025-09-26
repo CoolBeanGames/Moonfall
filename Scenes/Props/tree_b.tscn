@@ -15,7 +15,7 @@ target = NodePath("tree-pine-large2")
 [node name="tree-pine-large2" parent="." instance=ExtResource("1_ngcnr")]
 script = ExtResource("3_m6qnl")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="tree-pine-large2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="tree-pine-large2" groups=["navmesh"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tree-pine-large2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8005371, 0)

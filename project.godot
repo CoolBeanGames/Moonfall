@@ -84,3 +84,7 @@ right={
 3d_physics/layer_11="crate pieces"
 3d_physics/layer_12="crates"
 3d_physics/layer_13="crate_collider"
+
+[navigation]
+
+3d/default_cell_size=0.1

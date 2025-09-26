@@ -12,7 +12,7 @@ size = Vector3(0.8378906, 1.0014648, 0.5076904)
 
 [node name="truck-flat2" parent="." instance=ExtResource("1_dj5pd")]
 
-[node name="truck_collider" type="StaticBody3D" parent="truck-flat2"]
+[node name="truck_collider" type="StaticBody3D" parent="truck-flat2" groups=["navmesh"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="truck-flat2/truck_collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009277344, 0.2548828, 0.17358398)

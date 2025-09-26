@@ -348,7 +348,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.017448813, 0)
 shape = SubResource("CapsuleShape3D_gwnis")
 
 [node name="Camera3D" type="Camera3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5321882, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16846159, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D/Camera3D"]
 target_position = Vector3(0, 0, -100000)
@@ -382,6 +382,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_b1ygp")
 }
 
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CollisionShape3D"]
+radius = 0.15
+height = 0.6
+
 [node name="Components" type="Node" parent="."]
 
 [node name="PlayerMovementComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr")]
@@ -393,13 +397,15 @@ script = ExtResource("12_p5o4e")
 plr = NodePath("../..")
 camera = NodePath("../../CollisionShape3D/Camera3D")
 
-[node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("raycaster", "gun_animation_player", "shoot_point", "plr")]
+[node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("raycaster", "gun_animation_player", "shoot_point", "gun_models", "fire_points", "plr")]
 script = ExtResource("13_p5o4e")
 current_gun = ExtResource("14_gu6f8")
 raycaster = NodePath("../../CollisionShape3D/Camera3D/RayCast3D")
 gun_animation_player = NodePath("../../CollisionShape3D/Camera3D/Guns/pistolAnimator")
 shoot_point = NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/pistol/fire_point")
 guns = Array[Object]([ExtResource("14_gu6f8"), ExtResource("17_b1ygp")])
+gun_models = [NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/pistol"), NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/AR")]
+fire_points = [NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/pistol/fire_point"), NodePath("../../CollisionShape3D/Camera3D/Guns/gun_pivot/AR/fire_point")]
 plr = NodePath("../..")
 
 [node name="PlayerMeleeComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr", "pistolAnimator")]
