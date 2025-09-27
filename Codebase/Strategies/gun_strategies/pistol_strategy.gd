@@ -24,6 +24,7 @@ func reload(...params : Array):
 
 func melee(...params : Array):
 	params[2].play("melee")
+	
 
 
 func do_damage(gun_data : gun, col : CollisionObject3D):

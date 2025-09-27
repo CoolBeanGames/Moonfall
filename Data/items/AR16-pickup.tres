@@ -1,21 +1,20 @@
-[gd_resource type="Resource" script_class="item_data" load_steps=7 format=3 uid="uid://8pqk1petbdm7"]
+[gd_resource type="Resource" script_class="item_data" load_steps=6 format=3 uid="uid://8pqk1petbdm7"]
 
+[ext_resource type="PackedScene" uid="uid://2ro4n457drwc" path="res://Models/weapons/AR16.glb" id="1_mkia7"]
 [ext_resource type="Script" uid="uid://d4g7rbit6x2ef" path="res://Codebase/props/item_data.gd" id="1_my38r"]
-[ext_resource type="PackedScene" uid="uid://b6rln8x52228x" path="res://Scenes/Props/first_aid_kit_pickup.tscn" id="1_u1m6o"]
 [ext_resource type="Script" uid="uid://dxybaex8t0hfv" path="res://Codebase/Strategies/strategy.gd" id="2_tq1ls"]
-[ext_resource type="Resource" uid="uid://c7k8rtahyr8h7" path="res://Data/items/item_spawns.tres" id="3_mkia7"]
 [ext_resource type="Script" uid="uid://bmham61xmutl1" path="res://Codebase/Strategies/gun_pickup.gd" id="4_u1m6o"]
 
 [sub_resource type="Resource" id="Resource_qrsp2"]
 script = ExtResource("4_u1m6o")
 gun_name = "AR16"
-item_list = ExtResource("3_mkia7")
+spawn_list_index = 3
 metadata/_custom_type_script = "uid://bmham61xmutl1"
 
 [resource]
 script = ExtResource("1_my38r")
 item_name = &"AR16"
-scene_to_spawn = ExtResource("1_u1m6o")
+scene_to_spawn = ExtResource("1_mkia7")
 strategies = Array[ExtResource("2_tq1ls")]([SubResource("Resource_qrsp2")])
 item_scale = Vector3(0.2, 0.2, 0.2)
 metadata/_custom_type_script = "uid://d4g7rbit6x2ef"

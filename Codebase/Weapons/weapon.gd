@@ -65,10 +65,16 @@ func reload():
 			gun_data.loaded_bullets += 1
 			GameManager.data.data.set("bullets",GameManager.data.data.get("bullets",0) -1)
 
-func melee(_melee_targets : Array[melee_target]):
+func melee(_melee_targets : Array):
 	if ready_to_shoot:
 		strat.melee(gun_data,_melee_targets,animation_player)
 		cooldown = gun_data.melee_time
+		
+		print("melee targets :" , str(_melee_targets.size()))
+		#apply melee damage
+		for m  in _melee_targets:
+			print("applying melee damage")
+			m.take_damage(gun_data.melee_damage)
 
 func _process(delta):
 	#process the cooldown

@@ -141,7 +141,7 @@ plr = NodePath("../..")
 
 [node name="melee_area" type="Area3D" parent="."]
 collision_layer = 512
-collision_mask = 256
+collision_mask = 4356
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="melee_area"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.24369177, -0.38366222)

@@ -3,9 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg26pvxenbxl8"
-path.s3tc="res://.godot/imported/map_test_bars.png-b39fa0a72621026f4f2d48eb7c2a9429.s3tc.ctex"
+path.etc2="res://.godot/imported/map_test_bars.png-b39fa0a72621026f4f2d48eb7c2a9429.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Models/map_test_bars.png"
-dest_files=["res://.godot/imported/map_test_bars.png-b39fa0a72621026f4f2d48eb7c2a9429.s3tc.ctex"]
+dest_files=["res://.godot/imported/map_test_bars.png-b39fa0a72621026f4f2d48eb7c2a9429.etc2.ctex"]
 
 [params]
 

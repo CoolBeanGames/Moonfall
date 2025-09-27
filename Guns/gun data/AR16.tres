@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://bc4x8rwu73rom"
 
 [resource]
 script = ExtResource("4_hs2ii")
-gun_name = &"AR-16"
+gun_name = &"AR 16"
 bullet_prefab = ExtResource("1_14yro")
 melee_time = 0.4
 max_clip_size = 24

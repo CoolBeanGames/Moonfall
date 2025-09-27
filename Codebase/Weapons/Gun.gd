@@ -5,6 +5,7 @@ class_name gun extends Resource
 @export var fire_rate : float = 0.2
 @export var reload_time : float = 3
 @export var melee_time : float = 1
+@export var melee_damage : int = 1
 @export var bullet_damage : int = 1
 @export var max_clip_size : int = 12
 @export var loaded_bullets : int = 12

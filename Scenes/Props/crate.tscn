@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpweyu8orpku2"]
+[gd_scene load_steps=7 format=3 uid="uid://dpweyu8orpku2"]
 
 [ext_resource type="Script" uid="uid://c0h16spr75bku" path="res://Codebase/props/crate.gd" id="1_bi164"]
 [ext_resource type="Texture2D" uid="uid://e1ckevsqgio8" path="res://Textures/wood-pattern-high-quality.jpg" id="2_fdn4f"]
 [ext_resource type="Resource" uid="uid://c7k8rtahyr8h7" path="res://Data/items/item_spawns.tres" id="2_wpcxd"]
 [ext_resource type="PackedScene" uid="uid://ccn45l80fue5n" path="res://Scenes/Props/crate_broken.tscn" id="3_wpcxd"]
-[ext_resource type="PackedScene" uid="uid://bes6c785400dh" path="res://Scenes/melee_target.tscn" id="4_fdn4f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mplf"]
 albedo_texture = ExtResource("2_fdn4f")
@@ -12,7 +11,7 @@ albedo_texture = ExtResource("2_fdn4f")
 [sub_resource type="BoxShape3D" id="BoxShape3D_wpcxd"]
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="crate" type="RigidBody3D" groups=["crate"]]
+[node name="crate" type="RigidBody3D" groups=["crate", "melee_target"]]
 collision_layer = 4097
 collision_mask = 4097
 can_sleep = false
@@ -25,11 +24,5 @@ crate_broken = ExtResource("3_wpcxd")
 material_override = SubResource("StandardMaterial3D_6mplf")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="melee_target" parent="." node_paths=PackedStringArray("parent") groups=["crate"] instance=ExtResource("4_fdn4f")]
-collision_layer = 2304
-parent = NodePath("..")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_wpcxd")
-
-[editable path="melee_target"]
