@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmbti6tglga1x"]
+[gd_scene load_steps=16 format=3 uid="uid://cmbti6tglga1x"]
 
 [ext_resource type="PackedScene" uid="uid://bo25l0yr5t4jh" path="res://Models/weapons/hand_gun.glb" id="1_08fw1"]
 [ext_resource type="Script" uid="uid://2jlevvygr4cn" path="res://Codebase/Weapons/weapon.gd" id="2_u715i"]
 [ext_resource type="PackedScene" uid="uid://dio0na5l06nbg" path="res://Scenes/bullet.tscn" id="3_ye8dn"]
 [ext_resource type="Resource" uid="uid://bkuc0tv75daoi" path="res://Guns/gun data/pistol.tres" id="4_bso2o"]
 [ext_resource type="Script" uid="uid://ddmx8746b8vxk" path="res://Codebase/Strategies/gun_strategies/pistol_strategy.gd" id="5_ye8dn"]
+[ext_resource type="AudioStream" uid="uid://cs57inuq0alf7" path="res://Audio/SFX/melee/zapsplat_foley_stick_thin_with_leaves_swoosh_whoosh_air_very_fast_and_hard_114445.wav" id="6_6vy0o"]
+[ext_resource type="AudioStream" uid="uid://87flovjdglss" path="res://Audio/SFX/melee/zapsplat_foley_clothing_hi_vis_jacket_impact_punch_006_111567.wav" id="7_ky8lc"]
 
 [sub_resource type="Resource" id="Resource_bso2o"]
 script = ExtResource("5_ye8dn")
@@ -108,6 +110,39 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-1.1318256e-08, 0.2956413, 0.70816725), Vector3(-1.1318256e-08, 0.2956413, 0.70816725), Vector3(0.2529497, -0.15470515, -1.4199003), Vector3(0, 0, 0)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5349063),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"deal_melee_damage"
+}]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.22093956,
+"start_offset": 0.05116495,
+"stream": ExtResource("6_6vy0o")
+}, {
+"end_offset": 0.20233415,
+"start_offset": 0.0,
+"stream": ExtResource("7_ky8lc")
+}],
+"times": PackedFloat32Array(0.33024648, 0.53490627)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_encxg"]
 resource_name = "reload_gun"
@@ -234,3 +269,5 @@ transform = Transform3D(-0.28288445, 0.85680956, 0, -0.85680956, -0.28288445, 0,
 libraries = {
 &"": SubResource("AnimationLibrary_u715i")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]

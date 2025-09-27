@@ -15,7 +15,7 @@ func shoot(...params : Array):
 	params[0].loaded_bullets -= 1
 	var raycaster : RayCast3D = params[4] as RayCast3D
 	if raycaster.is_colliding() and raycaster.get_collider(): 
-		do_damage(params[0],raycaster.get_collider())
+		do_damage(params[0],raycaster.get_collider(),raycaster.get_collision_point())
 	update_ui()
 
 func reload(...params : Array):
@@ -24,30 +24,32 @@ func reload(...params : Array):
 
 func melee(...params : Array):
 	params[2].play("melee")
-	
 
-
-func do_damage(gun_data : gun, col : CollisionObject3D):
+func do_damage(gun_data : gun, col : CollisionObject3D, global_position : Vector3):
 	#calcualte the damage
 	var damage : int = 0
+	var is_world : bool = true
 	if col.is_in_group("BodyShotZone"):
-		print("bodyShot")
 		damage = gun_data.bullet_damage
 		col = col.z
+		spawn_bloodspurt(global_position)
+		is_world = false
 	if col.is_in_group("HeadShotZone"):
-		print("headshot")
 		damage = gun_data.bullet_damage * 2
 		col = col.z
+		spawn_bloodspurt(global_position)
+		SignalBus.fire_signal("hit_enemy")
+		is_world = false
 	if col.is_in_group("crate"):
 		damage = 0
-		print("crate")
 	if col.is_in_group("target"):
 		damage = 0
-		print("target")
+		is_world = false
 	
+	if is_world:
+		print("spawn dust")
+		spawn_dust_cloud(global_position)
+
 	#deal the damage we calculated
 	if col.has_method("take_damage"):
-		print("taking damage")
 		col.take_damage(damage)
-	else:
-		print("collider does not take damage")

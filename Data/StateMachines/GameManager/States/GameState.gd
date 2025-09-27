@@ -50,4 +50,4 @@ func spawn():
 	var position = GameManager.zombie_spawners.pick_random().global_position
 	position.y = zombie_y
 	instance.global_position = position
-	AudioManager.play_random_audio_file(load("res://Data/audio_sets/zombie_spawn_sounds.tres"),"default",true,position)
+	AudioManager.play_random_audio_file(load("res://Data/audio_sets/zombie_spawn_sounds.tres"),"zombie_noises",true,position)

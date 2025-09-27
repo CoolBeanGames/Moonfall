@@ -41,7 +41,8 @@ enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
 
 folder_colors={
 "res://Codebase/": "red",
-"res://Guns/": "teal"
+"res://Guns/": "teal",
+"res://Scenes/": "orange"
 }
 
 [global_group]
@@ -79,6 +80,7 @@ right={
 
 [layer_names]
 
+3d_physics/layer_1="world"
 3d_physics/layer_9="melee_targets"
 3d_physics/layer_10="melee"
 3d_physics/layer_11="crate pieces"

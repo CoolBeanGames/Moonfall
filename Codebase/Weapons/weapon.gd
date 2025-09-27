@@ -26,6 +26,7 @@ class_name weapon extends Node3D
 @export var cooldown : float = 0
 ##if you can melee
 @export var can_melee : bool = true
+@export var melee_targets : Array
 
 ##called to shoot the gun
 func shoot(raycaster : RayCast3D):
@@ -36,7 +37,7 @@ func shoot(raycaster : RayCast3D):
 		shoot_light.light_energy = 1
 		
 		#play gunshot sound
-		AudioManager.play_random_audio_file(gun_data.shooting_sounds,"default",true,global_position)
+		AudioManager.play_random_audio_file(gun_data.shooting_sounds,"gunshots",true,global_position)
 
 		bullet_tracer.visible = true
 		get_tree().create_timer(.1).timeout.connect(bullet_tracer_off) 
@@ -64,7 +65,7 @@ func reload():
 	if ready_to_reload:
 		strat.reload(gun_data,animation_player)
 		cooldown = gun_data.reload_time
-		AudioManager.play_audio_file(gun_data.reload_sound,"default",true,global_position)
+		AudioManager.play_audio_file(gun_data.reload_sound,"gunshots",true,global_position)
 		while gun_data.loaded_bullets < gun_data.max_clip_size && GameManager.data.data.get("bullets",0) > 0:
 			gun_data.loaded_bullets += 1
 			GameManager.data.data.set("bullets",GameManager.data.data.get("bullets",0) -1)
@@ -75,10 +76,7 @@ func melee(_melee_targets : Array):
 		cooldown = gun_data.melee_time
 		
 		print("melee targets :" , str(_melee_targets.size()))
-		#apply melee damage
-		for m  in _melee_targets:
-			print("applying melee damage")
-			m.take_damage(gun_data.melee_damage)
+		melee_targets = _melee_targets
 
 func _process(delta):
 	#process the cooldown
@@ -102,3 +100,10 @@ func _process(delta):
 	
 	#check if you can melee
 	can_melee = cooldown <= 0
+
+func deal_melee_damage():
+	if melee_targets.size() > 0:
+		GameManager.shake_camera.emit(0.2,0.1)
+		for m  in melee_targets:
+			m.take_damage(gun_data.melee_damage)
+	

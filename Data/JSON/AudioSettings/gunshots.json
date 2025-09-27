@@ -1,0 +1,9 @@
+{
+	"repeat" : false,
+	"bus" : "GunShots",
+	"volume" : 1,
+	"pitch" : 1,
+	"randomize_pitch" : false,
+	"pitch_range_min" : 0.9,
+	"pitch_range_max" : 1.1
+}

@@ -6,11 +6,3 @@ func on_enter():
 	var anim : AnimationPlayer = character_bb._get("anim")
 	anim.play("anim/land")
 	GameManager.data._set("zombie_count",GameManager.data.data.get("zombie_count",0) + 1)
-
-##called when we exit the state
-func on_exit():
-	pass
-
-##called every frame for this state
-func tick():
-	pass

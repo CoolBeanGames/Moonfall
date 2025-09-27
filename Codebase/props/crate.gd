@@ -20,8 +20,6 @@ func take_damage(_damage : int = 0):
 func spawn():
 	#play the broken crate audio
 	AudioManager.play_random_audio_file(load("res://Data/audio_sets/crate_break.tres"),"default",true,global_position)
-	if !is_instance_valid(spawn_items):
-		spawn_items = load("res://Data/items/item_spawns.tres")
 	
 	#spawn the broken crate
 	var instance = crate_broken.instantiate()

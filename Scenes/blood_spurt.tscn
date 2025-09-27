@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://bd1qyubpy4120"]
+
+[ext_resource type="Script" uid="uid://blug1er4p4jaf" path="res://Codebase/Zombie/blood_spurt.gd" id="1_4p67s"]
+[ext_resource type="Texture2D" uid="uid://cfbhihvvv3nh7" path="res://Textures/Particles/smoke_04.png" id="2_fwu0i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwu0i"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6522269, 2.7675183e-06, 4.3317675e-07, 1)
+albedo_texture = ExtResource("2_fwu0i")
+emission_enabled = true
+emission = Color(0.20784314, 0, 0, 1)
+billboard_mode = 1
+grow_amount = -4.335
+point_size = 12.0
+stencil_flags = 2
+
+[sub_resource type="Curve" id="Curve_pgg28"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.26022306, 0.84907115), 2.5262125, 2.5262125, 0, 0, Vector2(0.68773234, 0.80882347), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_h7awu"]
+curve = SubResource("Curve_pgg28")
+
+[sub_resource type="CurveTexture" id="CurveTexture_wfa1a"]
+
+[sub_resource type="Curve" id="Curve_7chqa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.44609666, 0.8390092), 0.0, 0.0, 0, 0, Vector2(0.58364314, 0.8390092), 0.0, 0.0, 0, 0, Vector2(0.65799254, 0.85913306), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_welei"]
+curve = SubResource("Curve_7chqa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gf7s1"]
+lifetime_randomness = 1.0
+spread = 180.0
+initial_velocity_max = 8.75
+gravity = Vector3(0, -18, 0)
+damping_curve = SubResource("CurveTexture_wfa1a")
+scale_min = 0.099999994
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_welei")
+alpha_curve = SubResource("CurveTexture_h7awu")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pgg28"]
+size = Vector2(0.5, 0.6)
+
+[node name="blood_spurt" type="Node3D" node_paths=PackedStringArray("particle", "timer")]
+script = ExtResource("1_4p67s")
+particle = NodePath("GPUParticles3D")
+timer = NodePath("Timer")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_fwu0i")
+emitting = false
+amount = 200
+lifetime = 0.33
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_gf7s1")
+draw_pass_1 = SubResource("QuadMesh_pgg28")
+
+[node name="Timer" type="Timer" parent="."]

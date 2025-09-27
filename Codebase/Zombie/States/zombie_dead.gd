@@ -8,7 +8,6 @@ var character_bb : blackboard
 
 ##called once whe entering the state and then not again until it has finished
 func on_enter():
-	print("death")
 	character_bb = state_machine.bb.data["bb"]
 	var anim : AnimationPlayer = character_bb._get("anim")
 	agent = character_bb._get("agent")

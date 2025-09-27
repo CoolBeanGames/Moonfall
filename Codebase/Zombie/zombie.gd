@@ -43,15 +43,23 @@ func add_states():
 	_addState("chase", zombie_chase_state.new(state_machine))
 	_addState("attack",zombie_attack_state.new(state_machine))
 	_addState("dead",zombie_dead.new(state_machine))
+	_addState("hurt",zombie_hurt_state.new(state_machine))
 
 
 func add_transitions():
 	_add_bool_transition("spawned","chase","land")
 	_add_bool_transition("player_in_range","attack","chase")
 	_add_bool_transition("attack_finished","chase","attack")
+
 	_add_bool_transition("dead","dead","chase",true)
 	_add_bool_transition("dead","dead","attack",true)
 	_add_bool_transition("dead","dead","land",true)
+	_add_bool_transition("dead","dead","hurt",true)
+
+	_add_bool_transition("hurt","hurt","chase",false)
+	_add_bool_transition("hurt","hurt","attack",false)
+	_add_bool_transition("hurt","hurt","land",false)
+	_add_inverted_bool_transition("hurt","chase","hurt",false)
 
 
 func _process(_delta: float) -> void:
@@ -64,8 +72,12 @@ func _process(_delta: float) -> void:
 func _addState(state_name : String, s : State):
 	state_machine.states[state_name] = s
 
-func _add_bool_transition(bool_name : String,to_state : String, from_state : String,debug : bool = false):
+func _add_bool_transition(bool_name : String , to_state : String , from_state : String,debug : bool = false):
 	var t : blackboard_bool_transition = blackboard_bool_transition.new(bool_name,state_machine,to_state,from_state,debug)
+	state_machine.transitions.append(t)
+
+func _add_inverted_bool_transition(bool_name : String , to_state : String , from_state : String,debug : bool = false):
+	var t : blackboard_inverted_bool_transition = blackboard_inverted_bool_transition.new(bool_name,state_machine,to_state,from_state,debug)
 	state_machine.transitions.append(t)
 
 func _add_event_transition(event_name : String,to_state : String, from_state : String):
@@ -73,7 +85,6 @@ func _add_event_transition(event_name : String,to_state : String, from_state : S
 	state_machine.transitions.append(t)
 
 func spawn_anim_done():
-	print("spawned")
 	state_machine.bb._set("spawned",true)
 
 func attack_anim_done():
@@ -90,19 +101,16 @@ func deal_player_damagage():
 func take_damage(damage : int):
 	if !state_machine.bb._get("dead") == true:
 		SignalBus.signals.signals["hit_enemy"].event.emit()
-		print("zomebie took ", damage, "damage")
 		bb._set("health",bb._get("health") - damage)
-		print("health left: " , bb._get("health"))
 		if bb._get("health") <= 0:
-			AudioManager.play_audio_file(zombie_die_sound,"default",true,global_position)
+			AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)
 			state_machine.bb._set("dead",true)
 			GameManager.data._set("score",GameManager.data._get("score"))
-			var chance : float = randf_range(0,1)
-			print("chance of ammo: ", chance, " / " ,  bb._get("chance_for_ammo"))
 			if randf_range(0,1) <= bb._get("chance_for_ammo"):
 				spawn_bullet_pickup()
 		else:
-			AudioManager.play_audio_file(zombie_hit_sound,"default",true,global_position)
+			state_machine.bb.set("hurt",true)
+			AudioManager.play_audio_file(zombie_hit_sound,"zombie_noises",true,global_position)
 
 func spawn_bullet_pickup():
 	var instance = ammo_clip.instantiate()
@@ -110,14 +118,14 @@ func spawn_bullet_pickup():
 	instance.global_position = global_position
 
 func melee_damage():
-	print("zombie melee damage")
 	take_damage(1)
 
 func kill():
-	AudioManager.play_audio_file(zombie_die_sound,"default",true,global_position)
+	AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)
 	state_machine.bb._set("dead",true)
 	GameManager.increase_score(1)
-	var chance : float = randf_range(0,1)
-	print("chance of ammo: ", chance, " / " ,  bb._get("chance_for_ammo"))
 	if randf_range(0,1) <= bb._get("chance_for_ammo"):
 		spawn_bullet_pickup()
+
+func end_hurt():
+	state_machine.bb.set("hurt",false)

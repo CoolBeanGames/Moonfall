@@ -1,31 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca77ddpkx5ui8"]
+[gd_scene load_steps=7 format=3 uid="uid://ca77ddpkx5ui8"]
 
 [ext_resource type="Script" uid="uid://bep3uy66txa4i" path="res://Codebase/UI/aiming_reticle.gd" id="1_w5y2j"]
+[ext_resource type="Texture2D" uid="uid://upcs4ukj1sms" path="res://Textures/crosshair157.png" id="2_w5y2j"]
+[ext_resource type="Texture2D" uid="uid://6gi8s6mmkpcj" path="res://Textures/crosshair117.png" id="3_why1u"]
 
-[sub_resource type="Curve" id="Curve_5gvmo"]
-_data = [Vector2(0.38977635, 0.7242931), 0.0, 0.0, 0, 0, Vector2(0.6613418, 0.32326478), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="Animation" id="Animation_gfxbd"]
+resource_name = "headshot"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/hit_texture:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.027678192, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
-[sub_resource type="CurveTexture" id="CurveTexture_n67if"]
-curve = SubResource("Curve_5gvmo")
+[sub_resource type="Animation" id="Animation_wqthc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/hit_texture:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
-[node name="aiming_reticle" type="Control" node_paths=PackedStringArray("hit_texture")]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2bqb"]
+_data = {
+&"RESET": SubResource("Animation_wqthc"),
+&"headshot": SubResource("Animation_gfxbd")
+}
+
+[node name="aiming_reticle" type="Control" node_paths=PackedStringArray("hit_texture", "anima")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_w5y2j")
 hit_texture = NodePath("CenterContainer/hit_texture")
+anima = NodePath("AnimationPlayer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.6
 offset_left = -38.0
 offset_top = -38.0
 offset_right = 38.0
@@ -36,10 +71,19 @@ grow_vertical = 2
 [node name="TextureRect" type="TextureRect" parent="CenterContainer"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
-texture = SubResource("CurveTexture_n67if")
+texture = ExtResource("2_w5y2j")
 expand_mode = 2
+stretch_mode = 3
 
 [node name="hit_texture" type="TextureRect" parent="CenterContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 2.0
+texture = ExtResource("3_why1u")
 expand_mode = 2
+stretch_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v2bqb")
+}

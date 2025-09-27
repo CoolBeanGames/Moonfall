@@ -387,8 +387,10 @@ script = ExtResource("21_o6dcl")
 
 [node name="Rumble" type="AudioStreamPlayer" parent="."]
 volume_db = -128.9283
+bus = &"Music"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
 
 [node name="zombie_spawners" type="Node3D" parent="."]
 

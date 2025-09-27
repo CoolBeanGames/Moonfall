@@ -16,5 +16,6 @@ class_name gun extends Resource
 @export var gun_object_path : String
 @export var camera_shake : float = 0.1
 @export var camera_shake_time : float  = 0.1
+@export var cross_hair : Texture
 
 enum FireMode {single, rapid, spread}

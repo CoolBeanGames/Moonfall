@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://0byr5ivps7qf"]
+
+[ext_resource type="Texture2D" uid="uid://dvaaa5onsld10" path="res://Textures/Particles/smoke_07.png" id="1_h6cip"]
+[ext_resource type="Script" uid="uid://by0ockkm7yrrm" path="res://Codebase/props/dust_cloud.gd" id="1_hsop8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsop8"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.5877556, 0.36156693, 0.1981524, 1)
+albedo_texture = ExtResource("1_h6cip")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_inf05"]
+material = SubResource("StandardMaterial3D_hsop8")
+
+[sub_resource type="Curve" id="Curve_00b4g"]
+_limits = [0.0, 18.537865, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 1.728414, 0, 0, Vector2(1, 4.3803577), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_we17a"]
+offsets = PackedFloat32Array(0, 0.33568904, 0.5300353, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="dust_cloud" type="Node3D" node_paths=PackedStringArray("particle", "timer")]
+script = ExtResource("1_hsop8")
+particle = NodePath("CPUParticles3D")
+timer = NodePath("Timer")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("QuadMesh_inf05")
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+damping_min = 3.0
+damping_max = 3.0
+damping_curve = SubResource("Curve_00b4g")
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 0.1
+color_ramp = SubResource("Gradient_we17a")
+
+[node name="Timer" type="Timer" parent="."]

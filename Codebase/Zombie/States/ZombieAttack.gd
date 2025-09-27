@@ -15,7 +15,7 @@ func on_enter():
 	anim.play("anim/attack")	
 	zom = character_bb._get("zombie") 
 	zom.velocity = Vector3.ZERO
-	AudioManager.play_audio_file(load("res://Audio/SFX/zombie/zombie_attack.wav"),"default",true,zom.global_position)
+	AudioManager.play_audio_file(load("res://Audio/SFX/zombie/zombie_attack.wav"),"zombie_noises",true,zom.global_position)
 	#c
 
 ##called when we exit the state
