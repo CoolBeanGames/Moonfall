@@ -88,3 +88,7 @@ right={
 [navigation]
 
 3d/default_cell_size=0.1
+
+[rendering]
+
+textures/vram_compression/import_s3tc_bptc=true
