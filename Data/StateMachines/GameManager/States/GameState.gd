@@ -1,9 +1,11 @@
 extends State
 class_name GameState
 
-var zombie_spawn_time_max : float = 0.25
+var zombie_spawn_time_max : float = 10
+var zombie_spawn_time_min : float = 1
 var zombie_spawn_chance : float = 0.4
-var max_zombies : int = 20
+var max_zombies : int = 100
+var min_zombies : int = 20
 var timer = 0
 var zombie_y : float = 0.122
 var zom : PackedScene
@@ -11,6 +13,13 @@ var zombie_spawn_audio : audio_set
 
 ##called once when entering the state and then not again until it has finished
 func on_enter():
+	#load in config data
+	zombie_spawn_time_max  = GameManager.data._get("zombie_spawn_time_max")
+	zombie_spawn_time_min  = GameManager.data._get("zombie_spawn_time_min")
+	zombie_spawn_chance  = GameManager.data._get("zombie_spawn_chance")
+	max_zombies  = GameManager.data._get("max_zombies")
+	min_zombies  = GameManager.data._get("min_zombies")
+
 	GameManager.data._set("score",0)
 	SceneManager.load_scene(load("res://Scenes/GameScene.tscn"),"game",true)
 	zom = load("res://Scenes/zombie.tscn")
@@ -27,8 +36,8 @@ func on_exit():
 
 ##called every frame for this state
 func tick():
-	var current_spawn_time : float = zombie_spawn_time_max / ratio(0.8)
-	var current_max_zombies = max_zombies / (1-ratio())
+	var current_spawn_time : float = lerp(zombie_spawn_time_max,zombie_spawn_time_min,ratio())
+	var current_max_zombies = lerp(min_zombies,max_zombies,ratio())
 	if GameManager.data._get("zombie_count") < current_max_zombies:
 		timer += delta()
 		if timer >= current_spawn_time:

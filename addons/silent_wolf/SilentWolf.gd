@@ -46,7 +46,7 @@ var auth_config = {
 }
 
 var auth_script = load("res://addons/silent_wolf/Auth/Auth.gd")
-var scores_script = load("res://addons/silent_wolf/Scores/Scores.gd")
+var scores_script  = load("res://addons/silent_wolf/Scores/Scores.gd") 
 var players_script = load("res://addons/silent_wolf/Players/Players.gd")
 #var multiplayer_script = load("res://addons/silent_wolf/Multiplayer/Multiplayer.gd")
 

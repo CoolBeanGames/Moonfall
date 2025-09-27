@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dn41xgsutrc0u"]
+[gd_scene load_steps=24 format=3 uid="uid://dn41xgsutrc0u"]
 
 [ext_resource type="PackedScene" uid="uid://2xeql213rw21" path="res://Models/Zombie/characterMedium.fbx" id="1_5ia6i"]
 [ext_resource type="Script" uid="uid://cc6hl4kav2jau" path="res://Codebase/Zombie/zombie.gd" id="1_j0wq0"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bo0nnys7nqhi5" path="res://Audio/SFX/zombie/zombie_death.mp3" id="5_j0eft"]
 [ext_resource type="Animation" uid="uid://hjloiso4om0u" path="res://Models/Zombie/hurt.res" id="5_u2tw5"]
 [ext_resource type="Animation" uid="uid://cr5vv0yuqmmjl" path="res://Models/Zombie/idle.res" id="6_fj6an"]
+[ext_resource type="Resource" uid="uid://c7k8rtahyr8h7" path="res://Data/items/item_spawns.tres" id="6_j0eft"]
 [ext_resource type="Animation" uid="uid://bu5f0e5yvvoye" path="res://Models/Zombie/land.res" id="7_tmcj1"]
 [ext_resource type="Script" uid="uid://bw6gem2hhn15b" path="res://Codebase/Zombie/track_player.gd" id="9_j0wq0"]
 
@@ -74,6 +75,7 @@ materials = Array[Material]([ExtResource("2_fj6an"), ExtResource("3_tmcj1")])
 material_target = NodePath("characterMedium/Root/Skeleton3D/characterMedium")
 zombie_hit_sound = ExtResource("4_aw8xw")
 zombie_die_sound = ExtResource("5_j0eft")
+spawnables = ExtResource("6_j0eft")
 
 [node name="characterMedium" parent="." instance=ExtResource("1_5ia6i")]
 transform = Transform3D(-0.15, 0, -1.3113417e-08, 0, 0.15, 0, 1.3113417e-08, 0, -0.15, 0, 0, 0)

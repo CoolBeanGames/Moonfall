@@ -1,0 +1,67 @@
+##a class that defines the logic for a gun
+##this handles what actually happens when shooting
+##a gun
+class_name shotgun_strategy extends gun_strategy
+
+var shoot_point_array : Array[Node3D]
+
+func equip(..._params : Array):
+	update_ui()
+	pass
+
+func unequip(..._params : Array):
+	pass
+
+func shoot(...params : Array):
+	shoot_point_array = params[1].tracers
+	params[3].play("shoot_gun")
+	params[0].loaded_bullets -= 1
+	for s in shoot_point_array:
+		var rot : Vector3 = Vector3(0,randf_range(-10,10),randf_range(-10,10))
+		var raycaster : RayCast3D = s.get_child(1) as RayCast3D
+		s.rotation_degrees = rot
+		s.get_child(0).visible = true
+		GameManager.get_tree().create_timer(0.1).timeout.connect(turn_off_tracers)
+		if raycaster.is_colliding() and raycaster.get_collider(): 
+			do_damage(params[0],raycaster.get_collider(),raycaster.get_collision_point())
+	update_ui()
+
+func turn_off_tracers():
+	for s in shoot_point_array:
+		s.get_child(0).visible = false	
+
+func reload(...params : Array):
+	params[1].play("reload_gun")
+	update_ui()
+
+func melee(...params : Array):
+	params[2].play("melee")
+
+func do_damage(gun_data : gun, col : CollisionObject3D, global_position : Vector3):
+	#calcualte the damage
+	var damage : int = 0
+	var is_world : bool = true
+	if col.is_in_group("BodyShotZone"):
+		damage = gun_data.bullet_damage
+		col = col.z
+		spawn_bloodspurt(global_position)
+		is_world = false
+	if col.is_in_group("HeadShotZone"):
+		damage = gun_data.bullet_damage * 2
+		col = col.z
+		spawn_bloodspurt(global_position)
+		SignalBus.fire_signal("hit_enemy")
+		is_world = false
+	if col.is_in_group("crate"):
+		damage = 0
+	if col.is_in_group("target"):
+		damage = 0
+		is_world = false
+	
+	if is_world:
+		print("spawn dust")
+		spawn_dust_cloud(global_position)
+
+	#deal the damage we calculated
+	if col.has_method("take_damage"):
+		col.take_damage(damage)

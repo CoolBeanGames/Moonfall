@@ -16,13 +16,15 @@ func _process(_delta: float) -> void:
 	pass
 
 func on_name_entry():
-	if name_field.text != "" and name_field.text != " ":
+	if name_field.text.strip_edges() != "":
 		GameManager.save_data.data["player_name"] = name_field.text
-		var score = GameManager.data.data.get("score",0) +1
-		await SilentWolf.Scores.save_score(name_field.text,score)
+		var score = GameManager.data.data.get("score",0)
+
+		await SilentWolf.Scores.save_score(name_field.text, score)
 		await GameManager.save_game()
+
 		score_display.visible = true
-		await score_display.show_score_ui()
+		score_display.show_score_ui() # Now just triggers loading
 		insert_name_ui.queue_free()
 
 func on_back_to_title():

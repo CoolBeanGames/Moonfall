@@ -19,6 +19,8 @@ var state_machine : StateMachine =  StateMachine.new()
 @export var zombie_hit_sound : AudioStream
 @export var zombie_die_sound : AudioStream
 
+@export var spawnables : item_spawn_list
+
 func _ready() -> void:
 	if !GameManager.data.data.has("all_zombies"):
 		var z : Array[zombie] = [self]
@@ -124,8 +126,8 @@ func kill():
 	AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)
 	state_machine.bb._set("dead",true)
 	GameManager.increase_score(1)
-	if randf_range(0,1) <= bb._get("chance_for_ammo"):
-		spawn_bullet_pickup()
+	spawnables.get_item_spawn(global_position)
+
 
 func end_hurt():
 	state_machine.bb.set("hurt",false)

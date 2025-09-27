@@ -10,7 +10,6 @@ func _ready() -> void:
 	timer.timeout.connect(time_up)
 	print("spawned")
 
-
 func time_up():
 	print("destroyed")
 	queue_free()

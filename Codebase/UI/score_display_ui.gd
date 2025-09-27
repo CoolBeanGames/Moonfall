@@ -2,26 +2,20 @@ class_name score_display_ui extends Control
 
 @export var entry_container : Control
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	show_score_ui()
-	pass # Replace with function body.
+	# Connect to SilentWolf signal
+	var sc = SilentWolf.Scores
+	sc.sw_get_scores_complete.connect(_on_scores_loaded)
 
+func show_score_ui() -> void:
+	# Trigger loading scores (async)
+	SilentWolf.Scores.get_scores()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func _on_scores_loaded(scores_data: Dictionary) -> void:
+	var scores = scores_data.scores
+	print("Scores loaded: ", scores)
 
-func show_score_ui():
 	var counter : int = 0
-	
-	var sw_result: Dictionary = await SilentWolf.Scores.get_scores().sw_get_scores_complete
-	var scores = sw_result.scores
-	print("Scores: " + str(sw_result.scores))
-	
 	for c in entry_container.get_children():
 		if counter != 0 and c is score_entry:
 			var sc : score_entry = c as score_entry

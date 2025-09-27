@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="item_data" load_steps=6 format=3 uid="uid://drkoogalryv4k"]
+
+[ext_resource type="PackedScene" uid="uid://cpfrvy2fdgrxe" path="res://Models/weapons/Spax-11.glb" id="1_2dpda"]
+[ext_resource type="Script" uid="uid://d4g7rbit6x2ef" path="res://Codebase/props/item_data.gd" id="1_p8p4c"]
+[ext_resource type="Script" uid="uid://dxybaex8t0hfv" path="res://Codebase/Strategies/strategy.gd" id="2_2dpda"]
+[ext_resource type="Script" uid="uid://bmham61xmutl1" path="res://Codebase/Strategies/gun_pickup.gd" id="4_r5d24"]
+
+[sub_resource type="Resource" id="Resource_7su65"]
+script = ExtResource("4_r5d24")
+gun_name = "Spax11"
+spawn_list_index = 1
+metadata/_custom_type_script = "uid://bmham61xmutl1"
+
+[resource]
+script = ExtResource("1_p8p4c")
+spawn_chance = 0.1
+item_name = &"Shotgun"
+scene_to_spawn = ExtResource("1_2dpda")
+strategies = Array[ExtResource("2_2dpda")]([SubResource("Resource_7su65")])
+item_scale = Vector3(0.2, 0.2, 0.2)
+metadata/_custom_type_script = "uid://d4g7rbit6x2ef"

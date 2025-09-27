@@ -39,13 +39,15 @@ func shoot(raycaster : RayCast3D):
 		#play gunshot sound
 		AudioManager.play_random_audio_file(gun_data.shooting_sounds,"gunshots",true,global_position)
 
-		bullet_tracer.visible = true
+		if bullet_tracer!=null:
+			bullet_tracer.visible = true
 		get_tree().create_timer(.1).timeout.connect(bullet_tracer_off) 
 		
 		GameManager.shake_camera.emit(gun_data.camera_shake,gun_data.camera_shake_time)
 
 func bullet_tracer_off():
-	bullet_tracer.visible = false
+	if bullet_tracer!=null:
+		bullet_tracer.visible = false
 
 ##called when switching to this gun
 func equip(parent : Node3D):
