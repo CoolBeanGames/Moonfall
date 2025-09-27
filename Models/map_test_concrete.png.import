@@ -3,9 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5ki1t8rjik0l"
-path.etc2="res://.godot/imported/map_test_concrete.png-5dc27a30eccceb1ef4fd145db2123349.etc2.ctex"
+path.s3tc="res://.godot/imported/map_test_concrete.png-5dc27a30eccceb1ef4fd145db2123349.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Models/map_test_concrete.png"
-dest_files=["res://.godot/imported/map_test_concrete.png-5dc27a30eccceb1ef4fd145db2123349.etc2.ctex"]
+dest_files=["res://.godot/imported/map_test_concrete.png-5dc27a30eccceb1ef4fd145db2123349.s3tc.ctex"]
 
 [params]
 

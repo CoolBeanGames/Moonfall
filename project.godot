@@ -14,10 +14,10 @@ config/name="Moonfall"
 config/version="0.7"
 run/main_scene="uid://voxflqrwktdm"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
+config/icon="res://icon.svg"
 
 [autoload]
 

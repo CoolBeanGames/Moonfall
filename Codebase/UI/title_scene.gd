@@ -39,10 +39,14 @@ func load_game():
 
 #play the intro again if you have already seen it
 func on_replay_intro() -> void:
+	if is_instance_valid(GameManager.start_music):
+		GameManager.start_music.fade_out(3)
 	title_anim.play("to_intro")
 
 
 func on_credits() -> void:
+	if is_instance_valid(GameManager.start_music):
+		GameManager.start_music.fade_out(3)
 	title_anim.play("to_credits")
 
 func to_credits():

@@ -7,7 +7,9 @@ class_name gun_pickup_strategy extends strategy
 ##call to add health to the player
 func execute(..._params : Array):
 	var shoot = GameManager.data.get("player_shoot") as player_shoot_component
-	shoot.enabled_guns.append(shoot.guns[gun_name])
-	shoot.guns.erase(gun_name)
-	var item_spawns : item_spawn_list = load("res://Data/items/item_spawns.tres")
-	item_spawns.items.erase(item_spawns.items[spawn_list_index])
+	if shoot.guns.has(gun_name):
+		shoot.enabled_guns.append(shoot.guns[gun_name])
+		shoot.guns.erase(gun_name)
+		var item_spawns : item_spawn_list = load("res://Data/items/item_spawns.tres")
+		if item_spawns.items.has(item_spawns.items[spawn_list_index]):
+			item_spawns.items.erase(item_spawns.items[spawn_list_index])
