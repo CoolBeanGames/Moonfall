@@ -65,7 +65,7 @@ height = 0.6
 radius = 0.5073242
 height = 1.0146484
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component", "low_health_audio") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_component", "move_component", "low_health_audio", "camera_shake_base") groups=["player"]]
 collision_layer = 2
 floor_stop_on_slope = false
 floor_block_on_wall = false
@@ -77,30 +77,33 @@ look_component = NodePath("Components/PlayerLookComponent")
 move_component = NodePath("Components/PlayerMovementComponent")
 hit_sounds = SubResource("Resource_8mwp6")
 low_health_audio = NodePath("low_health")
+camera_shake_base = NodePath("CollisionShape3D/camera_shake_base")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.017448813, 0)
 shape = SubResource("CapsuleShape3D_gwnis")
 
-[node name="Camera3D" type="Camera3D" parent="CollisionShape3D"]
+[node name="camera_shake_base" type="Node3D" parent="CollisionShape3D"]
+
+[node name="Camera3D" type="Camera3D" parent="CollisionShape3D/camera_shake_base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15898788, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D/camera_shake_base/Camera3D"]
 target_position = Vector3(0, 0, -100000)
 collision_mask = 2057
 
-[node name="SpotLight3D" type="SpotLight3D" parent="CollisionShape3D/Camera3D/RayCast3D"]
+[node name="SpotLight3D" type="SpotLight3D" parent="CollisionShape3D/camera_shake_base/Camera3D/RayCast3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.20709437)
 light_color = Color(1, 1, 0.94509804, 1)
 spot_range = 7.0
 spot_angle = 35.0
 
-[node name="Gun" type="Node3D" parent="CollisionShape3D/Camera3D"]
+[node name="Gun" type="Node3D" parent="CollisionShape3D/camera_shake_base/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09828329, -0.17328721, -0.06261665)
 
-[node name="hand_gun" parent="CollisionShape3D/Camera3D/Gun" instance=ExtResource("13_7emwf")]
+[node name="hand_gun" parent="CollisionShape3D/camera_shake_base/Camera3D/Gun" instance=ExtResource("13_7emwf")]
 
-[node name="AR162" parent="CollisionShape3D/Camera3D/Gun" instance=ExtResource("14_n471f")]
+[node name="AR162" parent="CollisionShape3D/camera_shake_base/Camera3D/Gun" instance=ExtResource("14_n471f")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.053019106, -0.17059839)
 visible = false
 
@@ -117,18 +120,18 @@ plr = NodePath("../..")
 [node name="PlayerLookComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr", "camera")]
 script = ExtResource("12_p5o4e")
 plr = NodePath("../..")
-camera = NodePath("../../CollisionShape3D/Camera3D")
+camera = NodePath("../../CollisionShape3D/camera_shake_base/Camera3D")
 
 [node name="PlayerShootComponent" type="Node" parent="Components" node_paths=PackedStringArray("guns", "enabled_guns", "current_gun", "raycaster", "plr", "gun_parent")]
 script = ExtResource("13_p5o4e")
 guns = {
-&"AR16": NodePath("../../CollisionShape3D/Camera3D/Gun/AR162")
+&"AR16": NodePath("../../CollisionShape3D/camera_shake_base/Camera3D/Gun/AR162")
 }
-enabled_guns = [NodePath("../../CollisionShape3D/Camera3D/Gun/hand_gun")]
-current_gun = NodePath("../../CollisionShape3D/Camera3D/Gun/hand_gun")
-raycaster = NodePath("../../CollisionShape3D/Camera3D/RayCast3D")
+enabled_guns = [NodePath("../../CollisionShape3D/camera_shake_base/Camera3D/Gun/hand_gun")]
+current_gun = NodePath("../../CollisionShape3D/camera_shake_base/Camera3D/Gun/hand_gun")
+raycaster = NodePath("../../CollisionShape3D/camera_shake_base/Camera3D/RayCast3D")
 plr = NodePath("../..")
-gun_parent = NodePath("../../CollisionShape3D/Camera3D/Gun")
+gun_parent = NodePath("../../CollisionShape3D/camera_shake_base/Camera3D/Gun")
 
 [node name="PlayerMeleeComponent" type="Node" parent="Components" node_paths=PackedStringArray("ShootComp")]
 script = ExtResource("16_lfmf2")

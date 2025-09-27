@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func show_score_ui():
@@ -26,6 +26,10 @@ func show_score_ui():
 		if counter != 0 and c is score_entry:
 			var sc : score_entry = c as score_entry
 			sc._number = counter
-			sc._name = scores[counter-1]["player_name"]
-			sc._score = scores[counter-1]["score"]
+			if scores.size() >= counter:
+				sc._name = scores[counter-1]["player_name"]
+				sc._score = scores[counter-1]["score"]
+			else:
+				sc._name = "------"
+				sc._score = 0
 		counter += 1

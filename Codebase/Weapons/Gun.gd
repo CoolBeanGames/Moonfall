@@ -14,5 +14,7 @@ class_name gun extends Resource
 @export var empty_sound : AudioStream
 @export var reload_sound : AudioStream
 @export var gun_object_path : String
+@export var camera_shake : float = 0.1
+@export var camera_shake_time : float  = 0.1
 
 enum FireMode {single, rapid, spread}

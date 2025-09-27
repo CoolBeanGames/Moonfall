@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5t76snp62aca"]
+[gd_scene load_steps=16 format=3 uid="uid://b5t76snp62aca"]
 
 [ext_resource type="LightmapGIData" uid="uid://d2hpsa2a122nq" path="res://Scenes/enviroment.lmbake" id="1_55ugo"]
 [ext_resource type="PackedScene" uid="uid://bj5dixumta757" path="res://Scenes/map.tscn" id="5_rw8p7"]
+[ext_resource type="AudioStream" uid="uid://cn4x04ggp3y55" path="res://Audio/Music/597941_Repent-Or-Perish.mp3" id="5_ydcye"]
 [ext_resource type="PackedScene" uid="uid://2egcsbg5ucuw" path="res://Scenes/Props/light_post.tscn" id="7_hhfy0"]
 [ext_resource type="PackedScene" uid="uid://y72rvcoq1wks" path="res://Scenes/moon.tscn" id="18_ue1kb"]
-[ext_resource type="AudioStream" uid="uid://cdwo17eyv8l4f" path="res://Audio/Music/DST-TowerDefenseTheme.mp3" id="19_upj05"]
 [ext_resource type="AudioStream" uid="uid://b257bay7yyjka" path="res://Audio/SFX/martyn_stonehouse_Digital+Crusher+Loop.wav" id="20_upj05"]
 [ext_resource type="Script" uid="uid://bcmoxrfkw6xwo" path="res://Codebase/props/moon_player.gd" id="21_o6dcl"]
 
@@ -38,10 +38,6 @@ adjustment_enabled = true
 [sub_resource type="Animation" id="Animation_eg0ho"]
 resource_name = "RESET"
 length = 360.0
-
-[sub_resource type="Animation" id="Animation_upj05"]
-resource_name = "RESET"
-length = 360.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -49,18 +45,22 @@ tracks/0/path = NodePath("Moon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 360),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -60, 0)]
+"values": [Vector3(0, 0, 0)]
 }
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Rumble")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+
+[sub_resource type="Animation" id="Animation_upj05"]
+resource_name = "RESET"
+length = 360.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rumble")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -208,26 +208,26 @@ tracks/1/keys = {
 }],
 "times": PackedFloat32Array(0, 7.1, 12.5, 30.666666, 37.766663, 43.166664, 60.5, 67.6, 73, 91.23333, 98.33333, 103.73333, 121.899994, 129, 134.4, 151.73334, 158.83333, 164.23334, 181.33333, 188.43333, 193.83333, 212, 219.09999, 224.49998, 241.83333, 248.93333, 254.33333, 272.56665, 279.66663, 285.06665, 303.23334, 310.3333, 315.73334, 333.06665, 340.16663, 345.56665)
 }
-tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Rumble:volume_db")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rumble:volume_db")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 304.43332, 360),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-80.0, -80.0, 0.0]
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Moon")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Moon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(360),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -235,93 +235,101 @@ tracks/3/keys = {
 "method": &"moon_fall_finished"
 }]
 }
-tracks/4/type = "audio"
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Music")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 4.3088136,
+"stream": ExtResource("5_ydcye")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Music")
+tracks/4/path = NodePath("Music:volume_db")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("19_upj05")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("19_upj05")
-}],
-"times": PackedFloat32Array(0, 199.4)
-}
-tracks/4/use_blend = true
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Music:volume_db")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(324.0595, 346.46667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -80.0]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Sun_Color")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Sun_Color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 360.06668),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector4(1, 0.5, 0, 0), Vector4(0, 0, 0, 0)]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Moon/MoonOuter:material_override:shader_parameter/wave_amplitude")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Moon/MoonOuter:material_override:shader_parameter/wave_amplitude")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 357.96667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.0030000001425]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Glow_Power")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Glow_Power")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 170.81483, 358.6),
 "transitions": PackedFloat32Array(1.0889592, 4.177383, 1),
 "update": 0,
 "values": [0.0, 0.0, 3.0]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Lightness_Difference")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/Lightness_Difference")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0, 359.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [3.0, 3.0]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/waveSpeed")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 359.23334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/waveSpeed")
+tracks/10/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/fresnel")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 359.23334),
+"times": PackedFloat32Array(0, 357.93332),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 1.0]
@@ -329,14 +337,14 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Moon/MoonGlow:material_override:shader_parameter/fresnel")
+tracks/11/path = NodePath("Moon:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 357.93332),
+"times": PackedFloat32Array(0, 360),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.0, 1.0]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jun3y"]
@@ -344,6 +352,12 @@ _data = {
 &"RESET": SubResource("Animation_eg0ho"),
 &"moonfall": SubResource("Animation_upj05")
 }
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hhfy0"]
+plane = Plane(0, 0, 1, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ydcye"]
+plane = Plane(0, 0, -1, 1)
 
 [node name="Enviroment" type="Node3D" groups=["navmesh"]]
 
@@ -364,7 +378,6 @@ use_texture_for_bounces = false
 light_data = ExtResource("1_55ugo")
 
 [node name="Moon" parent="." instance=ExtResource("18_ue1kb")]
-visible = false
 
 [node name="moon_player" type="AnimationPlayer" parent="."]
 libraries = {
@@ -373,10 +386,9 @@ libraries = {
 script = ExtResource("21_o6dcl")
 
 [node name="Rumble" type="AudioStreamPlayer" parent="."]
-volume_db = -80.0
+volume_db = -128.9283
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-volume_db = -16.0
 
 [node name="zombie_spawners" type="Node3D" parent="."]
 
@@ -524,5 +536,26 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 24.5
 
 [node name="light_post28" parent="lamp posts" instance=ExtResource("7_hhfy0")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 13.489916, 0, 2.7359164)
+
+[node name="world_border" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="world_border"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.07927, 9.885996, -10.149529)
+shape = SubResource("WorldBoundaryShape3D_hhfy0")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="world_border"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.07927, 9.885996, 40.176723)
+shape = SubResource("WorldBoundaryShape3D_ydcye")
+
+[node name="world_border2" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 22.375973)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="world_border2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.07927, 9.885996, -16.384626)
+shape = SubResource("WorldBoundaryShape3D_hhfy0")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="world_border2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.07927, 9.885996, 38.23299)
+shape = SubResource("WorldBoundaryShape3D_ydcye")
 
 [editable path="Moon"]

@@ -9,6 +9,7 @@ var shoot_action : input_action_mouse
 var reload_action : input_action
 @export var guns : Dictionary[StringName,Node3D]
 @export var enabled_guns : Array[Node3D]
+@export var current_gun_index : int = 0
 @export var current_gun : weapon
 @export var raycaster : RayCast3D
 @export var plr : player
@@ -22,8 +23,15 @@ func _ready() -> void:
 	reload_action = InputManager.actions["reload"]
 	shoot_action.pressed.connect(on_shoot)
 	reload_action.just_released.connect(reload)	
-	#InputManager.scroll_up.connect(cycle_gun_up)
-	#InputManager.scroll_down.connect(cycle_gun_down)
+	InputManager.scroll_up.connect(cycle_up)
+	InputManager.scroll_down.connect(cycle_down)
+	current_gun = enabled_guns[current_gun_index]
+	var i : int = 0
+	for g : weapon in enabled_guns:
+		if i == current_gun_index:
+			continue
+		g.unequip()
+		i += 1
 	current_gun.equip(gun_parent)	
 
 	#add some starting bullets
@@ -50,6 +58,26 @@ func reload():
 	if !InputManager.is_input_locked():
 		current_gun.reload()
 
-#spawn a single bullet
-func spawn_bullet(hit_position : Vector3):
-	pass
+func change_weapon(index : int = 0):
+	if index == current_gun_index:
+		return
+	current_gun.unequip()
+	current_gun = enabled_guns[index]
+	current_gun.equip(gun_parent)
+	current_gun_index = index
+
+func cycle_guns(direction : int):
+	var index : int = current_gun_index
+	index += direction
+	if index >= enabled_guns.size():
+		index = 0
+	if index < 0:
+		index = enabled_guns.size() - 1
+	change_weapon(index)
+	update_ui()
+
+func cycle_up():
+	cycle_guns(1)
+
+func cycle_down():
+	cycle_guns(-1)

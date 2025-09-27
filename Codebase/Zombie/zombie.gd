@@ -85,6 +85,7 @@ func deal_player_damagage():
 		var play : player = GameManager.data.data.get("player",null)
 		if play:
 			play.take_damage()
+			GameManager.shake_camera.emit(1,.2)
 
 func take_damage(damage : int):
 	if !state_machine.bb._get("dead") == true:
@@ -115,7 +116,7 @@ func melee_damage():
 func kill():
 	AudioManager.play_audio_file(zombie_die_sound,"default",true,global_position)
 	state_machine.bb._set("dead",true)
-	GameManager.data._set("score",GameManager.data._get("score"))
+	GameManager.increase_score(1)
 	var chance : float = randf_range(0,1)
 	print("chance of ammo: ", chance, " / " ,  bb._get("chance_for_ammo"))
 	if randf_range(0,1) <= bb._get("chance_for_ammo"):

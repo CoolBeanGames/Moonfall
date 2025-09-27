@@ -6,6 +6,9 @@ var data : blackboard = blackboard.new()
 var fsm : StateMachine
 var zombie_spawners : Array[zombie_spawn_point] = []
 var save_data : blackboard = blackboard.new()
+@export var start_music : audio_player
+
+signal shake_camera(magnitude, time)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,6 +32,12 @@ func _ready() -> void:
 	"log_level": 1
 	})
 	
+	#start playing the intro music
+	start_music = AudioManager.play_audio_file(load("res://Audio/Music/title/1181305_Heartsick-Feat-Agassi.mp3"),"default",false,Vector3(0,0,0))
+	start_music.playback_finished.connect(music_ended)
+
+func music_ended():
+	SignalBus.fire_signal("intro_music_done")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -45,22 +54,18 @@ func addStates():
 	fsm.states["Paused"] = GamePausedState.new(fsm)
 	fsm.states["Win"] = GameWinState.new(fsm)
 	fsm.states["Lose"] = GameLoseState.new(fsm)
+	fsm.states["Intro"] = GameIntroState.new(fsm)
+	fsm.states["Credits"] = GameCreditsState.new(fsm)
 	
-	#skip the intro if needed
-	if !save_data.has("intro_seen"):
-		fsm.states["Intro"] = GameIntroState.new(fsm)
-		pass
 
 ##called to add the transitions needed for the state machine
 func addTransitions():
 	#transition for moving from loading to splash screens
 	fsm.transitions.append(GameLoadingFinishedTransition.new(fsm,"Splash","Preload"))
-	#skip the intro if needed
-	if !save_data.has("intro_seen"):
-		var e_i : event_transition = event_transition.new("to_intro",fsm,"Intro","Title")
-		fsm.transitions.append(e_i)
-		var e_g : event_transition = event_transition.new("start_game",fsm,"Game","Intro")
-		fsm.transitions.append(e_g)
+	var e_i : event_transition = event_transition.new("to_intro",fsm,"Intro","Title")
+	fsm.transitions.append(e_i)
+	var e_g : event_transition = event_transition.new("start_game",fsm,"Game","Intro")
+	fsm.transitions.append(e_g)
 	fsm.transitions.append(SplashScreenFinishedTransition.new(fsm,"Title","Splash"))
 	fsm.transitions.append(game_finished_transition.new(fsm,"Win","Game"))
 	var e : event_transition = event_transition.new("new_game_clicked",fsm,"Game","Title")
@@ -69,6 +74,10 @@ func addTransitions():
 	fsm.transitions.append(e_k)
 	var e_t : event_transition = event_transition.new("to_title",fsm,"Title","Lose")
 	fsm.transitions.append(e_t)
+	var e_c : event_transition = event_transition.new("to_credits",fsm,"Credits","Title")
+	fsm.transitions.append(e_c)
+	var e_tc : event_transition = event_transition.new("to_title",fsm,"Title","Credits")
+	fsm.transitions.append(e_tc)
 
 func save_game():
 	var path : String = "user://CoolBeanGames/MoonFall/Saves/save.json"
@@ -87,3 +96,8 @@ func kill_all_zombies():
 				var zom = z as zombie
 				zom.kill()
 		data.data["all_zombies"].clear()
+
+func increase_score(ammount : int):
+	var adjusted : int = ammount * data.data.get("score_mult",1)
+	var score : int = data.data.get("score",0)
+	data.data.set("score",score + adjusted)

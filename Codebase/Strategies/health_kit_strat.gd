@@ -4,7 +4,7 @@ class_name health_kit_strategy extends strategy
 @export var ammount_healed : float = 0.2
 
 ##call to add health to the player
-func execute(...params : Array):
+func execute(..._params : Array):
 	var player_max_health = GameManager.data.data.get("player_max_health",1)
 	var player_health = GameManager.data.data.get("player_health",1)
 	var original_health = player_health

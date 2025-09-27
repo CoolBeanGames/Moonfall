@@ -19,46 +19,6 @@ height = 1000.0
 blend_mode = 1
 shading_mode = 0
 
-[sub_resource type="Animation" id="Animation_08fw1"]
-resource_name = "shoot_gun"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("gun:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.36666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.5864306), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("gun/gun_lower/gun_upper:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.36666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.12748039, 0.7062061, -0.30981904), Vector3(-0.692, 0.706, -0.31), Vector3(-0.12748039, 0.7062061, -0.30981904)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("gun/gun_lower/clip/bullet_1:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.18, 0.42, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.5365635, 1.0162613, 0.03090515), Vector3(0.9688115, 2.0094156, 6.0591993), Vector3(-0.023428082, -0.87200165, 14.488398), Vector3(0.5365635, 1.0162613, 0.03090515)]
-}
-
 [sub_resource type="Animation" id="Animation_gaf5f"]
 length = 0.001
 tracks/0/type = "value"
@@ -122,6 +82,33 @@ tracks/4/keys = {
 "values": [Vector3(-1.5005921, -0.93713, -0.16346532)]
 }
 
+[sub_resource type="Animation" id="Animation_u715i"]
+resource_name = "melee"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333337, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.164, 0.234, 0), Vector3(0.434, 0.234, -0.215), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333337, 0.45234996, 0.59744334, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.1318256e-08, 0.2956413, 0.70816725), Vector3(-1.1318256e-08, 0.2956413, 0.70816725), Vector3(0.2529497, -0.15470515, -1.4199003), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_encxg"]
 resource_name = "reload_gun"
 length = 3.0
@@ -162,31 +149,44 @@ tracks/2/keys = {
 "values": [Vector3(-1.5005921, -0.93713, -0.16346532), Vector3(-1.5005921, -0.93713, -0.16346532), Vector3(-3.0228288, -6.687131, 0.13255495), Vector3(-3.0228288, -6.687131, 0.13255495), Vector3(-1.5005921, -0.93713, -0.16346532), Vector3(-1.5005921, -0.93713, -0.16346532)]
 }
 
-[sub_resource type="Animation" id="Animation_u715i"]
-resource_name = "melee"
+[sub_resource type="Animation" id="Animation_08fw1"]
+resource_name = "shoot_gun"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gun:position")
+tracks/0/path = NodePath("gun:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.33333337, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.164, 0.234, 0), Vector3(0.434, 0.234, -0.215), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.5864306), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gun:rotation")
+tracks/1/path = NodePath("gun/gun_lower/gun_upper:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.33333337, 0.45234996, 0.59744334, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-1.1318256e-08, 0.2956413, 0.70816725), Vector3(-1.1318256e-08, 0.2956413, 0.70816725), Vector3(0.2529497, -0.15470515, -1.4199003), Vector3(0, 0, 0)]
+"values": [Vector3(-0.12748039, 0.7062061, -0.30981904), Vector3(-0.692, 0.706, -0.31), Vector3(-0.12748039, 0.7062061, -0.30981904)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("gun/gun_lower/clip/bullet_1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.42, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5365635, 1.0162613, 0.03090515), Vector3(0.9688115, 2.0094156, 6.0591993), Vector3(-0.023428082, -0.87200165, 14.488398), Vector3(0.5365635, 1.0162613, 0.03090515)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u715i"]

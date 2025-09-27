@@ -61,8 +61,7 @@ func _setup_2D(audio : AudioStream):
 	global_player.bus = data.get("bus","Master")
 	global_player.play()
 	
-	if data.get("repeat",false):
-		global_player.finished.connect(audio_finished)
+	global_player.finished.connect(audio_finished)
 
 #play a 3d positional sound file
 func _setup_3D(audio : AudioStream, position : Vector3):
@@ -77,14 +76,14 @@ func _setup_3D(audio : AudioStream, position : Vector3):
 	local_player.global_position = position
 	local_player.play()
 	
-	if data.get("repeat",false):
-		local_player.finished.connect(audio_finished)
+	local_player.finished.connect(audio_finished)
 
 #called when a player finishes, allows the playback finished signal to
 #fire off and estroyes the object
 func audio_finished():
+	print("audio finished")
 	playback_finished.emit()
-	free()
+	queue_free()
 
 #used to load in settings from a json file as specified
 #path should ommit folders and the json path
@@ -115,3 +114,15 @@ func load_from_json(path : String):
 			push_error("Parsed JSON is not a dictionary")
 	else:
 		push_error("error encountered parsing json data: ", json.get_error_message())
+
+func stop():
+	local_player.stop()
+	global_player.stop()
+
+#for gradually fading out the music
+func fade_out(time : float):
+	var t_l = create_tween()
+	t_l.tween_property(local_player,"volume_db",linear_to_db(0.001),time)
+	
+	var t_g = create_tween()
+	t_g.tween_property(global_player,"volume_db",linear_to_db(0.001),time)

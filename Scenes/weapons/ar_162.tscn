@@ -105,7 +105,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_dahhe"]
 resource_name = "shoot_gun"
 length = 0.1
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -150,6 +149,7 @@ light_energy = 0.0
 
 [node name="bullet_tracer" type="CSGMesh3D" parent="AR16/shoot_point" index="1"]
 transform = Transform3D(-9.999999, 4.3711384e-07, 0, -4.3711384e-07, -9.999999, -2.842171e-14, 1.6940659e-21, 2.842171e-14, 9.999998, -0.013999939, 4999.863, 0)
+visible = false
 mesh = SubResource("CylinderMesh_gpxfi")
 material = SubResource("StandardMaterial3D_mti3q")
 

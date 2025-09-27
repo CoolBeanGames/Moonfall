@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://c4d2g7o6nt4v4" path="res://Scenes/UI_Scenes/score_entry.tscn" id="5_0f2sg"]
 [ext_resource type="Script" uid="uid://d4avxe2edsc6p" path="res://Codebase/Audio/Scripts/audio_player.gd" id="5_q1dhx"]
 
-[node name="GameOverScreen" type="Node2D" node_paths=PackedStringArray("insert_name_ui", "name_field", "score_display_ui")]
+[node name="GameOverScreen" type="Node2D" node_paths=PackedStringArray("insert_name_ui", "name_field", "score_display")]
 script = ExtResource("1_3jlro")
 insert_name_ui = NodePath("CanvasLayer/InputNameScreen")
 name_field = NodePath("CanvasLayer/InputNameScreen/VBoxContainer/HBoxContainer/LineEdit")
-score_display_ui = NodePath("CanvasLayer/ScoreScreen")
+score_display = NodePath("CanvasLayer/ScoreScreen")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

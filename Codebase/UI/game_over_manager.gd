@@ -2,7 +2,7 @@ extends Node2D
 
 @export var insert_name_ui : Control
 @export var name_field : LineEdit
-@export var score_display_ui : score_display_ui
+@export var score_display : score_display_ui
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +12,7 @@ func _ready() -> void:
 	name_field.text = GameManager.save_data.data.get("player_name","player")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func on_name_entry():
@@ -21,8 +21,8 @@ func on_name_entry():
 		var score = GameManager.data.data.get("score",0) +1
 		await SilentWolf.Scores.save_score(name_field.text,score)
 		await GameManager.save_game()
-		score_display_ui.visible = true
-		await score_display_ui.show_score_ui()
+		score_display.visible = true
+		await score_display.show_score_ui()
 		insert_name_ui.queue_free()
 
 func on_back_to_title():

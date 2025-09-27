@@ -1,0 +1,139 @@
+[gd_scene load_steps=7 format=3 uid="uid://m076e71jptne"]
+
+[ext_resource type="Script" uid="uid://cscadbjtpxm67" path="res://Codebase/UI/credits.gd" id="1_2anxy"]
+[ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="1_tffw4"]
+[ext_resource type="AudioStream" uid="uid://bfl2gmv635n3h" path="res://Audio/Music/1171093_FD---I-Heard-Your-Name-in-.mp3" id="3_0hkkw"]
+
+[sub_resource type="Animation" id="Animation_0hkkw"]
+resource_name = "scroll"
+length = 40.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/PanelContainer/RichTextLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 35.333332),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1000), Vector2(0, -3500)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(38.333332),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xopge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/PanelContainer/RichTextLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0arjh"]
+_data = {
+&"RESET": SubResource("Animation_xopge"),
+&"scroll": SubResource("Animation_0hkkw")
+}
+
+[node name="Credits" type="Node2D" node_paths=PackedStringArray("anim")]
+script = ExtResource("1_2anxy")
+anim = NodePath("AnimationPlayer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 10000.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_tffw4")
+bbcode_enabled = true
+text = "[font_size=128]Moonfall[/font_size]
+
+Coolbean Games
+
+
+
+
+
+[font_size=48][b]Design[/b][/font_size]
+Dustin Booher
+
+[font_size=48][b]Programming[/b][/font_size]
+Dustin Booher
+
+[font_size=48][b]Enviromental Modeling/Textures[/b][/font_size]
+Kenny.nl
+
+[font_size=48][b]Zombie Modeling[/b][/font_size]
+Kenny.nl
+
+[font_size=48][b]Props[/b][/font_size]
+Kenny.nl
+
+[font_size=48][b]Gun Models[/b][/font_size]
+Kenny.nl
+
+[font_size=48][b]Music:[/b][/font_size]
+
+[font_size=48][b]Heartsick (Ft. Agassi)[/b][/font_size]
+Derpcat
+
+[font_size=48][b]Heartsick instrumental[/b][/font_size]
+Derpcat
+
+[font_size=48][b]I Heard your name in the Static[/b][/font_size]
+ForgottenDawn
+
+[font_size=48][b]Repent or Perish![/b][/font_size]
+Cacola
+
+[font_size=48][b]Soundeffects[/b][/font_size]
+Zapsplat
+
+[font_size=48][b]Made in the Godot Engine[/b][/font_size]
+
+[font_size=48][b]Special Thanks To UntitledGameJam[/b][/font_size]
+https://www.CoolBeanGames.com/UGJ"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0arjh")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0hkkw")
+autoplay = true

@@ -16,6 +16,11 @@ var bb : blackboard = blackboard.new()
 @export var debug_text_label : Label
 var playing_low_health : bool = false
 
+@export_category("camera_shake")
+@export var camera_shake_base : Node3D
+@export var mag : float
+@export var timer : float
+
 
 #setup our states
 func _ready():
@@ -40,6 +45,8 @@ func _ready():
 	GameManager.data.data.set("player_health",max_health)
 	
 	$CollisionShape3D/CSGCylinder3D.queue_free()
+	
+	GameManager.shake_camera.connect(shake_camera)
 
 func take_damage(damage : int = 1):
 	var health = GameManager.data.data.get("player_health",1)
@@ -69,6 +76,9 @@ func _process(_delta):
 		if playing_low_health and ratio > 0.2:
 			low_health_audio.stop()
 			playing_low_health = false
+	
+	timer -= _delta
+	do_shake()
 
 
 #used to set a reference to the state machine within each state
@@ -79,3 +89,17 @@ func _setup_states():
 
 func melee_finished():
 	not_melee = true
+
+func shake_camera(magnitude : float, time : float):
+	timer = time
+	mag = magnitude 
+
+func do_shake():
+	if timer > 0:
+		camera_shake_base.position = Vector3(
+			randf_range(-0.25,0.25) * mag,
+			randf_range(-0.25,0.25) * mag,
+			randf_range(-0.25,0.25) * mag
+		)
+	else:
+		camera_shake_base.position = Vector3(0,0,0)

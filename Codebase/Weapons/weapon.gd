@@ -24,6 +24,8 @@ class_name weapon extends Node3D
 @export var ready_to_reload : bool = false
 ##countdown until this gun is ready to fire again
 @export var cooldown : float = 0
+##if you can melee
+@export var can_melee : bool = true
 
 ##called to shoot the gun
 func shoot(raycaster : RayCast3D):
@@ -38,6 +40,8 @@ func shoot(raycaster : RayCast3D):
 
 		bullet_tracer.visible = true
 		get_tree().create_timer(.1).timeout.connect(bullet_tracer_off) 
+		
+		GameManager.shake_camera.emit(gun_data.camera_shake,gun_data.camera_shake_time)
 
 func bullet_tracer_off():
 	bullet_tracer.visible = false
@@ -66,7 +70,7 @@ func reload():
 			GameManager.data.data.set("bullets",GameManager.data.data.get("bullets",0) -1)
 
 func melee(_melee_targets : Array):
-	if ready_to_shoot:
+	if can_melee:
 		strat.melee(gun_data,_melee_targets,animation_player)
 		cooldown = gun_data.melee_time
 		
@@ -95,3 +99,6 @@ func _process(delta):
 		ready_to_reload = true
 	else:
 		ready_to_reload = false
+	
+	#check if you can melee
+	can_melee = cooldown <= 0

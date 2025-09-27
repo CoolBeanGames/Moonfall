@@ -3,11 +3,11 @@
 ##a gun
 class_name pistol_strategy extends gun_strategy
 
-func equip(...params : Array):
+func equip(..._params : Array):
 	update_ui()
 	pass
 
-func unequip(...params : Array):
+func unequip(..._params : Array):
 	pass
 
 func shoot(...params : Array):

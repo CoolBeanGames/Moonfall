@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbgjbggshuarb"]
+[gd_scene load_steps=20 format=3 uid="uid://cbgjbggshuarb"]
 
 [ext_resource type="Script" uid="uid://dljoeq7cges5" path="res://Codebase/UI/title_scene.gd" id="1_j8exe"]
 [ext_resource type="Texture2D" uid="uid://by5nmjnwhbage" path="res://Textures/moonfall logo.png" id="2_mur7e"]
@@ -7,6 +7,8 @@
 [ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="3_ylut5"]
 [ext_resource type="Material" uid="uid://c4eak3tarstnn" path="res://Materials/moon_outer.tres" id="4_mur7e"]
 [ext_resource type="AudioStream" uid="uid://c5ap10km7w24m" path="res://Audio/SFX/explosion.wav" id="7_vt651"]
+[ext_resource type="AudioStream" uid="uid://ddua67tgyp6hu" path="res://Audio/SFX/skyclad_sound_swell_chopper_chord_build_pulse_accelerate_end_with_whoosh_mid_resonant_fragment_reverse_284.wav" id="8_fuef0"]
+[ext_resource type="AudioStream" uid="uid://cnakorgvo13lg" path="res://Audio/Music/title/heartsick instr.mp3" id="8_qv3jj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4iaox"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -65,6 +67,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.001]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.930757, 0, 2.44337)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.30375227, 0.37673512, 0.16377196)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera3D:fov")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
 
 [sub_resource type="Animation" id="Animation_mur7e"]
 resource_name = "explode"
@@ -122,7 +160,7 @@ tracks/3/keys = {
 tracks/4/type = "audio"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/path = NodePath("explosion_sound")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -151,16 +189,147 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_mgc4o"]
+resource_name = "to_intro"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
+"transitions": PackedFloat32Array(11.904926, 1),
+"update": 0,
+"values": [Vector3(0.930757, 0, 2.44337), Vector3(1.1472995, 0, -6.8656406)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.30375227, 0.37673512, 0.16377196), Vector3(0.30375224, 0.3767352, 0.16377199)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("end_sound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 5.0839844,
+"stream": ExtResource("8_fuef0")
+}],
+"times": PackedFloat32Array(0.015214682)
+}
+tracks/2/use_blend = true
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.73333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"to_intro"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_r7xx3"]
+resource_name = "to_credits"
+length = 1.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 1.3333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.930757, 0, 2.44337), Vector3(0.92157686, 0.94982505, 2.1970832), Vector3(0.9048975, 0, 2.1659124)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 1.3333, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.30375227, 0.37673512, 0.16377196), Vector3(0.7816559, 0.33471763, 0.03721483), Vector3(-1.1692489, 0.6391839, -0.8030761), Vector3(-1.3395779, 0.7463459, -0.5109293)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("end_sound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 4.5226,
+"stream": ExtResource("8_fuef0")
+}],
+"times": PackedFloat32Array(0.032781933)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:fov")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.33276638, 1.3333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [75.0, 106.1, 50.5]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"to_credits"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ylut5"]
 _data = {
 &"RESET": SubResource("Animation_ylut5"),
 &"explode": SubResource("Animation_mur7e"),
-&"fade_in": SubResource("Animation_i2ev1")
+&"fade_in": SubResource("Animation_i2ev1"),
+&"to_credits": SubResource("Animation_r7xx3"),
+&"to_intro": SubResource("Animation_mgc4o")
 }
 
-[node name="TitleScene" type="Node3D" node_paths=PackedStringArray("title_anim")]
+[node name="TitleScene" type="Node3D" node_paths=PackedStringArray("title_anim", "replay_intro_button", "instrumental_audio", "targets_label")]
 script = ExtResource("1_j8exe")
 title_anim = NodePath("AnimationPlayer")
+replay_intro_button = NodePath("CanvasLayer/PanelContainer/VBoxContainer/Buttons/replay_intro_button")
+instrumental_audio = NodePath("music_back")
+targets_label = NodePath("CanvasLayer/targets_label")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ryprb")
@@ -171,7 +340,8 @@ light_color = Color(0.854996, 0.284231, 0.445477, 1)
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.935369, -0.0430434, 0.351045, 0.155577, 0.941453, -0.299102, -0.317618, 0.334386, 0.887302, 0.930757, 0, 2.44337)
+transform = Transform3D(0.93536866, -0.04304337, 0.35104498, 0.15557699, 0.9414527, -0.2991028, -0.3176179, 0.3343859, 0.88730204, 0.930757, 0, 2.44337)
+near = 0.282
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -208,6 +378,19 @@ theme = ExtResource("3_ylut5")
 theme_override_font_sizes/font_size = 48
 text = "Quit"
 
+[node name="replay_intro_button" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_ylut5")
+theme_override_font_sizes/font_size = 32
+text = "Replay
+Intro"
+
+[node name="Credits" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_ylut5")
+theme_override_font_sizes/font_size = 48
+text = "Credits"
+
 [node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -216,6 +399,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="targets_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_ylut5")
+horizontal_alignment = 2
 
 [node name="ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49023438, 0)
@@ -585,6 +781,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_ylut5")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="explosion_sound" type="AudioStreamPlayer" parent="."]
+
+[node name="music_back" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_qv3jj")
+
+[node name="end_sound" type="AudioStreamPlayer" parent="."]
 
 [connection signal="button_down" from="CanvasLayer/PanelContainer/VBoxContainer/Buttons/start" to="." method="_on_start_button_down"]
+[connection signal="button_down" from="CanvasLayer/PanelContainer/VBoxContainer/Buttons/replay_intro_button" to="." method="on_replay_intro"]
+[connection signal="button_down" from="CanvasLayer/PanelContainer/VBoxContainer/Buttons/Credits" to="." method="on_credits"]

@@ -153,12 +153,12 @@ func save_to_encrypted_json(path: String):
 # In your Blackboard script
 # ...
 
-func encrypt(target: String) -> String:
+func encrypt(encrypt_target: String) -> String:
 	var aes = AESContext.new()
 	var iv = key.to_utf8_buffer().slice(0, 16)
 	
 	# Convert string to a byte array and get its length
-	var target_bytes = target.to_utf8_buffer()
+	var target_bytes = encrypt_target.to_utf8_buffer()
 	var target_length = target_bytes.size()
 	
 	# Calculate padding needed
@@ -178,10 +178,10 @@ func encrypt(target: String) -> String:
 	
 	return Marshalls.raw_to_base64(encrypted)
 
-func decrypt(target: String) -> String:
+func decrypt(decrypt_target: String) -> String:
 	var aes = AESContext.new()
 	var iv = key.to_utf8_buffer().slice(0, 16)
-	var raw = Marshalls.base64_to_raw(target)
+	var raw = Marshalls.base64_to_raw(decrypt_target)
 	
 	aes.start(AESContext.MODE_CBC_DECRYPT, key.to_utf8_buffer(), iv)
 	var decrypted_bytes = aes.update(raw)

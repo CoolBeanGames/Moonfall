@@ -403,9 +403,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.869966, 0, 12.57315)
 [node name="tree_a3" parent="trees" instance=ExtResource("8_y30xb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8473463, 0, 10.225129)
 
-[node name="tree_b3" parent="trees" instance=ExtResource("9_xhjei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4248148, 1.8532463, 12.611736)
-
 [node name="tree_a4" parent="trees" instance=ExtResource("8_y30xb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.871648, 0, 17.14404)
 
