@@ -43,6 +43,9 @@ func tick():
 		if timer >= current_spawn_time:
 			timer -= current_spawn_time
 			spawn()
+	if Input.is_key_pressed(KEY_ESCAPE):
+		SceneManager.load_ui_scene(load("res://Scenes/UI_Scenes/pause.tscn"),"Pause")
+		GameManager.get_tree().paused = true
 
 func ratio(scale : float = 1) -> float:
 	return GameManager.data.data.get("time_ratio",0) * scale

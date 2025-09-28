@@ -6,7 +6,10 @@ var data : blackboard = blackboard.new()
 var fsm : StateMachine
 var zombie_spawners : Array[zombie_spawn_point] = []
 var save_data : blackboard = blackboard.new()
+var settings_data : blackboard = blackboard.new()
+
 @export var start_music : audio_player
+@export var is_paused : bool = false
 
 signal shake_camera(magnitude, time)
 
@@ -35,6 +38,9 @@ func _ready() -> void:
 	#start playing the intro music
 	start_music = AudioManager.play_audio_file(load("res://Audio/Music/title/1181305_Heartsick-Feat-Agassi.mp3"),"default",false,Vector3(0,0,0))
 	start_music.playback_finished.connect(music_ended)
+
+	load_settings()
+	preset_volumes()
 
 func music_ended():
 	SignalBus.fire_signal("intro_music_done")
@@ -74,6 +80,8 @@ func addTransitions():
 	fsm.transitions.append(e_k)
 	var e_t : event_transition = event_transition.new("to_title",fsm,"Title","Lose")
 	fsm.transitions.append(e_t)
+	var e_tg : event_transition = event_transition.new("to_title",fsm,"Title","Game")
+	fsm.transitions.append(e_tg)
 	var e_c : event_transition = event_transition.new("to_credits",fsm,"Credits","Title")
 	fsm.transitions.append(e_c)
 	var e_tc : event_transition = event_transition.new("to_title",fsm,"Title","Credits")
@@ -89,6 +97,27 @@ func load_save():
 	if save_data.has("player_name"):
 		print("player name: ", save_data.get_data("player_name","p"))
 
+func save_settings():
+	var path : String = "user://CoolBeanGames/MoonFall/Saves/settings.json"
+	settings_data.save_to_json(path)
+
+func load_settings():
+	var path : String = "user://CoolBeanGames/MoonFall/Saves/settings.json"
+	settings_data.load_from_json(path)
+	if settings_data.data.size() == 0:
+		#no data was loaded initializing settings
+		settings_data.set("master_volume",0.5)
+		settings_data.set("sfx_volume",0.5)
+		settings_data.set("music_volume",0.5)
+		settings_data.set("look_sensitivity",0.5)
+		settings_data.set("invert_y",false)
+		print("settings was intialized")
+		save_settings()
+	else:
+		print("settings successfully loaded")
+	print(str(settings_data.data))
+
+
 func kill_all_zombies():
 	if data.data.has("all_zombies"):
 		for z in data.data.get("all_zombies"):
@@ -101,3 +130,13 @@ func increase_score(ammount : int):
 	var adjusted : int = ammount * data.data.get("score_mult",1)
 	var score : int = data.data.get("score",0)
 	data.data.set("score",score + adjusted)
+
+func preset_volumes():
+	print(str(settings_data.data))
+	update_audio_bus("Music",settings_data.data.get("music_volume"))
+	update_audio_bus("SoundEffects",settings_data.data.get("sfx_volume"))
+	update_audio_bus("Master",settings_data.data.get("master_volume"))
+
+func update_audio_bus(bus_name : String , volume_linear : float):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name) , linear_to_db(volume_linear))
+	

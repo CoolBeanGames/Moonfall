@@ -21,6 +21,8 @@ var playing_low_health : bool = false
 @export var mag : float
 @export var timer : float
 
+@export var ad : AudioStreamPlayer 
+
 
 #setup our states
 func _ready():

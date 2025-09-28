@@ -1,11 +1,42 @@
-[gd_resource type="Theme" format=3 uid="uid://b7rgwcoaxjxnj"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b7rgwcoaxjxnj"]
+
+[ext_resource type="FontFile" uid="uid://whq8ebbl6wxr" path="res://fonts/CT ProLamina.ttf" id="1_5kxjo"]
+[ext_resource type="StyleBox" uid="uid://dc7cjlu7qgt6y" path="res://ui_elements/button_box_hover.tres" id="2_g7fvb"]
+[ext_resource type="StyleBox" uid="uid://dfrh117awbs4q" path="res://ui_elements/button_box.tres" id="3_tpf0h"]
+[ext_resource type="StyleBox" uid="uid://whguva3te16n" path="res://ui_elements/button_box_pressed.tres" id="4_5y56j"]
+[ext_resource type="StyleBox" uid="uid://b5qgjvxyg8hl7" path="res://ui_elements/panel.tres" id="5_g4wr8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kxjo"]
+bg_color = Color(1, 0.27058825, 0.40392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7fvb"]
+bg_color = Color(0.87060404, 0, 0.2862321, 1)
 
 [resource]
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 16
+Button/font_sizes/font_size = 36
+Button/fonts/font = ExtResource("1_5kxjo")
+Button/styles/hover = ExtResource("2_g7fvb")
+Button/styles/normal = ExtResource("3_tpf0h")
+Button/styles/pressed = ExtResource("4_5y56j")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_5kxjo")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_g7fvb")
 Label/colors/font_shadow_color = Color(0, 0, 0, 0.43137255)
 Label/constants/outline_size = 21
 Label/constants/shadow_offset_x = 4
 Label/constants/shadow_offset_y = 4
 Label/constants/shadow_outline_size = 11
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_5kxjo")
+LineEdit/colors/caret_color = Color(1, 0.27058825, 0.40392157, 1)
+LineEdit/colors/selection_color = Color(0.27333418, 0.45642507, 0.62054193, 1)
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("1_5kxjo")
+LineEdit/styles/focus = ExtResource("2_g7fvb")
+LineEdit/styles/normal = ExtResource("3_tpf0h")
+Panel/styles/panel = ExtResource("5_g4wr8")
+PanelContainer/styles/panel = ExtResource("5_g4wr8")
 RichTextLabel/constants/outline_size = 21
 RichTextLabel/constants/shadow_offset_x = 4
 RichTextLabel/constants/shadow_offset_y = 4

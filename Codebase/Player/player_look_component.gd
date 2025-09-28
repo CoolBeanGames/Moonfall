@@ -56,8 +56,10 @@ func unset():
 
 #automatically called whenever our mouse is moved
 func mouse_moved(value : Vector2):
+	if GameManager.settings_data.get("invert_y"):
+		value.y *= -1
 	pitch_clamp = plr.bb._get("pitch_clamp")
-	look_speed = plr.bb.get("look_speed")
+	look_speed = plr.bb.get("look_speed") * GameManager.settings_data.get("look_sensitivity")
 	calculate_rot(value)
 
 #calculate our player rotation

@@ -1,0 +1,205 @@
+[gd_scene load_steps=5 format=3 uid="uid://do7dfinpt4w40"]
+
+[ext_resource type="AudioStream" uid="uid://bfl2gmv635n3h" path="res://Audio/Music/1171093_FD---I-Heard-Your-Name-in-.mp3" id="1_2wp1l"]
+[ext_resource type="Script" uid="uid://d067tsvcx7tsr" path="res://Codebase/UI/pause.gd" id="1_8a177"]
+[ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="2_77yqj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5rwi"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.12156863, 0.12156863, 0.12156863, 0.7647059)
+
+[node name="pause_screen" type="CanvasLayer" node_paths=PackedStringArray("audio", "master_volume", "sfx_volume", "music_volume", "look_sensitivity", "invert_y")]
+process_mode = 3
+script = ExtResource("1_8a177")
+audio = NodePath("AudioStreamPlayer")
+master_volume = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/master_volume/HSlider")
+sfx_volume = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/SFXVolume/HSlider")
+music_volume = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/MusicVolume/HSlider")
+look_sensitivity = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/LookSensitivity/HSlider")
+invert_y = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/Invert Y/CheckButton")
+
+[node name="Pause_Screen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Pause_Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4509804)
+
+[node name="PanelContainer" type="PanelContainer" parent="Pause_Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_top = 0.165
+anchor_right = 0.24000001
+anchor_bottom = 0.54800004
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Screen/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 11
+
+[node name="Label" type="Label" parent="Pause_Screen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_font_sizes/font_size = 32
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Pause_Screen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 26
+text = "Resume"
+
+[node name="To-Title" type="Button" parent="Pause_Screen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 26
+text = "To Title"
+
+[node name="Quit" type="Button" parent="Pause_Screen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 26
+text = "Quit"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Pause_Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28800002
+anchor_top = 0.112
+anchor_right = 0.92300004
+anchor_bottom = 0.572
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5rwi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Screen/PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pause_Screen/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_font_sizes/font_size = 32
+text = "Options"
+horizontal_alignment = 1
+
+[node name="master_volume" type="HBoxContainer" parent="Pause_Screen/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Pause_Screen/PanelContainer2/VBoxContainer/master_volume"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_font_sizes/font_size = 32
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Pause_Screen/PanelContainer2/VBoxContainer/master_volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_77yqj")
+max_value = 1.0
+step = 0.01
+value = 0.41
+
+[node name="SFXVolume" type="HBoxContainer" parent="Pause_Screen/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Pause_Screen/PanelContainer2/VBoxContainer/SFXVolume"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_font_sizes/font_size = 32
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Pause_Screen/PanelContainer2/VBoxContainer/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_77yqj")
+max_value = 1.0
+step = 0.01
+value = 0.41
+
+[node name="MusicVolume" type="HBoxContainer" parent="Pause_Screen/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Pause_Screen/PanelContainer2/VBoxContainer/MusicVolume"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_font_sizes/font_size = 32
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Pause_Screen/PanelContainer2/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_77yqj")
+max_value = 1.0
+step = 0.01
+value = 0.41
+
+[node name="LookSensitivity" type="HBoxContainer" parent="Pause_Screen/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Pause_Screen/PanelContainer2/VBoxContainer/LookSensitivity"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_font_sizes/font_size = 32
+text = "Look Sensitivity"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Pause_Screen/PanelContainer2/VBoxContainer/LookSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_77yqj")
+max_value = 2.0
+step = 0.01
+value = 0.41
+
+[node name="Invert Y" type="HBoxContainer" parent="Pause_Screen/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Pause_Screen/PanelContainer2/VBoxContainer/Invert Y"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_font_sizes/font_size = 32
+text = "Invert Look Y"
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Pause_Screen/PanelContainer2/VBoxContainer/Invert Y"]
+layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_2wp1l")
+autoplay = true
+bus = &"Music"
+
+[connection signal="button_down" from="Pause_Screen/PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_button_down"]
+[connection signal="button_down" from="Pause_Screen/PanelContainer/VBoxContainer/To-Title" to="." method="_on_to_title_button_down"]
+[connection signal="button_down" from="Pause_Screen/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_button_down"]
+[connection signal="drag_ended" from="Pause_Screen/PanelContainer2/VBoxContainer/master_volume/HSlider" to="." method="_on_master_volume_drag_ended"]
+[connection signal="drag_ended" from="Pause_Screen/PanelContainer2/VBoxContainer/SFXVolume/HSlider" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="drag_ended" from="Pause_Screen/PanelContainer2/VBoxContainer/MusicVolume/HSlider" to="." method="_on_music_volume_drag_ended"]
+[connection signal="drag_ended" from="Pause_Screen/PanelContainer2/VBoxContainer/LookSensitivity/HSlider" to="." method="_on_look_sensitivity_drag_ended"]
+[connection signal="toggled" from="Pause_Screen/PanelContainer2/VBoxContainer/Invert Y/CheckButton" to="." method="_on_invert_y_toggled"]

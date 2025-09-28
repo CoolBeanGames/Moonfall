@@ -55,7 +55,7 @@ func _add_axis(_name : String, context : axis_context):
 	ax.key = _name
 	ax.context.context_fired.connect(ax.on_context)
 	axis[_name] = ax
-	
+
 
 #used to process any other input
 func _input(event: InputEvent) -> void:

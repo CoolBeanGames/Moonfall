@@ -40,6 +40,8 @@ func _ready() -> void:
 	material_target.material_override = materials.pick_random()
 	bb._set("health",bb._get("health") + int((5 * GameManager.data.data.get("time_ratio",0))))
 
+
+
 func add_states():
 	_addState("land",zombie_spawn_state.new(state_machine))
 	_addState("chase", zombie_chase_state.new(state_machine))
@@ -107,6 +109,9 @@ func take_damage(damage : int):
 		if bb._get("health") <= 0:
 			AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)
 			state_machine.bb._set("dead",true)
+
+			GameManager.pausables.erase(self)
+
 			GameManager.data._set("score",GameManager.data._get("score"))
 			if randf_range(0,1) <= bb._get("chance_for_ammo"):
 				spawn_bullet_pickup()

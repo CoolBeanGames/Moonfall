@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://whguva3te16n"]
+
+[ext_resource type="Texture2D" uid="uid://b1db75rgt2807" path="res://Textures/UI/panel-transparent-border-015_pressed.png" id="1_4c0vo"]
+
+[resource]
+texture = ExtResource("1_4c0vo")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0

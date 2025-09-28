@@ -77,7 +77,7 @@ func unload_scene(scene_name : String):
 ##unload a single ui by name
 func unload_ui(ui_name : String):
 	if active_ui_scenes.has(ui_name):
-		active_ui_scenes[ui_name].free()
+		active_ui_scenes[ui_name].queue_free()
 		active_ui_scenes.erase(ui_name)
 		print("🚫 unloaded ui scene ", ui_name)
 	else:
