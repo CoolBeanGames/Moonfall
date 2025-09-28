@@ -110,8 +110,6 @@ func take_damage(damage : int):
 			AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)
 			state_machine.bb._set("dead",true)
 
-			GameManager.pausables.erase(self)
-
 			GameManager.data._set("score",GameManager.data._get("score"))
 			if randf_range(0,1) <= bb._get("chance_for_ammo"):
 				spawn_bullet_pickup()
