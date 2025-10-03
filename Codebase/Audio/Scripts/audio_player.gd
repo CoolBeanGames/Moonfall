@@ -5,9 +5,12 @@ class_name audio_player extends Node
 #holds data needed to play an audio file
 var data : Dictionary
 
+#the global player for 2D audio
 @export var global_player : AudioStreamPlayer
+#local audio player for 3D audio
 @export var local_player : AudioStreamPlayer3D
 
+#called when this player finishes (if its not looping)
 signal playback_finished
 
 #used to setup the player with a settings json object
@@ -15,32 +18,12 @@ func play(audio : AudioStream,
 settings_name : String, 
 use_position : bool = false, 
 position : Vector3 = Vector3(0,0,0)) -> audio_player:
-	load_from_json(settings_name)
+	if !AudioManager.configs.has(settings_name):
+		push_warning("tried to load config ", settings_name, " but it does not exist")
+		push_warning("available configs: ", str(AudioManager.configs.keys()))
+		return self
+	data = AudioManager.configs.get(settings_name)
 	_finish_setup(audio,use_position,position)
-	return self
-
-#use to setup the player WITHOUT a settings json file
-func play_manual(audio : AudioStream, 
-repeat : bool, 
-bus : String, 
-volume : float, 
-pitch : float, 
-_randomize_pitch : bool, 
-pitch_range_min : float, 
-pitch_range_max : float, 
-use_position : bool = false, 
-position : Vector3 = Vector3(0,0,0)) -> audio_player:
-	#load in all the data into the dictionary
-	data["repeat"] = repeat
-	data["bus"] = bus
-	data["volume"] = volume
-	data["pitch"] = pitch
-	data["pitch_range_max"] = pitch_range_max
-	data["pitch_range_min"] = pitch_range_min
-	
-	#finish setting up so we can continue
-	_finish_setup(audio,use_position,position)
-	
 	return self
 
 #finialize setting up the audio player
@@ -85,36 +68,7 @@ func audio_finished():
 	playback_finished.emit()
 	queue_free()
 
-#used to load in settings from a json file as specified
-#path should ommit folders and the json path
-func load_from_json(path : String):
-	path = "res://Data/JSON/AudioSettings/" + path + ".json"
-	if(!path.to_lower().contains(".json")):
-		push_error("path does not point to a valid json file, cannot open")
-		return
-	#load the file to text
-	var raw_string : String
-	var f = FileAccess.open(path,FileAccess.READ)
-	if(f == null):
-		push_error("failed to open json file (does it exist?) ", path)
-		return
-	
-	raw_string = f.get_as_text()
-	
-	#parse the file
-	var json = JSON.new()
-	var error = json.parse(raw_string)
-	
-	#set the data if valid
-	if(error == OK):
-		print("successfully loaded json data")
-		if typeof(json.data) == TYPE_DICTIONARY:
-			data = json.data
-		else:
-			push_error("Parsed JSON is not a dictionary")
-	else:
-		push_error("error encountered parsing json data: ", json.get_error_message())
-
+#stop the audio player immediatly
 func stop():
 	local_player.stop()
 	global_player.stop()
