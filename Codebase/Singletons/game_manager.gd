@@ -19,6 +19,8 @@ var settings_data : blackboard = blackboard.new()
 @export var start_music : audio_player
 ##if the game is paused or not
 @export var is_paused : bool = false
+
+var random_item_spawn_timer : float
 #endregion
 
 signal shake_camera(magnitude, time)
@@ -49,7 +51,8 @@ func _ready() -> void:
 	"log_level": 1
 	})
 	
-	#start playing the intro music
+
+func start_intro_audio():
 	start_music = AudioManager.play_audio_file(load("res://Audio/Music/title/1181305_Heartsick-Feat-Agassi.mp3"),"default",false,Vector3(0,0,0))
 	start_music.playback_finished.connect(music_ended)
 
@@ -61,6 +64,9 @@ func music_ended():
 func _process(delta: float) -> void:
 	fsm.process()
 	data.set_data("delta",delta)
+
+	var fps = Engine.get_frames_per_second()
+	set_data("fps_ratio",fps / 60.0)
 
 #region State Machine Setup
 ##add the states to our machine
@@ -78,6 +84,7 @@ func addStates():
 
 ##called to add the transitions needed for the state machine
 func addTransitions():
+	fsm.transitions = []
 	#transition for moving from loading to splash screens
 	fsm.transitions.append(GameLoadingFinishedTransition.new(fsm,"Splash","Preload"))
 	var e_i : event_transition = event_transition.new("to_intro",fsm,"Intro","Title")
@@ -90,7 +97,7 @@ func addTransitions():
 	fsm.transitions.append(e)
 	var e_k : event_transition = event_transition.new("player_killed",fsm,"Lose","Game")
 	fsm.transitions.append(e_k)
-	var e_t : event_transition = event_transition.new("to_title",fsm,"Title","Lose")
+	var e_t : event_transition = event_transition.new("to_title",fsm,"Preload","Lose")
 	fsm.transitions.append(e_t)
 	var e_tg : event_transition = event_transition.new("to_title",fsm,"Title","Game")
 	fsm.transitions.append(e_tg)
@@ -123,6 +130,7 @@ func load_settings():
 	else:
 		print("settings successfully loaded")
 	print(str(settings_data.data))
+	authenticate_settings()
 #endregion
 
 func authenticate_settings():
@@ -191,3 +199,19 @@ func erase_data(data_name : String):
 	if data_has(data_name):
 		data.data.erase(data_name)
 #endregion
+
+#called to erase all in game data
+func reset_data():
+	data.load_from_json("res://config.json")
+
+#makes all audio stop and returns it to the source
+func purge_all_audio():
+	for a in AudioManager.active_audio_players:
+		a.stop()
+
+func random_item_spawning():
+	random_item_spawn_timer += get_data("delta")
+	if random_item_spawn_timer >= get_data("Random_Item_Spawn_Check_Time"):
+		var spawner : Random_Item_Spawn_Point = get_data("random_pickups")[randi_range(0,get_data("random_pickups").size()-1)]
+		spawner.spawn()
+		random_item_spawn_timer = 0

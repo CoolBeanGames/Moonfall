@@ -8,4 +8,4 @@ class_name ammo_strategy extends strategy
 func execute(..._params):
 	var ammount_gained : int = randi_range(min_gained,max_gained)
 	GameManager.set_data("bullets",GameManager.get_data("bullets",0) + ammount_gained)
-	SignalBus.signals.signals["update_gun_ui"].event.emit()
+	SignalBus.fire_signal("update_gun_ui")

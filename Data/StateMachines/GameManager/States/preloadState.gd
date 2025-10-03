@@ -3,6 +3,9 @@ class_name GamePreloadState
 
 ##called once when entering the state and then not again until it has finished
 func on_enter():
+	GameManager.addTransitions()
+	GameManager.purge_all_audio()
+	GameManager.start_intro_audio()
 	SceneManager.load_scene(load("res://Scenes/LoadingScene.tscn"),"Loading",false,false)
 	GameManager.data.load_from_json("config.json")
 	await SceneManager.get_tree().process_frame

@@ -29,8 +29,13 @@ func tick():
 	recalculation_counter += 1
 	
 	var space_state = zom.get_world_3d().direct_space_state
-	
-	if recalculation_counter >= character_bb.data["path_recalculation_frames"]:
+	var increased_frame_requirement : int = 0
+	var fps_ratio = GameManager.get_data("fps_ratio")
+	if fps_ratio < 0.6:
+		increased_frame_requirement = 40 * (1-fps_ratio)
+
+
+	if recalculation_counter >= character_bb.data["path_recalculation_frames"] + increased_frame_requirement:
 		recalculation_counter = 0
 		# Check line of sight
 		var query = PhysicsRayQueryParameters3D.create(zom.global_position, plr.global_position)

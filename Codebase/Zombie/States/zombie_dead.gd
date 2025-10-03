@@ -16,7 +16,7 @@ func on_enter():
 	zom.velocity = Vector3.ZERO
 	zom.bb.set_data("end_process",true)
 	GameManager.set_data("score",GameManager.get_data("score",0) + 1)
-	SignalBus.signals.signals["update_score"].event.emit()
+	SignalBus.fire_signal("update_score")
 	GameManager.set_data("zombie_count",GameManager.get_data("zombie_count") - 1)
 	GameManager.get_tree().create_timer(15).timeout.connect(zom.queue_free)
 

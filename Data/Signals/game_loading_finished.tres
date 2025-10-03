@@ -3,5 +3,6 @@
 [ext_resource type="Script" uid="uid://wssespaqbj5j" path="res://Codebase/SignalBus/GameSignal.gd" id="1_an8w7"]
 
 [resource]
+resource_name = "game_loading_finished"
 script = ExtResource("1_an8w7")
 metadata/_custom_type_script = "uid://wssespaqbj5j"

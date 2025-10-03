@@ -16,8 +16,14 @@ var data : Dictionary
 signal playback_finished
 
 func _ready() -> void:
-	global_player.finished.connect(audio_finished)
-	local_player.finished.connect(audio_finished)
+	if is_instance_valid(global_player):
+		global_player.finished.connect(audio_finished)
+	else:
+		push_warning("tried to play a global sound but the global player is not ready")
+	if is_instance_valid(local_player):
+		local_player.finished.connect(audio_finished)
+	else:
+		push_warning("tried to play a global sound but the local player is not ready")
 
 #used to setup the player with a settings json object
 func play(audio : AudioStream, 
@@ -67,6 +73,8 @@ func audio_finished():
 func stop():
 	local_player.stop()
 	global_player.stop()
+	reset()
+	AudioManager.push(self)
 
 #for gradually fading out the music
 func fade_out(time : float):
@@ -82,7 +90,7 @@ func reset():
 	global_player.stop()
 	local_player.stop()
 	for c in playback_finished.get_connections():
-		playback_finished.disconnect(c)
+		playback_finished.disconnect(c["callable"])
 
 ##used to set the values to a player
 func set_parameters(audio : Node):

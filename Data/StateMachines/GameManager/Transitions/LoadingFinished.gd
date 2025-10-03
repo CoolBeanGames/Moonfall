@@ -18,5 +18,5 @@ func eval(_current_state : String) -> bool:
 	return false
 
 func event():
-	print("loading finished fired")
+	print("loading finished transition fired 🏁")
 	event_fired = true

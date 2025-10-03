@@ -17,5 +17,7 @@
 		0.01,
 		0.05,
 		1
-					]
+					],
+	"Max_Active_Audio_Sources" : 20,
+	"Random_Item_Spawn_Check_Time" : 3
 }

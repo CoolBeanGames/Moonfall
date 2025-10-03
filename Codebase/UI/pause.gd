@@ -26,6 +26,8 @@ func _ready() -> void:
 	music_volume.value = GameManager.get_setting("music_volume")
 	look_sensitivity.value = GameManager.get_setting("look_sensitivity")
 	invert_y.button_pressed = GameManager.get_setting("invert_y")
+	print("particle level:",str(GameManager.get_setting("particle_density")))
+	print(str(GameManager.settings_data.data.keys()))
 	particle_density_slider.value = GameManager.get_setting("particle_density")
 	print("graphics level:",str(GameManager.get_setting("graphics_level")))
 	graphics_quality.value = GameManager.get_setting("graphics_level")

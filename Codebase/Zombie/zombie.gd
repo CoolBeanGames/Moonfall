@@ -22,6 +22,7 @@ var state_machine : StateMachine =  StateMachine.new()
 @export var pending_footstep_sounds : int = 0
 
 @export var spawnables : item_spawn_list
+@export var slowdown_counter : int = 0
 
 func _ready() -> void:
 	if !GameManager.data_has("all_zombies"):
@@ -116,7 +117,7 @@ func deal_player_damagage():
 
 func take_damage(damage : int):
 	if !state_machine.bb.get_data("dead") == true:
-		SignalBus.signals.signals["hit_enemy"].event.emit()
+		SignalBus.fire_signal("hit_enemy")
 		bb.set_data("health",bb.get_data("health") - damage)
 		if bb.get_data("health") <= 0:
 			AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)

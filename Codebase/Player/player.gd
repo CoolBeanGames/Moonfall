@@ -59,7 +59,7 @@ func take_damage(damage : int = 1):
 	GameManager.set_data("player_health",health - damage)
 	health -= damage
 	if health <= 0:
-		SignalBus.signals.signals["player_killed"].event.emit()
+		SignalBus.fire_signal("player_killed")
 		print("game over")
 	else:
 		AudioManager.play_random_audio_file(hit_sounds,"default",false,Vector3(0,0,0))
@@ -72,6 +72,8 @@ func _physics_process(_delta: float) -> void:
 	pass
 
 func _process(_delta):
+	if Input.is_key_pressed(KEY_F1) and OS.has_feature("editor"):
+		GameManager.set_data("player_health",0)
 	if debug_info_target!=null:
 		print("player debug info: [rotation: ", debug_info_target.global_rotation_degrees, "] | {scale: " , debug_info_target.scale , " } | (position: " , debug_info_target.global_position)
 	var ratio : float = float(GameManager.get_data("player_health",1)) / float(GameManager.get_data("player_max_health", 5))

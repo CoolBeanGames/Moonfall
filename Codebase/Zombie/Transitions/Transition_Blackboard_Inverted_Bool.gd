@@ -15,5 +15,6 @@ func eval(_current_state : String) -> bool:
 	if debug_value:
 		print("evaluating bool: " , bool_name, " value: ", state_machine.bb.get_data(bool_name))
 	if(is_correct_state() and state_machine.bb.get_data(bool_name) == false):
+		print("correct inverted blackboard bool transition : ", bool_name, " 🏁")
 		return true
 	return false

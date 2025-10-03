@@ -8,6 +8,7 @@ var audio_player_prefab
 var configs : Dictionary = {}
 
 @export var inactive_audio_players : Array = []
+@export var active_audio_players : Array = []
 
 #load our prefab
 func _ready() -> void:
@@ -18,16 +19,20 @@ func _ready() -> void:
 	read_all_configs()
 
 #play an audio file with a json settings file
-func play_audio_file(audio : AudioStream, settings : String, use_position : bool, position : Vector3) -> audio_player:
-	var plr = pop()
-	return _setup_from_json(plr,audio,settings,use_position,position)
+func play_audio_file(audio : AudioStream, settings : String, use_position : bool, position : Vector3, always_play : bool = false) -> audio_player:
+	if active_audio_players.size() < GameManager.get_data("Max_Active_Audio_Sources") or always_play:
+		var plr = pop()
+		return _setup_from_json(plr,audio,settings,use_position,position)
+	else: 
+		return null
 
 #play a random audio file loading settings from a json file
-func play_random_audio_file(audioSet : audio_set, settings : String, use_position : bool, position : Vector3) -> audio_player:
-	var plr = pop()
-	var audio : AudioStream = audioSet.get_random_file()
-	return _setup_from_json(plr,audio,settings,use_position,position)
-
+func play_random_audio_file(audioSet : audio_set, settings : String, use_position : bool, position : Vector3, always_play : bool = false) -> audio_player:
+	if active_audio_players.size() < GameManager.get_data("Max_Active_Audio_Sources") or always_play:
+		var plr = pop()
+		var audio : AudioStream = audioSet.get_random_file()
+		return _setup_from_json(plr,audio,settings,use_position,position)
+	return null
 #used to setup an audio file with an audio settings json file
 func _setup_from_json(plr : audio_player,audio : AudioStream,settings : String, use_position : bool, position : Vector3) -> audio_player:
 	return plr.play(audio,settings,use_position,position)
@@ -98,8 +103,10 @@ func pop():
 		return spawn_player()
 	var p = inactive_audio_players[0]
 	inactive_audio_players.erase(p)
+	active_audio_players.append(p)
 	return p
 
 ##return a player to being inactive
 func push(audio):
+	active_audio_players.erase(audio)
 	inactive_audio_players.append(audio)

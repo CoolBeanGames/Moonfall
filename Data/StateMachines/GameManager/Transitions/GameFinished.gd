@@ -8,5 +8,6 @@ func _init(_state_machine : StateMachine, _to_state : String,_from_state : Strin
 func eval(current_state : String) -> bool:
 	#change this for actual logic for transition
 	if(current_state == from_state and GameManager.get_data("game_finished") == true):
+		print("fired of game finished transition 🏁")
 		return true
 	return false

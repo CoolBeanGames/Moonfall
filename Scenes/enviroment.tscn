@@ -23,7 +23,6 @@ background_mode = 2
 sky = SubResource("Sky_d66yy")
 tonemap_mode = 2
 glow_enabled = true
-fog_enabled = true
 fog_light_color = Color(0.23253983, 0.25565258, 0.29161498, 1)
 fog_light_energy = 5.35
 fog_density = 0.0
@@ -31,8 +30,10 @@ fog_sky_affect = 0.078
 fog_height = -127.2
 fog_height_density = 16.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.2425
-volumetric_fog_albedo = Color(0.8509804, 0.4745098, 0.5882353, 1)
+volumetric_fog_density = 0.081
+volumetric_fog_albedo = Color(0.9802087, 0.7956865, 0.7950825, 1)
+volumetric_fog_length = 13.12
+volumetric_fog_sky_affect = 0.677
 adjustment_enabled = true
 
 [sub_resource type="Animation" id="Animation_eg0ho"]
@@ -366,8 +367,8 @@ environment = SubResource("Environment_m81p3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8634188, -0.44513378, -0.23741093, -0.46824792, 0.88225126, 0.04875183, 0.18775497, 0.15326035, -0.9701853, 0, 0, 0)
-light_color = Color(0.8697065, 0.35592508, 1, 1)
-light_energy = 0.1
+light_color = Color(0.99997467, 0.7497292, 0.738847, 1)
+light_energy = 0.2
 light_bake_mode = 1
 shadow_enabled = true
 directional_shadow_max_distance = 1.0

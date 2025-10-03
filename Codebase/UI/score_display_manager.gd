@@ -4,7 +4,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.signals.signals["update_score"].event.connect(update_ui)
+	SignalBus.connect_signal("update_score",update_ui)
 	pass # Replace with function body.
 
 func update_ui():

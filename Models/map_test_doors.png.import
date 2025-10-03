@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqy710gw0eih1"
 path.s3tc="res://.godot/imported/map_test_doors.png-94d50896f2b8965b392fc230b4bde3af.s3tc.ctex"
-path.etc2="res://.godot/imported/map_test_doors.png-94d50896f2b8965b392fc230b4bde3af.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Models/map_test_doors.png"
-dest_files=["res://.godot/imported/map_test_doors.png-94d50896f2b8965b392fc230b4bde3af.s3tc.ctex", "res://.godot/imported/map_test_doors.png-94d50896f2b8965b392fc230b4bde3af.etc2.ctex"]
+dest_files=["res://.godot/imported/map_test_doors.png-94d50896f2b8965b392fc230b4bde3af.s3tc.ctex"]
 
 [params]
 

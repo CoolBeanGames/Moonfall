@@ -8,12 +8,15 @@ class_name item_pickup extends Node3D
 @export var itemData : item_data
 @export var spawn_point : Node3D
 
+signal item_picked_up
+
 ##when the player hits this item, execute all of its strategies
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		AudioManager.play_audio_file(load("res://Audio/SFX/item_pickup.wav"),"default",false,Vector3(0,0,0))
+		AudioManager.play_audio_file(load("res://Audio/SFX/item_pickup.wav"),"default",false,Vector3(0,0,0),true)
 		for s in strategies:
 			s.execute(global_position)
+		item_picked_up.emit()
 		queue_free()
 
 ##called to setup the item, assign it all its data and spawn

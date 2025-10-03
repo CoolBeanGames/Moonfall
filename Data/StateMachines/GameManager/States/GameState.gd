@@ -13,6 +13,8 @@ var zombie_spawn_audio : audio_set
 
 ##called once when entering the state and then not again until it has finished
 func on_enter():
+	GameManager.purge_all_audio()
+	print("entered game state")
 	#load in config data
 	zombie_spawn_time_max  = GameManager.get_data("zombie_spawn_time_max")
 	zombie_spawn_time_min  = GameManager.get_data("zombie_spawn_time_min")
@@ -32,10 +34,14 @@ func on_enter():
 
 ##called when we exit the state
 func on_exit():
+	print("exited game state")
 	pass
 
 ##called every frame for this state
 func tick():
+	if Input.is_key_pressed(KEY_F2) and OS.has_feature("editor"):
+		spawn()
+	
 	var current_spawn_time : float = lerp(zombie_spawn_time_max,zombie_spawn_time_min,ratio())
 	var current_max_zombies = lerp(min_zombies,max_zombies,ratio())
 	if GameManager.get_data("zombie_count") < current_max_zombies:
@@ -46,6 +52,9 @@ func tick():
 	if Input.is_key_pressed(KEY_ESCAPE):
 		SceneManager.load_ui_scene(load("res://Scenes/UI_Scenes/pause.tscn"),"Pause")
 		GameManager.get_tree().paused = true
+		print("zombies: " , str(GameManager.get_data("zombie_count")))
+	if !GameManager.get_tree().paused:
+		GameManager.random_item_spawning()
 
 func ratio(scale : float = 1) -> float:
 	return GameManager.get_data("time_ratio",0) * scale

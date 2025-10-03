@@ -18,5 +18,6 @@ func eval(_current_state : String) -> bool:
 	#change this for actual logic for transition
 	if(is_correct_state() and fired):
 		fired=false
+		print("event transition fired: ", SignalBus.signals.signals.find_key(event) , " 🏁")
 		return true
 	return false

@@ -37,7 +37,7 @@ func shoot(raycaster : RayCast3D):
 		shoot_light.light_energy = 1
 		
 		#play gunshot sound
-		AudioManager.play_random_audio_file(gun_data.shooting_sounds,"gunshots",true,global_position)
+		AudioManager.play_random_audio_file(gun_data.shooting_sounds,"gunshots",true,global_position,true)
 
 		if bullet_tracer!=null:
 			bullet_tracer.visible = true

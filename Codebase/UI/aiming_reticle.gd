@@ -5,7 +5,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.signals.signals["hit_enemy"].event.connect(on_hit)
+	SignalBus.connect_signal("hit_enemy",on_hit)
 
 
 
