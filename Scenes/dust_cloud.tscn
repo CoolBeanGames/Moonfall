@@ -1,49 +1,83 @@
-[gd_scene load_steps=7 format=3 uid="uid://0byr5ivps7qf"]
+[gd_scene load_steps=14 format=3 uid="uid://0byr5ivps7qf"]
 
-[ext_resource type="Texture2D" uid="uid://dvaaa5onsld10" path="res://Textures/Particles/smoke_07.png" id="1_h6cip"]
 [ext_resource type="Script" uid="uid://by0ockkm7yrrm" path="res://Codebase/props/dust_cloud.gd" id="1_hsop8"]
+[ext_resource type="Texture2D" uid="uid://cfbhihvvv3nh7" path="res://Textures/Particles/smoke_04.png" id="2_hsop8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsop8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inf05"]
 transparency = 1
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.5877556, 0.36156693, 0.1981524, 1)
-albedo_texture = ExtResource("1_h6cip")
+albedo_color = Color(0.7873026, 0.67758304, 0.5767711, 1)
+albedo_texture = ExtResource("2_hsop8")
+emission_enabled = true
+emission = Color(0.20784314, 0, 0, 1)
 billboard_mode = 1
-billboard_keep_scale = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_inf05"]
-material = SubResource("StandardMaterial3D_hsop8")
+grow_amount = -4.335
+point_size = 12.0
+stencil_flags = 2
 
 [sub_resource type="Curve" id="Curve_00b4g"]
-_limits = [0.0, 18.537865, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 1.728414, 0, 0, Vector2(1, 4.3803577), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.26022306, 0.84907115), 2.5262125, 2.5262125, 0, 0, Vector2(0.68773234, 0.80882347), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_we17a"]
+curve = SubResource("Curve_00b4g")
+
+[sub_resource type="Gradient" id="Gradient_cv78x"]
+offsets = PackedFloat32Array(0, 0.21737279, 0.5238918, 0.8932399)
+colors = PackedColorArray(0, 0, 0, 0.5568628, 0.21737279, 0.21737279, 0.21737279, 1, 0.7684617, 0.7684617, 0.7684617, 1, 1, 1, 1, 0.49019608)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bv3vl"]
+gradient = SubResource("Gradient_cv78x")
+
+[sub_resource type="Curve" id="Curve_jit38"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 74.36746), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_we17a"]
-offsets = PackedFloat32Array(0, 0.33568904, 0.5300353, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="CurveTexture" id="CurveTexture_x82hd"]
+curve = SubResource("Curve_jit38")
+
+[sub_resource type="Curve" id="Curve_l227u"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.24304438, 0.16512382), 0.0, 0.0, 0, 0, Vector2(0.4274981, 0.20402408), 0.0, 0.0, 0, 0, Vector2(0.59605914, 0.17042446), 0.0, 0.0, 0, 0, Vector2(0.7409747, 0.14927745), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_nhojq"]
+curve = SubResource("Curve_l227u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ly16"]
+lifetime_randomness = 1.0
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+spread = 180.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, -4, 0)
+linear_accel_min = -21.740002
+linear_accel_max = -1.6900022
+damping_curve = SubResource("CurveTexture_x82hd")
+scale_min = 0.01
+scale_max = 0.02
+scale_curve = SubResource("CurveTexture_nhojq")
+color_initial_ramp = SubResource("GradientTexture1D_bv3vl")
+alpha_curve = SubResource("CurveTexture_we17a")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6vqo4"]
+size = Vector2(0.5, 0.6)
 
 [node name="dust_cloud" type="Node3D" node_paths=PackedStringArray("particle", "timer")]
 script = ExtResource("1_hsop8")
-particle = NodePath("CPUParticles3D")
+particle = NodePath("GPUParticles3D")
 timer = NodePath("Timer")
-
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-emitting = false
-amount = 100
-one_shot = true
-explosiveness = 1.0
-mesh = SubResource("QuadMesh_inf05")
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 1.0
-initial_velocity_max = 3.0
-damping_min = 3.0
-damping_max = 3.0
-damping_curve = SubResource("Curve_00b4g")
-angle_min = -360.0
-angle_max = 360.0
-scale_amount_min = 0.1
-color_ramp = SubResource("Gradient_we17a")
+emission_ammounts = Array[int]([10, 25, 50])
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_inf05")
+emitting = false
+amount = 50
+lifetime = 0.33
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4ly16")
+draw_pass_1 = SubResource("QuadMesh_6vqo4")

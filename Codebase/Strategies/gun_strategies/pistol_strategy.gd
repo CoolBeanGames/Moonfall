@@ -5,10 +5,9 @@ class_name pistol_strategy extends gun_strategy
 
 func equip(..._params : Array):
 	update_ui()
-	pass
 
 func unequip(..._params : Array):
-	pass
+	update_ui()
 
 func shoot(...params : Array):
 	params[3].play("shoot_gun")

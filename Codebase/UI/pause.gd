@@ -8,7 +8,9 @@ extends CanvasLayer
 @export var sfx_volume : HSlider
 @export var music_volume : HSlider
 @export var look_sensitivity : HSlider
+@export var particle_density_slider : HSlider
 @export var invert_y : CheckButton
+
 
 @export var entry_mouse_mode : Input.MouseMode
 
@@ -21,6 +23,7 @@ func _ready() -> void:
 	music_volume.value = GameManager.settings_data.data.get("music_volume")
 	look_sensitivity.value = GameManager.settings_data.data.get("look_sensitivity")
 	invert_y.button_pressed = GameManager.settings_data.data.get("invert_y")
+	particle_density_slider = GameManager.settings_data.data.get("particle_density")
 
 	entry_mouse_mode = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -76,3 +79,7 @@ func close():
 	Input.mouse_mode = entry_mouse_mode
 	get_tree().paused=false
 	SceneManager.unload_ui("Pause")
+
+func _on_particle_density_drag_ended(_value_changed: bool) -> void:
+	GameManager.settings_data.data.set("particle_density",particle_density_slider.value)
+	GameManager.save_settings()

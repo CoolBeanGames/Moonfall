@@ -11,5 +11,6 @@
 	"zombie_spawn_time_min" :  1,
 	"zombie_spawn_chance" :  0.4,
 	"max_zombies" :  100,
-	"min_zombies" :  20
+	"min_zombies" :  20,
+	"max_zombie_footsteps" : 10
 }

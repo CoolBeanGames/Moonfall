@@ -94,29 +94,34 @@ func save_game():
 func load_save():
 	var path : String = "user://CoolBeanGames/MoonFall/Saves/save.json"
 	save_data.load_from_encrypted_json(path)
-	if save_data.has("player_name"):
-		print("player name: ", save_data.get_data("player_name","p"))
+	authenticate_settings()
 
 func save_settings():
 	var path : String = "user://CoolBeanGames/MoonFall/Saves/settings.json"
+	authenticate_settings()
 	settings_data.save_to_json(path)
 
 func load_settings():
 	var path : String = "user://CoolBeanGames/MoonFall/Saves/settings.json"
 	settings_data.load_from_json(path)
 	if settings_data.data.size() == 0:
-		#no data was loaded initializing settings
-		settings_data.set("master_volume",0.5)
-		settings_data.set("sfx_volume",0.5)
-		settings_data.set("music_volume",0.5)
-		settings_data.set("look_sensitivity",0.5)
-		settings_data.set("invert_y",false)
-		print("settings was intialized")
 		save_settings()
 	else:
 		print("settings successfully loaded")
 	print(str(settings_data.data))
 
+func authenticate_settings():
+	check_setting("master_volume",0.5)
+	check_setting("sfx_volume",0.5)
+	check_setting("music_volume",0.5)
+	check_setting("look_sensitivity",0.5)
+	check_setting("invert_y",false)
+	check_setting("particle_density", 2)
+
+func check_setting(setting_name : String, default_value):
+	if settings_data.has(setting_name):
+		return
+	settings_data.set_data(setting_name,default_value)
 
 func kill_all_zombies():
 	if data.data.has("all_zombies"):
@@ -127,16 +132,45 @@ func kill_all_zombies():
 		data.data["all_zombies"].clear()
 
 func increase_score(ammount : int):
-	var adjusted : int = ammount * data.data.get("score_mult",1)
-	var score : int = data.data.get("score",0)
-	data.data.set("score",score + adjusted)
+	var adjusted : int = ammount * get_data("score_mult",1)
+	var score : int = get_data("score",0)
+	set_data("score",score + adjusted)
 
 func preset_volumes():
-	print(str(settings_data.data))
-	update_audio_bus("Music",settings_data.data.get("music_volume"))
-	update_audio_bus("SoundEffects",settings_data.data.get("sfx_volume"))
-	update_audio_bus("Master",settings_data.data.get("master_volume"))
+	update_audio_bus("Music",get_setting("music_volume"))
+	update_audio_bus("SoundEffects",get_setting("sfx_volume"))
+	update_audio_bus("Master",get_setting("master_volume"))
 
 func update_audio_bus(bus_name : String , volume_linear : float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name) , linear_to_db(volume_linear))
-	
+
+##helpers for more easily getting and setting data, use these in future projects also
+#region Data access helpers
+func get_setting(setting_name : String, default_value = null):
+	return settings_data.data.get(setting_name,default_value)
+
+func get_data(data_name : String, default_value = null):
+	return data.data.get(data_name,default_value)
+
+func set_data(data_name : String, value):
+	if value == null:
+		push_warning("Tried to set null data to name ", data_name , " this is not allowed")
+		return
+	data.data.set(data_name,value)
+
+func set_setting(setting_name : String, value):
+	if value == null:
+		push_warning("Tried to set null setting to name ", setting_name , " this is not allowed")
+		return
+	settings_data.data.set(setting_name,value)
+
+func data_has(data_name : String) -> bool:
+	return data.data.has(data_name)
+
+func setting_gas(setting_name : String) -> bool:
+	return settings_data.data.has(setting_name)
+
+func erase_data(data_name : String):
+	if data_has(data_name):
+		data.data.erase(data_name)
+#endregion

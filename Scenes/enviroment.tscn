@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b5t76snp62aca"]
+[gd_scene load_steps=15 format=3 uid="uid://b5t76snp62aca"]
 
 [ext_resource type="LightmapGIData" uid="uid://d2hpsa2a122nq" path="res://Scenes/enviroment.lmbake" id="1_55ugo"]
 [ext_resource type="PackedScene" uid="uid://bj5dixumta757" path="res://Scenes/map.tscn" id="5_rw8p7"]
@@ -228,9 +228,12 @@ tracks/2/path = NodePath("Moon")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(360),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.26666668, 360),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"moon_anim_playing"
+}, {
 "args": [],
 "method": &"moon_fall_finished"
 }]
@@ -344,7 +347,7 @@ tracks/11/keys = {
 "times": PackedFloat32Array(0, 360),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -60.608, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jun3y"]
@@ -353,11 +356,8 @@ _data = {
 &"moonfall": SubResource("Animation_upj05")
 }
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hhfy0"]
-plane = Plane(0, 0, 1, 1)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ydcye"]
-plane = Plane(0, 0, -1, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hhfy0"]
+size = Vector3(51.01941, 2.3364868, 46.98343)
 
 [node name="Enviroment" type="Node3D" groups=["navmesh"]]
 
@@ -379,6 +379,10 @@ light_data = ExtResource("1_55ugo")
 
 [node name="Moon" parent="." instance=ExtResource("18_ue1kb")]
 
+[node name="MoonGlow" parent="Moon" index="0"]
+radial_segments = 72
+rings = 96
+
 [node name="moon_player" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_jun3y")
@@ -386,10 +390,10 @@ libraries = {
 script = ExtResource("21_o6dcl")
 
 [node name="Rumble" type="AudioStreamPlayer" parent="."]
-volume_db = -128.9283
 bus = &"Music"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
 bus = &"Music"
 
 [node name="zombie_spawners" type="Node3D" parent="."]
@@ -539,25 +543,10 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 24.5
 [node name="light_post28" parent="lamp posts" instance=ExtResource("7_hhfy0")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 13.489916, 0, 2.7359164)
 
-[node name="world_border" type="StaticBody3D" parent="."]
+[node name="ground_backup" type="StaticBody3D" parent="."]
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="world_border"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.07927, 9.885996, -10.149529)
-shape = SubResource("WorldBoundaryShape3D_hhfy0")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="world_border"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.07927, 9.885996, 40.176723)
-shape = SubResource("WorldBoundaryShape3D_ydcye")
-
-[node name="world_border2" type="StaticBody3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 22.375973)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="world_border2"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.07927, 9.885996, -16.384626)
-shape = SubResource("WorldBoundaryShape3D_hhfy0")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="world_border2"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.07927, 9.885996, 38.23299)
-shape = SubResource("WorldBoundaryShape3D_ydcye")
+[node name="ground_collider" type="CollisionShape3D" parent="ground_backup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.017517, -1.139801, 14.996597)
+shape = SubResource("BoxShape3D_hhfy0")
 
 [editable path="Moon"]

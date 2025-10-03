@@ -7,10 +7,9 @@ var shoot_point_array : Array[Node3D]
 
 func equip(..._params : Array):
 	update_ui()
-	pass
 
 func unequip(..._params : Array):
-	pass
+	update_ui()
 
 func shoot(...params : Array):
 	shoot_point_array = params[1].tracers

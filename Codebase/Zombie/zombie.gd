@@ -18,15 +18,17 @@ var state_machine : StateMachine =  StateMachine.new()
 @export var material_target : MeshInstance3D
 @export var zombie_hit_sound : AudioStream
 @export var zombie_die_sound : AudioStream
+@export var foot_step_sounds : audio_set
+@export var pending_footstep_sounds : int = 0
 
 @export var spawnables : item_spawn_list
 
 func _ready() -> void:
-	if !GameManager.data.data.has("all_zombies"):
+	if !GameManager.data_has("all_zombies"):
 		var z : Array[zombie] = [self]
-		GameManager.data.data.set("all_zombies",z)
+		GameManager.set_data("all_zombies",z)
 	else:
-		GameManager.data.data["all_zombies"].append(self)
+		GameManager.get_data("all_zombies").append(self)
 	bb.load_from_json(config_json_path)
 	print(bb.data)
 	bb.set_data("anim",anim)
@@ -49,6 +51,16 @@ func add_states():
 	_addState("dead",zombie_dead.new(state_machine))
 	_addState("hurt",zombie_hurt_state.new(state_machine))
 
+func play_footstep_sound():
+	if GameManager.data.data.get("zombie_footsteps",0) < GameManager.data.data.get("max_zombie_footsteps",0):
+		var p : audio_player = AudioManager.play_random_audio_file(foot_step_sounds,"zombie_footsteps",true,global_position)
+		GameManager.data.data.set("zombie_footsteps",GameManager.data.data.get("zombie_footsteps",0) + 1)
+		p.playback_finished.connect(footstep_sound_finished)
+		pending_footstep_sounds += 1
+
+func footstep_sound_finished():
+	GameManager.data.data.set("zombie_footsteps",GameManager.data.data.get("zombie_footsteps",0) - 1)
+	pending_footstep_sounds -= 1
 
 func add_transitions():
 	_add_bool_transition("spawned","chase","land")
@@ -130,6 +142,9 @@ func kill():
 	state_machine.bb._set("dead",true)
 	GameManager.increase_score(1)
 	spawnables.get_item_spawn(global_position)
+	
+	#cleanup footstep sounds
+	GameManager.data.data.set("zombie_footsteps",GameManager.data.data.get("zombie_footsteps",0) - pending_footstep_sounds)
 
 
 func end_hurt():

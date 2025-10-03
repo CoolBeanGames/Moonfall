@@ -81,6 +81,13 @@ func _process(_delta):
 	
 	timer -= _delta
 	do_shake()
+	
+	lock_player_y() ##<---- for keeping the player from falling through the floor just a fallback
+
+func lock_player_y():
+	if global_position.y < 0.3:
+		global_position.y = 0.3
+		velocity.y = 0
 
 
 #used to set a reference to the state machine within each state

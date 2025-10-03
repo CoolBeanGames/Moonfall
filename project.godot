@@ -14,10 +14,10 @@ config/name="Moonfall"
 config/version="0.8"
 run/main_scene="uid://voxflqrwktdm"
 config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="uid://cqb7cs16x82bp"
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="uid://cqb7cs16x82bp"
 
 [autoload]
 
@@ -45,6 +45,7 @@ enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
 
 folder_colors={
 "res://Codebase/": "red",
+"res://Data/": "green",
 "res://Guns/": "teal",
 "res://Scenes/": "orange"
 }

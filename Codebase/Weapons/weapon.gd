@@ -56,11 +56,9 @@ func equip(parent : Node3D):
 
 ##called when switching from this gun
 func unequip() -> bool:
-	if ready_to_shoot:
-		strat.unequip()
-		visible = false
-		return true
-	return false
+	strat.unequip()
+	visible = false
+	return true
 
 ##called when reloading this gun
 func reload():

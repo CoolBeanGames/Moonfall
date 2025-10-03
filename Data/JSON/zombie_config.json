@@ -3,5 +3,6 @@
 	"turn_speed" : 5.0,
 	"attack_power" : 1,
 	"health" : 5,
-	"chance_for_ammo" : 0.2
+	"chance_for_ammo" : 0.2,
+	"path_recalculation_frames" : 10
 }
