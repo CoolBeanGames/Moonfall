@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjal6sqx41c00"]
+
+[ext_resource type="Script" uid="uid://tfr8iis51q03" path="res://Codebase/game_root.gd" id="1_rqi4g"]
+
+[node name="GameRoot" type="Node"]
+script = ExtResource("1_rqi4g")

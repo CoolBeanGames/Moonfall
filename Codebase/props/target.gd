@@ -9,16 +9,16 @@ func _ready() -> void:
 		GameManager.data.data["targets"].append(self)
 	else:
 		var target_array : Array[target] = [self]
-		GameManager.data.data.set("targets",target_array)
+		GameManager.set_data("targets",target_array)
 
 ##the target was shot so destroy it
 func take_damage(_damage : int = 0):
-	GameManager.data.data.set("destroyed_targets",GameManager.data.data.get("destroyed_targets",0) + 1)
-	if GameManager.data.data.get("destroyed_targets",0) > GameManager.save_data.data.get("destroyed_targets",-1):
-		GameManager.save_data.data.set("destroyed_targets",GameManager.data.data.get("destroyed_targets",0))
+	GameManager.set_data("destroyed_targets",GameManager.get_data("destroyed_targets",0) + 1)
+	if GameManager.get_data("destroyed_targets",0) > GameManager.save_data.data.get("destroyed_targets",-1):
+		GameManager.save_data.data.set("destroyed_targets",GameManager.get_data("destroyed_targets",0))
 		GameManager.save_game()
 		print("save game")
-	print("did not save game: " , str(GameManager.data.data.get("destroyed_targets",0) , " / " , str(GameManager.save_data.data.get("destroyed_targets",-1)) , " ? : " , str(GameManager.data.data.get("destroyed_targets",0) > GameManager.save_data.data.get("destroyed_targets",-1))))
+	print("did not save game: " , str(GameManager.get_data("destroyed_targets",0) , " / " , str(GameManager.save_data.data.get("destroyed_targets",-1)) , " ? : " , str(GameManager.get_data("destroyed_targets",0) > GameManager.save_data.data.get("destroyed_targets",-1))))
 	SceneManager.load_ui_scene(target_ui_scene,"target_ui")
 	GameManager.increase_score(5)
 	print("score up by 5")

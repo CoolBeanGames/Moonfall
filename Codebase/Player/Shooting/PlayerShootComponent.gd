@@ -35,8 +35,8 @@ func _ready() -> void:
 	current_gun.equip(gun_parent)	
 
 	#add some starting bullets
-	GameManager.data.set_data("bullets",12)
-	GameManager.data.set_data("player_shoot",self)
+	GameManager.set_data("bullets",12)
+	GameManager.set_data("player_shoot",self)
 
 
 #process shot cooldown
@@ -50,7 +50,7 @@ func on_shoot():
 
 #update the gun ui
 func update_ui():
-	GameManager.data._set("player_gun",current_gun.gun_data)
+	GameManager.set_data("player_gun",current_gun.gun_data)
 	SignalBus.fire_signal("update_gun_ui")
 
 #reload the gun

@@ -8,7 +8,7 @@ var plr : player
 func _ready() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
-	plr = GameManager.data.get("player")
+	plr = GameManager.get_data("player")
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):

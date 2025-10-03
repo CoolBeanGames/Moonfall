@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 func on_name_entry():
 	if name_field.text.strip_edges() != "":
 		GameManager.save_data.data["player_name"] = name_field.text
-		var score = GameManager.data.data.get("score",0)
+		var score = GameManager.get_data("score",0)
 
 		await SilentWolf.Scores.save_score(name_field.text, score)
 		await GameManager.save_game()

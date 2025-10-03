@@ -8,4 +8,4 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func update_ui():
-	text.text = str(GameManager.data._get("score"))
+	text.text = str(GameManager.get_data("score"))

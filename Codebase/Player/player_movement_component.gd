@@ -39,17 +39,17 @@ func on_move(value : Vector2):
 	target_velocity = forward + side
 
 func lerp_move(delta : float):
-	lerp_speed = plr.bb._get("move_lerp_speed")
+	lerp_speed = plr.bb.get_data("move_lerp_speed")
 	plr.velocity = plr.velocity.lerp(target_velocity,(1-exp(-delta * lerp_speed)))
 	apply_gravity(delta)
 	plr.velocity.y = y_velocity
 	
 func apply_gravity(delta : float):
-	y_velocity += GameManager.data.data.get("gravity",0) * delta
+	y_velocity += GameManager.get_data("gravity",0) * delta
 
 func start_sprint():
-	move_speed = plr.bb._get("run_speed")
+	move_speed = plr.bb.get_data("run_speed")
 
 func stop_sprint():
-	move_speed = plr.bb._get("walk_speed")
+	move_speed = plr.bb.get_data("walk_speed")
 	

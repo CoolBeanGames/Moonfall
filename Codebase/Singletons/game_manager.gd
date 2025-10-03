@@ -1,15 +1,25 @@
-extends Node
+##the base class for managing the game, holds
+##the state machine that runs everything
+class_name Game_Manager extends Node
 
+#region Fields
 ###the data to be stored and accessed system wide
 var data : blackboard = blackboard.new()
 ###the state machine that manages the various game states
 var fsm : StateMachine
+##list of all the zombie spawners so we can pick one when spawning
 var zombie_spawners : Array[zombie_spawn_point] = []
+##the players current save data
 var save_data : blackboard = blackboard.new()
+##the settings data
 var settings_data : blackboard = blackboard.new()
-
+##the node to add new nodes to
+@export var root_node : Node
+##the audio player for the lyical version of the music
 @export var start_music : audio_player
+##if the game is paused or not
 @export var is_paused : bool = false
+#endregion
 
 signal shake_camera(magnitude, time)
 
@@ -19,16 +29,20 @@ func _ready() -> void:
 	data.load_from_json("res://config.json")
 	#loadin and initialize all data
 	fsm = StateMachine.new()
+	#load all of our data
+	load_save()
+	load_settings()
+	preset_volumes()
 	
 	#turn on processing for this node
 	set_process(true)
-	
-	load_save()
-	#add transitions to th
+		
+	#setup our state machine
 	addTransitions()
 	addStates()
 	fsm.initialize("Preload")
 	
+	#setup silent wolf for the leaderboard
 	SilentWolf.configure({
 	"api_key": "9uvEWuQGEda3DxZ9KLOEy2HZTX4CgbiB25Vz6zTI",
 	"game_id": "Moonfall",
@@ -39,18 +53,16 @@ func _ready() -> void:
 	start_music = AudioManager.play_audio_file(load("res://Audio/Music/title/1181305_Heartsick-Feat-Agassi.mp3"),"default",false,Vector3(0,0,0))
 	start_music.playback_finished.connect(music_ended)
 
-	load_settings()
-	preset_volumes()
-
+##called when the intro music ends
 func music_ended():
 	SignalBus.fire_signal("intro_music_done")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	fsm.process()
-	data._set("delta",delta)
-	pass
+	data.set_data("delta",delta)
 
+#region State Machine Setup
 ##add the states to our machine
 func addStates():
 	fsm.states["Preload"] = GamePreloadState.new(fsm)
@@ -86,7 +98,9 @@ func addTransitions():
 	fsm.transitions.append(e_c)
 	var e_tc : event_transition = event_transition.new("to_title",fsm,"Title","Credits")
 	fsm.transitions.append(e_tc)
+#endregion
 
+#region Saving and Loading
 func save_game():
 	var path : String = "user://CoolBeanGames/MoonFall/Saves/save.json"
 	save_data.save_to_encrypted_json(path)
@@ -109,6 +123,7 @@ func load_settings():
 	else:
 		print("settings successfully loaded")
 	print(str(settings_data.data))
+#endregion
 
 func authenticate_settings():
 	check_setting("master_volume",0.5)
@@ -117,9 +132,11 @@ func authenticate_settings():
 	check_setting("look_sensitivity",0.5)
 	check_setting("invert_y",false)
 	check_setting("particle_density", 2)
+	check_setting("graphics_level",1)
+
 
 func check_setting(setting_name : String, default_value):
-	if settings_data.has(setting_name):
+	if settings_data.has(setting_name) and get_setting(setting_name) != null:
 		return
 	settings_data.set_data(setting_name,default_value)
 

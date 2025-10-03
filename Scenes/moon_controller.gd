@@ -7,7 +7,7 @@ extends Node3D
 func _ready() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
-	GameManager.data.set_data("moon",self)
+	GameManager.set_data("moon",self)
 
 func moon_fall_finished():
 	print("moon has fallen")
@@ -17,7 +17,7 @@ func moon_fall_finished():
 func _process(delta: float) -> void:
 	timer += delta
 	var ratio = timer / moon_fall_time
-	GameManager.data._set("time_ratio",ratio)
+	GameManager.set_data("time_ratio",ratio)
 
 func moon_anim_playing():
 	print("playing moon animation")

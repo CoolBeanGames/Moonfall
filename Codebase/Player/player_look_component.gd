@@ -56,10 +56,10 @@ func unset():
 
 #automatically called whenever our mouse is moved
 func mouse_moved(value : Vector2):
-	if GameManager.settings_data.get("invert_y"):
+	if GameManager.get_setting("invert_y",false):
 		value.y *= -1
-	pitch_clamp = plr.bb._get("pitch_clamp")
-	look_speed = plr.bb.get("look_speed") * GameManager.settings_data.get("look_sensitivity")
+	pitch_clamp = plr.bb.get_data("pitch_clamp",45)
+	look_speed = plr.bb.get_data("look_speed",1) * GameManager.get_setting("look_sensitivity",1)
 	calculate_rot(value)
 
 #calculate our player rotation
@@ -76,6 +76,6 @@ func apply_rot():
 
 #smooothly lerp the camera to the target
 func lerp_rot():
-	lerp_speed = plr.bb._get("look_lerp_speed")
+	lerp_speed = plr.bb.get_data("look_lerp_speed")
 	rot_x = lerp(rot_x,target_rot_x, (1-exp(-delta * lerp_speed)))
 	rot_y = lerp(rot_y,target_rot_y, (1-exp(-delta * lerp_speed)))

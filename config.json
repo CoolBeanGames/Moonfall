@@ -12,5 +12,10 @@
 	"zombie_spawn_chance" :  0.4,
 	"max_zombies" :  100,
 	"min_zombies" :  20,
-	"max_zombie_footsteps" : 10
+	"max_zombie_footsteps" : 10,
+	"LOD_presets" : [
+		0.01,
+		0.05,
+		1
+					]
 }

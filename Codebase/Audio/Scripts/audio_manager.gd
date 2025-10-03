@@ -7,6 +7,8 @@ class_name audio_manager extends Node
 var audio_player_prefab
 var configs : Dictionary = {}
 
+@export var inactive_audio_players : Array = []
+
 #load our prefab
 func _ready() -> void:
 	audio_player_prefab = load("res://Codebase/Audio/Prefabs/audio_player.tscn")
@@ -17,15 +19,14 @@ func _ready() -> void:
 
 #play an audio file with a json settings file
 func play_audio_file(audio : AudioStream, settings : String, use_position : bool, position : Vector3) -> audio_player:
-	var plr = spawn_player()
+	var plr = pop()
 	return _setup_from_json(plr,audio,settings,use_position,position)
 
 #play a random audio file loading settings from a json file
 func play_random_audio_file(audioSet : audio_set, settings : String, use_position : bool, position : Vector3) -> audio_player:
-	var plr = spawn_player()
+	var plr = pop()
 	var audio : AudioStream = audioSet.get_random_file()
 	return _setup_from_json(plr,audio,settings,use_position,position)
-
 
 #used to setup an audio file with an audio settings json file
 func _setup_from_json(plr : audio_player,audio : AudioStream,settings : String, use_position : bool, position : Vector3) -> audio_player:
@@ -90,3 +91,15 @@ func load_from_json(path : String) -> Dictionary:
 	
 	return data
 	
+
+##get a player, either active or inactive
+func pop():
+	if inactive_audio_players.size() == 0:
+		return spawn_player()
+	var p = inactive_audio_players[0]
+	inactive_audio_players.erase(p)
+	return p
+
+##return a player to being inactive
+func push(audio):
+	inactive_audio_players.append(audio)

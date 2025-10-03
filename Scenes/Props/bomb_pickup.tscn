@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://swqsl3rnij2b"]
 
-[ext_resource type="PackedScene" uid="uid://bokkowvsghkaq" path="res://Models/Pickups/Bomb.glb" id="1_6ea6w"]
 [ext_resource type="Script" uid="uid://clckikavt8tup" path="res://Codebase/props/item_pickup.gd" id="1_rbky5"]
 [ext_resource type="PackedScene" uid="uid://cwl7c6p83e5uu" path="res://Scenes/Props/item_pickup.tscn" id="2_rbky5"]
+[ext_resource type="PackedScene" uid="uid://bai1gshiygip2" path="res://Scenes/Models/bomb_inherited.tscn" id="3_rbky5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_67v3r"]
 
@@ -87,7 +87,7 @@ libraries = {
 
 [node name="item_spawn_point" type="Node3D" parent="."]
 
-[node name="Bomb" parent="item_spawn_point" instance=ExtResource("1_6ea6w")]
-transform = Transform3D(0.5, 0, 0, 0, 0.35478538, 0.3523171, 0, -0.3523171, 0.35478538, 0, 0.20109017, 0)
+[node name="lod_affected_bomb" parent="item_spawn_point" instance=ExtResource("3_rbky5")]
+transform = Transform3D(0.5, 0, 0, 0, 0.35478538, 0.3523171, 0, -0.3523171, 0.35478538, 0, 0.201, 0)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -6,7 +6,7 @@ class_name gun_pickup_strategy extends strategy
 
 ##call to add health to the player
 func execute(..._params : Array):
-	var shoot = GameManager.data.get("player_shoot") as player_shoot_component
+	var shoot = GameManager.get_data("player_shoot") as player_shoot_component
 	if shoot.guns.has(gun_name):
 		shoot.enabled_guns.append(shoot.guns[gun_name])
 		shoot.guns.erase(gun_name)

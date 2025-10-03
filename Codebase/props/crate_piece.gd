@@ -10,7 +10,7 @@ func _ready() -> void:
 			).normalized()
 
 			# Random strength
-	var strength := randf_range(GameManager.data._get("crate_min_force"), GameManager.data._get("crate_max_force"))
+	var strength := randf_range(GameManager.get_data("crate_min_force"), GameManager.get_data("crate_max_force"))
 	
 	apply_impulse(dir * strength)
 

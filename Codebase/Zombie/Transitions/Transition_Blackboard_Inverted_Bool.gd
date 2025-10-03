@@ -13,7 +13,7 @@ func _init(BoolName : String, _state_machine : StateMachine, _to_state : String,
 func eval(_current_state : String) -> bool:
 	#change this for actual logic for transition
 	if debug_value:
-		print("evaluating bool: " , bool_name, " value: ", state_machine.bb._get(bool_name))
-	if(is_correct_state() and state_machine.bb._get(bool_name) == false):
+		print("evaluating bool: " , bool_name, " value: ", state_machine.bb.get_data(bool_name))
+	if(is_correct_state() and state_machine.bb.get_data(bool_name) == false):
 		return true
 	return false

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="signal_collection" load_steps=18 format=3 uid="uid://b5vfb06w67nek"]
+[gd_resource type="Resource" script_class="signal_collection" load_steps=19 format=3 uid="uid://b5vfb06w67nek"]
 
 [ext_resource type="Script" uid="uid://b5syd0c8bgll2" path="res://Codebase/SignalBus/SignalCollection.gd" id="1_plc7l"]
 [ext_resource type="Script" uid="uid://wssespaqbj5j" path="res://Codebase/SignalBus/GameSignal.gd" id="2_23aml"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://bivdij3okm5ns" path="res://Data/Signals/to_intro.tres" id="15_220e6"]
 [ext_resource type="Resource" uid="uid://ctrsniwmfntp1" path="res://Data/Signals/intro_music_done.tres" id="16_vnuwn"]
 [ext_resource type="Resource" uid="uid://b0pgle25eer5d" path="res://Data/Signals/to_credits.tres" id="17_0qkxw"]
+[ext_resource type="Resource" uid="uid://mg8w8fydpdqr" path="res://Data/Signals/update_lod.tres" id="18_8v54w"]
 
 [resource]
 script = ExtResource("1_plc7l")
@@ -36,6 +37,7 @@ signals = Dictionary[String, ExtResource("2_23aml")]({
 "to_intro": ExtResource("15_220e6"),
 "to_title": ExtResource("14_x5fmm"),
 "update_gun_ui": ExtResource("10_kffqm"),
+"update_lod": ExtResource("18_8v54w"),
 "update_score": ExtResource("12_r44ls")
 })
 metadata/_custom_type_script = "uid://b5syd0c8bgll2"

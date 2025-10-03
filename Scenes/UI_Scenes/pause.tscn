@@ -10,7 +10,7 @@ content_margin_right = 20.0
 content_margin_bottom = 10.0
 bg_color = Color(0.12156863, 0.12156863, 0.12156863, 0.7647059)
 
-[node name="pause_screen" type="CanvasLayer" node_paths=PackedStringArray("audio", "master_volume", "sfx_volume", "music_volume", "look_sensitivity", "particle_density_slider", "invert_y")]
+[node name="pause_screen" type="CanvasLayer" node_paths=PackedStringArray("audio", "master_volume", "sfx_volume", "music_volume", "look_sensitivity", "particle_density_slider", "graphics_quality", "invert_y")]
 process_mode = 3
 script = ExtResource("1_8a177")
 audio = NodePath("AudioStreamPlayer")
@@ -19,6 +19,7 @@ sfx_volume = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/SFXVolume/HSli
 music_volume = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/MusicVolume/HSlider")
 look_sensitivity = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/LookSensitivity/HSlider")
 particle_density_slider = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/Particle_density/HSlider")
+graphics_quality = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/Graphics/HSlider")
 invert_y = NodePath("Pause_Screen/PanelContainer2/VBoxContainer/Invert Y/CheckButton")
 
 [node name="Pause_Screen" type="Control" parent="."]
@@ -197,6 +198,25 @@ min_value = -1.0
 max_value = 3.0
 value = 2.0
 
+[node name="Graphics" type="HBoxContainer" parent="Pause_Screen/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Pause_Screen/PanelContainer2/VBoxContainer/Graphics"]
+layout_mode = 2
+theme = ExtResource("2_77yqj")
+theme_override_font_sizes/font_size = 32
+text = "Graphics Quality"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Pause_Screen/PanelContainer2/VBoxContainer/Graphics"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_77yqj")
+max_value = 2.0
+value = 2.0
+
 [node name="Invert Y" type="HBoxContainer" parent="Pause_Screen/PanelContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
@@ -224,4 +244,5 @@ bus = &"Music"
 [connection signal="drag_ended" from="Pause_Screen/PanelContainer2/VBoxContainer/MusicVolume/HSlider" to="." method="_on_music_volume_drag_ended"]
 [connection signal="drag_ended" from="Pause_Screen/PanelContainer2/VBoxContainer/LookSensitivity/HSlider" to="." method="_on_look_sensitivity_drag_ended"]
 [connection signal="drag_ended" from="Pause_Screen/PanelContainer2/VBoxContainer/Particle_density/HSlider" to="." method="_on_particle_density_drag_ended"]
+[connection signal="drag_ended" from="Pause_Screen/PanelContainer2/VBoxContainer/Graphics/HSlider" to="." method="_on_graphics_quality_drag_ended"]
 [connection signal="toggled" from="Pause_Screen/PanelContainer2/VBoxContainer/Invert Y/CheckButton" to="." method="_on_invert_y_toggled"]

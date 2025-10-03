@@ -15,6 +15,7 @@ signal DataUpdated(key : String)
 signal Saved
 signal Loaded
 
+#region data access
 #returns true if the data exists or not
 func has(_key : String) -> bool:
 	return data.has(_key)
@@ -30,26 +31,9 @@ func set_data(_key : String, value):
 		DataUpdated.emit(_key)
 	else:
 		NewDataAdded.emit(_key)
-	data[_key] = value
-
-#region Operator Overloading
-#for value = blackboard[key] functionality
-func _get(property: StringName) -> Variant:
-	return data.get(property,null)
-
-#for blackboard[key] = value functionality
-func _set(property: StringName, value: Variant) -> bool:
-	if(has(property)):
-		DataUpdated.emit(property)
-	else:
-		NewDataAdded.emit(property)
-	data[property] = value
-	return true
-
-#for " 'key' in 'blackboard' functionality"
-func _has(property: StringName) -> bool:
-	return data.has(property)
+	data.set(_key,value)
 #endregion
+
 
 #region Saving and loading
 #initialize this dictionary from a json file

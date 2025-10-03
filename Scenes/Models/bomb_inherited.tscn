@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bai1gshiygip2"]
+
+[ext_resource type="PackedScene" uid="uid://bokkowvsghkaq" path="res://Models/Pickups/Bomb.glb" id="1_f5h47"]
+[ext_resource type="Script" uid="uid://dhrncig2073i4" path="res://Codebase/LOD_Setter.gd" id="2_2cpwn"]
+
+[node name="Bomb" instance=ExtResource("1_f5h47")]
+
+[node name="mini-nuke" parent="." index="0"]
+script = ExtResource("2_2cpwn")
+
+[node name="mini-nuke_001" parent="." index="1"]
+script = ExtResource("2_2cpwn")
+
+[node name="Cube_003" parent="." index="2"]
+script = ExtResource("2_2cpwn")

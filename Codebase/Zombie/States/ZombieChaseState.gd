@@ -11,12 +11,12 @@ var direction : Vector3
 ##called once whe entering the state and then not again until it has finished
 func on_enter():
 	character_bb = state_machine.bb.data["bb"]
-	var anim : AnimationPlayer = character_bb._get("anim")
-	agent = character_bb._get("agent")
+	var anim : AnimationPlayer = character_bb.get_data("anim")
+	agent = character_bb.get_data("agent")
 	anim.play("anim/run")
 	
-	plr = GameManager.data._get("player") as Node3D
-	zom = character_bb._get("zombie") 
+	plr = GameManager.get_data("player") as Node3D
+	zom = character_bb.get_data("zombie") 
 	
 	recalculation_counter = 0
 
@@ -51,11 +51,11 @@ func tick():
 	
 	# Smooth turning (avoid zigzagging)
 	if direction != Vector3.ZERO:
-		var turn_speed = character_bb._get("turn_speed")
+		var turn_speed = character_bb.get_data("turn_speed")
 		direction = zom.transform.basis.z.lerp(direction, turn_speed).normalized()
 		
 		# Movement & facing
-		zom.velocity = direction * character_bb._get("move_speed")
+		zom.velocity = direction * character_bb.get_data("move_speed")
 		zom.look_at(zom.global_position + direction, Vector3.UP)
 	zom.velocity.y = 0
 	zom.rotation_degrees.x = 0

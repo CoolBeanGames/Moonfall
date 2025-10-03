@@ -36,11 +36,11 @@ func _ready() -> void:
 	bb.set_data("zombie",self)
 	add_states()
 	add_transitions()
-	state_machine.bb._set("bb",bb)
+	state_machine.bb.set_data("bb",bb)
 	state_machine.initialize("land")
 	ammo_clip= load("res://Scenes/Props/bullet_pickup.tscn")
 	material_target.material_override = materials.pick_random()
-	bb._set("health",bb._get("health") + int((5 * GameManager.data.data.get("time_ratio",0))))
+	bb.set_data("health",bb.get_data("health") + int((5 * GameManager.get_data("time_ratio",0))))
 
 
 
@@ -52,14 +52,14 @@ func add_states():
 	_addState("hurt",zombie_hurt_state.new(state_machine))
 
 func play_footstep_sound():
-	if GameManager.data.data.get("zombie_footsteps",0) < GameManager.data.data.get("max_zombie_footsteps",0):
+	if GameManager.get_data("zombie_footsteps",0) < GameManager.get_data("max_zombie_footsteps",0):
 		var p : audio_player = AudioManager.play_random_audio_file(foot_step_sounds,"zombie_footsteps",true,global_position)
-		GameManager.data.data.set("zombie_footsteps",GameManager.data.data.get("zombie_footsteps",0) + 1)
+		GameManager.set_data("zombie_footsteps",GameManager.get_data("zombie_footsteps",0) + 1)
 		p.playback_finished.connect(footstep_sound_finished)
 		pending_footstep_sounds += 1
 
 func footstep_sound_finished():
-	GameManager.data.data.set("zombie_footsteps",GameManager.data.data.get("zombie_footsteps",0) - 1)
+	GameManager.set_data("zombie_footsteps",GameManager.get_data("zombie_footsteps",0) - 1)
 	pending_footstep_sounds -= 1
 
 func add_transitions():
@@ -79,10 +79,10 @@ func add_transitions():
 
 
 func _process(_delta: float) -> void:
-	if !bb._get("end_process") == true:
+	if !bb.get_data("end_process") == true:
 		#set our range data
-		state_machine.bb._set("player_can_damage",player_damage_range.is_inside)
-		state_machine.bb._set("player_in_range",player_attack_range.is_inside)
+		state_machine.bb.set_data("player_can_damage",player_damage_range.is_inside)
+		state_machine.bb.set_data("player_in_range",player_attack_range.is_inside)
 		state_machine.process()
 
 func _addState(state_name : String, s : State):
@@ -101,29 +101,29 @@ func _add_event_transition(event_name : String,to_state : String, from_state : S
 	state_machine.transitions.append(t)
 
 func spawn_anim_done():
-	state_machine.bb._set("spawned",true)
+	state_machine.bb.set_data("spawned",true)
 
 func attack_anim_done():
-	state_machine.bb._set("attack_finished",true)
+	state_machine.bb.set_data("attack_finished",true)
 
 func deal_player_damagage():
 	if player_damage_range.is_inside:
 		print("player took damage")
-		var play : player = GameManager.data.data.get("player",null)
+		var play : player = GameManager.get_data("player",null)
 		if play:
 			play.take_damage()
 			GameManager.shake_camera.emit(1,.2)
 
 func take_damage(damage : int):
-	if !state_machine.bb._get("dead") == true:
+	if !state_machine.bb.get_data("dead") == true:
 		SignalBus.signals.signals["hit_enemy"].event.emit()
-		bb._set("health",bb._get("health") - damage)
-		if bb._get("health") <= 0:
+		bb.set_data("health",bb.get_data("health") - damage)
+		if bb.get_data("health") <= 0:
 			AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)
-			state_machine.bb._set("dead",true)
+			state_machine.bb.set_data("dead",true)
 
-			GameManager.data._set("score",GameManager.data._get("score"))
-			if randf_range(0,1) <= bb._get("chance_for_ammo"):
+			GameManager.set_data("score",GameManager.get_data("score"))
+			if randf_range(0,1) <= bb.get_data("chance_for_ammo"):
 				spawn_bullet_pickup()
 		else:
 			state_machine.bb.set("hurt",true)
@@ -139,12 +139,12 @@ func melee_damage():
 
 func kill():
 	AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)
-	state_machine.bb._set("dead",true)
+	state_machine.bb.set_data("dead",true)
 	GameManager.increase_score(1)
 	spawnables.get_item_spawn(global_position)
 	
 	#cleanup footstep sounds
-	GameManager.data.data.set("zombie_footsteps",GameManager.data.data.get("zombie_footsteps",0) - pending_footstep_sounds)
+	GameManager.set_data("zombie_footsteps",GameManager.get_data("zombie_footsteps",0) - pending_footstep_sounds)
 
 
 func end_hurt():

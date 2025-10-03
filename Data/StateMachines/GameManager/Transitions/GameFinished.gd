@@ -7,6 +7,6 @@ func _init(_state_machine : StateMachine, _to_state : String,_from_state : Strin
 ##evaluate this transition
 func eval(current_state : String) -> bool:
 	#change this for actual logic for transition
-	if(current_state == from_state and GameManager.data._get("game_finished") == true):
+	if(current_state == from_state and GameManager.get_data("game_finished") == true):
 		return true
 	return false

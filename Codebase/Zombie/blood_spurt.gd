@@ -6,7 +6,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var density = GameManager.settings_data.get("particle_density")
+	var density = GameManager.get_setting("particle_density")
 	if density == -1:
 		queue_free()
 		return

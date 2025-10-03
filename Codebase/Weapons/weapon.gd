@@ -66,9 +66,9 @@ func reload():
 		strat.reload(gun_data,animation_player)
 		cooldown = gun_data.reload_time
 		AudioManager.play_audio_file(gun_data.reload_sound,"gunshots",true,global_position)
-		while gun_data.loaded_bullets < gun_data.max_clip_size && GameManager.data.data.get("bullets",0) > 0:
+		while gun_data.loaded_bullets < gun_data.max_clip_size && GameManager.get_data("bullets",0) > 0:
 			gun_data.loaded_bullets += 1
-			GameManager.data.data.set("bullets",GameManager.data.data.get("bullets",0) -1)
+			GameManager.set_data("bullets",GameManager.get_data("bullets",0) -1)
 
 func melee(_melee_targets : Array):
 	if can_melee:
@@ -93,7 +93,7 @@ func _process(delta):
 		shoot_light.light_energy = 0
 	
 	#check if we can reload this gun
-	if gun_data.loaded_bullets < gun_data.max_clip_size and GameManager.data.data.get("bullets",0) > 0 and cooldown <= 0:
+	if gun_data.loaded_bullets < gun_data.max_clip_size and GameManager.get_data("bullets",0) > 0 and cooldown <= 0:
 		ready_to_reload = true
 	else:
 		ready_to_reload = false
