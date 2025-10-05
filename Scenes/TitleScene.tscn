@@ -1,11 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://cbgjbggshuarb"]
+[gd_scene load_steps=22 format=3 uid="uid://cbgjbggshuarb"]
 
 [ext_resource type="Script" uid="uid://dljoeq7cges5" path="res://Codebase/UI/title_scene.gd" id="1_j8exe"]
 [ext_resource type="Texture2D" uid="uid://by5nmjnwhbage" path="res://Textures/moonfall logo.png" id="2_mur7e"]
 [ext_resource type="Material" uid="uid://jtxtv3gth8v6" path="res://Materials/black_flat.tres" id="2_ryprb"]
 [ext_resource type="Material" uid="uid://bl4ulcfbxhpp6" path="res://Materials/moon_glow.tres" id="3_i2ev1"]
 [ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="3_ylut5"]
+[ext_resource type="PackedScene" uid="uid://dspowx6jmplt8" path="res://Scenes/UI_Scenes/settings_menu.tscn" id="4_mgc4o"]
 [ext_resource type="Material" uid="uid://c4eak3tarstnn" path="res://Materials/moon_outer.tres" id="4_mur7e"]
+[ext_resource type="PackedScene" uid="uid://nt00gmyw5ym7" path="res://Scenes/UI_Scenes/score_screen.tscn" id="5_r7xx3"]
 [ext_resource type="AudioStream" uid="uid://c5ap10km7w24m" path="res://Audio/SFX/explosion.wav" id="7_vt651"]
 [ext_resource type="AudioStream" uid="uid://ddua67tgyp6hu" path="res://Audio/SFX/skyclad_sound_swell_chopper_chord_build_pulse_accelerate_end_with_whoosh_mid_resonant_fragment_reverse_284.wav" id="8_fuef0"]
 [ext_resource type="AudioStream" uid="uid://cnakorgvo13lg" path="res://Audio/Music/title/heartsick instr.mp3" id="8_qv3jj"]
@@ -324,12 +326,19 @@ _data = {
 &"to_intro": SubResource("Animation_mgc4o")
 }
 
-[node name="TitleScene" type="Node3D" node_paths=PackedStringArray("title_anim", "replay_intro_button", "instrumental_audio", "targets_label")]
+[node name="TitleScene" type="Node3D" node_paths=PackedStringArray("title_anim", "replay_intro_button", "instrumental_audio", "targets_label", "settings_visibility_parent", "hide_settings_button", "settings_menu", "disable_on_settings", "leaderboard", "leaderboard_visiblility_target", "delete_if_game_not_finished")]
 script = ExtResource("1_j8exe")
 title_anim = NodePath("AnimationPlayer")
 replay_intro_button = NodePath("CanvasLayer/PanelContainer/VBoxContainer/Buttons/replay_intro_button")
 instrumental_audio = NodePath("music_back")
 targets_label = NodePath("CanvasLayer/targets_label")
+settings_visibility_parent = NodePath("CanvasLayer/Settings")
+hide_settings_button = NodePath("CanvasLayer/Settings/close_settings_button")
+settings_menu = NodePath("CanvasLayer/Settings/Settings_Menu")
+disable_on_settings = [NodePath("CanvasLayer/PanelContainer/VBoxContainer/Buttons/start"), NodePath("CanvasLayer/PanelContainer/VBoxContainer/Buttons/Settings"), NodePath("CanvasLayer/PanelContainer/VBoxContainer/Buttons/Leaderboard"), NodePath("CanvasLayer/PanelContainer/VBoxContainer/Buttons/quit"), NodePath("CanvasLayer/PanelContainer/VBoxContainer/Buttons/replay_intro_button"), NodePath("CanvasLayer/PanelContainer/VBoxContainer/Buttons/Credits")]
+leaderboard = NodePath("CanvasLayer/Leaderboard/ScoreScreen")
+leaderboard_visiblility_target = NodePath("CanvasLayer/Leaderboard")
+delete_if_game_not_finished = [NodePath("CanvasLayer/PanelContainer/VBoxContainer/Buttons/Leaderboard")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ryprb")
@@ -340,7 +349,7 @@ light_color = Color(0.854996, 0.284231, 0.445477, 1)
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.9353686, -0.04304337, 0.35104498, 0.15557697, 0.9414527, -0.2991028, -0.31761786, 0.3343859, 0.88730204, 0.930757, 0, 2.44337)
+transform = Transform3D(0.9353683, -0.043043368, 0.35104498, 0.15557693, 0.94145256, -0.2991028, -0.31761777, 0.33438587, 0.88730204, 0.930757, 0, 2.44337)
 near = 0.282
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -371,6 +380,18 @@ layout_mode = 2
 theme = ExtResource("3_ylut5")
 theme_override_font_sizes/font_size = 48
 text = "Play"
+
+[node name="Settings" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_ylut5")
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+
+[node name="Leaderboard" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_ylut5")
+theme_override_font_sizes/font_size = 48
+text = "Leaderboard"
 
 [node name="quit" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer/Buttons"]
 layout_mode = 2
@@ -412,6 +433,69 @@ grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("3_ylut5")
 horizontal_alignment = 2
+
+[node name="Settings" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5176471)
+
+[node name="Settings_Menu" parent="CanvasLayer/Settings" instance=ExtResource("4_mgc4o")]
+layout_mode = 1
+anchor_left = 0.10300001
+anchor_top = 0.344
+anchor_right = 0.896
+anchor_bottom = 0.744
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="close_settings_button" type="Button" parent="CanvasLayer/Settings"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -45.0
+offset_right = 89.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_ylut5")
+text = "Close Settings"
+
+[node name="Leaderboard" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5176471)
+
+[node name="ScoreScreen" parent="CanvasLayer/Leaderboard" instance=ExtResource("5_r7xx3")]
+layout_mode = 1
+anchors_preset = 15
+anchor_bottom = 1.0
+
+[node name="close_leaderboard_button2" type="Button" parent="CanvasLayer/Leaderboard"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -116.0
+offset_top = -47.0
+offset_right = 109.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_ylut5")
+text = "Close Leaderboard"
 
 [node name="ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49023438, 0)
@@ -789,5 +873,9 @@ stream = ExtResource("8_qv3jj")
 [node name="end_sound" type="AudioStreamPlayer" parent="."]
 
 [connection signal="button_down" from="CanvasLayer/PanelContainer/VBoxContainer/Buttons/start" to="." method="_on_start_button_down"]
+[connection signal="button_down" from="CanvasLayer/PanelContainer/VBoxContainer/Buttons/Settings" to="." method="_on_settings_button_down"]
+[connection signal="button_down" from="CanvasLayer/PanelContainer/VBoxContainer/Buttons/Leaderboard" to="." method="_on_leaderboard_button_down"]
 [connection signal="button_down" from="CanvasLayer/PanelContainer/VBoxContainer/Buttons/replay_intro_button" to="." method="on_replay_intro"]
 [connection signal="button_down" from="CanvasLayer/PanelContainer/VBoxContainer/Buttons/Credits" to="." method="on_credits"]
+[connection signal="button_down" from="CanvasLayer/Settings/close_settings_button" to="." method="_on_close_settings_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/Leaderboard/close_leaderboard_button2" to="." method="_on_close_leaderboard_button_2_button_down"]

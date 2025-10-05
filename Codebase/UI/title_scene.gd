@@ -5,6 +5,19 @@ extends Node3D
 @export var instrumental_audio : AudioStreamPlayer
 @export var targets_label : Label
 
+@export var settings_visibility_parent : Control
+@export var hide_settings_button : Button
+@export var settings_menu : Control
+@export var settings_open : bool = false
+@export var leaderboard_open : bool = false
+
+@export var disable_on_settings : Array[Button]
+
+@export var leaderboard : score_display_ui
+@export var leaderboard_visiblility_target : Control
+
+@export var delete_if_game_not_finished : Array[Control]
+
 func _ready() -> void:
 	title_anim.play("fade_in")
 	
@@ -19,16 +32,20 @@ func _ready() -> void:
 		targets_label.queue_free()
 	else:
 		targets_label.text = "Targets Destroyed: " + str(GameManager.save_data.data.get("destroyed_targets",0))
+	
+	if !GameManager.save_data.has("has_finished_game"):
+		for d in delete_if_game_not_finished:
+			d.queue_free()
 
 func play_instrumental():
 	instrumental_audio.play()
 
 #start the intro animation
 func _on_start_button_down() -> void:
-	print("start clicked")
-	if is_instance_valid(GameManager.start_music):
-		GameManager.start_music.fade_out(3)
-	title_anim.play("explode")
+	if !settings_open and !leaderboard_open:
+		if is_instance_valid(GameManager.start_music):
+			GameManager.start_music.fade_out(3)
+		title_anim.play("explode")
 
 #load into the game (play game clicked)
 func load_game():
@@ -39,18 +56,50 @@ func load_game():
 
 #play the intro again if you have already seen it
 func on_replay_intro() -> void:
-	if is_instance_valid(GameManager.start_music):
-		GameManager.start_music.fade_out(3)
-	title_anim.play("to_intro")
+	if !settings_open and !leaderboard_open:
+		if is_instance_valid(GameManager.start_music):
+			GameManager.start_music.fade_out(3)
+		title_anim.play("to_intro")
 
 
 func on_credits() -> void:
-	if is_instance_valid(GameManager.start_music):
-		GameManager.start_music.fade_out(3)
-	title_anim.play("to_credits")
+	if !settings_open and !leaderboard_open:
+		if is_instance_valid(GameManager.start_music):
+			GameManager.start_music.fade_out(3)
+		title_anim.play("to_credits")
 
 func to_credits():
-	SignalBus.fire_signal("to_credits")
+	if !settings_open and !leaderboard_open:
+		SignalBus.fire_signal("to_credits")
 
 func to_intro():
-	SignalBus.fire_signal("to_intro")
+	if !settings_open and !leaderboard_open:
+		SignalBus.fire_signal("to_intro")
+
+
+
+func _on_close_settings_button_button_down() -> void:
+	toggle_settings()
+
+func _on_settings_button_down() -> void:
+	if !settings_open and !leaderboard_open:
+		toggle_settings()
+	
+
+func toggle_settings():
+	settings_open = !settings_open
+	settings_visibility_parent.visible = settings_open
+
+
+func _on_close_leaderboard_button_2_button_down() -> void:
+	toggle_leaderboard()
+
+
+func _on_leaderboard_button_down() -> void:
+	toggle_leaderboard()
+
+func toggle_leaderboard():
+	leaderboard_open = !leaderboard_open
+	if leaderboard_open:
+		leaderboard.show_score_ui()
+	leaderboard_visiblility_target.visible = leaderboard_open

@@ -9,6 +9,9 @@ extends Node2D
 func _ready() -> void:
 	if !GameManager.save_data.data.has("player_name"):
 		GameManager.save_data.data.set("player_name","player_" + str(randi()))
+	GameManager.save_data.data["has_finished_game"] = true
+	GameManager.save_game()
+	print("saved game :" , str(GameManager.save_data.data.keys()))
 	name_field.text = GameManager.save_data.data.get("player_name","player")
 
 	var sc = SilentWolf.Scores

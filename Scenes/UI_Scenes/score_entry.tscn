@@ -19,30 +19,36 @@ entry_score = NodePath("HBoxContainer/entry_score")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+theme = ExtResource("2_fsc3k")
+alignment = 1
 
 [node name="entry_number" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
 theme = ExtResource("2_fsc3k")
 text = "0"
-horizontal_alignment = 2
 vertical_alignment = 1
+clip_text = true
 
 [node name="entry_name" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 theme = ExtResource("2_fsc3k")
 text = "player"
 horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
 
 [node name="entry_score" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
 theme = ExtResource("2_fsc3k")
 text = "0"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
+clip_text = true
