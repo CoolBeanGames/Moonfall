@@ -61,6 +61,8 @@ func do_damage(gun_data : gun, col : CollisionObject3D, global_position : Vector
 		print("spawn dust")
 		spawn_dust_cloud(global_position)
 
+	
 	#deal the damage we calculated
 	if col.has_method("take_damage"):
+		damage = GameManager.process_effect_value(damage,stack_effect.effector.damage)
 		col.take_damage(damage)

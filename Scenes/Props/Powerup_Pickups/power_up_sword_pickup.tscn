@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1hc7k634nr41"]
+
+[ext_resource type="PackedScene" uid="uid://1bms50i7c5a1" path="res://Models/Pickups/Power_Ups/power_up Sword.glb" id="1_fuwkb"]
+
+[node name="power_up Sword" instance=ExtResource("1_fuwkb")]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(1.9145303, 1.25516895e-08, 0, -1.6737356e-07, 0.1435746, 0, 0, 0, -0.3760544, 0, 0, 0)

@@ -14,3 +14,4 @@ class_name item_data extends Resource
 @export var strategies : Array[strategy]
 #how large to scale the model to after spawn
 @export var item_scale : Vector3 = Vector3(1,1,1)
+@export var item_rotation : Vector3 = Vector3(1,1,1)

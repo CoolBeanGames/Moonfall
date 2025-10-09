@@ -27,6 +27,7 @@ func setup(data : item_data):
 	spawn_point.add_child(instance)
 	instance.global_position = spawn_point.global_position
 	instance.scale = data.item_scale
+	instance.rotation_degrees = data.item_rotation
 	strategies = data.strategies
 	
 	#play the animation when we are ready to start

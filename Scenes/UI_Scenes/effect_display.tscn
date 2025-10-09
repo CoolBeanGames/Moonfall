@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://brjcpt8oib6di"]
+
+[ext_resource type="Script" uid="uid://dfc0llru5x21g" path="res://Codebase/UI/effect_display.gd" id="1_ntoes"]
+[ext_resource type="Texture2D" uid="uid://c6rdmp4q8ja1c" path="res://Textures/skull.png" id="2_ykmro"]
+[ext_resource type="Shader" uid="uid://cqhtidtkvp5oj" path="res://Codebase/Shaders/circle_bar.gdshader" id="3_5c1yv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttxpd"]
+shader = ExtResource("3_5c1yv")
+shader_parameter/progress = 1.0
+shader_parameter/ring_thickness = 0.1
+shader_parameter/ring_radius = 0.4
+shader_parameter/progress_color = Color(0, 0, 0, 1)
+shader_parameter/background_color = Color(0.000417689, 0.000417689, 0.000417689, 1)
+shader_parameter/gradient_color = Color(0.8787067, 0.46352547, 3.85046e-07, 1)
+shader_parameter/smoothness = 0.0010000000475
+shader_parameter/gradient_strength = 1.0
+shader_parameter/use_gradient = true
+shader_parameter/rotation_offset = 0.0
+
+[node name="effect_display" type="MarginContainer" node_paths=PackedStringArray("icon", "progress_bar")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+script = ExtResource("1_ntoes")
+icon = NodePath("AspectRatioContainer/icon")
+progress_bar = NodePath("AspectRatioContainer/progress_bar")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ykmro")
+
+[node name="progress_bar" type="ColorRect" parent="AspectRatioContainer"]
+material = SubResource("ShaderMaterial_ttxpd")
+layout_mode = 2

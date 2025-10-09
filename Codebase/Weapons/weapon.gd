@@ -105,5 +105,5 @@ func deal_melee_damage():
 	if melee_targets.size() > 0:
 		GameManager.shake_camera.emit(0.2,0.1)
 		for m  in melee_targets:
-			m.take_damage(gun_data.melee_damage)
+			m.take_damage(GameManager.process_effect_value(gun_data.melee_damage,stack_effect.effector.damage))
 	

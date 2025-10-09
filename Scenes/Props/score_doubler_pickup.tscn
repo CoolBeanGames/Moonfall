@@ -1,0 +1,39 @@
+[gd_scene load_steps=11 format=3 uid="uid://crrfff2kp0ikx"]
+
+[ext_resource type="Script" uid="uid://clckikavt8tup" path="res://Codebase/props/item_pickup.gd" id="1_4pu7n"]
+[ext_resource type="Script" uid="uid://dxybaex8t0hfv" path="res://Codebase/Strategies/strategy.gd" id="2_ys0ii"]
+[ext_resource type="PackedScene" uid="uid://cwl7c6p83e5uu" path="res://Scenes/Props/item_pickup.tscn" id="3_27b52"]
+[ext_resource type="Script" uid="uid://ce68ltdwnf1hx" path="res://Codebase/Effects/double_score_effect.gd" id="3_nss2r"]
+[ext_resource type="Script" uid="uid://dpucphvuv65as" path="res://Codebase/Strategies/effect_pickup_strategy.gd" id="4_nahfq"]
+[ext_resource type="Resource" uid="uid://b0g851jv85exu" path="res://Data/items/double_score_pickup.tres" id="5_nss2r"]
+[ext_resource type="PackedScene" uid="uid://dpoh80t87w0c4" path="res://Models/Pickups/Power_Ups/X2 Multiplier.glb" id="5_rrww5"]
+
+[sub_resource type="Resource" id="Resource_0w3ib"]
+script = ExtResource("3_nss2r")
+metadata/_custom_type_script = "uid://ce68ltdwnf1hx"
+
+[sub_resource type="Resource" id="Resource_krhin"]
+script = ExtResource("4_nahfq")
+effect = SubResource("Resource_0w3ib")
+active_time = 30.0
+metadata/_custom_type_script = "uid://dpucphvuv65as"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ys0ii"]
+
+[node name="score_doubler" type="Node3D"]
+script = ExtResource("1_4pu7n")
+strategies = Array[ExtResource("2_ys0ii")]([SubResource("Resource_krhin")])
+itemData = ExtResource("5_nss2r")
+
+[node name="X2 Multiplier" parent="." instance=ExtResource("5_rrww5")]
+transform = Transform3D(0.299, 0, 0, 0, -1.3069705e-08, -0.299, 0, 0.299, -1.3069705e-08, 0, 0.1857006, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_ys0ii")
+
+[node name="CPUParticles3D" parent="." instance=ExtResource("3_27b52")]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -55,6 +55,9 @@ func _ready():
 	GameManager.shake_camera.connect(shake_camera)
 
 func take_damage(damage : int = 1):
+	damage = GameManager.process_effect_value(damage,stack_effect.effector.player_damage)
+	if damage == 0:
+		return
 	var health = GameManager.get_data("player_health",1)
 	GameManager.set_data("player_health",health - damage)
 	health -= damage

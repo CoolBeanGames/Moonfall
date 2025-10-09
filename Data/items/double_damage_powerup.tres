@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="item_data" load_steps=9 format=3 uid="uid://b0qu2imlxcq60"]
+
+[ext_resource type="Script" uid="uid://d4g7rbit6x2ef" path="res://Codebase/props/item_data.gd" id="1_hyps2"]
+[ext_resource type="PackedScene" uid="uid://1hc7k634nr41" path="res://Scenes/Props/Powerup_Pickups/power_up_sword_pickup.tscn" id="1_r14ba"]
+[ext_resource type="Script" uid="uid://dxybaex8t0hfv" path="res://Codebase/Strategies/strategy.gd" id="2_r14ba"]
+[ext_resource type="Script" uid="uid://j5rqqkkolpsk" path="res://Codebase/Effects/double_damage_effect.gd" id="4_0tdb3"]
+[ext_resource type="Texture2D" uid="uid://ch833hyoxtp6u" path="res://Textures/UI/sword.png" id="4_feguq"]
+[ext_resource type="Script" uid="uid://dpucphvuv65as" path="res://Codebase/Strategies/effect_pickup_strategy.gd" id="5_feguq"]
+
+[sub_resource type="Resource" id="Resource_seg5f"]
+script = ExtResource("4_0tdb3")
+icon_image = ExtResource("4_feguq")
+gradient_right_color = Color(0.6445526, 1.2634322e-06, 5.7756904e-07, 1)
+metadata/_custom_type_script = "uid://j5rqqkkolpsk"
+
+[sub_resource type="Resource" id="Resource_t2jx6"]
+script = ExtResource("5_feguq")
+effect = SubResource("Resource_seg5f")
+active_time = 30.0
+metadata/_custom_type_script = "uid://dpucphvuv65as"
+
+[resource]
+script = ExtResource("1_hyps2")
+item_name = &"doubledamage"
+scene_to_spawn = ExtResource("1_r14ba")
+strategies = Array[ExtResource("2_r14ba")]([SubResource("Resource_t2jx6")])
+item_scale = Vector3(0.1, 0.1, 0.1)
+item_rotation = Vector3(0, 0, -90)
+metadata/_custom_type_script = "uid://d4g7rbit6x2ef"

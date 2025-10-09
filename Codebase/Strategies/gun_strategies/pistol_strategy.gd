@@ -29,11 +29,13 @@ func do_damage(gun_data : gun, col : CollisionObject3D, global_position : Vector
 	var damage : int = 0
 	var is_world : bool = true
 	if col.is_in_group("BodyShotZone"):
+		print("[damage] bodyshot")
 		damage = gun_data.bullet_damage
 		col = col.z
 		spawn_bloodspurt(global_position)
 		is_world = false
 	if col.is_in_group("HeadShotZone"):
+		print("[damage] headshot")
 		damage = gun_data.bullet_damage * 2
 		col = col.z
 		spawn_bloodspurt(global_position)
@@ -51,4 +53,7 @@ func do_damage(gun_data : gun, col : CollisionObject3D, global_position : Vector
 
 	#deal the damage we calculated
 	if col.has_method("take_damage"):
+		print("[damage] incoming damage: " , str(damage), ".")
+		damage = GameManager.process_effect_value(damage , stack_effect.effector.damage)
+		print("[damage] outgoing damage: " , str(damage), " .")
 		col.take_damage(damage)

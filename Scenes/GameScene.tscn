@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxurmah5617f5"]
+[gd_scene load_steps=21 format=3 uid="uid://bxurmah5617f5"]
 
 [ext_resource type="PackedScene" uid="uid://b5t76snp62aca" path="res://Scenes/enviroment.tscn" id="1_2wl7v"]
 [ext_resource type="PackedScene" uid="uid://dfwvu0chheicj" path="res://Player/player.tscn" id="2_3mbwn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://4qe0y0r8t746" path="res://Codebase/UI/vignette.gd" id="4_lg2j6"]
 [ext_resource type="PackedScene" uid="uid://ca77ddpkx5ui8" path="res://Scenes/UI_Scenes/aiming_reticle.tscn" id="6_x6js8"]
 [ext_resource type="PackedScene" uid="uid://dknums531xxie" path="res://Scenes/UI_Scenes/game_hud.tscn" id="7_x6js8"]
+[ext_resource type="Script" uid="uid://cebavihyjh03u" path="res://Codebase/UI/assign_effect_container.gd" id="7_yhlfj"]
 [ext_resource type="PackedScene" uid="uid://djjcpekb2cwil" path="res://Scenes/Props/tree_a.tscn" id="8_y30xb"]
 [ext_resource type="PackedScene" uid="uid://5na86574e0ak" path="res://Scenes/Props/tree_b.tscn" id="9_xhjei"]
 [ext_resource type="PackedScene" uid="uid://dpweyu8orpku2" path="res://Scenes/Props/crate.tscn" id="9_y30xb"]
@@ -117,6 +118,20 @@ grow_vertical = 2
 [node name="debug_info" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.18200001
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="effect_container" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("7_yhlfj")
 
 [node name="crates" type="Node3D" parent="."]
 
@@ -1435,151 +1450,151 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5474486, 0.35526133, 9.141
 [node name="target9" parent="targets" instance=ExtResource("15_124qp")]
 transform = Transform3D(0.65009815, 0, -0.75985026, 0, 1, 0, 0.75985026, 0, 0.65009815, 5.3732657, 1.750813, -2.6412668)
 
-[node name="random_item_spanwers" type="Node3D" parent="."]
+[node name="random_item_spawners" type="Node3D" parent="."]
 
-[node name="Random_Item_Spawn_Point" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.96175, 0.25576738, 14.935849)
 
-[node name="Random_Item_Spawn_Point2" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point2" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3364143, 0.25576738, 15.019809)
 
-[node name="Random_Item_Spawn_Point3" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point3" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.449253, 0.25576738, 14.516048)
 
-[node name="Random_Item_Spawn_Point4" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point4" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.708652, 0.25576738, 10.318038)
 
-[node name="Random_Item_Spawn_Point5" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point5" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.02193, 0.25576738, 24.927116)
 
-[node name="Random_Item_Spawn_Point6" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point6" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.272594, 0.25576738, 24.423355)
 
-[node name="Random_Item_Spawn_Point7" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point7" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.296375, 0.25576738, 32.231655)
 
-[node name="Random_Item_Spawn_Point8" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point8" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.625908, 0.25576738, 29.460968)
 
-[node name="Random_Item_Spawn_Point9" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point9" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.741169, 0.25576738, 24.759195)
 
-[node name="Random_Item_Spawn_Point10" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point10" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46672058, 0.25576738, 33.155216)
 
-[node name="Random_Item_Spawn_Point11" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point11" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.089697, 0.25576738, 27.949684)
 
-[node name="Random_Item_Spawn_Point12" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point12" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.448105, 0.25576738, 18.6301)
 
-[node name="Random_Item_Spawn_Point13" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point13" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.410492, 0.25576738, 15.35565)
 
-[node name="Random_Item_Spawn_Point14" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point14" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.203747, 0.25576738, 31.979773)
 
-[node name="Random_Item_Spawn_Point15" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point15" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5595417, 0.25576738, 35.031967)
 
-[node name="Random_Item_Spawn_Point16" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point16" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.573378, 0.25576738, 34.948006)
 
-[node name="Random_Item_Spawn_Point17" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point17" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.839087, 0.25576738, 35.199886)
 
-[node name="Random_Item_Spawn_Point18" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point18" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.854134, 0.25576738, 20.590809)
 
-[node name="Random_Item_Spawn_Point19" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point19" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.041014, 0.25576738, 4.542928)
 
-[node name="Random_Item_Spawn_Point20" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point20" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4244137, 0.25576738, 5.2146096)
 
-[node name="Random_Item_Spawn_Point21" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point21" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1545696, 0.25576738, 4.458968)
 
-[node name="Random_Item_Spawn_Point22" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point22" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.016741, 0.25576738, -0.0748832)
 
-[node name="Random_Item_Spawn_Point23" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point23" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.559326, 0.25576738, -5.784178)
 
-[node name="Random_Item_Spawn_Point24" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point24" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5384655, 0.25576738, -4.8606157)
 
-[node name="Random_Item_Spawn_Point25" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point25" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.270327, 0.25576738, -5.784178)
 
-[node name="Random_Item_Spawn_Point26" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point26" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.24655, 0.25576738, -4.8606157)
 
-[node name="Random_Item_Spawn_Point27" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point27" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.64257, 0.25576738, 0.84867835)
 
-[node name="Random_Item_Spawn_Point28" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point28" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.162588, 0.25576738, 14.450233)
 
-[node name="Random_Item_Spawn_Point29" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point29" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5384655, 0.25576738, 14.282313)
 
-[node name="Random_Item_Spawn_Point30" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point30" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.049749, 0.25576738, 4.7948093)
 
-[node name="Random_Item_Spawn_Point42" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point42" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.51066, 0.25576735, 12.058636)
 
-[node name="Random_Item_Spawn_Point43" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point43" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.356104, 0.25576735, 11.9047785)
 
-[node name="Random_Item_Spawn_Point44" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point44" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.048668, 0.25576735, 11.82785)
 
-[node name="Random_Item_Spawn_Point45" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point45" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0627985, 0.25576735, 11.58068)
 
-[node name="Random_Item_Spawn_Point46" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point46" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5626936, 0.25576735, 12.849999)
 
-[node name="Random_Item_Spawn_Point47" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point47" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4470215, 0.25576735, 7.618864)
 
-[node name="Random_Item_Spawn_Point48" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point48" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3700924, 0.25576735, 13.157713)
 
-[node name="Random_Item_Spawn_Point49" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point49" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5631332, 0.25576735, 11.52483)
 
-[node name="Random_Item_Spawn_Point31" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point31" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.210186, 2.2771297, 22.090422)
 
-[node name="Random_Item_Spawn_Point32" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point32" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6722565, 0.25576738, 21.61188)
 
-[node name="Random_Item_Spawn_Point33" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point33" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.059894, 0.25576738, 18.496277)
 
-[node name="Random_Item_Spawn_Point34" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point34" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.060246, 0.25576738, 22.496557)
 
-[node name="Random_Item_Spawn_Point35" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point35" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.060665, 0.25576738, 18.303955)
 
-[node name="Random_Item_Spawn_Point36" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point36" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.445309, 1.8753963, 22.727343)
 
-[node name="Random_Item_Spawn_Point37" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point37" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.032576, 0.25576738, 0.68983626)
 
-[node name="Random_Item_Spawn_Point38" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point38" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.680416, 0.25576738, 1.7191387)
 
-[node name="Random_Item_Spawn_Point39" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point39" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6857424, 0.25576738, -1.564826)
 
-[node name="Random_Item_Spawn_Point40" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point40" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1633782, 0.25576738, -3.18024)
 
-[node name="Random_Item_Spawn_Point41" parent="random_item_spanwers" instance=ExtResource("17_ry528")]
+[node name="Random_Item_Spawn_Point41" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.487766, 0.25576738, -2.2174485)

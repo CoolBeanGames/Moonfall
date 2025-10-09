@@ -112,28 +112,19 @@ func deal_player_damagage():
 		print("player took damage")
 		var play : player = GameManager.get_data("player",null)
 		if play:
-			play.take_damage()
+			play.take_damage(1) #later have this process effects
 			GameManager.shake_camera.emit(1,.2)
 
 func take_damage(damage : int):
+	print("zombie taking ", str(damage), " damage")
 	if !state_machine.bb.get_data("dead") == true:
 		SignalBus.fire_signal("hit_enemy")
 		bb.set_data("health",bb.get_data("health") - damage)
 		if bb.get_data("health") <= 0:
-			AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)
-			state_machine.bb.set_data("dead",true)
-
-			GameManager.set_data("score",GameManager.get_data("score"))
-			if randf_range(0,1) <= bb.get_data("chance_for_ammo"):
-				spawn_bullet_pickup()
+			kill()
 		else:
 			state_machine.bb.set("hurt",true)
 			AudioManager.play_audio_file(zombie_hit_sound,"zombie_noises",true,global_position)
-
-func spawn_bullet_pickup():
-	var instance = ammo_clip.instantiate()
-	GameManager.add_child(instance)
-	instance.global_position = global_position
 
 func melee_damage():
 	take_damage(1)

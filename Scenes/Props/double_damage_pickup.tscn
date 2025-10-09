@@ -1,0 +1,39 @@
+[gd_scene load_steps=11 format=3 uid="uid://cyymi5i4itr7p"]
+
+[ext_resource type="Script" uid="uid://bd14tier1tocf" path="res://Scenes/Props/double_damage_pickup.gd" id="1_yanll"]
+[ext_resource type="PackedScene" uid="uid://cwl7c6p83e5uu" path="res://Scenes/Props/item_pickup.tscn" id="2_bgshu"]
+[ext_resource type="Script" uid="uid://dxybaex8t0hfv" path="res://Codebase/Strategies/strategy.gd" id="2_jgl8s"]
+[ext_resource type="Script" uid="uid://j5rqqkkolpsk" path="res://Codebase/Effects/double_damage_effect.gd" id="3_c81mp"]
+[ext_resource type="Script" uid="uid://dpucphvuv65as" path="res://Codebase/Strategies/effect_pickup_strategy.gd" id="3_jgl8s"]
+[ext_resource type="Resource" uid="uid://b0qu2imlxcq60" path="res://Data/items/double_damage_powerup.tres" id="4_10ys2"]
+[ext_resource type="PackedScene" uid="uid://1bms50i7c5a1" path="res://Models/Pickups/Power_Ups/power_up Sword.glb" id="4_jgl8s"]
+
+[sub_resource type="Resource" id="Resource_g3lu4"]
+script = ExtResource("3_c81mp")
+metadata/_custom_type_script = "uid://j5rqqkkolpsk"
+
+[sub_resource type="Resource" id="Resource_10ys2"]
+script = ExtResource("3_jgl8s")
+effect = SubResource("Resource_g3lu4")
+active_time = 10.0
+metadata/_custom_type_script = "uid://dpucphvuv65as"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yanll"]
+
+[node name="double_damage_pickup" type="Node3D"]
+script = ExtResource("1_yanll")
+strategies = Array[ExtResource("2_jgl8s")]([SubResource("Resource_10ys2")])
+itemData = ExtResource("4_10ys2")
+
+[node name="power_up Sword" parent="." instance=ExtResource("4_jgl8s")]
+transform = Transform3D(-4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, 0, 0, 0.1, 0, 0.32284272, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_yanll")
+
+[node name="CPUParticles3D" parent="." instance=ExtResource("2_bgshu")]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

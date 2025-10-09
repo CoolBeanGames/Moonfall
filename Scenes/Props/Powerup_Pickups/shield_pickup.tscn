@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://3lmehik6j7p4"]
+
+[ext_resource type="PackedScene" uid="uid://so3xxd1plkrv" path="res://Models/Pickups/Power_Ups/Shield.glb" id="1_i0ywj"]
+
+[node name="Shield" instance=ExtResource("1_i0ywj")]

@@ -20,6 +20,9 @@ var settings_data : blackboard = blackboard.new()
 ##if the game is paused or not
 @export var is_paused : bool = false
 
+@export var effect_stack : Array[stack_effect]
+@export var effect_stack_parent : HBoxContainer
+
 var random_item_spawn_timer : float
 #endregion
 
@@ -50,7 +53,23 @@ func _ready() -> void:
 	"game_id": "Moonfall",
 	"log_level": 1
 	})
-	
+
+#region effects
+##process all the effects against a value
+func process_effect_value(value, type : stack_effect.effector) -> Variant:
+	for e in effect_stack:
+		value = e.effect(value,type)
+	return value
+
+##adds an effect to the effect stack
+func add_effect(effect : stack_effect , time : float):
+	if !effect_stack.has(effect):
+		effect_stack.append(effect)
+		var instance = effect.display_scene.instantiate()
+		effect_stack_parent.add_child(instance)
+		var display : effect_display = instance
+		display.setup(effect,time)
+#endregion
 
 func start_intro_audio():
 	start_music = AudioManager.play_audio_file(load("res://Audio/Music/title/1181305_Heartsick-Feat-Agassi.mp3"),"default",false,Vector3(0,0,0))
@@ -157,9 +176,13 @@ func kill_all_zombies():
 		data.data["all_zombies"].clear()
 
 func increase_score(ammount : int):
-	var adjusted : int = ammount * get_data("score_mult",1)
+	print("[Score] increasing score, input is ", str(ammount))
+	var adjusted : int = process_effect_value(ammount,stack_effect.effector.score)
 	var score : int = get_data("score",0)
+	print("[Score] output ", str(adjusted))
 	set_data("score",score + adjusted)
+	print("[Score] new value: " , str(score + adjusted))
+	SignalBus.fire_signal("update_score")
 
 func preset_volumes():
 	update_audio_bus("Music",get_setting("music_volume"))
@@ -202,6 +225,7 @@ func erase_data(data_name : String):
 
 #called to erase all in game data
 func reset_data():
+	effect_stack = []
 	data.load_from_json("res://config.json")
 
 #makes all audio stop and returns it to the source
@@ -209,6 +233,8 @@ func purge_all_audio():
 	for a in AudioManager.active_audio_players:
 		a.stop()
 
+##a new system for randomly spawning items within the world
+##this way we are not so dependant on crates to break
 func random_item_spawning():
 	random_item_spawn_timer += get_data("delta")
 	if random_item_spawn_timer >= get_data("Random_Item_Spawn_Check_Time"):

@@ -68,7 +68,7 @@ _data = {
 &"hover": SubResource("Animation_nw4g2")
 }
 
-[node name="item_pickup" type="Node3D" node_paths=PackedStringArray("anim")]
+[node name="bomb_pickup" type="Node3D" node_paths=PackedStringArray("anim")]
 script = ExtResource("1_rbky5")
 anim = NodePath("AnimationPlayer")
 

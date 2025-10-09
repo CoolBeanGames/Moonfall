@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy2oc0su7g65"]
+
+[ext_resource type="PackedScene" uid="uid://dpoh80t87w0c4" path="res://Models/Pickups/Power_Ups/X2 Multiplier.glb" id="1_exqt8"]
+
+[node name="X2 Multiplier" instance=ExtResource("1_exqt8")]

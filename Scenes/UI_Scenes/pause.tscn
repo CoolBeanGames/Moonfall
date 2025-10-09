@@ -70,6 +70,10 @@ text = "Quit"
 [node name="Settings_Menu" parent="Pause_Screen" instance=ExtResource("3_o5rwi")]
 layout_mode = 0
 anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_2wp1l")
