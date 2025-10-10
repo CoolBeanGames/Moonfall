@@ -349,7 +349,7 @@ light_color = Color(0.854996, 0.284231, 0.445477, 1)
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.9353683, -0.043043368, 0.35104498, 0.15557693, 0.94145256, -0.2991028, -0.31761777, 0.33438587, 0.88730204, 0.930757, 0, 2.44337)
+transform = Transform3D(0.93536824, -0.043043364, 0.35104498, 0.15557691, 0.9414525, -0.2991028, -0.31761774, 0.33438584, 0.88730204, 0.930757, 0, 2.44337)
 near = 0.282
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -435,7 +435,6 @@ theme = ExtResource("3_ylut5")
 horizontal_alignment = 2
 
 [node name="Settings" type="ColorRect" parent="CanvasLayer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -445,10 +444,15 @@ color = Color(0, 0, 0, 0.5176471)
 
 [node name="Settings_Menu" parent="CanvasLayer/Settings" instance=ExtResource("4_mgc4o")]
 layout_mode = 1
-anchor_left = 0.10300001
-anchor_top = 0.344
-anchor_right = 0.896
-anchor_bottom = 0.744
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -153.5
+offset_right = 175.0
+offset_bottom = 153.5
 grow_horizontal = 2
 grow_vertical = 2
 

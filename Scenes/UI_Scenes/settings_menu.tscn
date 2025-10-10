@@ -171,6 +171,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="Fullscreen" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 20
 
