@@ -9,7 +9,7 @@ content_margin_right = 20.0
 content_margin_bottom = 10.0
 bg_color = Color(0.12156863, 0.12156863, 0.12156863, 0.7647059)
 
-[node name="Settings_Menu" type="PanelContainer" node_paths=PackedStringArray("master_volume", "sfx_volume", "music_volume", "look_sensitivity", "particle_density_slider", "graphics_quality", "invert_y")]
+[node name="Settings_Menu" type="PanelContainer" node_paths=PackedStringArray("master_volume", "sfx_volume", "music_volume", "look_sensitivity", "particle_density_slider", "graphics_quality", "invert_y", "resolution_label", "full_screen_toggle")]
 anchors_preset = -1
 anchor_left = 0.28800002
 anchor_top = 0.112
@@ -24,6 +24,8 @@ look_sensitivity = NodePath("VBoxContainer/LookSensitivity/HSlider")
 particle_density_slider = NodePath("VBoxContainer/Particle_density/HSlider")
 graphics_quality = NodePath("VBoxContainer/Graphics/HSlider")
 invert_y = NodePath("VBoxContainer/Invert Y/CheckButton")
+resolution_label = NodePath("VBoxContainer/Resolution/Res-Label")
+full_screen_toggle = NodePath("VBoxContainer/Fullscreen/CheckButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -167,3 +169,61 @@ horizontal_alignment = 1
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/Invert Y"]
 layout_mode = 2
+
+[node name="Fullscreen" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer/Fullscreen"]
+layout_mode = 2
+theme = ExtResource("2_tjab7")
+theme_override_font_sizes/font_size = 32
+text = "Fullscreen"
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/Fullscreen"]
+layout_mode = 2
+
+[node name="Resolution" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer/Resolution"]
+layout_mode = 2
+theme = ExtResource("2_tjab7")
+theme_override_font_sizes/font_size = 32
+text = "Resolution"
+horizontal_alignment = 1
+
+[node name="Res-Down" type="Button" parent="VBoxContainer/Resolution"]
+layout_mode = 2
+theme = ExtResource("2_tjab7")
+text = "-"
+
+[node name="Res-Label" type="Label" parent="VBoxContainer/Resolution"]
+layout_mode = 2
+theme = ExtResource("2_tjab7")
+text = "1920 x 1080"
+
+[node name="Res-Up" type="Button" parent="VBoxContainer/Resolution"]
+layout_mode = 2
+theme = ExtResource("2_tjab7")
+text = "+"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_tjab7")
+text = "Apply Resolution"
+
+[connection signal="drag_ended" from="VBoxContainer/master_volume/HSlider" to="." method="_on_master_volume_drag_ended"]
+[connection signal="drag_ended" from="VBoxContainer/SFXVolume/HSlider" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="drag_ended" from="VBoxContainer/MusicVolume/HSlider" to="." method="_on_music_volume_drag_ended"]
+[connection signal="drag_ended" from="VBoxContainer/LookSensitivity/HSlider" to="." method="_on_look_sensitivity_drag_ended"]
+[connection signal="drag_ended" from="VBoxContainer/Particle_density/HSlider" to="." method="_on_particle_density_drag_ended"]
+[connection signal="drag_ended" from="VBoxContainer/Graphics/HSlider" to="." method="_on_graphics_quality_drag_ended"]
+[connection signal="toggled" from="VBoxContainer/Invert Y/CheckButton" to="." method="_on_invert_y_toggled"]
+[connection signal="button_down" from="VBoxContainer/Fullscreen/CheckButton" to="." method="_on_fullscreen_down"]
+[connection signal="button_down" from="VBoxContainer/Resolution/Res-Down" to="." method="_on_res_down"]
+[connection signal="button_down" from="VBoxContainer/Resolution/Res-Up" to="." method="_on_res_up"]
+[connection signal="button_down" from="VBoxContainer/Button" to="." method="_on_applu_resolution"]
