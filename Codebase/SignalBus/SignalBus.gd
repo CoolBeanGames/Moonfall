@@ -9,7 +9,6 @@ func _ready() -> void:
 
 ###fire a signal from the signal list if it exists
 func fire_signal(_name : String):
-	print("firing signal: " , _name)
 	if signals.signals.has(_name):
 		signals.signals[_name].event.emit()
 	else:

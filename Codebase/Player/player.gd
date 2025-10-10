@@ -70,7 +70,6 @@ func take_damage(damage : int = 1):
 
 #used to process the current state
 func _physics_process(_delta: float) -> void:
-	print("about to process fsm")
 	fsm.process()
 	pass
 

@@ -72,6 +72,9 @@ func _ready() -> void:
 	"game_id": "Moonfall",
 	"log_level": 1
 	})
+	
+	##set the resolution
+	apply_current_resolution()
 
 #region effects
 ##process all the effects against a value

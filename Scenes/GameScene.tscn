@@ -1,12 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://bxurmah5617f5"]
+[gd_scene load_steps=27 format=3 uid="uid://bxurmah5617f5"]
 
 [ext_resource type="PackedScene" uid="uid://b5t76snp62aca" path="res://Scenes/enviroment.tscn" id="1_2wl7v"]
 [ext_resource type="PackedScene" uid="uid://dfwvu0chheicj" path="res://Player/player.tscn" id="2_3mbwn"]
+[ext_resource type="Shader" uid="uid://cu77dqtq6xchm" path="res://Codebase/Shaders/speed_effect.gdshader" id="3_pgw7i"]
 [ext_resource type="Shader" uid="uid://c7arwvyr4aaqx" path="res://Codebase/Shaders/vignette.gdshader" id="3_x6js8"]
 [ext_resource type="Script" uid="uid://4qe0y0r8t746" path="res://Codebase/UI/vignette.gd" id="4_lg2j6"]
+[ext_resource type="Script" uid="uid://dlxfbnika58pm" path="res://Codebase/UI/speed_effect.gd" id="4_v7xhk"]
 [ext_resource type="PackedScene" uid="uid://ca77ddpkx5ui8" path="res://Scenes/UI_Scenes/aiming_reticle.tscn" id="6_x6js8"]
 [ext_resource type="PackedScene" uid="uid://dknums531xxie" path="res://Scenes/UI_Scenes/game_hud.tscn" id="7_x6js8"]
 [ext_resource type="Script" uid="uid://cebavihyjh03u" path="res://Codebase/UI/assign_effect_container.gd" id="7_yhlfj"]
+[ext_resource type="PackedScene" uid="uid://brwd3gdl3iv42" path="res://Scenes/UI_Scenes/stamina_display.tscn" id="8_gipt1"]
 [ext_resource type="PackedScene" uid="uid://djjcpekb2cwil" path="res://Scenes/Props/tree_a.tscn" id="8_y30xb"]
 [ext_resource type="PackedScene" uid="uid://5na86574e0ak" path="res://Scenes/Props/tree_b.tscn" id="9_xhjei"]
 [ext_resource type="PackedScene" uid="uid://dpweyu8orpku2" path="res://Scenes/Props/crate.tscn" id="9_y30xb"]
@@ -18,6 +21,23 @@
 [ext_resource type="PackedScene" uid="uid://c6lk4xbh3eswm" path="res://Scenes/target.tscn" id="15_124qp"]
 [ext_resource type="PackedScene" uid="uid://d0i47ffkqutnd" path="res://Scenes/zombie_spawn_point.tscn" id="16_qolck"]
 [ext_resource type="PackedScene" uid="uid://m4cptmmnbyi6" path="res://Scenes/random_item_spawn_point.tscn" id="17_ry528"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v7xhk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wukv0"]
+noise = SubResource("FastNoiseLite_v7xhk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgvmy"]
+shader = ExtResource("3_pgw7i")
+shader_parameter/noise = SubResource("NoiseTexture2D_wukv0")
+shader_parameter/line_count = 2.0
+shader_parameter/distortion_power = 0.066000003135
+shader_parameter/line_falloff = 0.086000004085
+shader_parameter/mask_size = 0.1550000073625
+shader_parameter/mask_edge = 0.206000009785
+shader_parameter/animation_speed = 20.0
+shader_parameter/blur_strength = 0.00999999977648
+shader_parameter/effect_power = 0.678000032205
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y30xb"]
 shader = ExtResource("3_x6js8")
@@ -51,8 +71,8 @@ debug_text_label = NodePath("../CanvasLayer/debug_info")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
-material = SubResource("ShaderMaterial_y30xb")
+[node name="SpeedEffect" type="ColorRect" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_hgvmy")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -60,8 +80,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("4_v7xhk")
 
 [node name="vignette" type="ColorRect" parent="CanvasLayer2"]
+visible = false
 material = SubResource("ShaderMaterial_y30xb")
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,6 +154,12 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 size_flags_horizontal = 0
 script = ExtResource("7_yhlfj")
+
+[node name="Stamina_display" parent="CanvasLayer" instance=ExtResource("8_gipt1")]
+offset_left = 17.0
+offset_top = -13.0
+offset_right = 17.0
+offset_bottom = -13.0
 
 [node name="crates" type="Node3D" parent="."]
 

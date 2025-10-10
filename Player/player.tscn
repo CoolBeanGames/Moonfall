@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dfwvu0chheicj"]
+[gd_scene load_steps=37 format=3 uid="uid://dfwvu0chheicj"]
 
 [ext_resource type="Script" uid="uid://chqj13gmslwu0" path="res://Codebase/Player/player.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://rw5tpsp0lo8l" path="res://Codebase/StateMachine/StateMachine.gd" id="2_x3vf3"]
@@ -19,8 +19,13 @@
 [ext_resource type="PackedScene" uid="uid://cdiesk6pr221p" path="res://Scenes/weapons/ar_162.tscn" id="14_n471f"]
 [ext_resource type="PackedScene" uid="uid://dcbscd55pvk2d" path="res://Scenes/weapons/spax_11.tscn" id="15_7emwf"]
 [ext_resource type="Script" uid="uid://ced2x5dx2t6nu" path="res://Codebase/Player/player_melee_component.gd" id="16_lfmf2"]
+[ext_resource type="AudioStream" uid="uid://eatmvwb3f2t8" path="res://Audio/SFX/winter-wind-402331.mp3" id="17_hshwv"]
 [ext_resource type="AudioStream" uid="uid://dpf055ugjuwa" path="res://Audio/SFX/low_health_sound.wav" id="21_7emwf"]
 [ext_resource type="Script" uid="uid://dxm67gmylx4ts" path="res://Codebase/Player/player_jump_component.gd" id="21_hshwv"]
+[ext_resource type="AudioStream" uid="uid://cs57inuq0alf7" path="res://Audio/SFX/melee/zapsplat_foley_stick_thin_with_leaves_swoosh_whoosh_air_very_fast_and_hard_114445.wav" id="22_8viyr"]
+[ext_resource type="Script" uid="uid://bpoepsrucshft" path="res://Codebase/Player/footstep_sound_player.gd" id="22_gpjlu"]
+[ext_resource type="AudioStream" uid="uid://muucky2a5xtk" path="res://Audio/SFX/zombie/zombie_foot_L.wav" id="23_qemgg"]
+[ext_resource type="AudioStream" uid="uid://de3betwpjwvks" path="res://Audio/SFX/zombie/zombie_foot_R.wav" id="24_8viyr"]
 
 [sub_resource type="Resource" id="Resource_x3vf3"]
 script = ExtResource("4_5htga")
@@ -61,6 +66,11 @@ metadata/_custom_type_script = "uid://bc4x8rwu73rom"
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gwnis"]
 radius = 0.15
 height = 0.6
+
+[sub_resource type="Resource" id="Resource_sm0op"]
+script = ExtResource("12_gpjlu")
+files = Array[AudioStream]([ExtResource("23_qemgg"), ExtResource("24_8viyr")])
+metadata/_custom_type_script = "uid://bc4x8rwu73rom"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b1ygp"]
 radius = 0.5073242
@@ -119,9 +129,14 @@ height = 0.6
 
 [node name="Components" type="Node" parent="."]
 
-[node name="PlayerMovementComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr")]
+[node name="PlayerMovementComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr", "view_camera", "sprint_sound")]
 script = ExtResource("11_5htga")
 plr = NodePath("../..")
+view_camera = NodePath("../../CollisionShape3D/camera_shake_base/Camera3D")
+sprint_sound = NodePath("sprint_sound")
+
+[node name="sprint_sound" type="AudioStreamPlayer" parent="Components/PlayerMovementComponent"]
+stream = ExtResource("17_hshwv")
 
 [node name="PlayerLookComponent" type="Node" parent="Components" node_paths=PackedStringArray("plr", "camera")]
 script = ExtResource("12_p5o4e")
@@ -148,6 +163,13 @@ ShootComp = NodePath("../PlayerShootComponent")
 script = ExtResource("21_hshwv")
 move = NodePath("../PlayerMovementComponent")
 plr = NodePath("../..")
+on_floor_sound = ExtResource("9_n471f")
+jump_sound = ExtResource("22_8viyr")
+
+[node name="Footstep_Sound_Player" type="Node" parent="Components" node_paths=PackedStringArray("plr")]
+script = ExtResource("22_gpjlu")
+plr = NodePath("../..")
+audio = SubResource("Resource_sm0op")
 
 [node name="melee_area" type="Area3D" parent="."]
 collision_layer = 512
