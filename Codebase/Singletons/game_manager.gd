@@ -28,6 +28,25 @@ var random_item_spawn_timer : float
 
 signal shake_camera(magnitude, time)
 
+@export var resolution_array : Array = [
+	Vector2(1024,768),
+	Vector2(1280,720),
+	Vector2(1280,800),
+	Vector2(1366,768),
+	Vector2(1280,1024),
+	Vector2(1440,900),
+	Vector2(1600,900),
+	Vector2(1680,1050),
+	Vector2(1920,1080),
+	Vector2(1920,1200),
+	Vector2(2560,1440),
+	Vector2(2560,1600),
+	Vector2(3440,1440),
+	Vector2(3840,2160),
+	Vector2(5120,1440),
+	Vector2(7680,4320)
+]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame
@@ -241,3 +260,69 @@ func random_item_spawning():
 		var spawner : Random_Item_Spawn_Point = get_data("random_pickups")[randi_range(0,get_data("random_pickups").size()-1)]
 		spawner.spawn()
 		random_item_spawn_timer = 0
+
+func apply_current_resolution():
+	##resolution setup
+	var current_res : Vector2
+	if GameManager.save_data.has("resolution"):
+		var res_value = GameManager.save_data.get_data("resolution", GameManager.resolution_array[0])
+
+		# Handle both Vector2 and string cases safely
+		if typeof(res_value) == TYPE_STRING and res_value.begins_with("Vector2("):
+			current_res = str_to_var(res_value)
+		elif typeof(res_value) == TYPE_VECTOR2:
+			current_res = res_value
+		else:
+			print("⚠️ Unexpected resolution format:", res_value)
+			current_res = GameManager.resolution_array[0]
+	else:
+		current_res = get_window().size
+	var res_index = find_nearest_resolution(current_res)	
+	set_resolution(resolution_array[res_index])
+
+##set  (apply) the game resolution and full screen
+func set_resolution(resolution : Vector2i):
+	get_window().size = resolution
+	get_window().position = (DisplayServer.screen_get_size() - resolution) / 2
+	GameManager.save_data.set_data("resolution",resolution)
+	GameManager.save_game()
+	
+	apply_fullscreen()
+
+##applies the current saved full screen data to the screen
+func apply_fullscreen():
+	var is_fullscreen = GameManager.save_data.get_data("fullscreen",true)
+	if is_fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func find_nearest_resolution(current_resolution :  Vector2) -> int:
+	##does it exactly contain the resolution?
+	var idx = GameManager.resolution_array.find(current_resolution)
+	if idx != -1:
+		return idx
+		
+	##find one with the same y or x value
+	for i in GameManager.resolution_array.size():
+		if GameManager.resolution_array[i].y == current_resolution.y or GameManager.resolution_array[i].x == current_resolution.x:
+			return i
+	
+	var target_ratio = current_resolution.x / current_resolution.y
+	var target_pixels = current_resolution.x * current_resolution.y
+
+	var best_index = 0
+	var best_score = INF
+
+	for i in GameManager.resolution_array.size():
+		var res = GameManager.resolution_array[i]
+		var ratio = res.x / res.y
+		var pixels = res.x * res.y
+		var ratio_diff = abs(ratio - target_ratio)
+		var pixel_diff = abs(pixels - target_pixels)
+		var score = pixel_diff * 0.0001 + ratio_diff # tweak weighting
+		if score < best_score:
+			best_score = score
+			best_index = i
+
+	return best_index
