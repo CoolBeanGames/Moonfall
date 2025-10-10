@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdiesk6pr221p"]
+[gd_scene load_steps=17 format=3 uid="uid://cdiesk6pr221p"]
 
 [ext_resource type="PackedScene" uid="uid://2ro4n457drwc" path="res://Models/weapons/AR16.glb" id="1_7krex"]
 [ext_resource type="Script" uid="uid://2jlevvygr4cn" path="res://Codebase/Weapons/weapon.gd" id="2_3todf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://c62sh2esaio13" path="res://Guns/gun data/AR16.tres" id="4_ym2iy"]
 [ext_resource type="Script" uid="uid://ddmx8746b8vxk" path="res://Codebase/Strategies/gun_strategies/pistol_strategy.gd" id="5_2sv3i"]
 [ext_resource type="AudioStream" uid="uid://cs57inuq0alf7" path="res://Audio/SFX/melee/zapsplat_foley_stick_thin_with_leaves_swoosh_whoosh_air_very_fast_and_hard_114445.wav" id="6_2sv3i"]
+[ext_resource type="PackedScene" uid="uid://d2dg6tk4wwnuq" path="res://Scenes/weapons/handgun_bullet_ejected.tscn" id="6_x8ofm"]
 [ext_resource type="AudioStream" uid="uid://87flovjdglss" path="res://Audio/SFX/melee/zapsplat_foley_clothing_hi_vis_jacket_impact_punch_006_111567.wav" id="7_x8ofm"]
 
 [sub_resource type="Resource" id="Resource_x8ofm"]
@@ -161,7 +162,7 @@ _data = {
 &"shoot_gun": SubResource("Animation_dahhe")
 }
 
-[node name="AR162" node_paths=PackedStringArray("shoot_point", "animation_player", "shoot_light", "bullet_tracer") instance=ExtResource("1_7krex")]
+[node name="AR162" node_paths=PackedStringArray("shoot_point", "animation_player", "shoot_light", "bullet_tracer", "bullet_ejection") instance=ExtResource("1_7krex")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_3todf")
 shoot_point = NodePath("AR16/shoot_point")
@@ -171,6 +172,8 @@ gun_data = ExtResource("4_ym2iy")
 strat = SubResource("Resource_x8ofm")
 shoot_light = NodePath("AR16/shoot_point/OmniLight3D")
 bullet_tracer = NodePath("AR16/shoot_point/bullet_tracer")
+bullet_ejection = NodePath("AR16/shoot_point/ejection_point")
+ejected_bullet_spawn = ExtResource("6_x8ofm")
 
 [node name="AR16" parent="." index="0"]
 transform = Transform3D(-1.4140505e-09, 0.03234971, 0, -0.032349706, -1.4140507e-09, 0, 0, 0, 0.03234971, -0.1706904, 0.36602485, 0.41847894)
@@ -187,6 +190,9 @@ transform = Transform3D(-9.999999, 4.3711384e-07, 0, -4.3711384e-07, -9.999999, 
 visible = false
 mesh = SubResource("CylinderMesh_gpxfi")
 material = SubResource("StandardMaterial3D_mti3q")
+
+[node name="ejection_point" type="Node3D" parent="AR16/shoot_point" index="2"]
+transform = Transform3D(1, 2.1175824e-22, -3.5527137e-15, 2.1175824e-22, 1, 0, 0, 3.5527137e-15, 1, 0, -67.40146, 5.984954)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {

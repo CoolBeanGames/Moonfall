@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bxurmah5617f5"]
+[gd_scene load_steps=28 format=3 uid="uid://bxurmah5617f5"]
 
 [ext_resource type="PackedScene" uid="uid://b5t76snp62aca" path="res://Scenes/enviroment.tscn" id="1_2wl7v"]
 [ext_resource type="PackedScene" uid="uid://dfwvu0chheicj" path="res://Player/player.tscn" id="2_3mbwn"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://c6lk4xbh3eswm" path="res://Scenes/target.tscn" id="15_124qp"]
 [ext_resource type="PackedScene" uid="uid://d0i47ffkqutnd" path="res://Scenes/zombie_spawn_point.tscn" id="16_qolck"]
 [ext_resource type="PackedScene" uid="uid://m4cptmmnbyi6" path="res://Scenes/random_item_spawn_point.tscn" id="17_ry528"]
+[ext_resource type="PackedScene" uid="uid://d2dg6tk4wwnuq" path="res://Scenes/weapons/handgun_bullet_ejected.tscn" id="22_wukv0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_v7xhk"]
 
@@ -68,6 +69,12 @@ filter_low_hanging_obstacles = true
 [node name="Player" parent="." node_paths=PackedStringArray("debug_text_label") instance=ExtResource("2_3mbwn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25962353, 0.34604406, 14.062)
 debug_text_label = NodePath("../CanvasLayer/debug_info")
+
+[node name="PlayerShootComponent" parent="Player/Components" index="2" node_paths=PackedStringArray("guns")]
+guns = {
+&"AR16": NodePath("../../CollisionShape3D/camera_shake_base/Camera3D/Gun/AR162"),
+&"Spax11": NodePath("../../CollisionShape3D/camera_shake_base/Camera3D/Gun/Spax-11")
+}
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
@@ -1626,3 +1633,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1633782, 0.25576738, -3.180
 
 [node name="Random_Item_Spawn_Point41" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.487766, 0.25576738, -2.2174485)
+
+[node name="handgun_bullet" parent="." instance=ExtResource("22_wukv0")]
+transform = Transform3D(-0.06475877, 0, 0.99790096, 0, 1, 0, -0.99790096, 0, -0.06475877, 0.46650147, 0.76795244, 13.345704)
+
+[editable path="Player"]

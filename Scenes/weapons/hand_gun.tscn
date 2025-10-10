@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmbti6tglga1x"]
+[gd_scene load_steps=17 format=3 uid="uid://cmbti6tglga1x"]
 
 [ext_resource type="PackedScene" uid="uid://bo25l0yr5t4jh" path="res://Models/weapons/hand_gun.glb" id="1_08fw1"]
 [ext_resource type="Script" uid="uid://2jlevvygr4cn" path="res://Codebase/Weapons/weapon.gd" id="2_u715i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bkuc0tv75daoi" path="res://Guns/gun data/pistol.tres" id="4_bso2o"]
 [ext_resource type="Script" uid="uid://ddmx8746b8vxk" path="res://Codebase/Strategies/gun_strategies/pistol_strategy.gd" id="5_ye8dn"]
 [ext_resource type="AudioStream" uid="uid://cs57inuq0alf7" path="res://Audio/SFX/melee/zapsplat_foley_stick_thin_with_leaves_swoosh_whoosh_air_very_fast_and_hard_114445.wav" id="6_6vy0o"]
+[ext_resource type="PackedScene" uid="uid://d2dg6tk4wwnuq" path="res://Scenes/weapons/handgun_bullet_ejected.tscn" id="6_ky8lc"]
 [ext_resource type="AudioStream" uid="uid://87flovjdglss" path="res://Audio/SFX/melee/zapsplat_foley_clothing_hi_vis_jacket_impact_punch_006_111567.wav" id="7_ky8lc"]
 
 [sub_resource type="Resource" id="Resource_bso2o"]
@@ -232,7 +233,7 @@ _data = {
 &"shoot_gun": SubResource("Animation_08fw1")
 }
 
-[node name="hand_gun" node_paths=PackedStringArray("shoot_point", "animation_player", "shoot_light", "bullet_tracer") instance=ExtResource("1_08fw1")]
+[node name="hand_gun" node_paths=PackedStringArray("shoot_point", "animation_player", "shoot_light", "bullet_tracer", "bullet_ejection") instance=ExtResource("1_08fw1")]
 transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0, 0, 0)
 script = ExtResource("2_u715i")
 shoot_point = NodePath("gun/gun_lower/barrel/shoot_point")
@@ -242,6 +243,8 @@ gun_data = ExtResource("4_bso2o")
 strat = SubResource("Resource_bso2o")
 shoot_light = NodePath("gun/gun_lower/barrel/shoot_point/OmniLight3D")
 bullet_tracer = NodePath("gun/gun_lower/barrel/shoot_point/bullet_tracer")
+bullet_ejection = NodePath("gun/gun_lower/gun_upper/bullet_ejection")
+ejected_bullet_spawn = ExtResource("6_ky8lc")
 
 [node name="gun" parent="." index="0"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -264,6 +267,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.15456858, -1.5005921, -0.93713
 
 [node name="bullet_1" parent="gun/gun_lower/clip" index="0"]
 transform = Transform3D(-0.28288445, 0.85680956, 0, -0.85680956, -0.28288445, 0, 0, 0, 5.837542, 0.5365635, 1.0162613, 0.03090515)
+visible = false
+
+[node name="bullet_2" parent="gun/gun_lower/clip" index="1"]
+visible = false
+
+[node name="bullet_ejection" type="Node3D" parent="gun/gun_lower/gun_upper" index="0"]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 3.5527137e-15, 0, -1.7763568e-15, 1, 0.052779675, 0.121269226, 0.5649702)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {

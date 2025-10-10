@@ -28,6 +28,9 @@ class_name weapon extends Node3D
 @export var can_melee : bool = true
 @export var melee_targets : Array
 
+@export var bullet_ejection : Node3D
+@export var ejected_bullet_spawn : PackedScene
+
 ##called to shoot the gun
 func shoot(raycaster : RayCast3D):
 	if ready_to_shoot:
@@ -44,6 +47,12 @@ func shoot(raycaster : RayCast3D):
 		get_tree().create_timer(.1).timeout.connect(bullet_tracer_off) 
 		
 		GameManager.shake_camera.emit(gun_data.camera_shake,gun_data.camera_shake_time)
+		
+		if bullet_ejection != null and ejected_bullet_spawn != null:
+			var instance = ejected_bullet_spawn.instantiate()
+			SceneManager.get_first_scene().add_child(instance)
+			instance.global_position = bullet_ejection.global_position
+			instance.global_rotation = bullet_ejection.global_rotation
 
 func bullet_tracer_off():
 	if bullet_tracer!=null:
