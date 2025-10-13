@@ -2,5 +2,15 @@
 
 [ext_resource type="Script" uid="uid://tfr8iis51q03" path="res://Codebase/game_root.gd" id="1_rqi4g"]
 
-[node name="GameRoot" type="Node"]
+[node name="GameRoot" type="Node" node_paths=PackedStringArray("debug_label")]
 script = ExtResource("1_rqi4g")
+debug_label = NodePath("debug print label")
+
+[node name="debug print label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 2

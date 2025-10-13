@@ -10,6 +10,7 @@ var timer = 0
 var zombie_y : float = 0.122
 var zom : PackedScene
 var zombie_spawn_audio : audio_set
+var just_paused : bool = false
 
 ##called once when entering the state and then not again until it has finished
 func on_enter():
@@ -31,14 +32,19 @@ func on_enter():
 	await GameManager.get_tree().process_frame
 	await GameManager.get_tree().process_frame
 	InputManager.unlock_input("start_game_cooldown")
+	
+	#InputManager.connect_to_action_just_released("pause",onPause)
 
 ##called when we exit the state
 func on_exit():
 	print("exited game state")
+	#InputManager.disconnect_to_action_just_released("pause",onPause)
 	pass
 
 ##called every frame for this state
 func tick():
+	if just_paused:
+		just_paused = false
 	if Input.is_key_pressed(KEY_F2) and OS.has_feature("editor"):
 		spawn()
 	
@@ -49,12 +55,36 @@ func tick():
 		if timer >= current_spawn_time:
 			timer -= current_spawn_time
 			spawn()
-	if Input.is_key_pressed(KEY_ESCAPE):
-		SceneManager.load_ui_scene(load("res://Scenes/UI_Scenes/pause.tscn"),"Pause")
-		GameManager.get_tree().paused = true
-		print("zombies: " , str(GameManager.get_data("zombie_count")))
+		
 	if !GameManager.get_tree().paused:
 		GameManager.random_item_spawning()
+	
+	if Input.is_action_just_released("pause"):
+		onPause()
+
+
+var just_toggled_pause := false
+
+func onPause():
+	if just_toggled_pause:
+		return
+	just_toggled_pause = true
+	
+	# Defer pausing and menu loading to next frame
+	call_deferred("_toggle_pause_menu")
+	
+func _toggle_pause_menu():
+	if GameManager.get_tree().paused:
+		GameManager.get_tree().paused = false
+		SceneManager.unload_ui("Pause")
+	else:
+		SceneManager.load_ui_scene(load("res://Scenes/UI_Scenes/pause.tscn"), "Pause")
+		GameManager.get_tree().paused = true
+	
+	# reset the flag for next input
+	just_toggled_pause = false
+
+
 
 func ratio(scale : float = 1) -> float:
 	return GameManager.get_data("time_ratio",0) * scale

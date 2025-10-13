@@ -5,8 +5,6 @@
 ##and managing ammo
 class_name player_shoot_component extends Node
 
-var shoot_action : input_action_mouse
-var reload_action : input_action
 @export var guns : Dictionary[StringName,Node3D]
 @export var enabled_guns : Array[Node3D]
 @export var current_gun_index : int = 0
@@ -19,12 +17,10 @@ var reload_action : input_action
 #setup the shoot controller
 func _ready() -> void:
 	#connect our signals
-	shoot_action = InputManager.actions["shoot"]
-	reload_action = InputManager.actions["reload"]
-	shoot_action.pressed.connect(on_shoot)
-	reload_action.just_released.connect(reload)	
-	InputManager.scroll_up.connect(cycle_up)
-	InputManager.scroll_down.connect(cycle_down)
+	InputManager.connect_to_action_pressed("shoot",on_shoot)
+	InputManager.connect_to_action_just_released("reload",reload)
+	InputManager.connect_to_action_just_released("weaponUp",cycle_up)
+	InputManager.connect_to_action_just_released("weaponDown",cycle_down)
 	current_gun = enabled_guns[current_gun_index]
 	var i : int = 0
 	for g : weapon in enabled_guns:

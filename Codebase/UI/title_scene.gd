@@ -36,16 +36,26 @@ func _ready() -> void:
 	if !GameManager.save_data.has("has_finished_game"):
 		for d in delete_if_game_not_finished:
 			d.queue_free()
+	
+	InputManager.connect_to_action_just_released("confirm",start_game)
+	InputManager.connect_to_action_just_released("cancel",quit_game)
 
 func play_instrumental():
 	instrumental_audio.play()
 
 #start the intro animation
 func _on_start_button_down() -> void:
+	start_game()
+
+#called to start the game
+func start_game():
 	if !settings_open and !leaderboard_open:
 		if is_instance_valid(GameManager.start_music):
 			GameManager.start_music.fade_out(3)
 		title_anim.play("explode")
+
+func quit_game():
+	get_tree().quit()
 
 #load into the game (play game clicked)
 func load_game():
@@ -76,24 +86,19 @@ func to_intro():
 	if !settings_open and !leaderboard_open:
 		SignalBus.fire_signal("to_intro")
 
-
-
 func _on_close_settings_button_button_down() -> void:
 	toggle_settings()
 
 func _on_settings_button_down() -> void:
 	if !settings_open and !leaderboard_open:
 		toggle_settings()
-	
 
 func toggle_settings():
 	settings_open = !settings_open
 	settings_visibility_parent.visible = settings_open
 
-
 func _on_close_leaderboard_button_2_button_down() -> void:
 	toggle_leaderboard()
-
 
 func _on_leaderboard_button_down() -> void:
 	toggle_leaderboard()

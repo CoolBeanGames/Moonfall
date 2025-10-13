@@ -45,5 +45,6 @@ func get_item_spawn(spawn_position : Vector3) -> item_pickup:
 	
 	#and finally return
 	if instance != null:
+		pass
 		print("[ITEM] spawned: " , selection.item_name)
 	return instance

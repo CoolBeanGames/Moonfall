@@ -49,7 +49,7 @@ func _connected(proto = ""):
 
 
 func _on_data():
-	# Print the received packet, you MUST always use get_peer(1).get_packet
+	# print the received packet, you MUST always use get_peer(1).get_packet
 	# to receive data from server, and not get_packet directly when not
 	# using the MultiplayerAPI.
 	#SWLogger.debug("Got data from WS server: " + str(_client.get_peer(1).get_packet().get_string_from_utf8()))

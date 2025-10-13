@@ -7,11 +7,9 @@ var fade_time : float = 0.75
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.set_data("stamina_display",self)
-	print("set_stamina_display")
 
 func free() -> void:
 	GameManager.erase_data("stamina_display")
-	print("stamina display has been deleted")
 
 func show_bar():
 	if tween != null:
@@ -29,8 +27,5 @@ func hide_bar():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print("processing stamina display")
 	if display and display.material:
-		print("is valid, processing material")
-		print("stamina: ", GameManager.get_data("player_stamina",0))
 		display.material.set_shader_parameter("progress",GameManager.get_data("player_stamina",0))

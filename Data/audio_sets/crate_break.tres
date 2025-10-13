@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="unnamed_audio_set" load_steps=3 format=3 uid="uid://0xuey282kqax"]
 
 [ext_resource type="AudioStream" uid="uid://ba4mto6vfdw5o" path="res://Audio/SFX/zapsplat_impacts_smash_break_heavy_wood_glass_001_62178.wav" id="1_0erol"]
-[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Audio/Scripts/unnamed_audio_set.gd" id="1_4ow3c"]
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="1_4ow3c"]
 
 [resource]
 script = ExtResource("1_4ow3c")

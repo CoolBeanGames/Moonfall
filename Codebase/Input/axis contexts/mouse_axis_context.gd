@@ -1,7 +1,5 @@
 ##this context tracks the mouse delta for use with the input controls
 class_name mouse_axis_context extends axis_context
-##stores the axis last value
-var value : Vector2
 
 ##returns the value for reading
 func get_axis_value() -> Vector2:

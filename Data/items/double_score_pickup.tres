@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="item_data" load_steps=9 format=3 uid="uid://b0g851jv85exu"]
+[gd_resource type="Resource" script_class="item_data" load_steps=10 format=3 uid="uid://b0g851jv85exu"]
 
 [ext_resource type="PackedScene" uid="uid://dy2oc0su7g65" path="res://Scenes/Props/Powerup_Pickups/x_2_multiplier_pickup.tscn" id="1_opyeq"]
 [ext_resource type="Script" uid="uid://d4g7rbit6x2ef" path="res://Codebase/props/item_data.gd" id="1_u4hgp"]
 [ext_resource type="Script" uid="uid://dxybaex8t0hfv" path="res://Codebase/Strategies/strategy.gd" id="2_uq8bc"]
 [ext_resource type="Texture2D" uid="uid://c6wwmwhuelouo" path="res://Textures/UI/x2.png" id="4_7ppp2"]
+[ext_resource type="PackedScene" uid="uid://brjcpt8oib6di" path="res://Scenes/UI_Scenes/effect_display.tscn" id="4_724x2"]
 [ext_resource type="Script" uid="uid://ce68ltdwnf1hx" path="res://Codebase/Effects/double_score_effect.gd" id="4_yoja8"]
 [ext_resource type="Script" uid="uid://dpucphvuv65as" path="res://Codebase/Strategies/effect_pickup_strategy.gd" id="5_7ppp2"]
 
 [sub_resource type="Resource" id="Resource_724x2"]
 script = ExtResource("4_yoja8")
+display_scene = ExtResource("4_724x2")
 icon_image = ExtResource("4_7ppp2")
 metadata/_custom_type_script = "uid://ce68ltdwnf1hx"
 

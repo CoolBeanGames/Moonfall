@@ -78,6 +78,7 @@ func _process(_delta):
 		GameManager.set_data("player_health",0)
 	if debug_info_target!=null:
 		print("player debug info: [rotation: ", debug_info_target.global_rotation_degrees, "] | {scale: " , debug_info_target.scale , " } | (position: " , debug_info_target.global_position)
+		pass
 	var ratio : float = float(GameManager.get_data("player_health",1)) / float(GameManager.get_data("player_max_health", 5))
 	
 	if ratio <= 0.2 and !playing_low_health:

@@ -14,7 +14,7 @@ var save_data : blackboard = blackboard.new()
 ##the settings data
 var settings_data : blackboard = blackboard.new()
 ##the node to add new nodes to
-@export var root_node : Node
+@export var root_node : game_root
 ##the audio player for the lyical version of the music
 @export var start_music : audio_player
 ##if the game is paused or not
@@ -85,11 +85,22 @@ func process_effect_value(value, type : stack_effect.effector) -> Variant:
 
 ##adds an effect to the effect stack
 func add_effect(effect : stack_effect , time : float):
+	root_node.print_log("[Effect Crash] Does the effect stack have the effect?")
 	if !effect_stack.has(effect):
+		root_node.print_log("[Effect Crash] Nope Appending")
 		effect_stack.append(effect)
+		root_node.print_log("[Effect Crash] Spawning the display")
+		if effect.display_scene == null:
+			root_node.print_log("[Effect Crash] display_scene is NULL in release build!")
+		else:
+			root_node.print_log("[Effect Crash] display_scene valid: " + str(effect.display_scene))
+
 		var instance = effect.display_scene.instantiate()
+		root_node.print_log("[Effect Crash] adding to effect stack parent")
 		effect_stack_parent.add_child(instance)
+		root_node.print_log("[Effect Crash] getting a reference to effect display")
 		var display : effect_display = instance
+		root_node.print_log("[Effect Crash] callingsetup on effect display")
 		display.setup(effect,time)
 #endregion
 
@@ -170,6 +181,7 @@ func load_settings():
 		save_settings()
 	else:
 		print("settings successfully loaded")
+		pass
 	print(str(settings_data.data))
 	authenticate_settings()
 #endregion

@@ -9,8 +9,12 @@ class_name input_axis extends Resource
 @export var context : axis_context
 signal context_fired(Vector2)
 
+func _init(_context : axis_context) -> void:
+	context = _context
+	context.context_fired.connect(on_context)
+
 #read the value from our axis
-func _get(_property: StringName) -> Variant:
+func _get_value() -> Vector2:
 	return context.get_axis_value()
 
 func on_context(value : Vector2):

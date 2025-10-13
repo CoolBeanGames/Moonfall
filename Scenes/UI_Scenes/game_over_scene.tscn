@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="2_0f2sg"]
 [ext_resource type="Script" uid="uid://cddgxito4vd7" path="res://Codebase/UI/Game_Over_Score_Display.gd" id="3_6flra"]
 [ext_resource type="PackedScene" uid="uid://nt00gmyw5ym7" path="res://Scenes/UI_Scenes/score_screen.tscn" id="4_3jlro"]
-[ext_resource type="Script" uid="uid://d4avxe2edsc6p" path="res://Codebase/Audio/Scripts/audio_player.gd" id="5_q1dhx"]
+[ext_resource type="Script" uid="uid://d4avxe2edsc6p" path="res://Codebase/Data/Scripts/audio_player.gd" id="5_q1dhx"]
 
 [node name="GameOverScreen" type="Node2D" node_paths=PackedStringArray("insert_name_ui", "name_field", "score_display")]
 script = ExtResource("1_3jlro")

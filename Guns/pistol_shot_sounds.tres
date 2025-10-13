@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="unnamed_audio_set" load_steps=4 format=3 uid="uid://bff5ffjsooq0p"]
 
-[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Audio/Scripts/unnamed_audio_set.gd" id="1_0t7mu"]
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="1_0t7mu"]
 [ext_resource type="AudioStream" uid="uid://c7gd41lv8b36w" path="res://Guns/audio/pistol_shoot_1.wav" id="1_5o22o"]
 [ext_resource type="AudioStream" uid="uid://db1whiluhxilv" path="res://Guns/audio/pistol_shoot_2.wav" id="2_t6ws0"]
 

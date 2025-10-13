@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://6lxpwl7kabvj" path="res://Audio/SFX/player_hit_sounds/zapsplat_warfare_arrow_incoming_whoosh_hit_body_squelch_blood_007_90728.wav" id="10_7emwf"]
 [ext_resource type="Script" uid="uid://b2r0gys8qg8bh" path="res://Codebase/Player/player_movement_component.gd" id="11_5htga"]
 [ext_resource type="AudioStream" uid="uid://bgw21jvue25nt" path="res://Audio/SFX/player_hit_sounds/zapsplat_warfare_arrow_incoming_whoosh_hit_body_squelch_blood_008_90729.wav" id="11_hshwv"]
-[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Audio/Scripts/unnamed_audio_set.gd" id="12_gpjlu"]
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="12_gpjlu"]
 [ext_resource type="Script" uid="uid://da376gvtae7us" path="res://Codebase/Player/player_look_component.gd" id="12_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://cmbti6tglga1x" path="res://Scenes/weapons/hand_gun.tscn" id="13_7emwf"]
 [ext_resource type="Script" uid="uid://objhus1b7iuh" path="res://Codebase/Player/Shooting/PlayerShootComponent.gd" id="13_p5o4e"]

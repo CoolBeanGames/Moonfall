@@ -42,7 +42,8 @@ func _process(_delta):
 
 #called when entering the roam state
 func setup():
-	look_axis.context_fired.connect(mouse_moved)
+	InputManager.connect_to_axis("mouse",mouse_moved)
+	InputManager.connect_to_axis("look_stick",mouse_moved)	
 
 	#set initial rotation so we dont look around
 	rot_x = plr.rotation_degrees.x
@@ -52,10 +53,12 @@ func setup():
 
 #called when exiting the roam state
 func unset():
-	look_axis.context_fired.disconnect(mouse_moved)
+	InputManager.disconnect_to_axis("mouse",mouse_moved)
+	InputManager.disconnect_to_axis("look_stick",mouse_moved)
 
 #automatically called whenever our mouse is moved
 func mouse_moved(value : Vector2):
+	print("mouse moved")
 	if GameManager.get_setting("invert_y",false):
 		value.y *= -1
 	pitch_clamp = plr.bb.get_data("pitch_clamp",45)

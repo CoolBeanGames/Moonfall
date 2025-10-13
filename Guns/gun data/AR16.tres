@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://10iye2y0rbla" path="res://Audio/SFX/rifle_shoot/344_audio_warzone_machine_gun_single_shot_1_1616.wav" id="5_hs2ii"]
 [ext_resource type="AudioStream" uid="uid://8lh515y67s2w" path="res://Audio/SFX/rifle_shoot/344_audio_warzone_machine_gun_single_shot_2_1617.wav" id="6_vj3df"]
 [ext_resource type="AudioStream" uid="uid://cf8qnwhrakdup" path="res://Audio/SFX/rifle_shoot/344_audio_warzone_machine_gun_single_shot_3_1618.wav" id="7_f88tw"]
-[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Audio/Scripts/unnamed_audio_set.gd" id="8_sgcsd"]
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="8_sgcsd"]
 
 [sub_resource type="Resource" id="Resource_ux5e7"]
 script = ExtResource("8_sgcsd")

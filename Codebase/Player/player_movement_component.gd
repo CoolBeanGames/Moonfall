@@ -30,23 +30,27 @@ func _process(delta: float) -> void:
 	update_stamina(delta)
 
 func setup():
-	move_axis.context_fired.connect(on_move)
-	sprint_action.just_pressed.connect(start_sprint)
-	sprint_action.just_released.connect(stop_sprint)
+	#print("[Debug Hunt] player movement setup")
+	InputManager.connect_to_axis("wasd",on_move)
+	InputManager.connect_to_axis("move_stick",on_move)
+	InputManager.connect_to_action_just_pressed("sprint",start_sprint)
+	InputManager.connect_to_action_just_released("sprint",stop_sprint)
 	stop_sprint()
 
 func unset():
-	move_axis.context_fired.disconnect(on_move)
-	sprint_action.just_pressed.disconnect(start_sprint)
-	sprint_action.just_released.disconnect(stop_sprint)
+	#print("[Debug Hunt] player movement unsetup")
+	InputManager.disconnect_to_axis("wasd",on_move)
+	InputManager.disconnect_to_axis("move_stick",on_move)
+	InputManager.disconnect_to_action_just_pressed("sprint",start_sprint)
+	InputManager.disconnect_to_action_just_released("sprint",stop_sprint)
 
 func _physics_process(_delta: float) -> void:
-	print("[Velocity] " , plr.velocity.length())
 	if !InputManager.is_input_locked():
 		axis_value = move_axis.context.get_axis_value()
 		lerp_move(_delta)
 		plr.move_and_slide()
 		target_velocity = Vector3(0,0,0)
+	print("[Sprint State] state: ", str(sprint_state))
 
 func on_move(value : Vector2):
 	var forward = -plr.basis.z * (value.y * move_speed )
@@ -54,7 +58,7 @@ func on_move(value : Vector2):
 	target_velocity = forward + side
 
 func lerp_move(delta : float):
-	lerp_speed = plr.bb.get_data("move_lerp_speed")
+	lerp_speed = plr.bb.get_data("move_lerp_speed") * (2 if player_sprinting else 1)
 	plr.velocity = plr.velocity.lerp(target_velocity,(1-exp(-delta * lerp_speed)))
 	apply_gravity(delta)
 	plr.velocity.y = y_velocity
@@ -63,6 +67,8 @@ func apply_gravity(delta : float):
 	y_velocity += GameManager.get_data("gravity",0) * delta
 
 func start_sprint():
+	print("[sprint] start sprint")
+	#print("[Debug Hunt] start sprint called")
 	if sprint_state != stamina_state.critial:
 		move_speed = plr.bb.get_data("run_speed")
 		sprint_state = stamina_state.draining
@@ -72,6 +78,7 @@ func start_sprint():
 		player_sprinting = false
 
 func stop_sprint():
+	print("[Debug Hunt] stop sprint called")
 	move_speed = plr.bb.get_data("walk_speed")
 	player_sprinting = false
 	if sprint_state != stamina_state.critial:
@@ -86,9 +93,13 @@ func update_stamina(delta):
 		stop_sprint()
 		if s_disp and !stamina_bar_visible:
 			s_disp.show_bar()
+			
 	var drain_rate = 1/plr.bb.get_data("sprint_time")
 	var fill_rate = 1/plr.bb.get_data("refill_time")
 	var fill_rate_empty = 1/plr.bb.get_data("refill_time_empty")
+	
+	print("[Sprint Drain] Draing Rate : " ,drain_rate," Stamina " , stamina)
+	
 	if sprint_state == stamina_state.draining:
 		stamina -= delta * drain_rate
 		if s_disp and !stamina_bar_visible:

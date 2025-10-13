@@ -17,6 +17,8 @@ func _ready() -> void:
 	var sc = SilentWolf.Scores
 	sc.sw_get_scores_complete.connect(_on_scores_loaded)
 	sc.sw_save_score_complete.connect(_on_score_saved)
+	
+	InputManager.connect_to_action_just_released("cancel",on_back_to_title)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

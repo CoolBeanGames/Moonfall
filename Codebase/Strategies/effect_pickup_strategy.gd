@@ -8,4 +8,5 @@ extends strategy
 
 #add the effect
 func execute(...params):
+	GameManager.root_node.print_log("[Effect Crash] Calling Add Effect on Game Manager")
 	GameManager.add_effect(effect,active_time)

@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://muucky2a5xtk" path="res://Audio/SFX/zombie/zombie_foot_L.wav" id="6_jrf8t"]
 [ext_resource type="AudioStream" uid="uid://de3betwpjwvks" path="res://Audio/SFX/zombie/zombie_foot_R.wav" id="7_jgnkq"]
 [ext_resource type="Animation" uid="uid://bu5f0e5yvvoye" path="res://Models/Zombie/land.res" id="7_tmcj1"]
-[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Audio/Scripts/unnamed_audio_set.gd" id="8_u174i"]
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="8_u174i"]
 [ext_resource type="Script" uid="uid://bw6gem2hhn15b" path="res://Codebase/Zombie/track_player.gd" id="9_j0wq0"]
 [ext_resource type="Script" uid="uid://dhrncig2073i4" path="res://Codebase/LOD_Setter.gd" id="11_jgnkq"]
 
