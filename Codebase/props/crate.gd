@@ -5,6 +5,7 @@ class_name crate extends RigidBody3D
 @export var spawn_items : item_spawn_list
 ##the scene for the broken crate pieces
 @export var crate_broken : PackedScene
+@export var crate_sounds : audio_set
 
 ##make sure physics are awake
 func _ready() -> void:
@@ -19,7 +20,7 @@ func take_damage(_damage : int = 0):
 ##call to spawn an item
 func spawn():
 	#play the broken crate audio
-	AudioManager.play_random_audio_file(load("res://Data/audio_sets/crate_break.tres"),"default",true,global_position,true)
+	AudioManager.play_random_audio_file(crate_sounds,"default",true,global_position,true)
 	
 	#spawn the broken crate
 	var instance = crate_broken.instantiate()

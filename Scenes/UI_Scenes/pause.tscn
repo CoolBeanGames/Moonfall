@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://do7dfinpt4w40"]
+[gd_scene load_steps=7 format=3 uid="uid://do7dfinpt4w40"]
 
 [ext_resource type="AudioStream" uid="uid://bfl2gmv635n3h" path="res://Audio/Music/1171093_FD---I-Heard-Your-Name-in-.mp3" id="1_2wp1l"]
 [ext_resource type="Script" uid="uid://d067tsvcx7tsr" path="res://Codebase/UI/pause.gd" id="1_8a177"]
+[ext_resource type="AudioStream" uid="uid://djke5ca1q62fs" path="res://Audio/SFX/New/UI_select.wav" id="2_0ihfe"]
 [ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="2_77yqj"]
+[ext_resource type="AudioStream" uid="uid://b85xr1e2jlkph" path="res://Audio/SFX/New/UI_confirm.wav" id="3_llpxx"]
 [ext_resource type="PackedScene" uid="uid://dspowx6jmplt8" path="res://Scenes/UI_Scenes/settings_menu.tscn" id="3_o5rwi"]
 
 [node name="pause_screen" type="CanvasLayer" node_paths=PackedStringArray("audio")]
 process_mode = 3
 script = ExtResource("1_8a177")
 audio = NodePath("AudioStreamPlayer")
+button_press_sound = ExtResource("2_0ihfe")
+menu_close_sound = ExtResource("3_llpxx")
 
 [node name="Pause_Screen" type="Control" parent="."]
 layout_mode = 3

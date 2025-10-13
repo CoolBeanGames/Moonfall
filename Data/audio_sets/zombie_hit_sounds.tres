@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="unnamed_audio_set" load_steps=6 format=3 uid="uid://dgolxl0gccvfh"]
+
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="1_7jfvb"]
+[ext_resource type="AudioStream" uid="uid://dyjvfof0jlk5x" path="res://Audio/SFX/New/zombie_shot_1.wav" id="1_eswbp"]
+[ext_resource type="AudioStream" uid="uid://b8w7ty3tkd7x7" path="res://Audio/SFX/New/zombie_shot_2.wav" id="2_eagsl"]
+[ext_resource type="AudioStream" uid="uid://bltraqicx6ebc" path="res://Audio/SFX/New/zombie_shot_3.wav" id="3_d3qth"]
+[ext_resource type="AudioStream" uid="uid://d3lbqgkedhjli" path="res://Audio/SFX/New/zombie_shot_4.wav" id="4_f4dka"]
+
+[resource]
+script = ExtResource("1_7jfvb")
+files = Array[AudioStream]([ExtResource("1_eswbp"), ExtResource("2_eagsl"), ExtResource("3_d3qth"), ExtResource("4_f4dka")])
+metadata/_custom_type_script = "uid://bc4x8rwu73rom"

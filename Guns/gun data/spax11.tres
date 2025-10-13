@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bcsr18h10rwst" path="res://Codebase/Weapons/Gun.gd" id="1_kloij"]
 [ext_resource type="AudioStream" uid="uid://dovtldvyy3p0x" path="res://Guns/audio/pistol_empty.wav" id="2_yclbu"]
 [ext_resource type="AudioStream" uid="uid://b46i523muj5kx" path="res://Guns/audio/pistol_reload.wav" id="3_hpfr5"]
-[ext_resource type="Resource" uid="uid://bff5ffjsooq0p" path="res://Guns/pistol_shot_sounds.tres" id="5_awdc5"]
+[ext_resource type="Resource" uid="uid://dvon1374ccqti" path="res://Data/audio_sets/shot_gun_sounds.tres" id="5_2wlk0"]
 
 [resource]
 script = ExtResource("1_kloij")
@@ -16,7 +16,7 @@ melee_time = 2.0
 melee_damage = 2
 max_clip_size = 6
 loaded_bullets = 6
-shooting_sounds = ExtResource("5_awdc5")
+shooting_sounds = ExtResource("5_2wlk0")
 empty_sound = ExtResource("2_yclbu")
 reload_sound = ExtResource("3_hpfr5")
 gun_object_path = "res://Scenes/weapons/spax_11.tscn"

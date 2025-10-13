@@ -34,6 +34,8 @@ func do_damage(gun_data : gun, col : CollisionObject3D, global_position : Vector
 		col = col.z
 		spawn_bloodspurt(global_position)
 		is_world = false
+		AudioManager.play_random_audio_file(zombie_hit,"gunshots",true,col.position)
+		SignalBus.fire_signal("hit_enemy")
 	if col.is_in_group("HeadShotZone"):
 		print("[damage] headshot")
 		damage = gun_data.bullet_damage * 2
@@ -41,6 +43,8 @@ func do_damage(gun_data : gun, col : CollisionObject3D, global_position : Vector
 		spawn_bloodspurt(global_position)
 		SignalBus.fire_signal("hit_enemy")
 		is_world = false
+		AudioManager.play_random_audio_file(zombie_hit,"gunshots",true,col.position)
+		SignalBus.fire_signal("hit_enemy")
 	if col.is_in_group("crate"):
 		damage = 0
 	if col.is_in_group("target"):
@@ -50,6 +54,7 @@ func do_damage(gun_data : gun, col : CollisionObject3D, global_position : Vector
 	if is_world:
 		print("spawn dust")
 		spawn_dust_cloud(global_position)
+		
 
 	#deal the damage we calculated
 	if col.has_method("take_damage"):

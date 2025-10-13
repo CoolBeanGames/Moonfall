@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpweyu8orpku2"]
+[gd_scene load_steps=8 format=3 uid="uid://dpweyu8orpku2"]
 
 [ext_resource type="Script" uid="uid://c0h16spr75bku" path="res://Codebase/props/crate.gd" id="1_bi164"]
 [ext_resource type="Texture2D" uid="uid://e1ckevsqgio8" path="res://Textures/wood-pattern-high-quality.jpg" id="2_fdn4f"]
 [ext_resource type="Resource" uid="uid://c7k8rtahyr8h7" path="res://Data/items/item_spawns.tres" id="2_wpcxd"]
 [ext_resource type="PackedScene" uid="uid://ccn45l80fue5n" path="res://Scenes/Props/crate_broken.tscn" id="3_wpcxd"]
+[ext_resource type="Resource" uid="uid://0xuey282kqax" path="res://Data/audio_sets/crate_break.tres" id="4_wpcxd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mplf"]
 albedo_texture = ExtResource("2_fdn4f")
@@ -19,6 +20,7 @@ continuous_cd = true
 script = ExtResource("1_bi164")
 spawn_items = ExtResource("2_wpcxd")
 crate_broken = ExtResource("3_wpcxd")
+crate_sounds = ExtResource("4_wpcxd")
 
 [node name="crate_main" type="CSGBox3D" parent="."]
 material_override = SubResource("StandardMaterial3D_6mplf")

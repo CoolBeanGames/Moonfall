@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://bxurmah5617f5"]
+[gd_scene load_steps=33 format=3 uid="uid://bxurmah5617f5"]
 
 [ext_resource type="PackedScene" uid="uid://b5t76snp62aca" path="res://Scenes/enviroment.tscn" id="1_2wl7v"]
 [ext_resource type="PackedScene" uid="uid://dfwvu0chheicj" path="res://Player/player.tscn" id="2_3mbwn"]
+[ext_resource type="Texture2D" uid="uid://cw7kxwo0q6n8g" path="res://Textures/GameHud.tres" id="3_hgvmy"]
 [ext_resource type="Shader" uid="uid://cu77dqtq6xchm" path="res://Codebase/Shaders/speed_effect.gdshader" id="3_pgw7i"]
 [ext_resource type="Shader" uid="uid://c7arwvyr4aaqx" path="res://Codebase/Shaders/vignette.gdshader" id="3_x6js8"]
 [ext_resource type="Script" uid="uid://4qe0y0r8t746" path="res://Codebase/UI/vignette.gd" id="4_lg2j6"]
@@ -18,10 +19,14 @@
 [ext_resource type="PackedScene" uid="uid://wen34c6fby2v" path="res://Scenes/Props/green_truck.tscn" id="12_cr6v8"]
 [ext_resource type="PackedScene" uid="uid://bwxr0mv1ria0s" path="res://Scenes/Props/bench.tscn" id="13_f43ej"]
 [ext_resource type="PackedScene" uid="uid://darsdltu7ejob" path="res://Scenes/Props/dumpster.tscn" id="14_7rq2r"]
+[ext_resource type="Texture2D" uid="uid://bjdqa0qqpemug" path="res://Textures/StaminaHud.tres" id="14_ebcm8"]
+[ext_resource type="Texture2D" uid="uid://0n1n36k5vrb2" path="res://Textures/effectHud.tres" id="15_4v654"]
 [ext_resource type="PackedScene" uid="uid://c6lk4xbh3eswm" path="res://Scenes/target.tscn" id="15_124qp"]
 [ext_resource type="PackedScene" uid="uid://d0i47ffkqutnd" path="res://Scenes/zombie_spawn_point.tscn" id="16_qolck"]
 [ext_resource type="PackedScene" uid="uid://m4cptmmnbyi6" path="res://Scenes/random_item_spawn_point.tscn" id="17_ry528"]
-[ext_resource type="PackedScene" uid="uid://d2dg6tk4wwnuq" path="res://Scenes/weapons/handgun_bullet_ejected.tscn" id="22_wukv0"]
+[ext_resource type="Script" uid="uid://ca5r5e7j16ibx" path="res://Codebase/UI/ammo_display_manager.gd" id="25_y0yaw"]
+[ext_resource type="PackedScene" uid="uid://l1dnl5ly6ub8" path="res://Scenes/UI_Scenes/ammo_pip.tscn" id="26_wp4mh"]
+[ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="31_rsfko"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_v7xhk"]
 
@@ -66,89 +71,53 @@ filter_low_hanging_obstacles = true
 
 [node name="Enviroment" parent="." instance=ExtResource("1_2wl7v")]
 
-[node name="Player" parent="." node_paths=PackedStringArray("debug_text_label") instance=ExtResource("2_3mbwn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25962353, 0.34604406, 14.062)
-debug_text_label = NodePath("../CanvasLayer/debug_info")
-
-[node name="PlayerShootComponent" parent="Player/Components" index="2" node_paths=PackedStringArray("guns")]
-guns = {
-&"AR16": NodePath("../../CollisionShape3D/camera_shake_base/Camera3D/Gun/AR162"),
-&"Spax11": NodePath("../../CollisionShape3D/camera_shake_base/Camera3D/Gun/Spax-11")
-}
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="SpeedEffect" type="ColorRect" parent="CanvasLayer2"]
-material = SubResource("ShaderMaterial_hgvmy")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("4_v7xhk")
-
-[node name="vignette" type="ColorRect" parent="CanvasLayer2"]
-visible = false
-material = SubResource("ShaderMaterial_y30xb")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("4_lg2j6")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="aiming_reticle" parent="CanvasLayer" instance=ExtResource("6_x6js8")]
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer"]
-custom_minimum_size = Vector2(400, 400)
-anchors_preset = -1
-anchor_left = 0.656
-anchor_top = 0.39200002
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.28796387
-offset_top = -0.01600647
-offset_right = 4.0
-offset_bottom = 6.0
-stretch_mode = 0
-alignment_horizontal = 2
-alignment_vertical = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/AspectRatioContainer"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/AspectRatioContainer/SubViewportContainer"]
+[node name="LowerRightViewPort" type="SubViewport" parent="."]
 transparent_bg = true
-handle_input_locally = false
-gui_disable_input = true
-size = Vector2i(400, 400)
-render_target_update_mode = 4
+canvas_cull_mask = 4294967293
+size = Vector2i(256, 256)
 
-[node name="GameHud" parent="CanvasLayer/AspectRatioContainer/SubViewportContainer/SubViewport" instance=ExtResource("7_x6js8")]
-anchor_left = 0.26000002
-anchor_top = 0.25500003
-anchor_right = 0.96700007
-anchor_bottom = 0.9850001
-offset_left = -1.5258789e-05
-offset_top = -7.6293945e-06
-offset_right = 0.19998169
-offset_bottom = -3.0517578e-05
+[node name="GameHud" parent="LowerRightViewPort" instance=ExtResource("7_x6js8")]
+offset_right = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="debug_info" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="LowerLeftViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_cull_mask = 4294967293
+size = Vector2i(1080, 720)
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="In_Game_UI" type="CanvasLayer" parent="LowerLeftViewport"]
+
+[node name="Stamina_aspect_ratio" type="AspectRatioContainer" parent="LowerLeftViewport/In_Game_UI"]
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 0.791
+anchor_right = 0.13900001
+anchor_bottom = 0.97800004
+grow_vertical = 2
+stretch_mode = 3
+
+[node name="Stamina_display" parent="LowerLeftViewport/In_Game_UI/Stamina_aspect_ratio" instance=ExtResource("8_gipt1")]
+layout_mode = 2
+
+[node name="ColorRect" parent="LowerLeftViewport/In_Game_UI/Stamina_aspect_ratio/Stamina_display" index="0"]
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_cull_mask = 4294967293
+size = Vector2i(1080, 720)
+
+[node name="In_Game_UI" type="CanvasLayer" parent="TopViewport"]
+
+[node name="MarginContainer" type="MarginContainer" parent="TopViewport/In_Game_UI"]
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.18200001
@@ -157,16 +126,13 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="effect_container" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="effect_container" type="HBoxContainer" parent="TopViewport/In_Game_UI/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 script = ExtResource("7_yhlfj")
 
-[node name="Stamina_display" parent="CanvasLayer" instance=ExtResource("8_gipt1")]
-offset_left = 17.0
-offset_top = -13.0
-offset_right = 17.0
-offset_bottom = -13.0
+[node name="Player" parent="." instance=ExtResource("2_3mbwn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25962353, 0.34604406, 14.062)
 
 [node name="crates" type="Node3D" parent="."]
 
@@ -436,6 +402,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0038, 0.62500024, 27.99617
 
 [node name="crate89" parent="crates" instance=ExtResource("9_y30xb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.079083, 0.62500024, 28.364502)
+
+[node name="UI_Effects" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpeedEffect" type="ColorRect" parent="UI_Effects"]
+visibility_layer = 2
+material = SubResource("ShaderMaterial_hgvmy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_v7xhk")
+
+[node name="vignette" type="ColorRect" parent="UI_Effects"]
+visibility_layer = 2
+material = SubResource("ShaderMaterial_y30xb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_lg2j6")
 
 [node name="trees" type="Node3D" parent="."]
 
@@ -708,6 +708,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.394285, -2.3841858e-07, 2.
 
 [node name="tree_a62" parent="trees" instance=ExtResource("8_y30xb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.83832, 2.3841858e-07, 6.938308)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+visible = false
+follow_viewport_scale = 0.001
+
+[node name="GameHud" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_hgvmy")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="StaminaHud" type="TextureRect" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+texture = ExtResource("14_ebcm8")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="EffectHud" type="TextureRect" parent="HUD"]
+texture = ExtResource("15_4v654")
+expand_mode = 1
+stretch_mode = 2
 
 [node name="background_buildings" type="Node3D" parent="."]
 
@@ -1634,7 +1664,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1633782, 0.25576738, -3.180
 [node name="Random_Item_Spawn_Point41" parent="random_item_spawners" instance=ExtResource("17_ry528")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.487766, 0.25576738, -2.2174485)
 
-[node name="handgun_bullet" parent="." instance=ExtResource("22_wukv0")]
-transform = Transform3D(-0.06475877, 0, 0.99790096, 0, 1, 0, -0.99790096, 0, -0.06475877, 0.46650147, 0.76795244, 13.345704)
+[node name="aim" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
-[editable path="Player"]
+[node name="aiming_reticle" parent="aim" instance=ExtResource("6_x6js8")]
+
+[node name="ammo and health" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ammo and health"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="Hearts" type="HBoxContainer" parent="ammo and health/VBoxContainer"]
+layout_mode = 2
+
+[node name="Ammo" type="HBoxContainer" parent="ammo and health/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("25_y0yaw")
+pip_scene = ExtResource("26_wp4mh")
+
+[node name="ammo_pip" parent="ammo and health/VBoxContainer/Ammo" instance=ExtResource("26_wp4mh")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ammo and health/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("31_rsfko")
+text = "Pistol"
+
+[editable path="LowerRightViewPort/GameHud"]
+[editable path="LowerRightViewPort/GameHud/PanelContainer/health_bar/ammo_UI"]
+[editable path="LowerRightViewPort/GameHud/PanelContainer/ScoreDisplay"]
+[editable path="LowerLeftViewport/In_Game_UI/Stamina_aspect_ratio/Stamina_display"]
+[editable path="aim/aiming_reticle"]

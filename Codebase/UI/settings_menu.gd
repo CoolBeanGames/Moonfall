@@ -14,6 +14,8 @@ class_name settings_menu extends Control
 @export var full_screen_toggle : CheckButton
 #the mouse mode we had set when we entered the pause menu
 @export var entry_mouse_mode : Input.MouseMode
+@export var button_press_sound : AudioStream
+@export var menu_close_sound : AudioStream
 
 
 
@@ -58,6 +60,7 @@ func _ready() -> void:
 
 #region UI Element Signals
 func _on_invert_y_toggled(toggled_on: bool) -> void:
+	play_click_sound()
 	GameManager.set_setting("invert_y",toggled_on)
 	GameManager.save_settings()
 
@@ -96,26 +99,32 @@ func _on_graphics_quality_drag_ended(_value_changed: bool) -> void:
 
 #region UI Buttons
 func _on_resume_button_down() -> void:
+	play_click_sound()
 	close()
 
 func _on_quit_button_down() -> void:
+	play_click_sound()
 	get_tree().quit()
 
 func _on_to_title_button_down() -> void:
+	play_click_sound()
 	SignalBus.fire_signal("to_title")
 #endregion
 
 func close():
+	play_close_sound()
 	Input.mouse_mode = entry_mouse_mode
 	get_tree().paused=false
 	SceneManager.unload_ui("Pause")
 
 ##toggle the full screen button
 func _on_fullscreen_down() -> void:
+	play_click_sound()
 	GameManager.save_data.set_data("fullscreen",full_screen_toggle.button_pressed)
 
 ##decrease the resolution
 func _on_res_down() -> void:
+	play_click_sound()
 	resolution_index -= 1
 	if resolution_index < 0:
 		resolution_index = GameManager.resolution_array.size() - 1
@@ -123,6 +132,7 @@ func _on_res_down() -> void:
 
 ##increase the resolution
 func _on_res_up() -> void:
+	play_click_sound()
 	resolution_index += 1
 	if resolution_index >= GameManager.resolution_array.size():
 		resolution_index = 0
@@ -137,6 +147,7 @@ func update_resolution_text(with_star : bool = true):
 
 ##called when the user presses the apply resolution button, this locks it in
 func _on_applu_resolution() -> void:
+	play_click_sound()
 	set_resolution(GameManager.resolution_array[resolution_index])
 	update_resolution_text(false)
 
@@ -187,3 +198,9 @@ func apply_fullscreen():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func play_click_sound(...params):
+	AudioManager.play_audio_file(button_press_sound,"ui",false,Vector3(0,0,0),true,0.83)
+
+func play_close_sound(...params):
+	AudioManager.play_audio_file(menu_close_sound,"ui",false,Vector3(0,0,0),true)

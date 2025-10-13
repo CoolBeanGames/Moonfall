@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dn41xgsutrc0u"]
+[gd_scene load_steps=25 format=3 uid="uid://dn41xgsutrc0u"]
 
 [ext_resource type="PackedScene" uid="uid://2xeql213rw21" path="res://Models/Zombie/characterMedium.fbx" id="1_5ia6i"]
 [ext_resource type="Script" uid="uid://cc6hl4kav2jau" path="res://Codebase/Zombie/zombie.gd" id="1_j0wq0"]
@@ -7,23 +7,15 @@
 [ext_resource type="Script" uid="uid://xgwgkqd85pbh" path="res://Codebase/Zombie/point_to_zombie.gd" id="3_hslf5"]
 [ext_resource type="Animation" uid="uid://cmc6xgrhpp4bf" path="res://Models/Zombie/attack.res" id="3_j0wq0"]
 [ext_resource type="Material" uid="uid://ct74tkuk0gvam" path="res://Models/Characters/Skins/zombie_female.tres" id="3_tmcj1"]
-[ext_resource type="AudioStream" uid="uid://ce6jptq7yl27h" path="res://Audio/SFX/zombie/zombie_hit.wav" id="4_aw8xw"]
 [ext_resource type="Animation" uid="uid://3aneyudo7y2o" path="res://Models/Zombie/death.res" id="4_hslf5"]
-[ext_resource type="AudioStream" uid="uid://bo0nnys7nqhi5" path="res://Audio/SFX/zombie/zombie_death.mp3" id="5_j0eft"]
+[ext_resource type="Resource" uid="uid://ph8hnnqgs1cn" path="res://Data/audio_sets/zombie_sounds.tres" id="4_j0eft"]
+[ext_resource type="Resource" uid="uid://bvbt86702ikt4" path="res://Data/audio_sets/foot_step_sounds.tres" id="5_f3vja"]
 [ext_resource type="Animation" uid="uid://hjloiso4om0u" path="res://Models/Zombie/hurt.res" id="5_u2tw5"]
 [ext_resource type="Animation" uid="uid://cr5vv0yuqmmjl" path="res://Models/Zombie/idle.res" id="6_fj6an"]
 [ext_resource type="Resource" uid="uid://c7k8rtahyr8h7" path="res://Data/items/item_spawns.tres" id="6_j0eft"]
-[ext_resource type="AudioStream" uid="uid://muucky2a5xtk" path="res://Audio/SFX/zombie/zombie_foot_L.wav" id="6_jrf8t"]
-[ext_resource type="AudioStream" uid="uid://de3betwpjwvks" path="res://Audio/SFX/zombie/zombie_foot_R.wav" id="7_jgnkq"]
 [ext_resource type="Animation" uid="uid://bu5f0e5yvvoye" path="res://Models/Zombie/land.res" id="7_tmcj1"]
-[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="8_u174i"]
 [ext_resource type="Script" uid="uid://bw6gem2hhn15b" path="res://Codebase/Zombie/track_player.gd" id="9_j0wq0"]
 [ext_resource type="Script" uid="uid://dhrncig2073i4" path="res://Codebase/LOD_Setter.gd" id="11_jgnkq"]
-
-[sub_resource type="Resource" id="Resource_ofjqa"]
-script = ExtResource("8_u174i")
-files = Array[AudioStream]([ExtResource("6_jrf8t"), ExtResource("7_jgnkq")])
-metadata/_custom_type_script = "uid://bc4x8rwu73rom"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aw8xw"]
 radius = 0.007488447
@@ -82,9 +74,8 @@ player_attack_range = NodePath("AttackDetectionArea")
 player_damage_range = NodePath("AttackDamageArea")
 materials = Array[Material]([ExtResource("2_fj6an"), ExtResource("3_tmcj1")])
 material_target = NodePath("characterMedium/Root/Skeleton3D/characterMedium")
-zombie_hit_sound = ExtResource("4_aw8xw")
-zombie_die_sound = ExtResource("5_j0eft")
-foot_step_sounds = SubResource("Resource_ofjqa")
+zombie_sounds = ExtResource("4_j0eft")
+foot_steps = ExtResource("5_f3vja")
 spawnables = ExtResource("6_j0eft")
 
 [node name="characterMedium" parent="." instance=ExtResource("1_5ia6i")]
@@ -101,36 +92,36 @@ bones/10/rotation = Quaternion(-0.5076861, 0.5079019, -0.49172804, -0.49243692)
 bones/12/rotation = Quaternion(0.94811195, 0.011445179, -0.044092964, -0.31465632)
 bones/16/rotation = Quaternion(0.7071068, -7.105428e-15, -0.7071068, 0)
 bones/18/position = Vector3(0.00016415656, -0.00027737344, 0.013962721)
-bones/18/rotation = Quaternion(0.057784945, 0.80724406, -0.58004683, -0.09253964)
-bones/20/rotation = Quaternion(-0.0081325965, 0.03817425, 0.024689164, 0.99893296)
-bones/23/rotation = Quaternion(0.09156277, 0.037032012, 0.016753994, 0.9949694)
-bones/24/rotation = Quaternion(-0.21519652, 0.044815104, -0.020066803, 0.9753356)
-bones/26/rotation = Quaternion(0.55302715, 0.32201454, 0.6712068, -0.37409788)
-bones/27/rotation = Quaternion(-0.24664633, 0.8540809, -0.272454, 0.36807662)
-bones/28/rotation = Quaternion(0.20952976, 0.012307405, 0.0034769084, 0.97771865)
-bones/29/rotation = Quaternion(0.0111988885, 0.5207391, 0.040912215, 0.8526615)
+bones/18/rotation = Quaternion(0.073641926, 0.8069082, -0.5785182, -0.093770005)
+bones/20/rotation = Quaternion(-0.00798355, 0.0577597, 0.011696493, 0.99823016)
+bones/23/rotation = Quaternion(0.09236875, 0.048679158, 0.0034041402, 0.9945285)
+bones/24/rotation = Quaternion(-0.2196516, 0.021885118, -0.012301941, 0.97525537)
+bones/26/rotation = Quaternion(0.55941004, 0.3225109, 0.6580864, -0.38725898)
+bones/27/rotation = Quaternion(-0.29143104, 0.8824825, -0.22374204, 0.293653)
+bones/28/rotation = Quaternion(0.32009545, 0.011924366, 0.0053116544, 0.94729537)
+bones/29/rotation = Quaternion(0.0047793277, 0.51044255, 0.0058555063, 0.8598787)
 bones/30/rotation = Quaternion(0.6685182, -0.07503359, -0.05090785, 0.7381476)
 bones/31/rotation = Quaternion(0.494805, 0.058234747, -0.054320976, 0.86534745)
 bones/32/rotation = Quaternion(0.44081008, -0.028696332, -0.02923534, 0.89666516)
 bones/34/rotation = Quaternion(-0.10012532, 0.7834216, 0.27387652, 0.5488326)
 bones/35/rotation = Quaternion(0.40664086, 0.02352126, 0.067682736, 0.91077393)
-bones/37/rotation = Quaternion(0.81513405, -0.39545977, 0.29557833, 0.30298793)
-bones/38/rotation = Quaternion(0.26729777, 0.8580938, 0.3316913, -0.28671917)
-bones/39/rotation = Quaternion(-0.045867924, -0.0039918227, 0.54632694, 0.8363056)
-bones/40/rotation = Quaternion(0.07884087, 0.20133016, 0.24539347, 0.94500387)
+bones/37/rotation = Quaternion(0.8052889, -0.4149556, 0.25633734, 0.33706534)
+bones/38/rotation = Quaternion(0.31672487, 0.80897814, 0.3515178, -0.34881943)
+bones/39/rotation = Quaternion(-0.049136635, -0.0038630855, 0.58525956, 0.80934656)
+bones/40/rotation = Quaternion(0.05918729, 0.20250434, 0.17462073, 0.96176744)
 bones/41/rotation = Quaternion(-0.6639688, -0.046883456, -0.04610888, 0.7448633)
 bones/42/rotation = Quaternion(-0.49645925, 0.05823401, -0.036205452, 0.86534745)
 bones/43/rotation = Quaternion(-0.43942928, -0.02636244, -0.046002425, 0.89671105)
 bones/45/rotation = Quaternion(-0.16438235, 0.8729435, -0.28024235, -0.3638851)
 bones/46/rotation = Quaternion(-0.38290152, -0.058393247, 0.19207406, 0.9017119)
-bones/48/rotation = Quaternion(0.7752411, 0.22764578, 0.007750854, 0.5891678)
+bones/48/rotation = Quaternion(0.71172005, 0.2369457, 0.014309812, 0.6611403)
 bones/48/scale = Vector3(1.000017, 1.0000007, 1.0000015)
-bones/49/rotation = Quaternion(0.8937963, -0.024838591, 0.28551403, 0.3449535)
-bones/50/rotation = Quaternion(-0.070535, -0.15837723, -0.17259315, 0.969615)
+bones/49/rotation = Quaternion(0.8893319, -0.02425414, 0.2836702, 0.35781527)
+bones/50/rotation = Quaternion(-0.071066864, -0.16042039, -0.16248852, 0.97098523)
 bones/50/scale = Vector3(0.9999994, 0.9999997, 1.0000007)
-bones/53/rotation = Quaternion(0.94652605, 0.027161557, -0.1500464, 0.28431827)
-bones/54/rotation = Quaternion(0.41661727, -0.044994976, -0.2012672, 0.88537955)
-bones/55/rotation = Quaternion(-0.6468433, 0.15717557, 0.2555028, 0.7011476)
+bones/53/rotation = Quaternion(0.96593076, 0.011997592, -0.15283243, 0.20850943)
+bones/54/rotation = Quaternion(0.38727894, -0.042981055, -0.18805556, 0.90155584)
+bones/55/rotation = Quaternion(-0.6593531, 0.13741688, 0.23681794, 0.7002053)
 bones/56/rotation = Quaternion(0.028261183, 0.95394117, -0.29757354, -0.025446814)
 
 [node name="characterMedium" parent="characterMedium/Root/Skeleton3D" index="0"]
@@ -138,7 +129,7 @@ lod_bias = 0.05
 script = ExtResource("11_jgnkq")
 
 [node name="HeadShotAttach" type="BoneAttachment3D" parent="characterMedium/Root/Skeleton3D" index="1"]
-transform = Transform3D(0.9988777, -0.0465736, 0.0098983385, 0.0019369945, -0.16791049, -0.98580056, 0.047573365, 0.9847016, -0.16762981, -0.00040434414, -0.0047872365, 0.024339333)
+transform = Transform3D(0.9993045, -0.03602657, 0.010831364, 0.0046377406, -0.16766897, -0.9858328, 0.037331454, 0.985185, -0.16738322, -0.00029024362, -0.0048484774, 0.024318775)
 bone_name = "Head"
 bone_idx = 24
 
@@ -152,7 +143,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
 shape = SubResource("SphereShape3D_aw8xw")
 
 [node name="ChestAttach" type="BoneAttachment3D" parent="characterMedium/Root/Skeleton3D" index="2"]
-transform = Transform3D(0.9895129, -0.032146223, -0.14087747, -0.14372756, -0.31964576, -0.93657327, -0.014924255, 0.9469918, -0.32091132, 8.606251e-05, -0.0011316314, 0.016701804)
+transform = Transform3D(0.99198157, -0.03059935, -0.12268908, -0.12596703, -0.32379314, -0.9377053, -0.0110332845, 0.9456331, -0.32504874, 8.923828e-05, -0.0011435798, 0.016698264)
 bone_name = "Chest"
 bone_idx = 21
 

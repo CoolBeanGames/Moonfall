@@ -1,0 +1,21 @@
+[gd_scene load_steps=8 format=3 uid="uid://l1dnl5ly6ub8"]
+
+[ext_resource type="Texture2D" uid="uid://bcx81megrmgfi" path="res://Textures/UI/ammo-pip-left.png" id="1_42f66"]
+[ext_resource type="Script" uid="uid://dxhdgtma7iupx" path="res://Codebase/UI/ammo_pip.gd" id="2_jntc7"]
+[ext_resource type="Texture2D" uid="uid://c07rn7w5rnkd7" path="res://Textures/UI/ammo-pip-left-empty.png" id="3_r8640"]
+[ext_resource type="Texture2D" uid="uid://c1rqdxx60w7rl" path="res://Textures/UI/ammo-pip-center.png" id="4_5uo0p"]
+[ext_resource type="Texture2D" uid="uid://b7r4vq53tni0n" path="res://Textures/UI/ammo-pip-center-empty.png" id="5_tx7ks"]
+[ext_resource type="Texture2D" uid="uid://nyxktyuohfs4" path="res://Textures/UI/ammo-pip-right.png" id="6_we4vi"]
+[ext_resource type="Texture2D" uid="uid://bwb38eow0s2k3" path="res://Textures/UI/ammo-pip-right-empty.png" id="7_60b12"]
+
+[node name="ammo_pip" type="TextureRect"]
+texture = ExtResource("1_42f66")
+script = ExtResource("2_jntc7")
+textures = Dictionary[String, Texture]({
+"left_empty": ExtResource("3_r8640"),
+"left_full": ExtResource("1_42f66"),
+"mid_empty": ExtResource("5_tx7ks"),
+"mid_full": ExtResource("4_5uo0p"),
+"right_empty": ExtResource("7_60b12"),
+"right_full": ExtResource("6_we4vi")
+})

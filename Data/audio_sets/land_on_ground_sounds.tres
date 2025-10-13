@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="unnamed_audio_set" load_steps=2 format=3 uid="uid://bn2b2svb6qnlj"]
+
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="1_uq3ih"]
+
+[resource]
+script = ExtResource("1_uq3ih")
+metadata/_custom_type_script = "uid://bc4x8rwu73rom"

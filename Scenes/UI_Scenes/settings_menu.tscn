@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dspowx6jmplt8"]
+[gd_scene load_steps=6 format=3 uid="uid://dspowx6jmplt8"]
 
 [ext_resource type="Script" uid="uid://b1jgqv74t2dgc" path="res://Codebase/UI/settings_menu.gd" id="1_htmq1"]
+[ext_resource type="AudioStream" uid="uid://djke5ca1q62fs" path="res://Audio/SFX/New/UI_select.wav" id="2_gpric"]
 [ext_resource type="Theme" uid="uid://b7rgwcoaxjxnj" path="res://ui_theme.tres" id="2_tjab7"]
+[ext_resource type="AudioStream" uid="uid://b85xr1e2jlkph" path="res://Audio/SFX/New/UI_confirm.wav" id="3_n7sf8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5rwi"]
 content_margin_left = 20.0
@@ -26,6 +28,8 @@ graphics_quality = NodePath("VBoxContainer/Graphics/HSlider")
 invert_y = NodePath("VBoxContainer/Invert Y/CheckButton")
 resolution_label = NodePath("VBoxContainer/Resolution/Res-Label")
 full_screen_toggle = NodePath("VBoxContainer/Fullscreen/CheckButton")
+button_press_sound = ExtResource("2_gpric")
+menu_close_sound = ExtResource("3_n7sf8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -218,11 +222,17 @@ theme = ExtResource("2_tjab7")
 text = "Apply Resolution"
 
 [connection signal="drag_ended" from="VBoxContainer/master_volume/HSlider" to="." method="_on_master_volume_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/master_volume/HSlider" to="." method="play_click_sound"]
 [connection signal="drag_ended" from="VBoxContainer/SFXVolume/HSlider" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/SFXVolume/HSlider" to="." method="play_click_sound"]
 [connection signal="drag_ended" from="VBoxContainer/MusicVolume/HSlider" to="." method="_on_music_volume_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/MusicVolume/HSlider" to="." method="play_click_sound"]
 [connection signal="drag_ended" from="VBoxContainer/LookSensitivity/HSlider" to="." method="_on_look_sensitivity_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/LookSensitivity/HSlider" to="." method="play_click_sound"]
 [connection signal="drag_ended" from="VBoxContainer/Particle_density/HSlider" to="." method="_on_particle_density_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/Particle_density/HSlider" to="." method="play_click_sound"]
 [connection signal="drag_ended" from="VBoxContainer/Graphics/HSlider" to="." method="_on_graphics_quality_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/Graphics/HSlider" to="." method="play_click_sound"]
 [connection signal="toggled" from="VBoxContainer/Invert Y/CheckButton" to="." method="_on_invert_y_toggled"]
 [connection signal="button_down" from="VBoxContainer/Fullscreen/CheckButton" to="." method="_on_fullscreen_down"]
 [connection signal="button_down" from="VBoxContainer/Resolution/Res-Down" to="." method="_on_res_down"]

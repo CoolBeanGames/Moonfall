@@ -1,18 +1,10 @@
-[gd_resource type="Resource" script_class="gun" load_steps=10 format=3 uid="uid://c62sh2esaio13"]
+[gd_resource type="Resource" script_class="gun" load_steps=6 format=3 uid="uid://c62sh2esaio13"]
 
 [ext_resource type="PackedScene" uid="uid://dio0na5l06nbg" path="res://Scenes/bullet.tscn" id="1_14yro"]
 [ext_resource type="AudioStream" uid="uid://dovtldvyy3p0x" path="res://Guns/audio/pistol_empty.wav" id="2_6ray1"]
 [ext_resource type="AudioStream" uid="uid://b46i523muj5kx" path="res://Guns/audio/pistol_reload.wav" id="3_5jubj"]
 [ext_resource type="Script" uid="uid://bcsr18h10rwst" path="res://Codebase/Weapons/Gun.gd" id="4_hs2ii"]
-[ext_resource type="AudioStream" uid="uid://10iye2y0rbla" path="res://Audio/SFX/rifle_shoot/344_audio_warzone_machine_gun_single_shot_1_1616.wav" id="5_hs2ii"]
-[ext_resource type="AudioStream" uid="uid://8lh515y67s2w" path="res://Audio/SFX/rifle_shoot/344_audio_warzone_machine_gun_single_shot_2_1617.wav" id="6_vj3df"]
-[ext_resource type="AudioStream" uid="uid://cf8qnwhrakdup" path="res://Audio/SFX/rifle_shoot/344_audio_warzone_machine_gun_single_shot_3_1618.wav" id="7_f88tw"]
-[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="8_sgcsd"]
-
-[sub_resource type="Resource" id="Resource_ux5e7"]
-script = ExtResource("8_sgcsd")
-files = Array[AudioStream]([ExtResource("5_hs2ii"), ExtResource("6_vj3df"), ExtResource("7_f88tw")])
-metadata/_custom_type_script = "uid://bc4x8rwu73rom"
+[ext_resource type="Resource" uid="uid://bvsk7snvyyfo4" path="res://Data/audio_sets/ak_sounds.tres" id="5_14yro"]
 
 [resource]
 script = ExtResource("4_hs2ii")
@@ -22,7 +14,7 @@ melee_time = 0.4
 max_clip_size = 24
 loaded_bullets = 24
 fire_mode = 1
-shooting_sounds = SubResource("Resource_ux5e7")
+shooting_sounds = ExtResource("5_14yro")
 empty_sound = ExtResource("2_6ray1")
 reload_sound = ExtResource("3_5jubj")
 metadata/_custom_type_script = "uid://bcsr18h10rwst"

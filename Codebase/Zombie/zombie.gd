@@ -16,9 +16,8 @@ var state_machine : StateMachine =  StateMachine.new()
 @export var ammo_clip : PackedScene
 @export var materials : Array[Material]
 @export var material_target : MeshInstance3D
-@export var zombie_hit_sound : AudioStream
-@export var zombie_die_sound : AudioStream
-@export var foot_step_sounds : audio_set
+@export var zombie_sounds : audio_set
+@export var foot_steps : audio_set
 @export var pending_footstep_sounds : int = 0
 
 @export var spawnables : item_spawn_list
@@ -54,9 +53,10 @@ func add_states():
 
 func play_footstep_sound():
 	if GameManager.get_data("zombie_footsteps",0) < GameManager.get_data("max_zombie_footsteps",0):
-		var p : audio_player = AudioManager.play_random_audio_file(foot_step_sounds,"zombie_footsteps",true,global_position)
+		var p : audio_player = AudioManager.play_random_audio_file(foot_steps,"zombie_footsteps",true,global_position)
 		GameManager.set_data("zombie_footsteps",GameManager.get_data("zombie_footsteps",0) + 1)
-		p.playback_finished.connect(footstep_sound_finished)
+		if p:
+			p.playback_finished.connect(footstep_sound_finished)
 		pending_footstep_sounds += 1
 
 func footstep_sound_finished():
@@ -124,13 +124,13 @@ func take_damage(damage : int):
 			kill()
 		else:
 			state_machine.bb.set("hurt",true)
-			AudioManager.play_audio_file(zombie_hit_sound,"zombie_noises",true,global_position)
+			AudioManager.play_random_audio_file(zombie_sounds,"zombie_noises",true,global_position)
 
 func melee_damage():
 	take_damage(1)
 
 func kill():
-	AudioManager.play_audio_file(zombie_die_sound,"zombie_noises",true,global_position)
+	AudioManager.play_random_audio_file(zombie_sounds,"zombie_noises",true,global_position)
 	state_machine.bb.set_data("dead",true)
 	GameManager.increase_score(1)
 	spawnables.get_item_spawn(global_position)

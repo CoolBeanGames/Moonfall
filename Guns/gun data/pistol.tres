@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://dio0na5l06nbg" path="res://Scenes/bullet.tscn" id="1_dgsuw"]
 [ext_resource type="AudioStream" uid="uid://dovtldvyy3p0x" path="res://Guns/audio/pistol_empty.wav" id="1_sjeqm"]
 [ext_resource type="AudioStream" uid="uid://b46i523muj5kx" path="res://Guns/audio/pistol_reload.wav" id="2_dgsuw"]
-[ext_resource type="Resource" uid="uid://bff5ffjsooq0p" path="res://Guns/pistol_shot_sounds.tres" id="3_sjeqm"]
+[ext_resource type="Resource" uid="uid://cagy2hn6haqfw" path="res://Data/audio_sets/pistol_shot_sounds.tres" id="5_dgsuw"]
 
 [resource]
 script = ExtResource("1_36gdk")
 gun_name = &"Pistol"
 bullet_prefab = ExtResource("1_dgsuw")
 fire_rate = 0.8
-shooting_sounds = ExtResource("3_sjeqm")
+shooting_sounds = ExtResource("5_dgsuw")
 empty_sound = ExtResource("1_sjeqm")
 reload_sound = ExtResource("2_dgsuw")
 gun_object_path = "res://Scenes/weapons/hand_gun.tscn"

@@ -19,23 +19,23 @@ func _ready() -> void:
 	read_all_configs()
 
 #play an audio file with a json settings file
-func play_audio_file(audio : AudioStream, settings : String, use_position : bool, position : Vector3, always_play : bool = false) -> audio_player:
+func play_audio_file(audio : AudioStream, settings : String, use_position : bool = false, position : Vector3 = Vector3(0,0,0), always_play : bool = false , start_playing_at : float = 0) -> audio_player:
 	if active_audio_players.size() < GameManager.get_data("Max_Active_Audio_Sources") or always_play:
 		var plr = pop()
-		return _setup_from_json(plr,audio,settings,use_position,position)
+		return _setup_from_json(plr,start_playing_at,audio,settings,use_position,position)
 	else: 
 		return null
 
 #play a random audio file loading settings from a json file
-func play_random_audio_file(audioSet : audio_set, settings : String, use_position : bool, position : Vector3, always_play : bool = false) -> audio_player:
+func play_random_audio_file(audioSet : audio_set, settings : String, use_position : bool = false, position : Vector3 = Vector3(0,0,0), always_play : bool = false , start_playing_at : float = 0) -> audio_player:
 	if active_audio_players.size() < GameManager.get_data("Max_Active_Audio_Sources") or always_play:
 		var plr = pop()
 		var audio : AudioStream = audioSet.get_random_file()
-		return _setup_from_json(plr,audio,settings,use_position,position)
+		return _setup_from_json(plr,start_playing_at,audio,settings,use_position,position)
 	return null
 #used to setup an audio file with an audio settings json file
-func _setup_from_json(plr : audio_player,audio : AudioStream,settings : String, use_position : bool, position : Vector3) -> audio_player:
-	return plr.play(audio,settings,use_position,position)
+func _setup_from_json(plr : audio_player,start_from : float,audio : AudioStream,settings : String, use_position : bool, position : Vector3) -> audio_player:
+	return plr.play(audio,settings,start_from,use_position,position)
 
 #spawn the audio player in and return it to the top level functions
 func spawn_player() -> audio_player:

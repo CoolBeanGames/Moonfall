@@ -6,8 +6,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3emn4"]
 shader = ExtResource("2_kd0jm")
 shader_parameter/progress = 0.0
-shader_parameter/ring_thickness = 0.20800000918148
-shader_parameter/ring_radius = 0.24800000852012
+shader_parameter/ring_thickness = 0.05200000177148
+shader_parameter/ring_radius = 0.38800001517012
 shader_parameter/progress_color = Color(0.1581136, 0.24296975, 4.813075e-08, 1)
 shader_parameter/background_color = Color(1.4230597, 1.3171093e-05, 1.3281775e-06, 1)
 shader_parameter/gradient_color = Color(0.26819244, 0.5262334, 0, 1)
@@ -28,7 +28,6 @@ script = ExtResource("1_nwbxd")
 display = NodePath("ColorRect")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_3emn4")
 layout_mode = 1
 anchors_preset = -1

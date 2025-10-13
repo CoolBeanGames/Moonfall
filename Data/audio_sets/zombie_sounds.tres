@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="unnamed_audio_set" load_steps=9 format=3 uid="uid://ph8hnnqgs1cn"]
+
+[ext_resource type="AudioStream" uid="uid://busphxb3vop57" path="res://Audio/SFX/New/zombie_1.wav" id="1_t0oo7"]
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="1_yx41x"]
+[ext_resource type="AudioStream" uid="uid://cn1e6pby3t847" path="res://Audio/SFX/New/zombie_2.wav" id="2_pf14s"]
+[ext_resource type="AudioStream" uid="uid://bmdjcrt5nlh7y" path="res://Audio/SFX/New/zombie_3.wav" id="3_8hktf"]
+[ext_resource type="AudioStream" uid="uid://ccn0oialcnutu" path="res://Audio/SFX/New/zombie_4.wav" id="4_kky84"]
+[ext_resource type="AudioStream" uid="uid://c5vj3i6078uem" path="res://Audio/SFX/New/zombie_5.wav" id="5_emi35"]
+[ext_resource type="AudioStream" uid="uid://dm4vatc8rmx36" path="res://Audio/SFX/New/zombie_6.wav" id="6_nb0ph"]
+[ext_resource type="AudioStream" uid="uid://h4lf16amnclf" path="res://Audio/SFX/New/zombie_7.wav" id="7_igmfg"]
+
+[resource]
+script = ExtResource("1_yx41x")
+files = Array[AudioStream]([ExtResource("1_t0oo7"), ExtResource("2_pf14s"), ExtResource("3_8hktf"), ExtResource("4_kky84"), ExtResource("5_emi35"), ExtResource("6_nb0ph"), ExtResource("7_igmfg")])
+metadata/_custom_type_script = "uid://bc4x8rwu73rom"

@@ -18,6 +18,9 @@ extends Node3D
 
 @export var delete_if_game_not_finished : Array[Control]
 
+@export var new_game_button_sound : AudioStream
+@export var button_click_sound : AudioStream
+
 func _ready() -> void:
 	title_anim.play("fade_in")
 	
@@ -45,6 +48,7 @@ func play_instrumental():
 
 #start the intro animation
 func _on_start_button_down() -> void:
+	play_new_game_sound()
 	start_game()
 
 #called to start the game
@@ -66,6 +70,7 @@ func load_game():
 
 #play the intro again if you have already seen it
 func on_replay_intro() -> void:
+	play_click_sound()
 	if !settings_open and !leaderboard_open:
 		if is_instance_valid(GameManager.start_music):
 			GameManager.start_music.fade_out(3)
@@ -73,6 +78,7 @@ func on_replay_intro() -> void:
 
 
 func on_credits() -> void:
+	play_click_sound()
 	if !settings_open and !leaderboard_open:
 		if is_instance_valid(GameManager.start_music):
 			GameManager.start_music.fade_out(3)
@@ -87,9 +93,11 @@ func to_intro():
 		SignalBus.fire_signal("to_intro")
 
 func _on_close_settings_button_button_down() -> void:
+	play_click_sound()
 	toggle_settings()
 
 func _on_settings_button_down() -> void:
+	play_click_sound()
 	if !settings_open and !leaderboard_open:
 		toggle_settings()
 
@@ -98,9 +106,11 @@ func toggle_settings():
 	settings_visibility_parent.visible = settings_open
 
 func _on_close_leaderboard_button_2_button_down() -> void:
+	play_click_sound()
 	toggle_leaderboard()
 
 func _on_leaderboard_button_down() -> void:
+	play_click_sound()
 	toggle_leaderboard()
 
 func toggle_leaderboard():
@@ -108,3 +118,9 @@ func toggle_leaderboard():
 	if leaderboard_open:
 		leaderboard.show_score_ui()
 	leaderboard_visiblility_target.visible = leaderboard_open
+
+func play_click_sound(...params):
+	AudioManager.play_audio_file(button_click_sound,"ui",false,Vector3(0,0,0),true,0.83)
+
+func play_new_game_sound(...params):
+	AudioManager.play_audio_file(new_game_button_sound,"ui",false,Vector3(0,0,0),true,1.18)

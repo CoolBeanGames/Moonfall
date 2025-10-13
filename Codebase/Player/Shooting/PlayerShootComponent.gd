@@ -21,6 +21,8 @@ func _ready() -> void:
 	InputManager.connect_to_action_just_released("reload",reload)
 	InputManager.connect_to_action_just_released("weaponUp",cycle_up)
 	InputManager.connect_to_action_just_released("weaponDown",cycle_down)
+	InputManager.scroll_up.connect(cycle_up)
+	InputManager.scroll_down.connect(cycle_down)
 	current_gun = enabled_guns[current_gun_index]
 	var i : int = 0
 	for g : weapon in enabled_guns:
@@ -73,7 +75,11 @@ func cycle_guns(direction : int):
 	update_ui()
 
 func cycle_up():
+	SignalBus.fire_signal("weapon_changed")
+	print("[Cycle] cycle up")
 	cycle_guns(1)
 
 func cycle_down():
+	SignalBus.fire_signal("weapon_changed")
+	print("[Cycle] cycle down")
 	cycle_guns(-1)

@@ -7,8 +7,6 @@ extends Control
 func _ready() -> void:
 	SignalBus.connect_signal("hit_enemy",on_hit)
 
-
-
 func on_hit():
 	anima.play("headshot")
 	

@@ -12,6 +12,7 @@ class_name gun_strategy extends Resource
 
 var blood : PackedScene
 var dust : PackedScene
+var zombie_hit : audio_set = preload("res://Data/audio_sets/zombie_hit_sounds.tres")
 
 #make sure we arent loading dust and blood every single shot
 func load_stuff():

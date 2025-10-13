@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="unnamed_audio_set" load_steps=7 format=3 uid="uid://cagy2hn6haqfw"]
+
+[ext_resource type="AudioStream" uid="uid://ctbcip0olgo7a" path="res://Audio/SFX/New/pistol_1.wav" id="1_2gi4w"]
+[ext_resource type="AudioStream" uid="uid://dmvfpjeem8546" path="res://Audio/SFX/New/pistol_2.wav" id="2_bc0ny"]
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="3_1lqhx"]
+[ext_resource type="AudioStream" uid="uid://bb8mhvxn7yne7" path="res://Audio/SFX/New/pistol_3.wav" id="3_6hlsg"]
+[ext_resource type="AudioStream" uid="uid://bj8s03j6hlvy" path="res://Audio/SFX/New/pistol_4.wav" id="4_7oa14"]
+[ext_resource type="AudioStream" uid="uid://df3p40n3bohlg" path="res://Audio/SFX/New/pistol_5.wav" id="5_dcohx"]
+
+[resource]
+script = ExtResource("3_1lqhx")
+files = Array[AudioStream]([ExtResource("1_2gi4w"), ExtResource("2_bc0ny"), ExtResource("3_6hlsg"), ExtResource("4_7oa14"), ExtResource("5_dcohx")])
+metadata/_custom_type_script = "uid://bc4x8rwu73rom"

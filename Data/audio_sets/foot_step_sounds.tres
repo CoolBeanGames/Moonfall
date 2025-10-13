@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="unnamed_audio_set" load_steps=5 format=3 uid="uid://bvbt86702ikt4"]
+
+[ext_resource type="Script" uid="uid://bc4x8rwu73rom" path="res://Codebase/Data/Scripts/unnamed_audio_set.gd" id="1_3fyw0"]
+[ext_resource type="AudioStream" uid="uid://8cnwe4i5tvrs" path="res://Audio/SFX/New/footstep_1.wav" id="1_n668n"]
+[ext_resource type="AudioStream" uid="uid://5ph522x4jrtv" path="res://Audio/SFX/New/footstep_2.wav" id="2_hfv3s"]
+[ext_resource type="AudioStream" uid="uid://cjtcp5wolyjte" path="res://Audio/SFX/New/footstep_3.wav" id="3_6err3"]
+
+[resource]
+script = ExtResource("1_3fyw0")
+files = Array[AudioStream]([ExtResource("1_n668n"), ExtResource("2_hfv3s"), ExtResource("3_6err3")])
+metadata/_custom_type_script = "uid://bc4x8rwu73rom"

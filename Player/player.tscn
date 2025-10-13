@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dfwvu0chheicj"]
+[gd_scene load_steps=35 format=3 uid="uid://dfwvu0chheicj"]
 
 [ext_resource type="Script" uid="uid://chqj13gmslwu0" path="res://Codebase/Player/player.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://rw5tpsp0lo8l" path="res://Codebase/StateMachine/StateMachine.gd" id="2_x3vf3"]
@@ -24,8 +24,7 @@
 [ext_resource type="Script" uid="uid://dxm67gmylx4ts" path="res://Codebase/Player/player_jump_component.gd" id="21_hshwv"]
 [ext_resource type="AudioStream" uid="uid://cs57inuq0alf7" path="res://Audio/SFX/melee/zapsplat_foley_stick_thin_with_leaves_swoosh_whoosh_air_very_fast_and_hard_114445.wav" id="22_8viyr"]
 [ext_resource type="Script" uid="uid://bpoepsrucshft" path="res://Codebase/Player/footstep_sound_player.gd" id="22_gpjlu"]
-[ext_resource type="AudioStream" uid="uid://muucky2a5xtk" path="res://Audio/SFX/zombie/zombie_foot_L.wav" id="23_qemgg"]
-[ext_resource type="AudioStream" uid="uid://de3betwpjwvks" path="res://Audio/SFX/zombie/zombie_foot_R.wav" id="24_8viyr"]
+[ext_resource type="Resource" uid="uid://bvbt86702ikt4" path="res://Data/audio_sets/foot_step_sounds.tres" id="24_qemgg"]
 
 [sub_resource type="Resource" id="Resource_x3vf3"]
 script = ExtResource("4_5htga")
@@ -66,11 +65,6 @@ metadata/_custom_type_script = "uid://bc4x8rwu73rom"
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gwnis"]
 radius = 0.15
 height = 0.6
-
-[sub_resource type="Resource" id="Resource_sm0op"]
-script = ExtResource("12_gpjlu")
-files = Array[AudioStream]([ExtResource("23_qemgg"), ExtResource("24_8viyr")])
-metadata/_custom_type_script = "uid://bc4x8rwu73rom"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b1ygp"]
 radius = 0.5073242
@@ -169,7 +163,7 @@ jump_sound = ExtResource("22_8viyr")
 [node name="Footstep_Sound_Player" type="Node" parent="Components" node_paths=PackedStringArray("plr")]
 script = ExtResource("22_gpjlu")
 plr = NodePath("../..")
-audio = SubResource("Resource_sm0op")
+audio = ExtResource("24_qemgg")
 
 [node name="melee_area" type="Area3D" parent="."]
 collision_layer = 512

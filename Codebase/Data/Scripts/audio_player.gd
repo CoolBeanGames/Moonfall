@@ -27,7 +27,8 @@ func _ready() -> void:
 
 #used to setup the player with a settings json object
 func play(audio : AudioStream, 
-settings_name : String, 
+settings_name : String,
+start_from : float, 
 use_position : bool = false, 
 position : Vector3 = Vector3(0,0,0)) -> audio_player:
 	if !AudioManager.configs.has(settings_name):
@@ -35,31 +36,31 @@ position : Vector3 = Vector3(0,0,0)) -> audio_player:
 		push_warning("available configs: ", str(AudioManager.configs.keys()))
 		return self
 	data = AudioManager.configs.get(settings_name)
-	_finish_setup(audio,use_position,position)
+	_finish_setup(audio,use_position,position,start_from)
 	return self
 
 #finialize setting up the audio player
-func _finish_setup(audio : AudioStream, use_position : bool, position : Vector3):
+func _finish_setup(audio : AudioStream, use_position : bool, position : Vector3, start_from : float):
 	if use_position:
-		_setup_3D(audio,position)
+		_setup_3D(audio,position,start_from)
 		return
-	_setup_2D(audio)
+	_setup_2D(audio,start_from)
 
 #play a global sound file
-func _setup_2D(audio : AudioStream):
+func _setup_2D(audio : AudioStream, start_from : float):
 	#setup the audio file
 	global_player.stream = audio
 	set_parameters(global_player)
-	global_player.play()
+	global_player.play(start_from)
 	
 
 #play a 3d positional sound file
-func _setup_3D(audio : AudioStream, position : Vector3):
+func _setup_3D(audio : AudioStream, position : Vector3, start_from : float):
 	#setup the audio file
 	local_player.stream = audio
 	set_parameters(local_player)
 	local_player.global_position = position
-	local_player.play()
+	local_player.play(start_from)
 	
 
 #called when a player finishes, allows the playback finished signal to
