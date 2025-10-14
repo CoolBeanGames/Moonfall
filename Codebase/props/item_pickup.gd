@@ -16,6 +16,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		AudioManager.play_audio_file(load("res://Audio/SFX/item_pickup.wav"),"default",false,Vector3(0,0,0),true)
 		for s in strategies:
 			s.execute(global_position)
+		GameManager.notification_man.notify("picked up " + itemData.item_name)
 		item_picked_up.emit()
 		queue_free()
 

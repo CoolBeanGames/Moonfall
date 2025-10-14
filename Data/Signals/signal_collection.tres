@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="signal_collection" load_steps=20 format=3 uid="uid://b5vfb06w67nek"]
+[gd_resource type="Resource" script_class="signal_collection" load_steps=21 format=3 uid="uid://b5vfb06w67nek"]
 
 [ext_resource type="Script" uid="uid://b5syd0c8bgll2" path="res://Codebase/SignalBus/SignalCollection.gd" id="1_plc7l"]
 [ext_resource type="Script" uid="uid://wssespaqbj5j" path="res://Codebase/SignalBus/GameSignal.gd" id="2_23aml"]
@@ -23,6 +23,10 @@
 script = ExtResource("2_23aml")
 metadata/_custom_type_script = "uid://wssespaqbj5j"
 
+[sub_resource type="Resource" id="Resource_vqpn0"]
+script = ExtResource("2_23aml")
+metadata/_custom_type_script = "uid://wssespaqbj5j"
+
 [resource]
 script = ExtResource("1_plc7l")
 signals = Dictionary[String, ExtResource("2_23aml")]({
@@ -32,6 +36,7 @@ signals = Dictionary[String, ExtResource("2_23aml")]({
 "intro_music_done": ExtResource("16_vnuwn"),
 "loading_finished": ExtResource("7_on2h6"),
 "new_game_clicked": ExtResource("11_t5642"),
+"player_health_changed": SubResource("Resource_vqpn0"),
 "player_killed": ExtResource("5_t5642"),
 "player_wins": ExtResource("6_r44ls"),
 "splash_screen_finished": ExtResource("8_x5fmm"),

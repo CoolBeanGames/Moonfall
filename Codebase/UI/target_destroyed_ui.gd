@@ -7,6 +7,7 @@ class_name target_destroyed_ui extends Control
 func _ready() -> void:
 	var targets_destroyed : int = GameManager.get_data("destroyed_targets",0)
 	var targets : int = GameManager.get_data("targets").size()
+	GameManager.notification_man.notify("Destroyed Target no " + str(targets_destroyed))
 	display.text = "Target " + str(targets_destroyed) + " of " + str(targets) + " Destroyed"
 	anim.play("fade")
 

@@ -27,7 +27,7 @@ func update_pip():
 		set_tex()
 
 func check_ammo():
-	if gun_for_pip.loaded_bullets >= bullet_index:
+	if gun_for_pip.loaded_bullets > bullet_index:
 		pip_state = PIPSTATE.FULL
 	else:
 		pip_state = PIPSTATE.EMPTY

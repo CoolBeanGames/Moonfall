@@ -23,6 +23,8 @@ var settings_data : blackboard = blackboard.new()
 @export var effect_stack : Array[stack_effect]
 @export var effect_stack_parent : HBoxContainer
 
+@export var notification_man : notification_manager
+
 var random_item_spawn_timer : float
 #endregion
 

@@ -35,19 +35,28 @@ func _ready() -> void:
 	#add some starting bullets
 	GameManager.set_data("bullets",12)
 	GameManager.set_data("player_shoot",self)
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	update_ui()
+	SignalBus.fire_signal("weapon_changed")
+	SignalBus.fire_signal("update_gun_ui")
 
 
 #process shot cooldown
-func _process(_delta: float) -> void:
-	update_ui()
+#func _process(_delta: float) -> void:
+	#if GameManager.get_data("player_gun") != current_gun.gun_data:
+		#update_ui()
 
 #used for non rapid fire guns
 func on_shoot():
 	if !InputManager.is_input_locked():
 		current_gun.shoot(raycaster)
+		update_ui()
 
 #update the gun ui
 func update_ui():
+	print("[GUN] update UI")
 	GameManager.set_data("player_gun",current_gun.gun_data)
 	SignalBus.fire_signal("update_gun_ui")
 
@@ -55,6 +64,7 @@ func update_ui():
 func reload():
 	if !InputManager.is_input_locked():
 		current_gun.reload()
+		update_ui()
 
 func change_weapon(index : int = 0):
 	if index == current_gun_index:
@@ -73,13 +83,12 @@ func cycle_guns(direction : int):
 		index = enabled_guns.size() - 1
 	change_weapon(index)
 	update_ui()
+	SignalBus.fire_signal("weapon_changed")
 
 func cycle_up():
-	SignalBus.fire_signal("weapon_changed")
 	print("[Cycle] cycle up")
 	cycle_guns(1)
 
 func cycle_down():
-	SignalBus.fire_signal("weapon_changed")
 	print("[Cycle] cycle down")
 	cycle_guns(-1)
