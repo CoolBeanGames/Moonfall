@@ -13,3 +13,5 @@ func execute(..._params : Array):
 		var item_spawns : item_spawn_list = load("res://Data/items/item_spawns.tres")
 		if item_spawns.items.has(item_spawns.items[spawn_list_index]):
 			item_spawns.items.erase(item_spawns.items[spawn_list_index])
+	else:
+		GameManager.set_data("bulelts",GameManager.get_data("bullets") + randi_range(3,6))

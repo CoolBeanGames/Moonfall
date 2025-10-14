@@ -16,6 +16,7 @@ class_name stack_effect extends Resource
 enum effector{damage,score,health,player_damage}
 
 @export var display_scene : PackedScene = load("res://Scenes/UI_Scenes/effect_display.tscn")
+@export var effect_name : String
 
 @export_category("shader parameters")
 @export var icon_image : Texture

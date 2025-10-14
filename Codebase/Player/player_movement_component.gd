@@ -18,7 +18,7 @@ var player_sprinting : bool = false
 
 @export var view_camera : Camera3D
 @export var sprint_sound : AudioStreamPlayer
-@export var sprint_speed_minimum : float = 14
+@export var sprint_speed_minimum : float = 8
 
 func _ready():
 	move_axis = InputManager.axis["wasd"]
@@ -53,8 +53,10 @@ func _physics_process(_delta: float) -> void:
 	print("[Sprint State] state: ", str(sprint_state))
 
 func on_move(value : Vector2):
+	if value.y < 0:
+		value.y *= 0.8
 	var forward = -plr.basis.z * (value.y * move_speed )
-	var side = plr.basis.x * (value.x * move_speed)
+	var side =( plr.basis.x * (value.x * move_speed)) * 0.7
 	target_velocity = forward + side
 
 func lerp_move(delta : float):

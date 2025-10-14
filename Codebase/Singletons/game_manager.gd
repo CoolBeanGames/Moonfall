@@ -20,7 +20,8 @@ var settings_data : blackboard = blackboard.new()
 ##if the game is paused or not
 @export var is_paused : bool = false
 
-@export var effect_stack : Array[stack_effect]
+@export var effect_stack : Array[stack_effect] = []
+@export var effect_stack_displays : Array[effect_display] = []
 @export var effect_stack_parent : HBoxContainer
 
 @export var notification_man : notification_manager
@@ -102,8 +103,13 @@ func add_effect(effect : stack_effect , time : float):
 		effect_stack_parent.add_child(instance)
 		root_node.print_log("[Effect Crash] getting a reference to effect display")
 		var display : effect_display = instance
+		effect_stack_displays.append(display)
 		root_node.print_log("[Effect Crash] callingsetup on effect display")
 		display.setup(effect,time)
+	else:
+		for d in effect_stack_displays:
+			if d.active_effect.effect_name == effect.effect_name:
+				d.timer = time
 #endregion
 
 func start_intro_audio():
@@ -304,7 +310,7 @@ func set_resolution(resolution : Vector2i):
 	GameManager.save_data.set_data("resolution",resolution)
 	GameManager.save_game()
 	
-	apply_fullscreen()
+	#apply_fullscreen()
 
 ##applies the current saved full screen data to the screen
 func apply_fullscreen():
